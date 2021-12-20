@@ -1,0 +1,161 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="javascript:void(0)" routerLink="/">HL7 Inspector Neo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <input class="form-control me-2" type="search" placeholder="Paste or drop message here"
+                        aria-label="Search">
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Current Profile : HL7 Version 2.5.1
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Load profile 'HL7 Version 2.5.1'</a></li>
+                        <li><a class="dropdown-item" href="#">Load profile 'HL7 Version 2.6'</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Edit current profile</a></li>
+                        <li><a class="dropdown-item" href="javscript:void(0)" data-bs-toggle="modal"
+                                data-bs-target="#upload-profile">Upload profile </a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="ExportAsJson()">Backup current
+                                profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
+                                data-bs-target="#reset">Reset profile</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+            <form class="d-flex">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Settings</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Help
+                        </a>
+                        <ul class="help dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="https://bitbucket.org/crambow/hl7inspector/wiki/Home"
+                                    target="blank">HL7 Inspector Classic</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="https://bitbucket.org/crambow/hl7inspector-neo/wiki/Home"
+                                    target="blank">Wiki</a></li>
+                            <li><a class="dropdown-item"
+                                    href="https://bitbucket.org/crambow/hl7inspector-neo/wiki/Release%20Notes"
+                                    target="blank">Release Notes</a></li>
+                            <li><a class="dropdown-item"
+                                    href="https://bitbucket.org/crambow/hl7inspector-neo/issues?status=new&status=open"
+                                    target="blank">Repor a bug</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="javascript:void(0)" routerLink="/imprint">Imprint</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
+                                    data-bs-target="#about">About</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+<!-- reset modal -->
+<div class="modal fade" id="reset" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="staticBackdropLabel">Reset profile</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="bootbox-body">All changes to the current profile will be lost in case you haven't a backup.
+                    Still reset?</div>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Reset profile</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Backup profile</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- about modal -->
+<div class="modal fade" id="about" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="staticBackdropLabel">HL7 Inspector Neo</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="bootbox-body">HL7 Inspector Neo Version 1.2.1.168-Final<p></p>
+                    <p>Only for experimental use and teaching.</p>
+                    <p></p>
+                    <p>© Carsten Rambow, Karlsruhe, Germany</p>
+                    <h3>WARRANTY</h3>BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR THE
+                    PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE
+                    COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND,
+                    EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+                    MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND
+                    PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
+                    ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- upload profile modal -->
+<div class="modal fade" id="upload-profile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="staticBackdropLabel">Upload profile</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="bootbox-body">
+                    <span class="btn btn-success fileinput-button"><i
+                            class="glyphicon glyphicon-plus"></i><span>Add files...</span><input id="name"
+                            name="files[]" type="file"></span>
+                    <p></p>
+                    <div id="uploadFileStatus" class="label label-success"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
