@@ -14,8 +14,8 @@ export class HomepageComponent implements OnInit {
   }
   openNav()
   {
-    (<HTMLInputElement>document.getElementById('sidebar')).style.width = '250px';
-    (<HTMLInputElement>document.getElementById("main")).style.marginLeft = "250px";
+    (<HTMLInputElement>document.getElementById('sidebar')).style.width = '400px';
+    (<HTMLInputElement>document.getElementById("main")).style.marginLeft = "400px";
     this.sAddOverlay = "overlay";
     this.bDisplayToggleBtn = false;
 

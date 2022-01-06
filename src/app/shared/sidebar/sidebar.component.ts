@@ -6,21 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-
+  sidebarOptions : any = ['item','item','item','item','item',]
+  addActiveClass: any;
   constructor() { }
 
   ngOnInit(): void {
   }
-  openNav()
-  {
-     
-     (<HTMLInputElement>document.getElementById('sidebar')).style.width = '250px';
-     (<HTMLInputElement>document.getElementById("main")).style.marginLeft = "250px";
-
+  AddActiveClass(item:any){
+    console.log("Item", item);
+    this.addActiveClass = item
   }
-  closeNav()
-  {
-    (<HTMLInputElement>document.getElementById('sidebar')).style.width = '0';
-    (<HTMLInputElement>document.getElementById("main")).style.marginLeft = "0";
-  }
+ 
 }

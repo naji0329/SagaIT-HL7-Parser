@@ -41,3 +41,15 @@
     vertical-align: baseline;
     border-radius: 0.25em;
 }
+.list-group-item.active {
+    z-index: 2;
+    color: #fff !important;
+    background-color: #337ab7 !important;
+    border-color: #337ab7 !important;
+}
+.list-group-item:hover {
+    color: #fff !important;
+    background-color: #337ab7 !important;
+    border-color: #337ab7 !important;
+}
+ .list-group-item{border-bottom: 1px solid rgba(0,0,0,.125) !important}

@@ -1,0 +1,14 @@
+<div class="middle">
+    <ul class="menus">
+        <li class=""  *ngFor="let item of sidebarOptions; let i = index" (click)="AddActiveClass(i)">
+            <a class="list-group-item" [class.active]="addActiveClass == i" style="min-height:34px">
+                <div style="display: inline">null</div>
+                <button type="button" class="btn btn-xs btn-default bg-white"
+                style="float: right"><i class="fa fa-trash trash-icon"
+                aria-hidden="true"></i></button>
+                <div class="item-claim">2021-12-17T07:25:20.643Z</div>
+            </a>
+        </li>
+        
+    </ul>
+</div>

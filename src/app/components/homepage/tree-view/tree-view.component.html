@@ -1,8 +1,81 @@
-<div style="padding: 3px 0 5px 0">
+<!-- <div style="padding: 3px 0 5px 0">
     <span id="messageName1" class="label label-info">Name: Copy of sample MDM^T02 with JPG</span>
     <span id="hl7length1" class="label label-info">Message Length: 9917 Characters</span>
-</div>
-<div style="min-height: 190px;">
+</div> -->
+<div style="min-height: 190px; display: flex;" class="table-responsive">
     <app-vertical-group-buttons></app-vertical-group-buttons>
+    <table class="table-responsive table">
+        <tbody>
+            <tr>
+                <td>Value</td>
+                <td>Opt </td>
+                <td>RP# </td>
+                <td>Description</td>
+            </tr>
+            <tr>
+                <td> <span class="fa fa-angle-right angle-right"></span>
+                    MSH|^~\&amp;|ADT-HIS||HL7INSPECTOR||20060101103100||ADT^A02|1|P|2.5.1
+                    <table>
+                        <tr>
+                            <td>10:1</td>
+                            <td colspan="2"></td>
+                            <td>R</td>
+                        </tr>
+                    </table>
+                </td>
+                <td colspan="2"></td>
+                <td>Message Header</td>
+            </tr>
+            <tr style="display: table-row;">
+                <td>10: 1</td>
+                <td>R</td>
+                <td></td>
+                <td>Message Control ID</td>
+            </tr>
+            <tr>
+                <td>P</td>
+                <td>R</td>
+                <td></td>
+                <td>Processing ID</td>
+            </tr>
+            <tr style="display: table-row;">
+                <td>12: 2.5.1</td>
+                <td>R</td>
+                <td></td>
+                <td>Version ID</td>
+            </tr>
+            <tr>
+                <td>PID||||4711|Doe^John||19701024|M|||Sesamstreet
+                    11^76137^Karlsruhe^D|||||GS|EV||||</td>
+                <td colspan="2"></td>
+                <td>Patient Identification</td>
+            </tr>
+            <tr>
+                <td>PV1||I|S1^23^3^CHI^^1||||||||||||||||1234|||||||||||||||||||||||||200601010930||||||||
+                </td>
+                <td colspan="2"></td>
+                <td>Patient Visit</td>
+            </tr>
+            <tr class="treegrid-228 treegrid-temp treegrid-collapsed"
+                >
+                <td class="node-value"><span
+                        class="treegrid-expander glyphicon glyphicon-chevron-right"></span>ZDS|1.2.3.4.5.6.7.8.10^^Application^DICOM
+                </td>
+                <td colspan="2"></td>
+                <td class="node-desc">M</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
+<!-- 
+<table>
+    <tr>
+        <th>ONE</th>
+        <th>TWO</th>
+    </tr>
+    <tr (click)="expanded(item)" *ngFor="let item of items">
+      <td>{{item.taskID}}</td>
+      <th [style.padding-left]="item.index*20+'px'">{{item.taskName}}{{item.index}}</th>
+    </tr>
+    </table> -->
