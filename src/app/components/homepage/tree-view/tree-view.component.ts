@@ -1,130 +1,210 @@
 import { Component, OnInit } from '@angular/core';
 
 
-export let sampleData: Object[] = [
+export let sampleData: any[] = [
+  // 1
   {
-    taskID: 1,
-    taskName: 'Planning',
-    startDate: new Date('02/03/2017'),
-    endDate: new Date('02/07/2017'),
-    progress: 100,
-    duration: 5,
-    priority: 'Normal',
-    approved: false,
-    isInExpandState: true,
+    icon: true,
+    value:"MSH|^~\&amp;|ADT-HIS||HL7INSPECTOR||20060101103100||ADT^A02|1|P|2.5.1",
+    description: 'Message Header',
+    opt: '',
+    rp: "",
+    valuePresenter: false,
+    message: "The MSH segment defines the intent, source, destination, and some specifics of the syntax of a message.Chapter: 2.15.9",
     subtasks: [
-      { taskID: 2, taskName: 'Plan timeline', startDate: new Date('02/03/2017'), endDate: new Date('02/07/2017'), duration: 5, progress: 100, priority: 'Normal', approved: false },
-      { taskID: 3, taskName: 'Plan budget', startDate: new Date('02/03/2017'), endDate: new Date('02/07/2017'), duration: 5, progress: 100, approved: true },
-      { taskID: 4, taskName: 'Allocate resources', startDate: new Date('02/03/2017'), endDate: new Date('02/07/2017'), duration: 5, progress: 100, priority: 'Critical', approved: false },
-      { taskID: 5, taskName: 'Planning complete', startDate: new Date('02/07/2017'), endDate: new Date('02/07/2017'), duration: 0, progress: 0, priority: 'Low', approved: true }
-    ]
+      { value:"1: |" , description: 'Field Seperator',opt: 'R',valuePresenter: true },
+      { value:"2: |",  description: 'Encoding Character', opt:'R' ,valuePresenter: true},
+      { icon: true , value:"3: ADT-HIS",  description: 'Sending Application', opt:'O',valuePresenter: true,
+        subtasks: [
+          { value:"ADT-HIS" , description: 'Namespace ID', opt:'O' , rp:'',valuePresenter: true}
+        ]
+      },
+       ]
   },
+  // 2
   {
-    taskID: 6,
-    taskName: 'Design',
-    startDate: new Date('02/10/2017'),
-    endDate: new Date('02/14/2017'),
-    duration: 3,
-    progress: 86,
-    priority: 'High',
-    isInExpandState: false,
-    approved: false,
+    icon: true,
+    value: 'EVN|A01|20060101||',
+    description: 'Event Type',
+    opt:'',
+    rp:'',
+    valuePresenter: false,
+    message: 'The EVN segment is used to communicate necessary trigger event information to receiving applications.Chapter: 3.4.1',
     subtasks: [
-      { taskID: 7, taskName: 'Software Specification', startDate: new Date('02/10/2017'), endDate: new Date('02/12/2017'), duration: 3, progress: 60, priority: 'Normal', approved: false },
-      { taskID: 8, taskName: 'Develop prototype', startDate: new Date('02/10/2017'), endDate: new Date('02/12/2017'), duration: 3, progress: 100, priority: 'Critical', approved: false },
-      { taskID: 9, taskName: 'Get approval from customer', startDate: new Date('02/13/2017'), endDate: new Date('02/14/2017'), duration: 2, progress: 100, approved: true },
-      { taskID: 10, taskName: 'Design Documentation', startDate: new Date('02/13/2017'), endDate: new Date('02/14/2017'), duration: 2, progress: 100, approved: true },
-      { taskID: 11, taskName: 'Design complete', startDate: new Date('02/14/2017'), endDate: new Date('02/14/2017'), duration: 0, progress: 0, priority: 'Normal', approved: true }
-    ]
+      { value: '1: A01',  description: 'Event Type Code', opt:'B' ,valuePresenter: true},
+      { value: '2: 20060101', description: 'Recorded Date/Time' , opt:'R' ,valuePresenter: true },
+       ]
   },
+  // 3
   {
-    taskID: 12,
-    taskName: 'Implementation Phase',
-    startDate: new Date('02/17/2017'),
-    endDate: new Date('02/27/2017'),
-    priority: 'Normal',
-    approved: false,
-    duration: 11,
-    subtasks: [
-      {
-        taskID: 13,
-        taskName: 'Phase 1',
-        startDate: new Date('02/17/2017'),
-        endDate: new Date('02/27/2017'),
-        priority: 'High',
-        approved: false,
-        duration: 11,
-        subtasks: [{
-          taskID: 14,
-          taskName: 'Implementation Module 1',
-          startDate: new Date('02/17/2017'),
-          endDate: new Date('02/27/2017'),
-          priority: 'Normal',
-          duration: 11,
-          approved: false,
-          subtasks: [
-            { taskID: 15, taskName: 'Development Task 1', startDate: new Date('02/17/2017'), endDate: new Date('02/19/2017'), duration: 3, progress: '50', priority: 'High', approved: false },
-            { taskID: 16, taskName: 'Development Task 2', startDate: new Date('02/17/2017'), endDate: new Date('02/19/2017'), duration: 3, progress: '50', priority: 'Low', approved: true },
-            { taskID: 17, taskName: 'Testing', startDate: new Date('02/20/2017'), endDate: new Date('02/21/2017'), duration: 2, progress: '0', priority: 'Normal', approved: true },
-            { taskID: 18, taskName: 'Bug fix', startDate: new Date('02/24/2017'), endDate: new Date('02/25/2017'), duration: 2, progress: '0', priority: 'Critical', approved: false },
-            { taskID: 19, taskName: 'Customer review meeting', startDate: new Date('02/26/2017'), endDate: new Date('02/27/2017'), duration: 2, progress: '0', priority: 'High', approved: false },
-            { taskID: 20, taskName: 'Phase 1 complete', startDate: new Date('02/27/2017'), endDate: new Date('02/27/2017'), duration: 0, priority: 'Low', approved: true }
-
-          ]
+    icon: true,
+    value:"PID||||4711|母鹿^约翰~Doe^John||19700220|M|||Sesamstreet 17^76137^上海^CN|||||GS|EV||||	",
+    description: 'Patient / Identification',
+    opt: '',
+    rp:'',
+    valuePresenter: false,
+    message:"The PID segment is used by all applications as the primary means of communicating patient identification information. This segment contains permanent patient identifying and demographic information that, for the most part, is not likely to change frequently.Chapter: 3.4.2",
+    subtasks: [{ icon: true , value: '1: 1', description: 'Set ID - OBX', opt: 'R',valuePresenter: true,
+          subtasks: [{
+           value: '1',
+           description: 'Sequence ID',
+           opt: '',
+           rp:'',
+           valuePresenter: true
         }]
       },
       {
-        taskID: 21,
-        taskName: 'Phase 2',
-        startDate: new Date('02/17/2017'),
-        endDate: new Date('02/28/2017'),
-        priority: 'High',
-        approved: false,
-        duration: 12,
+        icon: true,
+        label : true ,
+        value: '2: ED',
+        description: 'Value Type',
+        opt: 'R',
+        rp:'',
+        valuePresenter: true,
         subtasks: [{
-          taskID: 22,
-          taskName: 'Implementation Module 2',
-          startDate: new Date('02/17/2017'),
-          endDate: new Date('02/28/2017'),
-          priority: 'Critical',
-          approved: false,
-          duration: 12,
-          subtasks: [
-            { taskID: 23, taskName: 'Development Task 1', startDate: new Date('02/17/2017'), endDate: new Date('02/20/2017'), duration: 4, progress: '50', priority: 'Normal', approved: true },
-            { taskID: 24, taskName: 'Development Task 2', startDate: new Date('02/17/2017'), endDate: new Date('02/20/2017'), duration: 4, progress: '50', priority: 'Critical', approved: true },
-            { taskID: 25, taskName: 'Testing', startDate: new Date('02/21/2017'), endDate: new Date('02/24/2017'), duration: 2, progress: '0', priority: 'High', approved: false },
-            { taskID: 26, taskName: 'Bug fix', startDate: new Date('02/25/2017'), endDate: new Date('02/26/2017'), duration: 2, progress: '0', priority: 'Low', approved: false },
-            { taskID: 27, taskName: 'Customer review meeting', startDate: new Date('02/27/2017'), endDate: new Date('02/28/2017'), duration: 2, progress: '0', priority: 'Critical', approved: true },
-            { taskID: 28, taskName: 'Phase 2 complete', startDate: new Date('02/28/2017'), endDate: new Date('02/28/2017'), duration: 0, priority: 'Normal', approved: false }
-
-          ]
+          icon: false,
+          label : true ,
+          value: 'ED ',
+          description: 'Coded Value for HL7-Defined Tables',
+          opt: '',
+          rp:'',
+          valuePresenter: true,
         }]
       },
 
       {
-        taskID: 29,
-        taskName: 'Phase 3',
-        startDate: new Date('02/17/2017'),
-        endDate: new Date('02/27/2017'),
-        priority: 'Normal',
-        approved: false,
-        duration: 11,
+        icon: true,
+        value: '3: EGK_DATA52^eGK-Daten^HL7-DEU',
+        description: 'Observation Identifier',
+        opt: 'O',
+        rp:'',
+        valuePresenter: true,
         subtasks: [{
-          taskID: 30,
-          taskName: 'Implementation Module 3',
-          startDate: new Date('02/17/2017'),
-          endDate: new Date('02/27/2017'),
-          priority: 'High',
-          approved: false,
-          duration: 11,
-          subtasks: [
-            { taskID: 31, taskName: 'Development Task 1', startDate: new Date('02/17/2017'), endDate: new Date('02/19/2017'), duration: 3, progress: '50', priority: 'Low', approved: true },
-            { taskID: 32, taskName: 'Development Task 2', startDate: new Date('02/17/2017'), endDate: new Date('02/19/2017'), duration: 3, progress: '50', priority: 'Normal', approved: false },
-            { taskID: 33, taskName: 'Testing', startDate: new Date('02/20/2017'), endDate: new Date('02/21/2017'), duration: 2, progress: '0', priority: 'Critical', approved: true },
-            { taskID: 34, taskName: 'Bug fix', startDate: new Date('02/24/2017'), endDate: new Date('02/25/2017'), duration: 2, progress: '0', priority: 'High', approved: false },
-            { taskID: 35, taskName: 'Customer review meeting', startDate: new Date('02/26/2017'), endDate: new Date('02/27/2017'), duration: 2, progress: '0', priority: 'Normal', approved: true },
-            { taskID: 36, taskName: 'Phase 3 complete', startDate: new Date('02/27/2017'), endDate: new Date('02/27/2017'), duration: 0, priority: 'Critical', approved: false },
-          ]
+          icon: false,
+          value: 'EGK_DATA52	',
+          description: 'Identifier',
+          opt: 'O',
+          rp:'',
+          valuePresenter: true
+        },
+        {
+          icon: false,
+          value: 'eGK-Daten',
+          description: 'Text',
+          opt: 'O',
+          rp:'',
+          valuePresenter: true
+        },
+        {
+          icon: false,
+          value: 'HL7-DEU',
+          description: 'Name of Coding System',
+          opt: 'O',
+          rp:'',
+          valuePresenter: true
+        }]
+      }
+    ]
+  },
+   // 4
+   {
+    icon: true,
+    value:"OBX|3|ED|502^CHEST XRAY^L||Word^TEXT^^Base64^SnVzdCBhIHNpbXBsZSB0ZXh0",
+    description: 'Observation / Result',
+    opt: '',
+    rp:'',
+    valuePresenter: false,
+    subtasks: [{ icon: true , value: '1: 3', description: 'Set ID - OBX', opt: 'R', valuePresenter: true,
+          subtasks: [{
+            id:19 ,
+           value: '3',
+           description: 'Sequence ID',
+           opt: '',
+           rp:'',
+           valuePresenter: true
+        }]
+      },
+      {
+        icon: true,
+        label:true,
+        value: '2: ED',
+        description: 'Value Type',
+        opt: 'R',
+        rp:'',
+        valuePresenter: true,
+        subtasks: [{
+          icon: false,
+          label : true ,
+          value: 'ED ',
+          description: 'Coded Value for HL7-Defined Tables',
+          opt: '',
+          rp:'',
+          valuePresenter: true
+        }]
+      },
+
+      {
+        icon: true,
+        value: '3: 502^CHEST XRAY^L',
+        description: 'Observation Identifier',
+        opt: 'O',
+        rp:'',
+        valuePresenter: true,
+        subtasks: [{
+          icon: false,
+          value: '502',
+          description: 'Identifier',
+          opt: 'O',
+          rp:'',
+          valuePresenter: true
+        },
+        {
+          icon: false,
+          value: 'CHEST XRAY',
+          description: 'Text',
+          opt: 'O',
+          rp:'',
+          valuePresenter: true
+        },
+        {
+          icon: false,
+          value: 'L',
+          description: 'Name of Coding System',
+          opt: 'O',
+          rp:'',
+          valuePresenter: true
+        }]
+      },
+      {
+        icon: true,
+        value: '5: Word^TEXT^^Base64^SnVzdCBhIHNpbXBsZSB0ZXh0',
+        description: 'Observation Value',
+        opt: 'C/R',
+        rp:'refresh',
+        valuePresenter: true,
+        subtasks: [{
+          icon: false,
+          value: 'Word',
+          description: '',
+          opt: '',
+          rp:'',
+          valuePresenter: true
+        },
+        {
+          icon: false,
+          value: 'TEXT',
+          description: '',
+          opt: '',
+          rp:'',
+          valuePresenter: true
+        },
+        {
+          icon: false,
+          value: 'L',
+          description: 'Name of Coding System',
+          opt: 'O',
+          rp:'',
+          valuePresenter: true
         }]
       }
     ]
@@ -133,11 +213,16 @@ export let sampleData: Object[] = [
 @Component({
   selector: 'app-tree-view',
   templateUrl: './tree-view.component.html',
-  styleUrls: ['./tree-view.component.scss']
+  styleUrls: ['./tree-view.component.scss'],
+  
 })
 export class TreeViewComponent implements OnInit {
   sampleData = sampleData;
   items: any = [];
+  messageHeaderPane: any = "No segement selected";
+  badgeData: any;
+  message: any;
+  pane1 : any = "No file selected or unknown"
   constructor() { }
 
   ngOnInit(): void {
@@ -147,8 +232,7 @@ export class TreeViewComponent implements OnInit {
   expanded(item:any)
   {
     item.expanded=!item.expanded;
-    this.items=this.getItems(this.sampleData,null,0)
-
+    this.items=this.getItems(this.sampleData,null,0);
   }
   getItems(data:any, items:any,index:any) {
     data.forEach((x:any) => {
@@ -161,6 +245,27 @@ export class TreeViewComponent implements OnInit {
     }
     )
     return items;
+  }
+  ReadValues(item:any)
+  {
+    console.log("item",item);
+    if(!item.valuePresenter)
+    {
+      this.messageHeaderPane = item.description;
+      this.message = item.message
+    }
+    else 
+    {
+      this.pane1 = item.description
+    }
+    if(item.valuePresenter)
+    {
+      this.badgeData = item.value
+    }
+    else
+    {
+      this.badgeData = ""
+    }
   }
 
 }

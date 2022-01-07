@@ -1,0 +1,35 @@
+<app-header></app-header>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mt-3">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="common-tab" data-bs-toggle="tab" data-bs-target="#common" type="button" role="tab" aria-controls="home" aria-selected="true">Common</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="segment-tab" data-bs-toggle="tab" data-bs-target="#segment" type="button" role="tab" aria-controls="profile" aria-selected="false">Segments</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="field-tab" data-bs-toggle="tab" data-bs-target="#field" type="button" role="tab" aria-controls="contact" aria-selected="false">Fields</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="data-type-tab" data-bs-toggle="tab" data-bs-target="#data-type" type="button" role="tab" aria-controls="contact" aria-selected="false">Data types</button>
+                  </li>
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="common" role="tabpanel" aria-labelledby="home-tab">
+                   <app-common></app-common>
+                </div>
+                <div class="tab-pane fade" id="segment" role="tabpanel" aria-labelledby="profile-tab">
+                   <app-segments></app-segments>
+                </div>
+                <div class="tab-pane fade" id="field" role="tabpanel" aria-labelledby="contact-tab">
+                   <app-fields></app-fields>
+                </div>
+                <div class="tab-pane fade" id="data-type" role="tabpanel" aria-labelledby="contact-tab">
+                    <app-data-types></app-data-types>
+                 </div>
+              </div>
+        </div>
+    </div>
+</div> 

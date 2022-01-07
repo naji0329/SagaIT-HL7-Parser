@@ -1,81 +1,94 @@
-<!-- <div style="padding: 3px 0 5px 0">
+
+<div style="padding: 3px 0 5px 0">
     <span id="messageName1" class="label label-info">Name: Copy of sample MDM^T02 with JPG</span>
     <span id="hl7length1" class="label label-info">Message Length: 9917 Characters</span>
-</div> -->
+</div>
 <div style="min-height: 190px; display: flex;" class="table-responsive">
     <app-vertical-group-buttons></app-vertical-group-buttons>
-    <table class="table-responsive table">
+    <table class="table table-border mx-2 animated-flip">
+        <thead>
+            <tr>
+                <th>Value</th>
+                <th>Opt</th>
+                <th>RP#</th>
+                <th>Description</th>
+            </tr>
+        </thead>
         <tbody>
-            <tr>
-                <td>Value</td>
-                <td>Opt </td>
-                <td>RP# </td>
-                <td>Description</td>
-            </tr>
-            <tr>
-                <td> <span class="fa fa-angle-right angle-right"></span>
-                    MSH|^~\&amp;|ADT-HIS||HL7INSPECTOR||20060101103100||ADT^A02|1|P|2.5.1
-                    <table>
-                        <tr>
-                            <td>10:1</td>
-                            <td colspan="2"></td>
-                            <td>R</td>
-                        </tr>
-                    </table>
+            <tr *ngFor="let item of items; let i = index" (click)="ReadValues(item)">
+                <td [style.padding-left]="item.index*40+'px'">
+                    <span (click)="expanded(item)" *ngIf="item.icon && !item.expanded"
+                        class="fa fa-chevron-right toggle-icon"></span>
+                    <span (click)="expanded(item)" *ngIf="item.icon && item.expanded"
+                        class="fa fa-chevron-down toggle-icon"></span>
+                    {{item.value}}
+                    <span *ngIf="item.label" id="hl7length1" class="label label-info">Encapsulated Data</span>
                 </td>
-                <td colspan="2"></td>
-                <td>Message Header</td>
-            </tr>
-            <tr style="display: table-row;">
-                <td>10: 1</td>
-                <td>R</td>
-                <td></td>
-                <td>Message Control ID</td>
-            </tr>
-            <tr>
-                <td>P</td>
-                <td>R</td>
-                <td></td>
-                <td>Processing ID</td>
-            </tr>
-            <tr style="display: table-row;">
-                <td>12: 2.5.1</td>
-                <td>R</td>
-                <td></td>
-                <td>Version ID</td>
-            </tr>
-            <tr>
-                <td>PID||||4711|Doe^John||19701024|M|||Sesamstreet
-                    11^76137^Karlsruhe^D|||||GS|EV||||</td>
-                <td colspan="2"></td>
-                <td>Patient Identification</td>
-            </tr>
-            <tr>
-                <td>PV1||I|S1^23^3^CHI^^1||||||||||||||||1234|||||||||||||||||||||||||200601010930||||||||
-                </td>
-                <td colspan="2"></td>
-                <td>Patient Visit</td>
-            </tr>
-            <tr class="treegrid-228 treegrid-temp treegrid-collapsed"
-                >
-                <td class="node-value"><span
-                        class="treegrid-expander glyphicon glyphicon-chevron-right"></span>ZDS|1.2.3.4.5.6.7.8.10^^Application^DICOM
-                </td>
-                <td colspan="2"></td>
-                <td class="node-desc">M</td>
+                <td>{{item.opt}}</td>
+                <td><span class="fa fa-{{item.rp}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Repeatable Field"></span></td>
+                <td>{{item.description}}</td>
             </tr>
         </tbody>
     </table>
 </div>
 
-<!-- 
-<table>
-    <tr>
-        <th>ONE</th>
-        <th>TWO</th>
-    </tr>
-    <tr (click)="expanded(item)" *ngFor="let item of items">
-      <td>{{item.taskID}}</td>
-      <th [style.padding-left]="item.index*20+'px'">{{item.taskName}}{{item.index}}</th>
-    </tr>
-    </table> -->
+<div style="margin-left: 30px;">
+    <div class="panel mb-2">
+        <div class="panel-info border p-2 border-bottom-0">
+            <a class="" data-bs-toggle="collapse" href="#fileSelected" role="button" aria-expanded="false" aria-controls="collapseExample">
+              {{pane1}}
+            </a>
+        </div>
+          <div class="collapse" id="fileSelected">
+            <div class="card card-body p-2 border-top-0">
+              <!-- Some text  -->
+            </div>
+          </div>
+    </div>
+    <div class="panel mb-2">
+        <div class="panel-info border p-2 border-bottom-0">
+            <a  class="" data-bs-toggle="collapse" href="#messageHeader" role="button" aria-expanded="false" aria-controls="collapseExample">
+                {{messageHeaderPane}}
+            </a>
+        </div>
+          <div class="collapse" id="messageHeader">
+            <div class="card card-body p-2 border-top-0">
+                <p> 
+                    {{message}}
+                </p>
+                <!-- <p>
+                    Chapter: 2.15.9 
+                </p> -->
+            </div>
+          </div>
+    </div>
+    <div class="panel mb-2">
+        <div class="panel-info border p-2 border-bottom-0">
+            <a class="" data-bs-toggle="collapse" href="#valuePresenter" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Value Presenter
+            </a>
+        </div>
+          <div class="collapse" id="valuePresenter">
+            <div class="card card-body p-2 border-top-0">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="displayAs" class="" data-i18n="display-as">Display As &nbsp;</label>
+                        <select class="form-control" id="displayAs">
+                            <option value="original"></option>
+                            <option value="formatted">Formatted Value</option>
+                            <option value="datetime">Formatted Date / Time</option>
+                            <option value="base64">Decoded Base64 String</option>
+                            <option value="base64-pdf">Decoded Base64 PDF Document</option>
+                            <option value="base64-image">Decoded Base64 Image</option>
+                            <option value="base64-xml">Decoded Base64 XML Document</option>
+                            <option value="base64-cda">Decoded Base64 CDA Document (Experimental)</option>
+                        </select>
+                        <button type="button" class="btn btn-default mx-2">Copy To Clipboard</button>
+                        <button type="button" class="btn btn-default">Download</button>
+                    </div>
+                </form>
+                <div><code class="badge bg-danger break-all">{{badgeData}}</code></div>
+            </div>
+          </div>
+    </div>
+</div>

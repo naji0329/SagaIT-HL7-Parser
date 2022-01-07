@@ -6,13 +6,13 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
+            <ul  class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li *ngIf="bDisplayProfileOptions" class="nav-item">
                     <input class="form-control me-2" type="search" placeholder="Paste or drop message here"
                         aria-label="Search">
                 </li>
 
-                <li class="nav-item dropdown">
+                <li *ngIf="bDisplayProfileOptions" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Current Profile : HL7 Version 2.5.1
@@ -23,7 +23,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Edit current profile</a></li>
+                        <li><a class="dropdown-item" routerLink="/profile">Edit current profile</a></li>
                         <li><a class="dropdown-item" href="javscript:void(0)" data-bs-toggle="modal"
                                 data-bs-target="#upload-profile">Upload profile </a></li>
                         <li><a class="dropdown-item" href="javascript:void(0)" (click)="ExportAsJson()">Backup current
@@ -39,35 +39,35 @@
             </ul>
             <form class="d-flex">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
+                    <li *ngIf="bDisplayProfileOptions" class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Settings</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown me-auto">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Help
                         </a>
                         <ul class="help dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="https://bitbucket.org/crambow/hl7inspector/wiki/Home"
-                                    target="blank">HL7 Inspector Classic</a></li>
+                                    target="blank"> <span class="fa fa-external-link font-800"></span> HL7 Inspector Classic</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="https://bitbucket.org/crambow/hl7inspector-neo/wiki/Home"
-                                    target="blank">Wiki</a></li>
+                                    target="blank"><span class="fa fa-external-link font-800"></span> Wiki</a></li>
                             <li><a class="dropdown-item"
                                     href="https://bitbucket.org/crambow/hl7inspector-neo/wiki/Release%20Notes"
-                                    target="blank">Release Notes</a></li>
+                                    target="blank"><span class="fa fa-external-link font-800"></span> Release Notes</a></li>
                             <li><a class="dropdown-item"
                                     href="https://bitbucket.org/crambow/hl7inspector-neo/issues?status=new&status=open"
-                                    target="blank">Repor a bug</a></li>
+                                    target="blank"><span class="fa fa-external-link font-800"></span> Repor a bug</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="javascript:void(0)" routerLink="/imprint">Imprint</a>
+                            <li *ngIf="bDisplayImprintOption"><a class="dropdown-item" href="javascript:void(0)" routerLink="/imprint">Imprint</a>
                             </li>
                             <li>
-                                <hr class="dropdown-divider">
+                                <hr *ngIf="bDisplayImprintOption" class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
                                     data-bs-target="#about">About</a></li>
@@ -96,9 +96,9 @@
             </div>
             <div class="modal-footer">
                 <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Reset profile</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Backup profile</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Reset profile</button>
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Backup profile</button>
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>

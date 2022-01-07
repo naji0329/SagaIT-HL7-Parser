@@ -11,6 +11,11 @@ import { EditorComponent } from './components/homepage/editor/editor.component';
 import { CompareComponent } from './components/homepage/compare/compare.component';
 import { VerticalGroupButtonsComponent } from './shared/vertical-group-buttons/vertical-group-buttons.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { CommonComponent } from './components/profile/common/common.component';
+import { SegmentsComponent } from './components/profile/segments/segments.component';
+import { FieldsComponent } from './components/profile/fields/fields.component';
+import { DataTypesComponent } from './components/profile/data-types/data-types.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,12 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     EditorComponent,
     CompareComponent,
     VerticalGroupButtonsComponent,
-    SidebarComponent
+    SidebarComponent,
+    ProfileComponent,
+    CommonComponent,
+    SegmentsComponent,
+    FieldsComponent,
+    DataTypesComponent
   ],
   imports: [
     BrowserModule,

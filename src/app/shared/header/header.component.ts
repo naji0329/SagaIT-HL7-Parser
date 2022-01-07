@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import exportFromJSON from 'export-from-json'
 
 @Component({
@@ -7,8 +8,20 @@ import exportFromJSON from 'export-from-json'
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  bDisplayImprintOption: boolean = true;
+  bDisplayProfileOptions: boolean = true;
 
-  constructor() { }
+  constructor(private  oRouter : Router) 
+  {
+    if(this.oRouter.url === '/imprint')
+    {
+      this.bDisplayImprintOption = false
+    }
+    if(this.oRouter.url === '/profile')
+    {
+     this.bDisplayProfileOptions = false
+    }
+  }
 
   ngOnInit(): void {
   }
