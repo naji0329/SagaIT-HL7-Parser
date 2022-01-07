@@ -1,1 +1,31 @@
-<p>segments works!</p>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Segment</th>
+    <th scope="col">Name</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let country of countries">
+    <th scope="row">{{ country.segment }}</th>
+    <td>{{ country.name}}</td>
+    <td>
+        <i class="fa fa-edit  pointer mx-2 font-20 font-700"></i>
+        <i class="fa fa-trash text-danger font-20 "></i> 
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+  <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
+  </ngb-pagination>
+
+  <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
+    <option [ngValue]="2">2 items per page</option>
+    <option [ngValue]="4">4 items per page</option>
+    <option [ngValue]="6">6 items per page</option>
+  </select>
+</div>

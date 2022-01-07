@@ -16,6 +16,8 @@ import { CommonComponent } from './components/profile/common/common.component';
 import { SegmentsComponent } from './components/profile/segments/segments.component';
 import { FieldsComponent } from './components/profile/fields/fields.component';
 import { DataTypesComponent } from './components/profile/data-types/data-types.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { DataTypesComponent } from './components/profile/data-types/data-types.c
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
