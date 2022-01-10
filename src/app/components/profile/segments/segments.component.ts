@@ -1,64 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-interface Country {
-  segment: string;
-  name: string;
-  }
-
-const COUNTRIES: Country[] = [
-  {
-    segment: 'LRL',
-    name: 'Location Relationship',
-    
-  },
-  {
-    segment: 'LRL',
-    name: 'Location Relationship',
-  },
-  {
-    segment: 'LRL',
-    name: 'Location Relationship',
-  },
-  {
-    segment: 'LRL',
-    name: 'Location Relationship',
-  },
-  {
-    segment: 'LRL',
-    name: 'Location Relationship',
-  },
-  {
-    segment: 'LRL',
-    name: 'Location Relationship',
-  },
-  {
-    segment: 'LRL',
-    name: 'Location Relationship',
-  },
-  {
-    segment: 'LRL',
-    name: 'Location Relationship',
-  },
-  {
-    segment: 'LRL',
-    name: 'Location Relationship',
-  },
-  {
-    segment: 'LRL',
-    name: 'Location Relationship',
-  },
-  {
-    segment: 'LRL',
-    name: 'Location Relationship',
-  },
-  {
-    segment: 'LRL',
-    name: 'Location Relationship',
-  },
-  {
-    segment: 'LRL',
-    name: 'Location Relationship',
-  }
-];
+import { Component, OnInit ,PipeTransform } from '@angular/core';
+declare var require: any;
+const data: any = require('./segments.json');
 @Component({
   selector: 'app-segments',
   templateUrl: './segments.component.html',
@@ -67,9 +9,9 @@ const COUNTRIES: Country[] = [
 
 export class SegmentsComponent implements OnInit {
   page = 1;
-  pageSize = 4;
-  collectionSize = COUNTRIES.length;
-  countries!: Country[];
+  pageSize = 25;
+  collectionSize = data.length;
+  lSegments: any = data ;
   constructor() {
     this.refreshCountries();
    }
@@ -77,10 +19,8 @@ export class SegmentsComponent implements OnInit {
   ngOnInit(): void {
   }
   refreshCountries() {
-    this.countries = COUNTRIES
-      .map((country, i) => ({id: i + 1, ...country}))
+    this.lSegments = data
+      .map((data:any, i:any) => ({id: i + 1, ...data}))
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
-  }
+  } 
 }
-
-

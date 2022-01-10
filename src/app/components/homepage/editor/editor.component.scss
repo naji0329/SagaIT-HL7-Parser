@@ -4,6 +4,7 @@
     height: 200px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    resize: both;
 }
 .panel-info
 {
@@ -15,3 +16,6 @@
 }
 .panel .panel-info a {text-decoration: none;}
 .panel .panel-info a:hover{text-decoration: underline;}
+[contenteditable] {
+    outline: 0px solid transparent;
+}

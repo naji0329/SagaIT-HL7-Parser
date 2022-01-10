@@ -81,3 +81,82 @@
     vertical-align: middle;
 }
 }
+.hl7texteditor {
+    font-family: monospace;
+    width: calc(100% - 34px);
+    height: 200px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.panel-info
+{
+    background-color: #d9edf7;
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+.card-body{
+    border-radius: 0 0 .25rem .25rem;
+}
+.panel .panel-info a {text-decoration: none;}
+.panel .panel-info a:hover{text-decoration: underline;}
+
+// buttons css
+.btn-check:focus+.btn, .btn:focus { box-shadow: none !important; }
+// footer
+.footer{background-color: #f1f1f1;}
+
+// <--------------------  cosmo theme  --------------------->
+
+// header
+.cosmo.navbar.navbar-expand-lg.navbar-light.bg-light { background-color: #121212 !important; color: #ccc;}
+.cosmo .navbar-brand{color: #fff !important;}
+.cosmo.navbar-light .navbar-nav .nav-link { color:#fff !important; }
+// footer
+.cosmo.footer{background-color: #121212 !important;}
+.cosmo .footer-text {color: #fff !important;}
+.cosmo .footer-text a { color: #2780e3 !important;}
+
+
+// <--------------------  cerulean theme  --------------------->
+// header
+.cerulean.navbar.navbar-expand-lg.navbar-light.bg-light { background-color: #1995dc !important; color: #fff;}
+.cerulean .navbar-brand{color: #fff !important;}
+.cerulean.navbar-light .navbar-nav .nav-link { color:#fff !important; }
+// footer
+.cerulean.footer{background-color: #1995dc !important;}
+.cerulean .footer-text {color: #fff !important;}
+.cerulean .footer-text a { color: #fff !important;}
+
+
+// <--------------------  yeti theme  --------------------->
+// header
+.yeti.navbar.navbar-expand-lg.navbar-light.bg-light { background-color: #333333 !important; color: #fff;}
+.yeti .navbar-brand{color: #fff !important;}
+.yeti.navbar-light .navbar-nav .nav-link { color:#fff !important; }
+// footer
+.yeti.footer{background-color: #333333 !important;}
+.yeti .footer-text {color: #fff !important;}
+.yeti .footer-text a { color: #fff !important;}
+
+// <--------------------  yeti theme  --------------------->
+// header
+// body
+.cyborg-body {background-color: #060606 !important;}
+// header
+.cyborg.navbar.navbar-expand-lg.navbar-light.bg-light { background-color: #060606 !important; color: #fff;}
+.cyborg .navbar-brand{color: #fff !important;}
+.yeti.navbar-light .navbar-nav .nav-link { color:#fff !important; }
+// footer
+.cyborg.footer{background-color: #060606 !important;}
+.cyborg .footer-text {color: #fff !important;}
+.cyborg .footer-text a { color: #fff !important;}
+// settings
+.cyborg .control-label {color: #888888 !important;}
+.cyborg .nav-link { color: #fff !important; }
+.cyborg .nav-tabs .nav-link.active { background-color: #2a9fd6 !important; border-color: #2a9fd6 !important;}
+.cyborg .table>:not(caption)>*>* { color: #fff !important;}
+.cyborg .btn.btn-default {background-color: #424242 !important; color: #fff !important; border-color: #424242 !important;}
+.cyborg table {background-color: #181818 !important;}
+.cyborg .panel-info {background-color: #9933cc !important; border-color: transparent !important;}
+.cyborg .panel-info a {color: #fff !important;}
+.cyborg .card {border-radius: 0 0 .25rem .25rem !important; border-color: #9933cc !important; background-color: #222222 !important; }
+.cyborg p , .cyborg label {color: #888888 !important;}

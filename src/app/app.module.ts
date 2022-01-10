@@ -17,7 +17,9 @@ import { SegmentsComponent } from './components/profile/segments/segments.compon
 import { FieldsComponent } from './components/profile/fields/fields.component';
 import { DataTypesComponent } from './components/profile/data-types/data-types.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SettingsComponent } from './components/settings/settings.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -34,13 +36,16 @@ import { FormsModule } from '@angular/forms';
     CommonComponent,
     SegmentsComponent,
     FieldsComponent,
-    DataTypesComponent
+    DataTypesComponent,
+    SettingsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

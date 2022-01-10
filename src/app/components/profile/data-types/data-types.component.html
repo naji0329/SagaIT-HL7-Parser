@@ -1,1 +1,36 @@
-<p>data-types works!</p>
+
+<button class="btn btn-default mt-3">Add Data Type...</button>
+<table class="table table-striped py-2">
+    <thead>
+    <tr>
+      <th scope="col">Data Type</th>
+      <th scope="col">Index</th>
+      <th scope="col">Index Data Type</th>
+      <th scope="col">Name</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of lDataTypes">
+      <th scope="row">{{ data.dataType }}</th>
+      <td>{{ data.index}}</td>
+      <td>{{data.indexDataType}}</td>
+      <td>{{ data.name}}</td>
+      <td>
+          <i class="fa fa-edit  pointer mx-2 font-20 font-700"></i>
+          <i class="fa fa-trash text-danger font-20 "></i> 
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  
+  <div class="d-md-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
+    </ngb-pagination>
+  
+    <select class="custom-select form-control" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
+      <option [ngValue]="25">25 items per page</option>
+      <option [ngValue]="50">50 items per page</option>
+      <option [ngValue]="75">75 items per page</option>
+    </select>
+  </div>

@@ -1,0 +1,125 @@
+[
+    {
+      "name": "Local Relationship",
+      "segment": "LRL",
+      "sequence":13
+    },
+    {
+        "name": "Patient Adverse Reaction Information",
+        "segment": "IAM",
+        "sequence":13
+    },
+    {
+        "name": "Financial Transaction",
+        "segment": "FT1",
+        "sequence":13
+      },
+      {
+        "name": "Table Row Data",
+        "segment": "RDT",
+        "sequence":13
+      },
+      {
+        "name": "Clear Notification 1",
+        "segment": "CNS",
+        "sequence":13
+      },
+      {
+        "name": "Product Summary Header",
+        "segment": "PSH",
+        "sequence":13
+      },
+      {
+        "name": "Goal Detail 1",
+        "segment": "GOL",
+        "sequence":13
+      },
+      {
+        "name": "Event Type",
+        "segment": "EVN",
+        "sequence":13
+      },
+      {
+        "name": "Clinical Study Master",
+        "segment": "CM0",
+        "sequence":13
+      },
+      {
+        "name": "Diet Tray Instructions",
+        "segment": "ODT",
+        "sequence":13
+      },
+      {
+        "name": "Interaction Status Detail 1",
+        "segment": "ISD",
+        "sequence":13
+      },
+      {
+        "name": "Local Relationship",
+        "segment": "LRL",
+        "sequence":13
+      },
+      {
+        "name": "Local Relationship",
+        "segment": "LRL",
+        "sequence":13
+      },
+      {
+        "name": "Local Relationship",
+        "segment": "LRL",
+        "sequence":13
+      },
+      {
+        "name": "Local Relationship",
+        "segment": "LRL",
+        "sequence":13
+      },
+      {
+        "name": "Local Relationship",
+        "segment": "LRL",
+        "sequence":13
+      },
+      {
+        "name": "Local Relationship",
+        "segment": "LRL",
+        "sequence":13
+      },
+      {
+        "name": "Local Relationship",
+        "segment": "LRL",
+        "sequence":13
+      },
+      {
+        "name": "Local Relationship",
+        "segment": "LRL",
+        "sequence":13
+      },
+      {
+        "name": "Local Relationship",
+        "segment": "LRL",
+        "sequence":13
+      },
+      {
+        "name": "Local Relationship",
+        "segment": "LRL",
+        "sequence":13
+      },
+      {
+        "name": "Local Relationship",
+        "segment": "LRL",
+        "sequence":13
+      },
+      {
+        "name": "Local Relationship",
+        "segment": "LRL",
+        "sequence":13
+      },
+      {
+        "name": "Local Relationship",
+        "segment": "LRL",
+        "sequence":13
+      }
+
+    
+  ]
+  

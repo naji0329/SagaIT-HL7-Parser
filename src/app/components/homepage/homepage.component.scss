@@ -42,6 +42,7 @@
     border: none;
     position: fixed;
     top: 50%;
+    z-index: 100;
   }
   
   // .openbtn:hover {
@@ -68,3 +69,5 @@
       background-color: #fff;
       opacity: 0;
   }
+
+ 

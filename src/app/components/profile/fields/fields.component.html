@@ -1,1 +1,33 @@
-<p>fields works!</p>
+<button class="btn btn-default mt-3">Add Field...</button>
+<table class="table table-striped py-2">
+    <thead>
+    <tr>
+      <th scope="col">Segment</th>
+      <th scope="col">Sequence</th>
+      <th scope="col">Name</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let field of lFields">
+      <th scope="row">{{ field.segment }}</th>
+      <td>{{ field.sequence}}</td>
+      <td>{{ field.name}}</td>
+      <td>
+          <i class="fa fa-edit  pointer mx-2 font-20 font-700"></i>
+          <i class="fa fa-trash text-danger font-20 "></i> 
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  
+  <div class="d-md-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
+    </ngb-pagination>
+  
+    <select class="custom-select form-control" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
+      <option [ngValue]="25">25 items per page</option>
+      <option [ngValue]="50">50 items per page</option>
+      <option [ngValue]="75">75 items per page</option>
+    </select>
+  </div>

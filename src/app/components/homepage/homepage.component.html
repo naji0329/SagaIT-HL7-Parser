@@ -1,38 +1,38 @@
 <div id="sidebar" class="sidebar shadow">
   <app-sidebar></app-sidebar>
 </div>
-<div id="main">
+<div id="main" class="{{selectedTheme}}">
   <app-header></app-header>
-  <button *ngIf="bDisplayToggleBtn" class="openbtn shadow border" (click)="openNav()"><span class="fa fa-angle-right"></span> </button> 
-  <button *ngIf="!bDisplayToggleBtn" class="openbtn shadow border" (click)="closeNav()"><span class="fa fa-angle-left"></span> </button> 
+  <button *ngIf="bDisplayToggleBtn" class="openbtn shadow border" (click)="openNav()"><span
+      class="fa fa-angle-right"></span> </button>
+  <button *ngIf="!bDisplayToggleBtn" class="openbtn shadow border" (click)="closeNav()"><span
+      class="fa fa-angle-left"></span> </button>
   <div class="container-fluid">
-      <div class="row">
-          <div class="col-12 mt-3">
-              <ul class="nav nav-tabs" id="myTab" role="tablist">
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Tree View</button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Editor</button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Compare</button>
-                  </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                      <app-tree-view></app-tree-view>
-                  </div>
-                  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                      <app-editor></app-editor>
-                  </div>
-                  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                      <app-compare></app-compare>
-                  </div>
-                </div>
-          </div>
+    <div class="row">
+      <div class="col-12 mt-3 px-4">
+
+        <ngb-tabset #homepageTabs="ngbTabset" [destroyOnHide]="false">
+          <ngb-tab id="tree-view" title="Tree View">
+            <ng-template ngbTabContent>
+              <app-tree-view></app-tree-view>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab id="editor" title="Editor">
+            <ng-template ngbTabContent>
+              <app-editor></app-editor>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab id="compare" title="Compare">
+            <ng-template ngbTabContent>
+              <app-compare (EditorTab)="homepageTabs.select('editor')"></app-compare>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
       </div>
-  </div> 
+    </div>
+  </div>
 </div>
 
 <div class="{{sAddOverlay}}" (click)=closeNav()></div>
+
+

@@ -1,10 +1,32 @@
 
 <div style="padding: 3px 0 5px 0">
     <span id="messageName1" class="label label-info">Name: Copy of sample MDM^T02 with JPG</span>
-    <span id="hl7length1" class="label label-info">Message Length: 9917 Characters</span>
+    <span id="hl7length1" class="label label-info mx-2">Message Length: 9917 Characters</span>
 </div>
 <div style="min-height: 190px; display: flex;" class="table-responsive">
-    <app-vertical-group-buttons></app-vertical-group-buttons>
+    <!-- <div class="btn-group-vertical" style="float: left;">
+        <button type="button" class="btn btn-sm btn-default"  data-bs-toggle="modal" data-bs-target="#new-message" data-toggle="tooltip" 
+            title="Create new message">
+            <span class="fa fa-plus" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn btn-sm btn-default" data-bs-toggle="modal" data-bs-target="#edit-message"  data-toggle="tooltip"
+          title="Rename message">
+            <span class="fa fa-edit" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn btn-sm btn-default" data-toggle="tooltip"  title="Copy To Clipboard" (click)="CopyToClipBoard()">
+            <span class="fa fa-clipboard" aria-hidden="true"></span>
+        </button>
+        <button type="button" id="compareButton11" class="btn btn-sm btn-default"  (click)="Compared()" 
+        data-toggle="tooltip"  title="Compare with second message">
+            <span class="fa fa-copy" aria-hidden="true"></span>
+        </button>
+        <button type="button" id="compareButton12" class="btn btn-sm btn-default" (click)="Compared()"
+         data-toggle="tooltip"  title="Compare with first message">
+            <span class="fa fa-copy" aria-hidden="true"></span>
+        </button>
+    </div>
+ -->
+ <app-vertical-group-buttons></app-vertical-group-buttons>
     <table class="table table-border mx-2 animated-flip">
         <thead>
             <tr>
@@ -62,7 +84,7 @@
             </div>
           </div>
     </div>
-    <div class="panel mb-2">
+    <div class="panel mb-5">
         <div class="panel-info border p-2 border-bottom-0">
             <a class="" data-bs-toggle="collapse" href="#valuePresenter" role="button" aria-expanded="false" aria-controls="collapseExample">
                 Value Presenter
@@ -73,22 +95,20 @@
                 <form class="form-inline">
                     <div class="form-group">
                         <label for="displayAs" class="" data-i18n="display-as">Display As &nbsp;</label>
-                        <select class="form-control" id="displayAs">
-                            <option value="original"></option>
-                            <option value="formatted">Formatted Value</option>
-                            <option value="datetime">Formatted Date / Time</option>
-                            <option value="base64">Decoded Base64 String</option>
-                            <option value="base64-pdf">Decoded Base64 PDF Document</option>
-                            <option value="base64-image">Decoded Base64 Image</option>
-                            <option value="base64-xml">Decoded Base64 XML Document</option>
-                            <option value="base64-cda">Decoded Base64 CDA Document (Experimental)</option>
+                        <select  class="form-control" id="displayAs"  
+                        (change)="test($event)">
+                            <option [value]="options.value" *ngFor="let options of ValuePresenterDisplayOptions" >{{options.name}}</option>
                         </select>
                         <button type="button" class="btn btn-default mx-2">Copy To Clipboard</button>
-                        <button type="button" class="btn btn-default">Download</button>
+                        <!-- <button type="button" class="btn btn-default">Download</button> -->
+                        <a class="btn btn-default" [href]="fileUrl" download="file.txt">Download</a>
                     </div>
                 </form>
                 <div><code class="badge bg-danger break-all">{{badgeData}}</code></div>
+                <div  *ngIf="base_64_pdf" class="mt-2"><code class="badge bg-danger break-all">Unable to decode PDF : InvalidPDFException: Invalid PDF structure</code></div>
+                <div *ngIf="base64_xml" class="mt-2"><pre><code class="xml hljs"></code></pre></div>
             </div>
           </div>
     </div>
 </div>
+

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ThemesService } from 'src/app/services/themes.service';
 
 @Component({
   selector: 'app-homepage',
@@ -8,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 export class HomepageComponent implements OnInit {
   sAddOverlay: string = "";
   bDisplayToggleBtn : boolean = true;
-  constructor() { }
+  addActiveClassToEditorTab: string ="";
+  removeActiveClassFromOtherTabs: string = "";
+  selectedTheme: string = "";
+  constructor(private oThemeService : ThemesService) { }
 
   ngOnInit(): void {
+    this.oThemeService.sSelectedThemeValue.subscribe(res =>{
+      this.selectedTheme =res;
+    })
   }
   openNav()
   {
@@ -26,5 +33,12 @@ export class HomepageComponent implements OnInit {
     (<HTMLInputElement>document.getElementById("main")).style.marginLeft = "0";
     this.sAddOverlay = "";
     this.bDisplayToggleBtn = true;
+  }
+  EditorTabNavigation()
+  {
+    let element = document.querySelectorAll('.nav-link');
+    console.log("element::",element);
+    this.addActiveClassToEditorTab = "show active"
+    this.removeActiveClassFromOtherTabs = ""
   }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Angular2Txt } from 'angular2-txt/Angular2-txt';
 
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 export let sampleData: any[] = [
   // 1
@@ -217,15 +219,36 @@ export let sampleData: any[] = [
   
 })
 export class TreeViewComponent implements OnInit {
+  bDisplayAlert: boolean = false;
+  sText: string = "";
   sampleData = sampleData;
   items: any = [];
   messageHeaderPane: any = "No segement selected";
   badgeData: any;
   message: any;
   pane1 : any = "No file selected or unknown"
-  constructor() { }
+  fileUrl: any = "";
+  ValuePresenterDisplayOptions : any = [
+    { name: 'Original Value' , value: 'original'},
+    { name: 'Formatted Value' , value: 'formatted'},
+    { name: 'Formatted Date / Time' , value: 'datetime'},
+    { name: 'Decoded Base64 String' , value: 'base64'},
+    { name: 'Decoded Base64 PDF Document' , value: 'base64-pdf'},
+    { name: 'Decoded Base64 Image' , value: 'base64-image'},
+    { name: 'Decoded Base64 XML Document' , value: 'base64-xml'},
+    { name: 'Decoded Base64 CDA Document (Experimental)' , value: 'base64-cda'}
+  ]
+  base_64_pdf: boolean = false;
+  base64_xml: boolean = false;
+  selectedValue: any;
+  constructor(private sanitizer: DomSanitizer) {  }
+
 
   ngOnInit(): void {
+    const data = 'some text';
+    const blob = new Blob([data], { type: 'application/octet-stream' });
+
+    this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
     this.items=this.getItems(this.sampleData,null,0)
 
   }
@@ -267,5 +290,38 @@ export class TreeViewComponent implements OnInit {
       this.badgeData = ""
     }
   }
-
+  CopyToClipBoard()
+  {
+    this.bDisplayAlert = true
+    this.sText = "Successful copied to clipboard"
+    setTimeout(() => {
+      this.bDisplayAlert = false
+    }, 3000);
+  }
+  Compared()
+  {
+    this.bDisplayAlert = true
+    this.sText = "Successful Compared. See the results in compare tab"
+    setTimeout(() => {
+      this.bDisplayAlert = false
+    }, 3000);
+  }
+  test(options:any) 
+  {
+    this.selectedValue = options.target.value
+    console.log(this.selectedValue);
+    
+    if(options.target.value === 'base64-pdf')
+    {
+      console.log("OPtions::",options.target.value);
+      this.base_64_pdf = true;
+      this.base64_xml = false;
+    }
+    if(options.target.value === 'base64-xml')
+    {
+      this.base64_xml = true;
+      this.base_64_pdf = false;
+    }
+    
+  }
 }
