@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import exportFromJSON from 'export-from-json'
 import { ThemesService } from 'src/app/services/themes.service';
-
+declare var $ : any;
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -11,7 +11,7 @@ import { ThemesService } from 'src/app/services/themes.service';
 export class HeaderComponent implements OnInit {
   bDisplayImprintOption: boolean = true;
   bDisplayProfileOptions: boolean = true;
-  selectedTheme: string = "";
+  selectedTheme: any = "";
 
   constructor(private  oRouter : Router , private oThemeService : ThemesService) 
   {
@@ -27,10 +27,36 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.oThemeService.sSelectedThemeValue.subscribe(res =>{
-      this.selectedTheme = res;
-      console.log("THEME REPOSNSE:::",this.selectedTheme);
-      
+    this.selectedTheme = localStorage.getItem("selectedTheme")
     })
+    if(this.selectedTheme === 'cyborg')
+    {
+      console.log("workingggggg");
+      $(function() {
+          $("body").addClass("cyborg-body");
+          console.log("Class Should be Added")
+        })
+     const body = document.getElementsByTagName('body')[0]
+     body.classList.add('cyborg-body')
+    }
+    else
+    {
+      const body = document.getElementsByTagName('body')[0];
+      body.classList.remove('cyborg-body')
+    }
+    if(this.selectedTheme === 'slate')
+    {
+      $(function() {
+          $("body").addClass("slate-body");
+        })
+     const body = document.getElementsByTagName('body')[0]
+     body.classList.add('slate-body')
+    }
+    else
+    {
+      const body = document.getElementsByTagName('body')[0];
+      body.classList.remove('slate-body')
+    }
   }
   ExportAsJson()
   {

@@ -1,12 +1,12 @@
-<div id="sidebar" class="sidebar shadow">
+<div id="sidebar" class="sidebar shadow {{selectedTheme}}">
   <app-sidebar></app-sidebar>
 </div>
 <div id="main" class="{{selectedTheme}}">
   <app-header></app-header>
   <button *ngIf="bDisplayToggleBtn" class="openbtn shadow border" (click)="openNav()"><span
-      class="fa fa-angle-right"></span> </button>
+      class="fa fa-angle-right font-800"></span> </button>
   <button *ngIf="!bDisplayToggleBtn" class="openbtn shadow border" (click)="closeNav()"><span
-      class="fa fa-angle-left"></span> </button>
+      class="fa fa-angle-left font-800"></span> </button>
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 mt-3 px-4">
@@ -34,5 +34,5 @@
 </div>
 
 <div class="{{sAddOverlay}}" (click)=closeNav()></div>
-
+<app-footer></app-footer>
 

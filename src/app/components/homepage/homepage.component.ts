@@ -11,13 +11,14 @@ export class HomepageComponent implements OnInit {
   bDisplayToggleBtn : boolean = true;
   addActiveClassToEditorTab: string ="";
   removeActiveClassFromOtherTabs: string = "";
-  selectedTheme: string = "";
+  selectedTheme: any = "";
   constructor(private oThemeService : ThemesService) { }
 
   ngOnInit(): void {
-    this.oThemeService.sSelectedThemeValue.subscribe(res =>{
-      this.selectedTheme =res;
-    })
+    // this.oThemeService.sSelectedThemeValue.subscribe(res =>{
+    //   this.selectedTheme =res;
+    // })
+    this.selectedTheme = localStorage.getItem("selectedTheme")
   }
   openNav()
   {

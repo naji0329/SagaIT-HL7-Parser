@@ -8,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit {
   sidebarOptions : any = ['item','item','item','item','item',]
   addActiveClass: any;
+  selectedTheme: any = "";
   constructor() { }
 
   ngOnInit(): void {
+    this.selectedTheme = localStorage.getItem('selectedTheme')
   }
   AddActiveClass(item:any){
     console.log("Item", item);

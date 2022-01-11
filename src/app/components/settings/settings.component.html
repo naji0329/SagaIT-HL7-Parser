@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header #b></app-header>
 <div class="{{selectedTheme}} container-fluid">
     <div class="row">
         <div class="col-12 mt-3 px-4">
@@ -48,12 +48,8 @@
                                 <label for="inputTheme" class="col-sm-2 control-label">Theme</label>
                                 <div class="col-sm-10 input-group">
                                     <select class="form-control" id="inputTheme" (change)="ChangeTheme($event)">
-                                        <option value="default">Default</option>
-                                        <option value="cerulean">Cerulean</option>
-                                        <option value="cyborg">Cyborg</option>
-                                        <option value="cosmo">Cosmo</option>
-                                        <option value="slate">Slate</option>
-                                        <option value="yeti" >Yeti</option>
+                                        <option *ngFor="let option of lThemeOptions; let i = index;" [value]="option.value" [selected]="selectedTheme==option.value">{{option.name}}</option>
+                                        
                                     </select>
                                 </div>
                             </div>

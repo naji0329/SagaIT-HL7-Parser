@@ -1,11 +1,11 @@
-<div style="padding: 3px 0 5px 0">
+<div  style="padding: 3px 0 5px 0">
     <span id="messageName1" class="label label-info">Name: Copy of sample MDM^T02 with JPG</span> 
     <span id="hl7length1" class="label label-info mx-2">Message Length: 9917 Characters</span>
 </div>
 <div style="min-height: 190px;">
     <div class="btn-group-vertical" style="float: left;">
         <button type="button" class="btn btn-sm btn-default"  data-bs-toggle="modal" data-bs-target="#newMessage"  
-        ngbTooltip="Create new message" placement="right">
+        >
             <span class="fa fa-plus" aria-hidden="true"></span>
         </button>
         <button type="button" class="btn btn-sm btn-default" data-bs-toggle="modal" data-bs-target="#editMessage"  data-toggle="tooltip"
@@ -101,7 +101,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="staticBackdropLabel">Enter the name of the message.</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal"><i class="fa fa-times"></i></button>
+                
             </div>
             <div class="modal-body">
                 <div class="bootbox-body"><form class="bootbox-form">
@@ -124,7 +125,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="staticBackdropLabel">Enter the new name of the message.</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal"><i class="fa fa-times"></i></button>
+
             </div>
             <div class="modal-body">
                 <div class="bootbox-body"><form class="bootbox-form">

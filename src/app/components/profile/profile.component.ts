@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  selectedTheme: any = "";
 
   constructor() { }
 
   ngOnInit(): void {
+    this.selectedTheme = localStorage.getItem("selectedTheme")
   }
 
 }

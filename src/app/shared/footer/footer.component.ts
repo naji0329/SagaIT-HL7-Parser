@@ -8,18 +8,15 @@ import { ThemesService } from 'src/app/services/themes.service';
 })
 export class FooterComponent implements OnInit {
 
-  selectedTheme: string="";
+  selectedTheme: any="";
   
   constructor(private oThemeService : ThemesService)
-  {
-   this.oThemeService.sSelectedThemeValue.subscribe(res =>{
-     this.selectedTheme = res;
-     console.log("working");
-     
-   })
-  }
+  {}
 
   ngOnInit(): void {
+     this.oThemeService.sSelectedThemeValue.subscribe(res =>{
+      this.selectedTheme = localStorage.getItem("selectedTheme")
+   })
   }
 
 }

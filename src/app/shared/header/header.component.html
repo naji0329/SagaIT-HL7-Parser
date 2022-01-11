@@ -1,4 +1,4 @@
-<nav class="{{selectedTheme}} navbar navbar-expand-lg navbar-light bg-light">
+<nav class="{{selectedTheme}} navbar navbar-expand-lg navbar-light bg-light shadow">
     <div class="container-fluid">
         <a class="navbar-brand" href="javascript:void(0)" routerLink="/">HL7 Inspector Neo</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -82,13 +82,13 @@
 
 
 <!-- reset modal -->
-<div class="modal fade" id="reset" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<div class="modal fade {{selectedTheme}}" id="reset" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="staticBackdropLabel">Reset profile</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
             </div>
             <div class="modal-body">
                 <div class="bootbox-body">All changes to the current profile will be lost in case you haven't a backup.
@@ -105,13 +105,13 @@
 </div>
 
 <!-- about modal -->
-<div class="modal fade" id="about" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<div class="modal fade {{selectedTheme}}"  id="about" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="staticBackdropLabel">HL7 Inspector Neo</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
             </div>
             <div class="modal-body">
                 <div class="bootbox-body">HL7 Inspector Neo Version 1.2.1.168-Final<p></p>
@@ -141,7 +141,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="staticBackdropLabel">Upload profile</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+
             </div>
             <div class="modal-body">
                 <div class="bootbox-body">

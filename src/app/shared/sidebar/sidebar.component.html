@@ -1,4 +1,4 @@
-<div class="middle">
+<div class="middle {{selectedTheme}}">
     <ul class="menus">
         <li class=""  *ngFor="let item of sidebarOptions; let i = index" (click)="AddActiveClass(i)">
             <a class="list-group-item" [class.active]="addActiveClass == i" style="min-height:34px">
