@@ -1,22 +1,23 @@
 <div style="padding: 3px 0 5px 0"> <small>Symbols: </small>
-    <span id="messageName1" class="label bg-success">Differing</span> 
+    <span id="messageName1" class="label bg-success">Differing</span>
     <span id="hl7length1" class="label bg-warning mx-2">Not-equal</span>
 </div>
 <div style="min-height: 190px;">
     <div class="btn-group-vertical" style="float: left;">
-       
+
         <button (click)="NavigateToEditorTab()" type="button" class="btn btn-sm btn-default" data-toggle="tooltip"
-          title="Rename message">
+            title="Rename message">
             <span class="fa fa-edit" aria-hidden="true"></span>
         </button>
-        <button type="button" class="btn btn-sm btn-default" data-toggle="tooltip"  title="Copy To Clipboard" (click)="CopyToClipBoard(inputValue1)">
+        <button type="button" class="btn btn-sm btn-default" data-toggle="tooltip" title="Copy To Clipboard"
+            (click)="CopyToClipBoard(inputValue1)">
             <span class="fa fa-clipboard" aria-hidden="true"></span>
         </button>
-        <button type="button" id="compareButton11" class="btn btn-sm btn-default"
-        data-toggle="tooltip"  title="Compare with second message">
+        <button type="button" id="compareButton11" class="btn btn-sm btn-default" data-toggle="tooltip"
+            title="Compare with second message">
             <span class="fa fa-lock" aria-hidden="true"></span>
         </button>
-       
+
     </div>
     <textarea #inputValue1 class="hl7texteditor" wrap="off" spellcheck="true" autocomplete="off" autocorrect="off"
         autocapitalize="off">
@@ -31,17 +32,18 @@
 <div style="min-height: 190px;">
     <div class="btn-group-vertical" style="float: left;">
         <button (click)="NavigateToEditorTab()" type="button" class="btn btn-sm btn-default" data-toggle="tooltip"
-          title="Rename message">
+            title="Rename message">
             <span class="fa fa-edit" aria-hidden="true"></span>
         </button>
-        <button type="button" class="btn btn-sm btn-default" data-toggle="tooltip"  title="Copy To Clipboard" (click)="CopyToClipBoard(inputValue2)">
+        <button type="button" class="btn btn-sm btn-default" data-toggle="tooltip" title="Copy To Clipboard"
+            (click)="CopyToClipBoard(inputValue2)">
             <span class="fa fa-clipboard" aria-hidden="true"></span>
         </button>
-        <button type="button" id="compareButton11" class="btn btn-sm btn-default"  
-        data-toggle="tooltip"  title="Compare with second message">
+        <button type="button" id="compareButton11" class="btn btn-sm btn-default" data-toggle="tooltip"
+            title="Compare with second message">
             <span class="fa fa-lock" aria-hidden="true"></span>
         </button>
-       
+
     </div>
     <textarea #inputValue2 class="hl7texteditor" wrap="off" spellcheck="true" autocomplete="off" autocorrect="off"
         autocapitalize="off">
@@ -53,67 +55,77 @@
         OBX|2|ED|DOC^Document^L||^application^pdf^Base64^
         OBX|3|ED|502^CHEST XRAY^L||Word^TEXT^^Base64^SnVzdCBhIHNpbXBsZSB0ZXh0</textarea>
 </div>
-<div style="margin-left: 30px;">
-    <div class="panel mb-2">
-        <div class="panel-info border p-2 border-bottom-0">
-            <a class="" data-bs-toggle="collapse" href="#fileSelected" role="button" aria-expanded="false" aria-controls="collapseExample">
-              No field selected or unknown
-            </a>
-        </div>
-          <div class="collapse" id="fileSelected">
-            <div class="card card-body p-2 border-top-0">
-              Some text 
-            </div>
-          </div>
-    </div>
-    <div class="panel mb-2">
-        <div class="panel-info border p-2 border-bottom-0">
-            <a class="" data-bs-toggle="collapse" href="#messageHeader" role="button" aria-expanded="false" aria-controls="collapseExample">
-                MSH - Message Header
-            </a>
-        </div>
-          <div class="collapse" id="messageHeader">
-            <div class="card card-body p-2 border-top-0">
-                <p> 
-                    The MSH segment defines the intent, source, destination, and some specifics of the syntax of a message.
-                </p>
-                <p>
-                    Chapter: 2.15.9 
-                </p>
-            </div>
-          </div>
-    </div>
-    <div class="panel mb-5">
-        <div class="panel-info border p-2 border-bottom-0">
-            <a class="" data-bs-toggle="collapse" href="#valuePresenter" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Value Presenter
-            </a>
-        </div>
-          <div class="collapse" id="valuePresenter">
-            <div class="card card-body p-2 border-top-0">
-                <form class="form-inline">
-                    <div class="form-group">
-                        <label for="displayAs" class="" data-i18n="display-as">Display As &nbsp;</label>
-                        <select class="form-control" id="displayAs">
-                            <option value="original"></option>
-                            <option value="formatted">Formatted Value</option>
-                            <option value="datetime">Formatted Date / Time</option>
-                            <option value="base64">Decoded Base64 String</option>
-                            <option value="base64-pdf">Decoded Base64 PDF Document</option>
-                            <option value="base64-image">Decoded Base64 Image</option>
-                            <option value="base64-xml">Decoded Base64 XML Document</option>
-                            <option value="base64-cda">Decoded Base64 CDA Document (Experimental)</option>
-                        </select>
-                        <button type="button" class="btn btn-default mx-2">Copy To Clipboard</button>
-                        <a type="button" class="btn btn-default" [href]="fileUrl" download="file.txt">Download</a>
+<div class='resize-panels resize-compare-panels shadow mt-3'>
+    <div class='resize-panel'>
+        <div class='re-panel bottom-right'></div>
+        <div class="p-3">
+            <div class="panel mb-2">
+                <div class="panel-info border p-2 border-bottom-0">
+                    <a class="" data-bs-toggle="collapse" href="#fileSelected" role="button" aria-expanded="false"
+                        aria-controls="collapseExample">
+                        No field selected or unknown
+                    </a>
+                </div>
+                <div class="collapse" id="fileSelected">
+                    <div class="card card-body p-2 border-top-0">
+                        Some text
                     </div>
-                </form>
+                </div>
             </div>
-          </div>
+            <div class="panel mb-2">
+                <div class="panel-info border p-2 border-bottom-0">
+                    <a class="" data-bs-toggle="collapse" href="#messageHeader" role="button" aria-expanded="false"
+                        aria-controls="collapseExample">
+                        MSH - Message Header
+                    </a>
+                </div>
+                <div class="collapse" id="messageHeader">
+                    <div class="card card-body p-2 border-top-0">
+                        <p>
+                            The MSH segment defines the intent, source, destination, and some specifics of the syntax of
+                            a message.
+                        </p>
+                        <p>
+                            Chapter: 2.15.9
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel mb-5">
+                <div class="panel-info border p-2 border-bottom-0">
+                    <a class="" data-bs-toggle="collapse" href="#valuePresenter" role="button" aria-expanded="false"
+                        aria-controls="collapseExample">
+                        Value Presenter
+                    </a>
+                </div>
+                <div class="collapse" id="valuePresenter">
+                    <div class="card card-body p-2 border-top-0">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label for="displayAs" class="" data-i18n="display-as">Display As &nbsp;</label>
+                                <select class="form-control" id="displayAs">
+                                    <option value="original"></option>
+                                    <option value="formatted">Formatted Value</option>
+                                    <option value="datetime">Formatted Date / Time</option>
+                                    <option value="base64">Decoded Base64 String</option>
+                                    <option value="base64-pdf">Decoded Base64 PDF Document</option>
+                                    <option value="base64-image">Decoded Base64 Image</option>
+                                    <option value="base64-xml">Decoded Base64 XML Document</option>
+                                    <option value="base64-cda">Decoded Base64 CDA Document (Experimental)</option>
+                                </select>
+                                <button type="button" class="btn btn-default mx-2">Copy To Clipboard</button>
+                                <a type="button" class="btn btn-default" [href]="fileUrl"
+                                    download="file.txt">Download</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <!-- success alert -->
 <div *ngIf="bDisplayAlert" class="alert alert-success position-fixed" role="alert">
     {{sText}}
-  </div>
+</div>

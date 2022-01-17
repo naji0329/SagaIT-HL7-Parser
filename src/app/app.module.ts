@@ -38,7 +38,7 @@ import { FooterComponent } from './shared/footer/footer.component';
     FieldsComponent,
     DataTypesComponent,
     SettingsComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

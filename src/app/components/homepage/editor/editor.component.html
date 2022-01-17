@@ -1,30 +1,31 @@
-<div  style="padding: 3px 0 5px 0">
-    <span id="messageName1" class="label label-info">Name: Copy of sample MDM^T02 with JPG</span> 
+<div style="padding: 3px 0 5px 0">
+    <span id="messageName1" class="label label-info">Name: Copy of sample MDM^T02 with JPG</span>
     <span id="hl7length1" class="label label-info mx-2">Message Length: 9917 Characters</span>
 </div>
+
 <div style="min-height: 190px;">
     <div class="btn-group-vertical" style="float: left;">
-        <button type="button" class="btn btn-sm btn-default"  data-bs-toggle="modal" data-bs-target="#newMessage"  
-        >
+        <button type="button" class="btn btn-sm btn-default" data-bs-toggle="modal" data-bs-target="#newMessage">
             <span class="fa fa-plus" aria-hidden="true"></span>
         </button>
-        <button type="button" class="btn btn-sm btn-default" data-bs-toggle="modal" data-bs-target="#editMessage"  data-toggle="tooltip"
-          title="Rename message">
+        <button type="button" class="btn btn-sm btn-default" data-bs-toggle="modal" data-bs-target="#editMessage"
+            data-toggle="tooltip" title="Rename message">
             <span class="fa fa-edit" aria-hidden="true"></span>
         </button>
-        <button type="button" class="btn btn-sm btn-default" data-toggle="tooltip"  title="Copy To Clipboard" (click)="CopyToClipBoard()">
+        <button type="button" class="btn btn-sm btn-default" data-toggle="tooltip" title="Copy To Clipboard"
+            (click)="CopyToClipBoard()">
             <span class="fa fa-clipboard" aria-hidden="true"></span>
         </button>
-        <button type="button" id="compareButton11" class="btn btn-sm btn-default"  (click)="Compared()" 
-        data-toggle="tooltip"  title="Compare with second message">
+        <button type="button" id="compareButton11" class="btn btn-sm btn-default" (click)="Compared()"
+            data-toggle="tooltip" title="Compare with second message">
             <span class="fa fa-copy" aria-hidden="true"></span>
         </button>
         <button type="button" id="compareButton12" class="btn btn-sm btn-default" (click)="Compared()"
-         data-toggle="tooltip"  title="Compare with first message">
+            data-toggle="tooltip" title="Compare with first message">
             <span class="fa fa-copy" aria-hidden="true"></span>
         </button>
     </div>
-    <textarea  class="hl7texteditor" wrap="off" spellcheck="true" autocomplete="off" autocorrect="off"
+    <textarea class="hl7texteditor" wrap="off" spellcheck="true" autocomplete="off" autocorrect="off"
         autocapitalize="off">
         MSH|^~\&|ADT-HIS||HL7INSPECTOR||20060101100000||ADT^A01|1|P|2.5.1
         EVN|A01|20060101||
@@ -34,63 +35,73 @@
         OBX|2|ED|DOC^Document^L||^application^pdf^Base64^
         OBX|3|ED|502^CHEST XRAY^L||Word^TEXT^^Base64^SnVzdCBhIHNpbXBsZSB0ZXh0</textarea>
 </div>
-<div style="margin-left: 30px;">
-    <div class="panel mb-2">
-        <div class="panel-info border p-2 border-bottom-0">
-            <a class="" data-bs-toggle="collapse" href="#fileSelected" role="button" aria-expanded="false" aria-controls="collapseExample">
-              No field selected or unknown
-            </a>
-        </div>
-          <div class="collapse" id="fileSelected">
-            <div class="card card-body p-2 border-top-0">
-              Some text 
-            </div>
-          </div>
-    </div>
-    <div class="panel mb-2">
-        <div class="panel-info border p-2 border-bottom-0">
-            <a class="" data-bs-toggle="collapse" href="#messageHeader" role="button" aria-expanded="false" aria-controls="collapseExample">
-                MSH - Message Header
-            </a>
-        </div>
-          <div class="collapse" id="messageHeader">
-            <div class="card card-body p-2 border-top-0">
-                <p> 
-                    The MSH segment defines the intent, source, destination, and some specifics of the syntax of a message.
-                </p>
-                <p>
-                    Chapter: 2.15.9 
-                </p>
-            </div>
-          </div>
-    </div>
-    <div class="panel mb-2">
-        <div class="panel-info border p-2 border-bottom-0">
-            <a class="" data-bs-toggle="collapse" href="#valuePresenter" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Value Presenter
-            </a>
-        </div>
-          <div class="collapse" id="valuePresenter">
-            <div class="card card-body p-2 border-top-0">
-                <form class="form-inline">
-                    <div class="form-group">
-                        <label for="displayAs" class="" data-i18n="display-as">Display As &nbsp;</label>
-                        <select class="form-control" id="displayAs">
-                            <option value="original"></option>
-                            <option value="formatted">Formatted Value</option>
-                            <option value="datetime">Formatted Date / Time</option>
-                            <option value="base64">Decoded Base64 String</option>
-                            <option value="base64-pdf">Decoded Base64 PDF Document</option>
-                            <option value="base64-image">Decoded Base64 Image</option>
-                            <option value="base64-xml">Decoded Base64 XML Document</option>
-                            <option value="base64-cda">Decoded Base64 CDA Document (Experimental)</option>
-                        </select>
-                        <button type="button" class="btn btn-default mx-2">Copy To Clipboard</button>
-                        <a type="button" class="btn btn-default" [href]="fileUrl" download="file.txt">Download</a>
+<div class='resize-panels resize-edit-panels shadow mt-3'>
+    <div class='resize-panel'>
+        <div class='re-panel bottom-right'></div>
+        <div class="p-3">
+            <div class="panel mb-2">
+                <div class="panel-info border p-2 border-bottom-0">
+                    <a class="" data-bs-toggle="collapse" href="#fileSelected" role="button" aria-expanded="false"
+                        aria-controls="collapseExample">
+                        No field selected or unknown
+                    </a>
+                </div>
+                <div class="collapse" id="fileSelected">
+                    <div class="card card-body p-2 border-top-0">
+                        Some text
                     </div>
-                </form>
+                </div>
             </div>
-          </div>
+            <div class="panel mb-2">
+                <div class="panel-info border p-2 border-bottom-0">
+                    <a class="" data-bs-toggle="collapse" href="#messageHeader" role="button" aria-expanded="false"
+                        aria-controls="collapseExample">
+                        MSH - Message Header
+                    </a>
+                </div>
+                <div class="collapse" id="messageHeader">
+                    <div class="card card-body p-2 border-top-0">
+                        <p>
+                            The MSH segment defines the intent, source, destination, and some specifics of the syntax of
+                            a message.
+                        </p>
+                        <p>
+                            Chapter: 2.15.9
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel mb-2">
+                <div class="panel-info border p-2 border-bottom-0">
+                    <a class="" data-bs-toggle="collapse" href="#valuePresenter" role="button" aria-expanded="false"
+                        aria-controls="collapseExample">
+                        Value Presenter
+                    </a>
+                </div>
+                <div class="collapse" id="valuePresenter">
+                    <div class="card card-body p-2 border-top-0">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label for="displayAs" class="" data-i18n="display-as">Display As &nbsp;</label>
+                                <select class="form-control" id="displayAs">
+                                    <option value="original"></option>
+                                    <option value="formatted">Formatted Value</option>
+                                    <option value="datetime">Formatted Date / Time</option>
+                                    <option value="base64">Decoded Base64 String</option>
+                                    <option value="base64-pdf">Decoded Base64 PDF Document</option>
+                                    <option value="base64-image">Decoded Base64 Image</option>
+                                    <option value="base64-xml">Decoded Base64 XML Document</option>
+                                    <option value="base64-cda">Decoded Base64 CDA Document (Experimental)</option>
+                                </select>
+                                <button type="button" class="btn btn-default mx-2">Copy To Clipboard</button>
+                                <a type="button" class="btn btn-default" [href]="fileUrl"
+                                    download="file.txt">Download</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -101,14 +112,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="staticBackdropLabel">Enter the name of the message.</h4>
-                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal"><i class="fa fa-times"></i></button>
-                
+                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal"><i
+                        class="fa fa-times"></i></button>
+
             </div>
             <div class="modal-body">
-                <div class="bootbox-body"><form class="bootbox-form">
-                    <input class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text">
-                </form>
-            </div>
+                <div class="bootbox-body">
+                    <form class="bootbox-form">
+                        <input class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text">
+                    </form>
+                </div>
             </div>
             <div class="modal-footer">
                 <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
@@ -125,14 +138,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="staticBackdropLabel">Enter the new name of the message.</h4>
-                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal"><i class="fa fa-times"></i></button>
+                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal"><i
+                        class="fa fa-times"></i></button>
 
             </div>
             <div class="modal-body">
-                <div class="bootbox-body"><form class="bootbox-form">
-                    <input class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text">
-                </form>
-            </div>
+                <div class="bootbox-body">
+                    <form class="bootbox-form">
+                        <input class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text">
+                    </form>
+                </div>
             </div>
             <div class="modal-footer">
                 <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
@@ -146,4 +161,4 @@
 <!-- success alert -->
 <div *ngIf="bDisplayAlert" class="alert alert-success position-fixed" role="alert">
     {{sText}}
-  </div>
+</div>
