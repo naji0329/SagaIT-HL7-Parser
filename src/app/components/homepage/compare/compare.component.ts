@@ -14,6 +14,7 @@ export class CompareComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
+    this.ResizePanels()
     const data = 'some text';
     const blob = new Blob([data], { type: 'application/octet-stream' });
 
@@ -42,6 +43,46 @@ export class CompareComponent implements OnInit {
   {
     this.EditorTab.emit()
   }
- 
+  ResizePanels()
+  {
+    let chatScript = document.createElement("script");
+    chatScript.type = "text/javascript";
+    chatScript.text = `
+    /*Make resizable div by Hung Nguyen*/
+    function makeResizableDiv(div) {
+      const element = document.querySelector(div);
+      let resizers = document.querySelectorAll(div + ' .re-panel')
+      const minimum_size = 20;
+      let original_height = 0;
+      let original_y = 0;
+      let original_mouse_y = 0;
+      for (let i = 0;i < resizers.length; i++) {
+        let currentResizer = resizers[i];
+        currentResizer.addEventListener('mousedown', function(e) {
+          e.preventDefault()
+          original_height = parseFloat(getComputedStyle(element, null).getPropertyValue('height').replace('px', ''));
+          original_y = element.getBoundingClientRect().top;
+          original_mouse_y = e.pageY;
+          window.addEventListener('mousemove', resize)
+          window.addEventListener('mouseup', stopResize)
+        })        
+        function resize(e) {
+          if (currentResizer.classList.contains('bottom-right')) {
+            const height = original_height + (e.pageY - original_mouse_y)
+            if (height > minimum_size) {
+              element.style.height = height + 'px'
+            }
+          }
+        }
+        function stopResize() {
+          window.removeEventListener('mousemove', resize)
+        }
+      }
+    }
+    makeResizableDiv('.resize-compare-panels')
+    
+    `;
+    document.body.appendChild(chatScript);
+  }
 
 }

@@ -163,6 +163,74 @@
   }
 
 //  side panel css end
+// resizing panels css
+.resizable {
+  background: white;
+  height: 30vh;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.resize-panels {
+    background: white;
+    height: 30vh;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+
+.resizable .resizers{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.resize-panels .resize-panel{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.resizable .resizers .resizer{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%; /*magic to turn square into circle*/
+  background: white;
+  border: 3px solid #000;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+.resize-panels .resize-panel .re-panel{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%; /*magic to turn square into circle*/
+    background: white;
+    border: 3px solid #000;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+
+
+.resizable .resizers .resizer.bottom-right {
+  right: -5px;
+  bottom: -5px;
+  cursor: s-resize;
+}
+.resize-panels .resize-panel .re-panel.bottom-right {
+    right: -5px;
+    bottom: -5px;
+    cursor: s-resize;
+  }
+// resizing panels css end
 
                             // --------------------------   THEMING    --------------------------//
                             // --------------------------   THEMING    --------------------------//
@@ -205,6 +273,9 @@
 .cosmo .menus a{background-color: #fff !important; color: #2780e3;}
 .cosmo .list-group-item:hover {cursor: pointer; background-color: #f5f5f5 !important; border-color: #f5f5f5 !important; color: #2780e3 !important;}
 .cosmo .list-group-item.active {cursor: pointer; background-color: #f5f5f5 !important; border-color: #f5f5f5 !important; color: #999999 !important}
+// resizing
+.cosmo .resizable .resizers .resizer{ border: 3px solid #2780e3;}
+.cosmo .resize-panels .resize-panel .re-panel{ border: 3px solid #2780e3 !important; }
 // <--------------------  cosmo theme end --------------------->
 // <--------------------  cosmo theme end --------------------->
 
@@ -244,6 +315,9 @@
 .cerulean .menus a{background-color: #fff !important; color: #54b4eb;}
 .cerulean .list-group-item:hover {cursor: pointer; background-color: #eeeeee !important; border-color: #eeeeee !important; color: #54b4eb !important;}
 .cerulean .list-group-item.active {cursor: pointer; background-color: #eeeeee !important; border-color: #eeeeee !important; color: #999999 !important}
+// resizing
+.cerulean .resizable .resizers .resizer{ border: 3px solid #033c73;}
+.cerulean .resize-panels .resize-panel .re-panel{ border: 3px solid #033c73 !important; }
 // <--------------------  cerulean theme end  --------------------->
 // <--------------------  cerulean theme end --------------------->
 
@@ -291,7 +365,9 @@
 .yeti .menus a{background-color: #fff !important; color: #000;}
 .yeti .list-group-item:hover {cursor: pointer; background-color: #f5f5f5 !important; border-color: #f5f5f5 !important; color: #008cba !important;}
 .yeti .list-group-item.active {cursor: pointer; background-color: #008cba !important; border-color: #008cba !important;}
-
+// resizing
+.yeti .resizable .resizers .resizer{ border: 3px solid #008cba;}
+.yeti .resize-panels .resize-panel .re-panel{ border: 3px solid #008cba !important; }
 // <--------------------  yeti theme end --------------------->
 // <--------------------  yeti theme end --------------------->
 
@@ -341,6 +417,11 @@
 .cyborg .menus a{background-color: #202020 !important; color: #aaaaaa;}
 .cyborg .list-group-item:hover {cursor: pointer; background-color: #282828 !important; border-color: #282828 !important; color: #fff !important;}
 .cyborg .list-group-item.active {cursor: pointer; background-color: #434343 !important; border-color: #434343 !important; color: #fff !important;}
+// resizing
+.cyborg .resizable .resizers .resizer{ border: 3px solid #fff;}
+.cyborg .resize-panels .resize-panel .re-panel{ border: 3px solid #fff !important; }
+.cyborg .resizable {  background: #202020;}
+.cyborg .resize-panels {background: #202020; }
 // <--------------------  cyborg theme  --------------------->
 // <--------------------  cyborg theme  --------------------->
 
@@ -396,7 +477,13 @@
 .slate .menus a{background-color: #40454b !important; color: #fff;}
 .slate .list-group-item:hover {cursor: pointer; background-color: #111213 !important; border-color: #111213 !important;}
 .slate .list-group-item.active {cursor: pointer; background-color: #111213 !important; border-color: #111213 !important;}
-
+// resizing
+.slate .resizable .resizers .resizer{ border: 3px solid #fff;}
+.slate .resize-panels .resize-panel .re-panel{ border: 3px solid #fff !important; }
+.slate .resizable {  background: #272b30;}
+.slate .resize-panels {background: #272b30; }
+.slate .resize-panels .resize-panel{ border: 3px solid #fff;}
+.slate .resizable .resizers{ border: 3px solid #fff;}
 // <--------------------  slate theme  --------------------->
 // <--------------------  slate theme  --------------------->
 
