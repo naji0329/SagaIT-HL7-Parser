@@ -1,0 +1,131 @@
+.cerulean.navbar.navbar-expand-lg.navbar-light.bg-light {
+	background-color: #1995dc !important;
+	color: #fff;
+}
+.cerulean {
+	.navbar-brand {
+		color: #fff !important;
+	}
+	.dropdown-item {
+		&:hover {
+			color: #fff !important;
+			background-color: #2fa4e7 !important;
+		}
+	}
+	.footer-text {
+		color: #fff !important;
+		a {
+			color: #fff !important;
+		}
+	}
+	.btn-primary {
+		color: #fff;
+		background-color: #54b4eb !important;
+		border-color: #54b4eb !important;
+	}
+	h1 {
+		color: #317eac !important;
+	}
+	h2 {
+		color: #317eac !important;
+	}
+	h3 {
+		color: #317eac !important;
+	}
+	h4 {
+		color: #317eac !important;
+	}
+	h5 {
+		color: #317eac !important;
+	}
+	h6 {
+		color: #317eac !important;
+	}
+	.nav-tabs {
+		.nav-link {
+			color: #2fa4e7 !important;
+			&:hover {
+				border-color: #eeeeee !important;
+				background-color: #eeeeee !important;
+			}
+		}
+		.nav-link.active {
+			color: #555555 !important;
+		}
+	}
+	.page-item.active {
+		.page-link {
+			color: #fff;
+			background-color: #2fa4e7 !important;
+			border-color: #2fa4e7 !important;
+		}
+	}
+	.label-info {
+		background-color: #033c73 !important;
+	}
+	.panel-info {
+		background-color: #033c73 !important;
+		a {
+			color: #fff !important;
+		}
+	}
+	.fa-times {
+		color: #d8d8d8 !important;
+	}
+	.openbtn {
+		background-color: #fff;
+		color: #54b4eb;
+		border: 1px solid #fff !important;
+		box-shadow: 0 .5rem 1rem rgba(0,0,0,.50) !important;
+	}
+	.menus {
+		a {
+			background-color: #fff !important;
+			color: #54b4eb;
+		}
+	}
+	.list-group-item {
+		&:hover {
+			cursor: pointer;
+			background-color: #eeeeee !important;
+			border-color: #eeeeee !important;
+			color: #54b4eb !important;
+		}
+	}
+	.list-group-item.active {
+		cursor: pointer;
+		background-color: #eeeeee !important;
+		border-color: #eeeeee !important;
+		color: #999999 !important;
+	}
+	.resizable {
+		.resizers {
+			.resizer {
+				border: 3px solid #033c73;
+			}
+		}
+	}
+	.resize-panels {
+		.resize-panel {
+			.re-panel {
+				border: 3px solid #033c73 !important;
+			}
+		}
+	}
+}
+.cerulean.navbar-light {
+	.navbar-nav {
+		.nav-link {
+			&:hover {
+				background-color: #178acc !important;
+			}
+			color: #fff !important;
+		}
+	}
+}
+.cerulean.footer {
+	background-color: #1995dc !important;
+}
+.cerulean.sidebar {
+	background-color: #fff !important;
+}

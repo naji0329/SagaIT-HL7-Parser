@@ -1,0 +1,115 @@
+.cosmo.navbar.navbar-expand-lg.navbar-light.bg-light {
+	background-color: #222222 !important;
+	color: #ccc;
+}
+.cosmo {
+	.navbar-brand {
+		color: #fff !important;
+	}
+	.footer-text {
+		color: #fff !important;
+		a {
+			color: #2780e3 !important;
+		}
+	}
+	.page-item.active {
+		.page-link {
+			color: #fff;
+			background-color: #222222 !important;
+			border-color: #222222 !important;
+		}
+	}
+	.label-info {
+		background-color: #9954bb !important;
+	}
+	.panel-info {
+		background-color: #9954bb !important;
+		a {
+			color: #fff !important;
+		}
+	}
+	.card {
+		border-radius: 0 0 .25rem .25rem !important;
+		border-color: #9954bb !important;
+	}
+	.fa-times {
+		color: #d8d8d8 !important;
+	}
+	.nav-tabs {
+		.nav-link {
+			color: #2780e3 !important;
+			&:hover {
+				border-color: #eeeeee !important;
+				background-color: #eeeeee !important;
+			}
+		}
+		.nav-link.active {
+			color: #555555 !important;
+		}
+	}
+	.btn.btn-default {
+		background-color: #222222 !important;
+		color: #fff !important;
+		border-color: #424242 !important;
+	}
+	.btn-primary {
+		background-color: #2780e3 !important;
+		border-color: #2780e3 !important;
+	}
+	.openbtn {
+		background-color: #fff;
+		color: #2780e3;
+		border: 1px solid #fff !important;
+		box-shadow: 0 .5rem 1rem rgba(0,0,0,.50) !important;
+	}
+	.menus {
+		a {
+			background-color: #fff !important;
+			color: #2780e3;
+		}
+	}
+	.list-group-item {
+		&:hover {
+			cursor: pointer;
+			background-color: #f5f5f5 !important;
+			border-color: #f5f5f5 !important;
+			color: #2780e3 !important;
+		}
+	}
+	.list-group-item.active {
+		cursor: pointer;
+		background-color: #f5f5f5 !important;
+		border-color: #f5f5f5 !important;
+		color: #999999 !important;
+	}
+	.resizable {
+		.resizers {
+			.resizer {
+				border: 3px solid #2780e3;
+			}
+		}
+	}
+	.resize-panels {
+		.resize-panel {
+			.re-panel {
+				border: 3px solid #2780e3 !important;
+			}
+		}
+	}
+}
+.cosmo.navbar-light {
+	.navbar-nav {
+		.nav-link {
+			color: #fff !important;
+			&:hover {
+				background-color: #090909 !important;
+			}
+		}
+	}
+}
+.cosmo.footer {
+	background-color: #121212 !important;
+}
+.cosmo.sidebar {
+	background-color: #fff !important;
+}
