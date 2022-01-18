@@ -12,10 +12,10 @@
     </thead>
     <tbody>
     <tr *ngFor="let data of lDataTypes">
-      <th scope="row">{{ data.dataType }}</th>
-      <td>{{ data.index}}</td>
-      <td>{{data.indexDataType}}</td>
-      <td>{{ data.name}}</td>
+      <th scope="row">{{ data.dt.parent }}</th>
+      <td>{{ data.dt.idx}}</td>
+      <td>{{data.dt.datatype}}</td>
+      <td>{{ data.dt.parentName}}</td>
       <td>
           <i class="fa fa-edit  pointer mx-2 font-20 font-700"></i>
           <i class="fa fa-trash text-danger font-20 "></i> 
