@@ -10,9 +10,9 @@
     </thead>
     <tbody>
     <tr *ngFor="let field of lFields">
-      <th scope="row">{{ field.segment }}</th>
-      <td>{{ field.sequence}}</td>
-      <td>{{ field.name}}</td>
+      <th scope="row">{{ field.item.seg }}</th>
+      <td>{{ field.item.seq}}</td>
+      <td>{{ field.item.name}}</td>
       <td>
           <i class="fa fa-edit  pointer mx-2 font-20 font-700"></i>
           <i class="fa fa-trash text-danger font-20 "></i> 
