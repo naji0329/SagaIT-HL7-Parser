@@ -69,7 +69,7 @@
                             <li>
                                 <hr *ngIf="bDisplayImprintOption" class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
+                            <li (click)="ChangeModalTitle()"><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
                                     data-bs-target="#about">About</a></li>
                         </ul>
                     </li>
@@ -110,7 +110,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="staticBackdropLabel">HL7 Inspector Neo</h4>
+                <h4 class="modal-title" id="staticBackdropLabel">{{sAboutModalTitle}}</h4>
                 <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
             </div>
             <div class="modal-body">
@@ -129,7 +129,7 @@
             </div>
             <div class="modal-footer">
                 <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="DismissModal()">Ok</button>
             </div>
         </div>
     </div>
@@ -155,7 +155,7 @@
             </div>
             <div class="modal-footer">
                 <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal ">Close</button>
             </div>
         </div>
     </div>

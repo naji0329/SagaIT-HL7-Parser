@@ -15,6 +15,8 @@ export class HeaderComponent implements OnInit {
   bDisplayProfileOptions: boolean = true;
   selectedTheme: any = "";
   oProfileName : any;
+  currentSession: any;
+  sAboutModalTitle: string = "";
 
   constructor(private  oRouter : Router , private oThemeService : ThemesService) 
   {
@@ -45,22 +47,13 @@ export class HeaderComponent implements OnInit {
          break; 
       } 
     }
-    // this.HeaderComponent_LoadProfileHL7Version2_5();
-    // let bLoadProfile = 
-    // {
-    //   bSelectLoadProfile : true
-    // }
-    // localStorage.setItem('lSelectedLoadProfile', JSON.stringify(bLoadProfile));
-    // this.oProfileName = HL7Inspector.meta.name; 
     this.oThemeService.sSelectedThemeValue.subscribe(res =>{
     this.selectedTheme = localStorage.getItem("selectedTheme")
     })
     if(this.selectedTheme === 'cyborg')
     {
-      console.log("workingggggg");
       $(function() {
           $("body").addClass("cyborg-body");
-          console.log("Class Should be Added")
         })
      const body = document.getElementsByTagName('body')[0]
      body.classList.add('cyborg-body')
@@ -83,6 +76,22 @@ export class HeaderComponent implements OnInit {
       const body = document.getElementsByTagName('body')[0];
       body.classList.remove('slate-body')
     }
+    this.sAboutModalTitle ="Welcome to the HL7 Inspector Neo"
+    this.currentSession = sessionStorage.getItem("currentSession")
+    if(this.currentSession != '1')
+    {
+      $('#about').modal('show')
+    }
+
+  }
+  ChangeModalTitle()
+  {
+    this.sAboutModalTitle = "HL7 Inspector Neo"
+  }
+  DismissModal()
+  {
+    sessionStorage.setItem("currentSession","1")
+    
   }
   ExportAsJson()
   {
@@ -94,19 +103,11 @@ export class HeaderComponent implements OnInit {
   }
   HeaderComponent_LoadProfileHL7Version2_5()
   {
-    // let bLoadProfile = 
-    // {
-    //   bSelectLoadProfile : true
-    // }
     localStorage.setItem('ProfileNumber','1');
     this.oProfileName = HL7Inspector.meta.name; 
   }
   HeaderComponent_LoadProfileHL7Version2_6()
   {
-    // let bLoadProfile = 
-    // {
-    //   bSelectLoadProfile : false
-    // }
     localStorage.setItem('ProfileNumber', '2')
     this.oProfileName = HL7Inspector26.meta.name; 
   }
