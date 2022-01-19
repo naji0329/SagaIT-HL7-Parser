@@ -12,6 +12,8 @@ export class HeaderComponent implements OnInit {
   bDisplayImprintOption: boolean = true;
   bDisplayProfileOptions: boolean = true;
   selectedTheme: any = "";
+  currentSession: any;
+  sAboutModalTitle: string = "";
 
   constructor(private  oRouter : Router , private oThemeService : ThemesService) 
   {
@@ -57,6 +59,22 @@ export class HeaderComponent implements OnInit {
       const body = document.getElementsByTagName('body')[0];
       body.classList.remove('slate-body')
     }
+    this.sAboutModalTitle ="Welcome to the HL7 Inspector Neo"
+    this.currentSession = sessionStorage.getItem("currentSession")
+    if(this.currentSession != '1')
+    {
+      $('#about').modal('show')
+    }
+
+  }
+  ChangeModalTitle()
+  {
+    this.sAboutModalTitle = "HL7 Inspector Neo"
+  }
+  DismissModal()
+  {
+    sessionStorage.setItem("currentSession","1")
+    
   }
   ExportAsJson()
   {
