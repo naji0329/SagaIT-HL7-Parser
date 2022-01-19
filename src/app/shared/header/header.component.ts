@@ -95,11 +95,31 @@ export class HeaderComponent implements OnInit {
   }
   ExportAsJson()
   {
-    const data = [{ foo: 'foo'}, { bar: 'bar' }]
-    const fileName = 'download'
-    const exportType = 'json'
-
-    exportFromJSON({ data, fileName, exportType })
+    let bSelectedProfile = localStorage.getItem('ProfileNumber');
+    switch(bSelectedProfile) 
+    { 
+      case '1' : { 
+        const data = HL7Inspector
+        const fileName = HL7Inspector.meta.name
+        const exportType = 'json'
+        exportFromJSON({ data, fileName, exportType })
+         break; 
+      } 
+      case '2' : { 
+        const data = HL7Inspector26
+        const fileName = HL7Inspector26.meta.name
+        const exportType = 'json'
+        exportFromJSON({ data, fileName, exportType })
+        break; 
+      } 
+      default: { 
+        const data = HL7Inspector
+        const fileName = HL7Inspector.meta.name
+        const exportType = 'json'
+        exportFromJSON({ data, fileName, exportType }) 
+        break; 
+      } 
+    }
   }
   HeaderComponent_LoadProfileHL7Version2_5()
   {
