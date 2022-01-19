@@ -15,7 +15,6 @@ export class CommonComponent implements OnInit {
 
   ngOnInit() {
     let bSelectedProfile = localStorage.getItem('ProfileNumber');
-    console.log("Incoming Boolean ==> ",bSelectedProfile);
     switch(bSelectedProfile) 
     { 
       case '1' : { 

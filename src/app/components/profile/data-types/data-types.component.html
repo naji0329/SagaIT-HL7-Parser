@@ -11,14 +11,15 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let data of lDataTypes">
+    <tr *ngFor="let data of lDataTypes; let i = index">
       <th scope="row">{{ data.dt.parent }}</th>
       <td>{{ data.dt.idx}}</td>
       <td>{{data.dt.datatype}}</td>
-      <td>{{ data.dt.parentName}}</td>
+      <td *ngIf="oProfileNumber == '1'">{{ data.dt.parentName}}</td>
+      <td *ngIf="oProfileNumber == '2'">{{ data.dt.desc}}</td>
       <td>
           <i class="fa fa-edit  pointer mx-2 font-20 font-700" data-bs-toggle="modal" data-bs-target="#EditDataType" (click)="DataTypesComponent_PatchSelectedRowValues(data)"></i>
-          <i class="fa fa-trash text-danger font-20 " data-bs-toggle="modal" data-bs-target="#deletedatatype"></i> 
+          <i class="fa fa-trash text-danger font-20 " data-bs-toggle="modal" data-bs-target="#deletedatatype" (click)="DataTypesComponent_DeleteSelectedRow(data,i)"></i> 
       </td>
     </tr>
     </tbody>
@@ -138,7 +139,7 @@
         <p>Are you sure you want to delete ?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Ok</button>
+        <button type="button" class="btn btn-primary" (click)="DataTypesComponent_DeleteRow()">Ok</button>
       </div>
     </div>
   </div>

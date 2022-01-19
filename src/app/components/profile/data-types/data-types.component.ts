@@ -14,6 +14,9 @@ export class DataTypesComponent implements OnInit {
   collectionSize;
   lDataTypes: any;
   fEditDataTypeForm : FormGroup;
+  selectedRowData : any;
+  selectedRowIndex : number;
+  oProfileNumber : any;
   constructor(private oFormBuilder : FormBuilder) {
     this.refreshCountries();
    }
@@ -21,6 +24,7 @@ export class DataTypesComponent implements OnInit {
   ngOnInit(){
     this.DataTypesComponent_InitializeEditDataTypeForm()
     console.log("Data Types ==>>>",this.lDataTypes);
+    this.oProfileNumber = localStorage.getItem('ProfileNumber');
     let bSelectedProfile = localStorage.getItem('ProfileNumber');
     switch(bSelectedProfile) 
     { 
@@ -37,6 +41,7 @@ export class DataTypesComponent implements OnInit {
       default :  {
         this.collectionSize = HL7Inspector.dataTypes.length;
         this.lDataTypes = HL7Inspector.dataTypes ; 
+        this.oProfileNumber = '1';
          break; 
       }
     }
@@ -83,6 +88,20 @@ export class DataTypesComponent implements OnInit {
     indexDatatype: data.dt.datatype,
     name: data.dt.parentName
     })
+  }
+  DataTypesComponent_DeleteSelectedRow(nIncomingSelectedRow, nIncomingIndex)
+  {
+    console.log("Selected Row Record ==>>",nIncomingSelectedRow);
+    console.log("Selected Row Index ==>>",nIncomingIndex);
+    this.selectedRowData = nIncomingSelectedRow;
+    this.selectedRowIndex = nIncomingIndex;
+  }
+  DataTypesComponent_DeleteRow()
+  {
+    var data = HL7Inspector.dataTypes;
+    console.log("------------ slicing -------------");
+    var deletedItem = data.splice(this.selectedRowIndex,1);
+    console.log("Deleted Item Should Be deleted ==>>>",deletedItem);
   }
 
 }
