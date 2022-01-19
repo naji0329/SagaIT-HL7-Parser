@@ -133,5 +133,15 @@ export class HeaderComponent implements OnInit {
     localStorage.setItem('ProfileNumber', '2')
     this.oProfileName = HL7Inspector26.meta.name; 
   }
+  HeaderComponent_LoadProfileHL7Version2_5()
+  {
+    localStorage.setItem('ProfileNumber','1');
+    this.oProfileName = HL7Inspector.meta.name; 
+  }
+  HeaderComponent_LoadProfileHL7Version2_6()
+  {
+    localStorage.setItem('ProfileNumber', '2')
+    this.oProfileName = HL7Inspector26.meta.name; 
+  }
 
 }
