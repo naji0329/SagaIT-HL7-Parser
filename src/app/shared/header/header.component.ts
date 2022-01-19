@@ -76,7 +76,7 @@ export class HeaderComponent implements OnInit {
       const body = document.getElementsByTagName('body')[0];
       body.classList.remove('slate-body')
     }
-    this.sAboutModalTitle ="Welcome to the HL7 Inspector Neo"
+    this.sAboutModalTitle ="Welcome to the HL7-Tool"
     this.currentSession = sessionStorage.getItem("currentSession")
     if(this.currentSession != '1')
     {
@@ -86,7 +86,7 @@ export class HeaderComponent implements OnInit {
   }
   ChangeModalTitle()
   {
-    this.sAboutModalTitle = "HL7 Inspector Neo"
+    this.sAboutModalTitle = "HL7-Tool"
   }
   DismissModal()
   {
