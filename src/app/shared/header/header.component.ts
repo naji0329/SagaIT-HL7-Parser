@@ -103,7 +103,6 @@ export class HeaderComponent implements OnInit {
         const fileName = HL7Inspector.meta.name
         const exportType = 'json'
         exportFromJSON({ data, fileName, exportType })
-        // this.oProfileName = HL7Inspector.meta.name; 
          break; 
       } 
       case '2' : { 
@@ -111,7 +110,6 @@ export class HeaderComponent implements OnInit {
         const fileName = HL7Inspector26.meta.name
         const exportType = 'json'
         exportFromJSON({ data, fileName, exportType })
-        // this.oProfileName = HL7Inspector26.meta.name; 
         break; 
       } 
       default: { 
@@ -122,16 +120,6 @@ export class HeaderComponent implements OnInit {
         break; 
       } 
     }
-  }
-  HeaderComponent_LoadProfileHL7Version2_5()
-  {
-    localStorage.setItem('ProfileNumber','1');
-    this.oProfileName = HL7Inspector.meta.name; 
-  }
-  HeaderComponent_LoadProfileHL7Version2_6()
-  {
-    localStorage.setItem('ProfileNumber', '2')
-    this.oProfileName = HL7Inspector26.meta.name; 
   }
   HeaderComponent_LoadProfileHL7Version2_5()
   {
