@@ -15,11 +15,11 @@
                 <li *ngIf="bDisplayProfileOptions" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Current Profile : HL7 Version 2.5.1
+                        Current Profile : {{oProfileName}}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Load profile 'HL7 Version 2.5.1'</a></li>
-                        <li><a class="dropdown-item" href="#">Load profile 'HL7 Version 2.6'</a></li>
+                        <li><a class="dropdown-item" (click)="HeaderComponent_LoadProfileHL7Version2_5()">Load profile 'HL7 Version 2.5.1'</a></li>
+                        <li><a class="dropdown-item" (click)="HeaderComponent_LoadProfileHL7Version2_6()">Load profile 'HL7 Version 2.6'</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
