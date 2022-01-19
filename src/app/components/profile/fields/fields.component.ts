@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import * as HL7Inspector from '../../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.5.1-Profile.json';
 import * as HL7Inspector26 from '../../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
 @Component({
@@ -11,10 +12,12 @@ export class FieldsComponent implements OnInit {
   pageSize = 25;
   collectionSize;
   lFields: any;
-  constructor() {
+  fEditFieldForm : FormGroup;
+  constructor(private oFormBuilder : FormBuilder) {
     this.refreshCountries();
    }
   ngOnInit(){
+    this.FieldsComponent_InitializeEditFieldForm()
     console.log("Data Types ==>>>",this.lFields);
     let bSelectedProfile = localStorage.getItem('ProfileNumber');
     switch(bSelectedProfile) 
@@ -60,5 +63,23 @@ export class FieldsComponent implements OnInit {
       }
     }
   } 
+  FieldsComponent_InitializeEditFieldForm()
+  {
+    this.fEditFieldForm = this.oFormBuilder.group({
+      segment: '',
+      sequence: '',
+      name: ''
+    })
+  }
+  FieldsComponent_PatchSelectedRowValues(field)
+  {
+   console.log("Selected row values ===> ",field);
+   this.fEditFieldForm.patchValue({
+     segment: field.item.seg,
+     sequence: field.item.seq,
+     name: field.item.name
+   })
+   
+  }
 
 }

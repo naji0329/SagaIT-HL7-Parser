@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import * as HL7Inspector from '../../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.5.1-Profile.json';
 import * as HL7Inspector26 from '../../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
 
@@ -12,11 +13,13 @@ export class DataTypesComponent implements OnInit {
   pageSize = 25;
   collectionSize;
   lDataTypes: any;
-  constructor() {
+  fEditDataTypeForm : FormGroup;
+  constructor(private oFormBuilder : FormBuilder) {
     this.refreshCountries();
    }
 
   ngOnInit(){
+    this.DataTypesComponent_InitializeEditDataTypeForm()
     console.log("Data Types ==>>>",this.lDataTypes);
     let bSelectedProfile = localStorage.getItem('ProfileNumber');
     switch(bSelectedProfile) 
@@ -62,5 +65,24 @@ export class DataTypesComponent implements OnInit {
       }
     }
   } 
+  DataTypesComponent_InitializeEditDataTypeForm()
+  {
+    this.fEditDataTypeForm = this.oFormBuilder.group({
+      datatype: '',
+      index: '',
+      indexDatatype: '',
+      name: ''
+    })
+  }
+  DataTypesComponent_PatchSelectedRowValues(data)
+  {
+    console.log("Selected Row Values ===>",data);
+    this.fEditDataTypeForm.patchValue({
+    datatype: data.dt.parent,
+    index: data.dt.idx,
+    indexDatatype: data.dt.datatype,
+    name: data.dt.parentName
+    })
+  }
 
 }

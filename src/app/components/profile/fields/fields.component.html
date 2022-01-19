@@ -1,4 +1,4 @@
-<button class="btn btn-default mt-3 mb-3">Add Field...</button>
+<button class="btn btn-default mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#addField">Add Field...</button>
 <table class="table table-striped py-2">
     <thead>
     <tr>
@@ -14,8 +14,8 @@
       <td>{{ field.item.seq}}</td>
       <td>{{ field.item.name}}</td>
       <td>
-          <i class="fa fa-edit  pointer mx-2 font-20 font-700"></i>
-          <i class="fa fa-trash text-danger font-20 "></i> 
+          <i class="fa fa-edit  pointer mx-2 font-20 font-700" data-bs-toggle="modal" data-bs-target="#editField" (click)="FieldsComponent_PatchSelectedRowValues(field)"></i>
+          <i class="fa fa-trash text-danger font-20 " data-bs-toggle="modal" data-bs-target="#deletefield"></i> 
       </td>
     </tr>
     </tbody>
@@ -31,3 +31,97 @@
       <option [ngValue]="75">75 items per page</option>
     </select>
   </div>
+
+  <!-- add field modal -->
+
+<div class="modal fade" id="addField" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Add Field</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3 row">
+          <label for="staticEmail" class="col-sm-2 col-form-label">Segment</label>
+          <div class="col-sm-10">
+            <input type="text"  class="form-control" id="segment" >
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Sequence</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="seq">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="name">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- edit field modal -->
+
+ <div class="modal fade" id="editField" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <form [formGroup]="fEditFieldForm">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Edit Field</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3 row">
+          <label for="staticEmail" class="col-sm-2 col-form-label">Segment</label>
+          <div class="col-sm-10">
+            <input type="text"  class="form-control" id="segment" formControlName="segment">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Sequence</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="seq" formControlName="sequence">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" formControlName="name">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Add</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<!-- delete field modal -->
+<div class="modal fade" id="deletefield" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Delete Field</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

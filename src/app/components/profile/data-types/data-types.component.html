@@ -1,5 +1,5 @@
 
-<button class="btn btn-default mt-3 mb-3">Add Data Type...</button>
+<button class="btn btn-default mt-3 mb-3"  data-bs-toggle="modal" data-bs-target="#addDataType">Add Data Type...</button>
 <table class="table table-striped py-2">
     <thead>
     <tr>
@@ -17,8 +17,8 @@
       <td>{{data.dt.datatype}}</td>
       <td>{{ data.dt.parentName}}</td>
       <td>
-          <i class="fa fa-edit  pointer mx-2 font-20 font-700"></i>
-          <i class="fa fa-trash text-danger font-20 "></i> 
+          <i class="fa fa-edit  pointer mx-2 font-20 font-700" data-bs-toggle="modal" data-bs-target="#EditDataType" (click)="DataTypesComponent_PatchSelectedRowValues(data)"></i>
+          <i class="fa fa-trash text-danger font-20 " data-bs-toggle="modal" data-bs-target="#deletedatatype"></i> 
       </td>
     </tr>
     </tbody>
@@ -34,3 +34,112 @@
       <option [ngValue]="75">75 items per page</option>
     </select>
   </div>
+
+
+  <!-- add field modal -->
+  
+<div class="modal fade" id="addDataType" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="add">Add Data Type</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3 row">
+          <label for="staticEmail" class="col-sm-3 col-form-label">Data Type</label>
+          <div class="col-sm-9">
+            <input type="text"  class="form-control" id="segment" >
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="number" class="col-sm-3 col-form-label">Index</label>
+          <div class="col-sm-9">
+            <input type="number" class="form-control" id="seq">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="text" class="col-sm-3 col-form-label">Index Data Type</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="name">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="text" class="col-sm-3 col-form-label">Name</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="name">
+          </div>
+        </div>
+      </div>
+     
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- edit Data Type modal -->
+  
+  <div class="modal fade" id="EditDataType" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form [formGroup]="fEditDataTypeForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="add">Edit Data Type</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-3 col-form-label">Data Type</label>
+            <div class="col-sm-9">
+              <input type="text"  class="form-control" id="segment" formControlName="datatype">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="number" class="col-sm-3 col-form-label">Index</label>
+            <div class="col-sm-9">
+              <input type="number" class="form-control" id="seq" formControlName="index">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="text" class="col-sm-3 col-form-label">Index Data Type</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="name" formControlName="indexDatatype">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="text" class="col-sm-3 col-form-label">Name</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="name" formControlName="name">
+            </div>
+          </div>
+        </div>
+       
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Add</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- delete data type modal -->
+<div class="modal fade" id="deletedatatype" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Delete Data Type</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

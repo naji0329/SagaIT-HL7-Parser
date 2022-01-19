@@ -1,4 +1,5 @@
 import { Component, OnInit ,PipeTransform } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import * as HL7Inspector from '../../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.5.1-Profile.json';
 import * as HL7Inspector26 from '../../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
 @Component({
@@ -12,11 +13,13 @@ export class SegmentsComponent implements OnInit {
   pageSize = 25;
   collectionSize;
   lSegments: any;
-  constructor() {
+  fEditSegmentForm : FormGroup
+  constructor(private oFormBuilder : FormBuilder) {
     this.refreshCountries();
    }
 
   ngOnInit(){
+    this.SegmentsComponent_InitializeEditSegmentForm()
     console.log("Data Types ==>>>",this.lSegments);
     let bSelectedProfile = localStorage.getItem('ProfileNumber');
     switch(bSelectedProfile) 
@@ -37,6 +40,13 @@ export class SegmentsComponent implements OnInit {
          break; 
       }
     }
+  }
+  SegmentsComponent_InitializeEditSegmentForm()
+  {
+    this.fEditSegmentForm = this.oFormBuilder.group({
+      segment: '',
+      name: ''
+    })
   }
   refreshCountries() {
     let bSelectedProfile = localStorage.getItem('ProfileNumber');
@@ -62,4 +72,13 @@ export class SegmentsComponent implements OnInit {
       }
     }
   } 
+  SegmentsComponent_PatchSelectedRowValues(segment)
+  {
+    console.log("Selected Row Values ==> ",segment);
+    this.fEditSegmentForm.patchValue({
+      segment: segment.seg.seg,
+      name: segment.seg.name
+    })
+    
+  }
 }
