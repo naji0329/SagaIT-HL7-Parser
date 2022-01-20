@@ -15,10 +15,10 @@ export class HomepageComponent implements OnInit {
   constructor(private oThemeService : ThemesService) { }
 
   ngOnInit(): void {
-    // this.oThemeService.sSelectedThemeValue.subscribe(res =>{
-    //   this.selectedTheme =res;
-    // })
-    this.selectedTheme = localStorage.getItem("selectedTheme")
+    this.oThemeService.sSelectedThemeValue.subscribe(res =>{
+      // this.selectedTheme =res;
+      this.selectedTheme = localStorage.getItem("selectedTheme")
+    })
   }
   openNav()
   {
