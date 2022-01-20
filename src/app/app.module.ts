@@ -20,8 +20,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SettingsComponent } from './components/settings/settings.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { TestComponent } from './components/test/test.component';
-// import { ResizableModule } from 'angular-resizable-element';
+import { ResizableModule } from 'angular-resizable-element';
 
 @NgModule({
   declarations: [
@@ -41,7 +40,6 @@ import { TestComponent } from './components/test/test.component';
     DataTypesComponent,
     SettingsComponent,
     FooterComponent,
-    TestComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +47,7 @@ import { TestComponent } from './components/test/test.component';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    ResizableModule
     
   ],
   providers: [],
