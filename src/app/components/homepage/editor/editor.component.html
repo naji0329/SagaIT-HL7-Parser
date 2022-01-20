@@ -1,10 +1,35 @@
-<div style="padding: 3px 0 5px 0">
-    <span id="messageName1" class="label label-info">Name: Copy of sample MDM^T02 with JPG</span>
-    <span id="hl7length1" class="label label-info mx-2">Message Length: 9917 Characters</span>
+<div class="d-md-flex justify-content-between align-items-center">
+    <div style="padding: 3px 0 5px 0">
+        <span id="messageName1" class="label label-info">Name: Copy of sample MDM^T02 with JPG</span>
+        <span id="hl7length1" class="label label-info mx-2">Message Length: 9917 Characters</span>
+    </div>
+    <div class="wrapper">
+        <div class="icon facebook" data-bs-toggle="modal" data-bs-target="#newMessage">
+            <div class="tooltip">Create message</div>
+            <span><i class="fa fa-envelope"></i></span>
+        </div>
+        <div class="icon facebook" data-bs-toggle="modal" data-bs-target="#editMessage">
+            <div class="tooltip">Rename message</div>
+            <span><i class="fa fa-edit"></i></span>
+        </div>
+        <div class="icon facebook" data-toggle="tooltip" (click)="CopyToClipBoard()">
+            <div class="tooltip">Copy to clipboard</div>
+            <span><i class="fa fa-clipboard"></i></span>
+        </div>
+        <div class="icon facebook" (click)="Compared()">
+            <div class="tooltip">Compare with second message</div>
+            <span><i class="fa fa-copy"></i></span>
+        </div>
+      
+        <div class="icon facebook" (click)="Compared()">
+            <div class="tooltip">Compare with first message</div>
+            <span><i class="fa fa-copy"></i></span>
+        </div>
+    
+    </div>
 </div>
-
 <div style="min-height: 190px;">
-    <div class="btn-group-vertical" style="float: left;">
+    <!-- <div class="btn-group-vertical" style="float: left;">
         <button type="button" class="btn btn-sm btn-default" data-bs-toggle="modal" data-bs-target="#newMessage">
             <span class="fa fa-plus" aria-hidden="true"></span>
         </button>
@@ -24,7 +49,7 @@
             data-toggle="tooltip" title="Compare with first message">
             <span class="fa fa-copy" aria-hidden="true"></span>
         </button>
-    </div>
+    </div> -->
     <textarea class="hl7texteditor" wrap="off" spellcheck="true" autocomplete="off" autocorrect="off"
         autocapitalize="off">
         MSH|^~\&|ADT-HIS||HL7INSPECTOR||20060101100000||ADT^A01|1|P|2.5.1
@@ -35,39 +60,45 @@
         OBX|2|ED|DOC^Document^L||^application^pdf^Base64^
         OBX|3|ED|502^CHEST XRAY^L||Word^TEXT^^Base64^SnVzdCBhIHNpbXBsZSB0ZXh0</textarea>
 </div>
-<div class='resize-panels resize-edit-panels shadow mt-3'>
+<div class='resize-panels resize-edit-panels  mt-3'>
     <div class='resize-panel'>
         <div class='re-panel bottom-right'></div>
         <div class="p-3">
-            <div class="panel mb-2">
-                <div class="panel-info border p-2 border-bottom-0">
-                    <a class="" data-bs-toggle="collapse" href="#fileSelected" role="button" aria-expanded="false"
-                        aria-controls="collapseExample">
-                        No field selected or unknown
-                    </a>
-                </div>
-                <div class="collapse" id="fileSelected">
-                    <div class="card card-body p-2 border-top-0">
-                        Some text
+            <div class="row">
+               <div class="col-md-6">
+                <div class="panel mb-2">
+                    <div class="panel-info border p-2 border-bottom-0">
+                        <a class="" data-bs-toggle="collapse" href="#fileSelected" role="button" aria-expanded="false"
+                            aria-controls="collapseExample">
+                            No field selected or unknown
+                        </a>
+                    </div>
+                    <div class="collapse show" id="fileSelected">
+                        <div class="card card-body p-2 border-top-0">
+                            Some text
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="panel mb-2">
-                <div class="panel-info border p-2 border-bottom-0">
-                    <a class="" data-bs-toggle="collapse" href="#messageHeader" role="button" aria-expanded="false"
-                        aria-controls="collapseExample">
-                        MSH - Message Header
-                    </a>
-                </div>
-                <div class="collapse" id="messageHeader">
-                    <div class="card card-body p-2 border-top-0">
-                        <p>
-                            The MSH segment defines the intent, source, destination, and some specifics of the syntax of
-                            a message.
-                        </p>
-                        <p>
-                            Chapter: 2.15.9
-                        </p>
+               </div>
+                <div class="col-md-6">
+                    <div class="panel mb-2">
+                        <div class="panel-info border p-2 border-bottom-0">
+                            <a class="" data-bs-toggle="collapse" href="#messageHeader" role="button" aria-expanded="false"
+                                aria-controls="collapseExample">
+                                MSH - Message Header
+                            </a>
+                        </div>
+                        <div class="collapse show" id="messageHeader">
+                            <div class="card card-body p-2 border-top-0">
+                                <p>
+                                    The MSH segment defines the intent, source, destination, and some specifics of the syntax of
+                                    a message.
+                                </p>
+                                <p>
+                                    Chapter: 2.15.9
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
