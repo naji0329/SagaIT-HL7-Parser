@@ -16,6 +16,8 @@ export class SettingsComponent implements OnInit {
     {name:"Slate" , value:'slate'},
     {name:"Yeti" , value:'yeti'},
   ]
+  AddCogClass: string ="";
+  bDisplayCogIcon: boolean = true;
   constructor(private oThemeService : ThemesService) { }
 
   ngOnInit(): void {
@@ -60,5 +62,23 @@ export class SettingsComponent implements OnInit {
       body.classList.remove('slate-body')
     }
   }
+  closeNav()
+  {
+    this.bDisplayCogIcon = true;
+    this.AddCogClass = ""
+    document.getElementById("mySidebar").classList.remove('setting-sidebar-width');
+    // document.getElementById("main").style.marginRight= "0";
+  }
+  openNav()
+  {
+    console.log("added class", this.AddCogClass);
+     this.AddCogClass = "cog-right";
+     this.bDisplayCogIcon = false;
+    // (<HTMLInputElement>document.getElementById("mySidebar")).style.width = "400px";
+    (<HTMLInputElement>document.getElementById("mySidebar")).classList.add('setting-sidebar-width');
+   
+  }
+  
+  
 
 }

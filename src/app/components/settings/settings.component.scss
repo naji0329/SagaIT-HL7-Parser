@@ -1,0 +1,56 @@
+.sidebar-setting {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 20px;
+  }
+ 
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+  }
+  .fa-cog
+  {
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      font-size: 40px;
+      cursor: pointer;
+      color: #fff;
+      background-color: #000;
+      padding: 5px;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+  }
+  .cog-right {right: 420px;}
+  .loading
+  {
+    -webkit-animation: rotation 2s infinite linear;
+  }
+  @-webkit-keyframes rotation {
+    from {
+            -webkit-transform: rotate(0deg);
+    }
+    to {
+            -webkit-transform: rotate(359deg);
+    }
+}
+.setting-sidebar-width{width: 400px;}
+@media (max-width:550px) {
+    .setting-sidebar-width{width: 300px;}
+  .cog-right {right: 320px;}    
+}
+@media (max-width:375px) {
+    .setting-sidebar-width{width: 280px;}
+    .cog-right {right: 300px;}    
+}

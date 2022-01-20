@@ -10,8 +10,36 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 mt-3 px-4">
+        <div class="tabs {{selectedTheme}}">
 
-        <ngb-tabset #homepageTabs="ngbTabset" [destroyOnHide]="false">
+          <input type="radio" id="tab1" name="tab-control" checked>
+          <input type="radio" id="tab2" name="tab-control">
+          <input type="radio" id="tab3" name="tab-control">
+
+          <ul>
+            <li title="Tree view"><label for="tab1" role="button"><i class="fa fa-sitemap font-500 mx-2"></i><br><span>Tree View</span></label></li>
+            <li title="Editor"><label for="tab2" role="button"><i class="fa fa-edit font-500 mx-2"></i><br><span>Editor</span></label></li>
+            <li title="Compare"><label for="tab3" role="button"><i class="fa fa-balance-scale font-500 mx-2"></i><br><span>Compare</span></label></li>
+          </ul>
+
+          <div class="slider">
+            <div class="indicator"></div>
+          </div>
+          <div class="content border-top">
+            <section>
+              <app-tree-view></app-tree-view>
+            </section>
+            <section>
+              <app-editor></app-editor>
+            </section>
+            <section>
+              <app-compare></app-compare>
+            </section>
+
+          </div>
+        </div>
+
+        <!-- <ngb-tabset #homepageTabs="ngbTabset" [destroyOnHide]="false">
           <ngb-tab id="tree-view" title="Tree View">
             <ng-template ngbTabContent>
               <app-tree-view></app-tree-view>
@@ -27,7 +55,7 @@
               <app-compare (EditorTab)="homepageTabs.select('editor')"></app-compare>
             </ng-template>
           </ngb-tab>
-        </ngb-tabset>
+        </ngb-tabset> -->
       </div>
     </div>
   </div>
@@ -35,4 +63,4 @@
 
 <div class="{{sAddOverlay}}" (click)=closeNav()></div>
 <!-- <app-footer></app-footer> -->
-
+<app-settings></app-settings>
