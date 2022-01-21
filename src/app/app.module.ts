@@ -20,9 +20,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SettingsComponent } from './components/settings/settings.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ResizableModule } from 'angular-resizable-element';
-import { TreeSiewSectionComponent } from './components/tree-view-section/tree-view-section.component';
+import { TreeSiewSectionComponent } from './components/homepage/tree-view/tree-view-section/tree-view-section.component';
 import { NgxResizableModule } from '@3dgenomes/ngx-resizable';
 import { EditorMainSectionComponent } from './components/homepage/editor/editor-main-section/editor-main-section.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,9 @@ import { EditorMainSectionComponent } from './components/homepage/editor/editor-
     FormsModule,
     ReactiveFormsModule,
     ResizableModule,
-    NgxResizableModule
+    NgxResizableModule,
+    PdfViewerModule
+
     
   ],
   providers: [],
