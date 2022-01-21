@@ -36,3 +36,39 @@
 .cyborg .resize-panels .resize-panel .re-panel{ border: 3px solid #fff !important; }
 .cyborg .resizable {  background: #202020;}
 .cyborg .resize-panels {background: #202020; }
+
+.cyborg .tabs {  background: #202020;  }
+.cyborg .tabs input[name=tab-control]:nth-of-type(1):checked ~ ul > li:nth-child(1) > label { color: #fff !important;}
+.cyborg .tabs input[name=tab-control]:nth-of-type(2):checked ~ ul > li:nth-child(2) > label { color: #fff !important;}
+.cyborg .tabs input[name=tab-control]:nth-of-type(3):checked ~ ul > li:nth-child(3) > label { color: #fff !important;}
+.cyborg .tabs .slider .indicator { background: #fff;}
+.cyborg .label-info.info-badge{font-size: 15px !important;}
+
+.cyborg .wrapper .icon {
+	background-color: #9933cc;
+	color: #fff;
+  }
+  .cyborg .wrapper .facebook:hover,
+  .cyborg .wrapper .facebook:hover .tooltip,
+  .cyborg .wrapper .facebook:hover .tooltip::before {
+  background-color: #000;
+  color: #ffffff;
+}
+
+.cyborg.fa-cog
+{
+    color: #000 !important;
+    background-color: #fff !important;
+}
+.cyborg.sidebar-setting {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #202020;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 20px;
+  }
