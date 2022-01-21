@@ -26,13 +26,13 @@
             <div class="tooltip">Compare with first message</div>
             <span><i class="fa fa-copy"></i></span>
         </div>
-        <div class="icon facebook" data-bs-toggle="modal" >
+        <div class="icon facebook" data-bs-toggle="modal" data-bs-target="#uploadfile">
             <div class="tooltip">Import message</div>
             <span><i class="fa fa-upload"></i></span>
         </div>
-        <div class="icon facebook" data-bs-toggle="modal" >
+        <div class="icon facebook" data-bs-toggle="modal">
             <div class="tooltip">Export message</div>
-            <span><i class="fa fa-download"></i></span>
+            <span (click)="fileDownload()"><i class="fa fa-download"></i></span>
         </div>
     
     </div>
@@ -97,3 +97,29 @@
     {{sText}}
 </div>
 
+<!-- upload file modal -->
+<div class="modal fade" id="uploadfile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="staticBackdropLabel">Upload file</h4>
+                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+
+            </div>
+            <div class="modal-body">
+                <div class="bootbox-body">
+                    <span class="btn btn-success fileinput-button"><i
+                            class="glyphicon glyphicon-plus"></i><span>Add file...</span><input id="name"
+                            name="files[]" type="file"></span>
+                    <p></p>
+                    <div id="uploadFileStatus" class="label label-success"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
