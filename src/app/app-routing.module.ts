@@ -4,7 +4,6 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { ImprintComponent } from './components/imprint/imprint.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { TestComponent } from './components/test/test.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'homepage', pathMatch: 'full' },
@@ -23,10 +22,6 @@ const routes: Routes = [
   {
     path: 'settings',
     component: SettingsComponent
-  },
-  {
-    path: 'test',
-    component: TestComponent
   }
 ];
 
