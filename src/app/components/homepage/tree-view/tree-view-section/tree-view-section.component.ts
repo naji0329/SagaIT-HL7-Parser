@@ -216,6 +216,7 @@ export let sampleData: any[] = [
   styleUrls: ['./tree-view-section.component.scss']
 })
 export class TreeSiewSectionComponent implements OnInit {
+  pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   bDisplayAlert: boolean = false;
   sText: string = "";
   sampleData = sampleData;
@@ -241,6 +242,7 @@ export class TreeSiewSectionComponent implements OnInit {
   app = require( '@3dgenomes/ngx-resizable/package.json');
   title: string = this.app.name;
   version: string = this.app.version;
+  bDisplaySelectedOption: boolean;
   constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
@@ -305,22 +307,10 @@ export class TreeSiewSectionComponent implements OnInit {
       this.bDisplayAlert = false
     }, 3000);
   }
-  test(options:any) 
+  SelectDisplayOptions(options:any) 
   {
     this.selectedValue = options.target.value
     console.log(this.selectedValue);
-    
-    if(options.target.value === 'base64-pdf')
-    {
-      console.log("OPtions::",options.target.value);
-      this.base_64_pdf = true;
-      this.base64_xml = false;
-    }
-    if(options.target.value === 'base64-xml')
-    {
-      this.base64_xml = true;
-      this.base_64_pdf = false;
-    }
     
   }
 
