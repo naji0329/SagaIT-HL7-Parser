@@ -23,6 +23,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { ResizableModule } from 'angular-resizable-element';
 import { TreeSiewSectionComponent } from './components/tree-view-section/tree-view-section.component';
 import { NgxResizableModule } from '@3dgenomes/ngx-resizable';
+import { EditorMainSectionComponent } from './components/homepage/editor/editor-main-section/editor-main-section.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { NgxResizableModule } from '@3dgenomes/ngx-resizable';
     SettingsComponent,
     FooterComponent,
     TreeSiewSectionComponent,
+    EditorMainSectionComponent,
   ],
   imports: [
     BrowserModule,

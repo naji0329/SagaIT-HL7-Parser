@@ -1,8 +1,8 @@
 <div class="d-md-flex justify-content-between align-items-center">
     <div style="padding: 3px 0 5px 0">
-        <span id="messageName1" class="label label-info">Name: Copy of sample MDM^T02 with JPG</span>
-        <span id="hl7length1" class="label label-info mx-2">Message Length: 9917 Characters</span>
-        <span id="hl7length1" class="label label-info mx-2">Selected Value: Event Type Code</span>
+        <span id="messageName1" class="label label-info info-badge mr-2 mb-1">Name: Copy of sample MDM^T02 with JPG</span>
+        <span id="hl7length1" class="label label-info info-badge mr-2 mb-1">Message Length: 9917 Characters</span>
+        <span id="hl7length1" class="label label-info info-badge mr-2 mb-1">Selected Value: Event Type Code</span>
     </div>
     <div class="wrapper">
         <div class="icon facebook" data-bs-toggle="modal" data-bs-target="#newMessage">
@@ -26,103 +26,18 @@
             <div class="tooltip">Compare with first message</div>
             <span><i class="fa fa-copy"></i></span>
         </div>
+        <div class="icon facebook" data-bs-toggle="modal" >
+            <div class="tooltip">Import message</div>
+            <span><i class="fa fa-upload"></i></span>
+        </div>
+        <div class="icon facebook" data-bs-toggle="modal" >
+            <div class="tooltip">Export message</div>
+            <span><i class="fa fa-download"></i></span>
+        </div>
     
     </div>
 </div>
-<div style="min-height: 190px;">
-    <!-- <div class="btn-group-vertical" style="float: left;">
-        <button type="button" class="btn btn-sm btn-default" data-bs-toggle="modal" data-bs-target="#newMessage">
-            <span class="fa fa-plus" aria-hidden="true"></span>
-        </button>
-        <button type="button" class="btn btn-sm btn-default" data-bs-toggle="modal" data-bs-target="#editMessage"
-            data-toggle="tooltip" title="Rename message">
-            <span class="fa fa-edit" aria-hidden="true"></span>
-        </button>
-        <button type="button" class="btn btn-sm btn-default" data-toggle="tooltip" title="Copy To Clipboard"
-            (click)="CopyToClipBoard()">
-            <span class="fa fa-clipboard" aria-hidden="true"></span>
-        </button>
-        <button type="button" id="compareButton11" class="btn btn-sm btn-default" (click)="Compared()"
-            data-toggle="tooltip" title="Compare with second message">
-            <span class="fa fa-copy" aria-hidden="true"></span>
-        </button>
-        <button type="button" id="compareButton12" class="btn btn-sm btn-default" (click)="Compared()"
-            data-toggle="tooltip" title="Compare with first message">
-            <span class="fa fa-copy" aria-hidden="true"></span>
-        </button>
-    </div> -->
-    <textarea class="hl7texteditor" wrap="off" spellcheck="true" autocomplete="off" autocorrect="off"
-        autocapitalize="off" #alpha (click)="alphafunction(alpha)" (keyup)="alphafunction(alpha)">
-        MSH|^~\&|ADT-HIS||HL7INSPECTOR||20060101100000||ADT^A01|1|P|2.5.1
-        EVN|A01|20060101||
-        PID||||4711|Doe^John||19701024|M|||Sesamstreet 11^76137^Karlsruhe^D|||||GS|EV||||
-        PV1||I|S2^13^3^CHI^^21||||||||||||||||1234|||||||||||||||||||||||||200601010930||||||||
-        OBX|1|ED|EGK_DATA52^eGK-Daten^HL7-DEU||^AP^application/xml^Base64^
-        OBX|2|ED|DOC^Document^L||^application^pdf^Base64^
-        OBX|3|ED|502^CHEST XRAY^L||Word^TEXT^^Base64^SnVzdCBhIHNpbXBsZSB0ZXh0
-    </textarea>
-</div>
-<div class='resize-panels resize-edit-panels  mt-3'>
-    <div class='resize-panel'>
-        <div class='re-panel bottom-right'></div>
-        <div class="p-3">
-            <div class="row">
-              
-                <div class="col-md-12">
-                    <div class="panel mb-2">
-                        <div class="panel-info border p-2 border-bottom-0">
-                            <a class="" data-bs-toggle="collapse" href="#messageHeader" role="button" aria-expanded="false"
-                                aria-controls="collapseExample">
-                                MSH - Message Header
-                            </a>
-                        </div>
-                        <div class="collapse show" id="messageHeader">
-                            <div class="card card-body p-2 border-top-0">
-                                <p>
-                                    The MSH segment defines the intent, source, destination, and some specifics of the syntax of
-                                    a message.
-                                </p>
-                                <p>
-                                    Chapter: 2.15.9
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel mb-2">
-                <div class="panel-info border p-2 border-bottom-0">
-                    <a class="" data-bs-toggle="collapse" href="#valuePresenter" role="button" aria-expanded="false"
-                        aria-controls="collapseExample">
-                        Value Presenter
-                    </a>
-                </div>
-                <div class="collapse show" id="valuePresenter">
-                    <div class="card card-body p-2 border-top-0">
-                        <form class="form-inline">
-                            <div class="form-group">
-                                <label for="displayAs" class="" data-i18n="display-as">Display As &nbsp;</label>
-                                <select class="form-control" id="displayAs">
-                                    <option value="original">Original Value</option>
-                                    <option value="formatted">Formatted Value</option>
-                                    <option value="datetime">Formatted Date / Time</option>
-                                    <option value="base64">Decoded Base64 String</option>
-                                    <option value="base64-pdf">Decoded Base64 PDF Document</option>
-                                    <option value="base64-image">Decoded Base64 Image</option>
-                                    <option value="base64-xml">Decoded Base64 XML Document</option>
-                                    <option value="base64-cda">Decoded Base64 CDA Document (Experimental)</option>
-                                </select>
-                                <button type="button" class="btn btn-default mx-2">Copy To Clipboard</button>
-                                <a type="button" class="btn btn-default" [href]="fileUrl"
-                                    download="file.txt">Download</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<app-editor-main-section></app-editor-main-section>
 
 <!-- new message  modal -->
 <div class="modal fade" id="newMessage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -181,3 +96,4 @@
 <div *ngIf="bDisplayAlert" class="alert alert-success position-fixed" role="alert">
     {{sText}}
 </div>
+

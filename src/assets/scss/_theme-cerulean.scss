@@ -108,7 +108,7 @@
 	.resize-panels {
 		.resize-panel {
 			.re-panel {
-				border: 3px solid #033c73 !important;
+				// border: 3px solid #033c73 !important;
 			}
 		}
 	}
@@ -129,3 +129,52 @@
 .cerulean.sidebar {
 	background-color: #fff !important;
 }
+
+.cerulean .wrapper .icon {
+	position: relative;
+	display: inline-flex !important;
+	background-color: #033c73;
+	color: #fff;
+	border-radius: 50%;
+	padding: 15px;
+	margin: 6px;
+	width: 33px;
+	height: 33px;
+	font-size: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  .cerulean .wrapper .facebook:hover,
+  .cerulean .wrapper .facebook:hover .tooltip,
+  .cerulean .wrapper .facebook:hover .tooltip::before {
+  background-color: #1b95dc;
+  color: #ffffff;
+  text-align: center;
+}
+.cerulean .tabs .slider .indicator {
+    position: relative;
+    width: 40%;
+    max-width: 100%;
+    margin: 0 auto;
+    height: 4px;
+    background: #1b95dc;
+    border-radius: 1px;
+}
+.cerulean .tabs input[name=tab-control]:nth-of-type(1):checked ~ ul > li:nth-child(1) > label {
+    cursor: default;
+    color: #1b95dc;
+}
+.cerulean .tabs input[name=tab-control]:nth-of-type(2):checked ~ ul > li:nth-child(2) > label {
+    cursor: default;
+    color: #1b95dc;
+}
+.cerulean .tabs input[name=tab-control]:nth-of-type(3):checked ~ ul > li:nth-child(3) > label {
+    cursor: default;
+    color: #1b95dc;
+}
+.cerulean .label-info.info-badge{font-size: 15px !important;}

@@ -18,6 +18,7 @@ export class SettingsComponent implements OnInit {
   ]
   AddCogClass: string ="";
   bDisplayCogIcon: boolean = true;
+  sAddOverlay: string="";
   constructor(private oThemeService : ThemesService) { }
 
   ngOnInit(): void {
@@ -66,6 +67,7 @@ export class SettingsComponent implements OnInit {
   {
     this.bDisplayCogIcon = true;
     this.AddCogClass = ""
+    this.sAddOverlay = ""
     document.getElementById("mySidebar").classList.remove('setting-sidebar-width');
     // document.getElementById("main").style.marginRight= "0";
   }
@@ -74,9 +76,17 @@ export class SettingsComponent implements OnInit {
     console.log("added class", this.AddCogClass);
      this.AddCogClass = "cog-right";
      this.bDisplayCogIcon = false;
+     this.sAddOverlay = "overlay-fade";
     // (<HTMLInputElement>document.getElementById("mySidebar")).style.width = "400px";
     (<HTMLInputElement>document.getElementById("mySidebar")).classList.add('setting-sidebar-width');
    
+  }
+  DismissSettingsSidePanel()
+  {
+    this.bDisplayCogIcon = true;
+    this.sAddOverlay = ""
+    this.AddCogClass = ""
+    document.getElementById("mySidebar").classList.remove('setting-sidebar-width');
   }
   
   
