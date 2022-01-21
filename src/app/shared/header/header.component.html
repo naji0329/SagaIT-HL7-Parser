@@ -18,8 +18,8 @@
                         Selected Version : {{oProfileName}}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" (click)="HeaderComponent_LoadProfileHL7Version2_5()">HL7 Version 2.5.1</a></li>
-                        <li><a class="dropdown-item" (click)="HeaderComponent_LoadProfileHL7Version2_6()">HL7 Version 2.6</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="HeaderComponent_LoadProfileHL7Version2_5()">HL7 Version 2.5.1</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="HeaderComponent_LoadProfileHL7Version2_6()">HL7 Version 2.6</a></li>
                         <!-- <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -114,7 +114,7 @@
                 <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
             </div>
             <div class="modal-body">
-                <div class="bootbox-body">HL7-Tool Version 1.0.0.1010<p></p>
+                <div class="bootbox-body">HL7-Tool Version {{sBuildVersion}}<p></p>
                     <p>Saga-IT offers HL7-Tool for composing/editing Hl7 standard messages</p>
                     <p>© All rights reserved by, Saga-IT</p>                  
                 </div>

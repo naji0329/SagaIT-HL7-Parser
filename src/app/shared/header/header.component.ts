@@ -5,6 +5,8 @@ import * as HL7Inspector from '../../../assets/standard_profiles/HL7InspectorNEO
 import * as HL7Inspector26 from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
 import { ThemesService } from 'src/app/services/themes.service';
 declare var $ : any;
+import { version } from 'package.json';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -17,6 +19,7 @@ export class HeaderComponent implements OnInit {
   oProfileName : any;
   currentSession: any;
   sAboutModalTitle: string = "";
+  sBuildVersion: string;
 
   constructor(private  oRouter : Router , private oThemeService : ThemesService) 
   {
@@ -31,6 +34,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.sBuildVersion = version;
     let bSelectedProfile = localStorage.getItem('ProfileNumber');
     switch(bSelectedProfile) 
     { 

@@ -9,7 +9,6 @@ import { ImprintComponent } from './components/imprint/imprint.component';
 import { TreeViewComponent } from './components/homepage/tree-view/tree-view.component';
 import { EditorComponent } from './components/homepage/editor/editor.component';
 import { CompareComponent } from './components/homepage/compare/compare.component';
-import { VerticalGroupButtonsComponent } from './shared/vertical-group-buttons/vertical-group-buttons.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CommonComponent } from './components/profile/common/common.component';
@@ -34,7 +33,6 @@ import { EditorMainSectionComponent } from './components/homepage/editor/editor-
     TreeViewComponent,
     EditorComponent,
     CompareComponent,
-    VerticalGroupButtonsComponent,
     SidebarComponent,
     ProfileComponent,
     CommonComponent,
