@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  sidebarOptions : any = ['item','item','item','item','item',]
+  sidebarOptions : any = ['ADT^A08 with UTF8 Sample','ADT^A01 Sample','ORU^R01 with PDF Sample','ADT^A02 Sample','MDM^T02 with JPG Sample',]
   addActiveClass: any;
   selectedTheme: any = "";
   constructor() { }
