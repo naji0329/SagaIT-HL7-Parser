@@ -3,22 +3,7 @@
     <span id="hl7length1" class="label bg-warning mx-2">Not-equal</span>
 </div>
 <div style="min-height: 190px;">
-    <!-- <div class="btn-group-vertical" style="float: left;">
-
-        <button (click)="NavigateToEditorTab()" type="button" class="btn btn-sm btn-default" data-toggle="tooltip"
-            title="Rename message">
-            <span class="fa fa-edit" aria-hidden="true"></span>
-        </button>
-        <button type="button" class="btn btn-sm btn-default" data-toggle="tooltip" title="Copy To Clipboard"
-            (click)="CopyToClipBoard(inputValue2)">
-            <span class="fa fa-clipboard" aria-hidden="true"></span>
-        </button>
-        <button type="button" id="compareButton11" class="btn btn-sm btn-default" data-toggle="tooltip"
-            title="Compare with second message">
-            <span class="fa fa-lock" aria-hidden="true"></span>
-        </button>
-
-    </div> -->
+  
     <div class="wrapper d-md-flex justify-content-end">
        
         <div class="icon facebook" data-bs-toggle="modal" data-bs-target="#edit-message">
@@ -70,10 +55,8 @@
         OBX|2|ED|DOC^Document^L||^application^pdf^Base64^
         OBX|3|ED|502^CHEST XRAY^L||Word^TEXT^^Base64^SnVzdCBhIHNpbXBsZSB0ZXh0</textarea>
 </div>
-<div class='resize-panels resize-compare-panels  mt-3'>
-    <div class='resize-panel'>
-        <div class='re-panel bottom-right'></div>
-        <div class="p-3">
+
+        <div class="pt-3">
             <div class="row">
               
                <div class="col-md-12">
@@ -110,7 +93,7 @@
                         <form class="form-inline">
                             <div class="form-group">
                                 <label for="displayAs" class="" data-i18n="display-as">Display As &nbsp;</label>
-                                <select class="form-control" id="displayAs">
+                                <select class="form-control mb-2" id="displayAs">
                                     <option value="original">Original Value</option>
                                     <option value="formatted">Formatted Value</option>
                                     <option value="datetime">Formatted Date / Time</option>
@@ -120,8 +103,8 @@
                                     <option value="base64-xml">Decoded Base64 XML Document</option>
                                     <option value="base64-cda">Decoded Base64 CDA Document (Experimental)</option>
                                 </select>
-                                <button type="button" class="btn btn-default mx-2">Copy To Clipboard</button>
-                                <a type="button" class="btn btn-default" [href]="fileUrl"
+                                <button type="button" class="btn btn-default mb-2 mr-2">Copy To Clipboard</button>
+                                <a type="button" class="btn btn-default mb-2" [href]="fileUrl"
                                     download="file.txt">Download</a>
                             </div>
                         </form>
@@ -129,8 +112,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
 <!-- success alert -->
 <div *ngIf="bDisplayAlert" class="alert alert-success position-fixed" role="alert">
