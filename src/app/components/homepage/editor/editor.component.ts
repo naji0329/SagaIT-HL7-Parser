@@ -19,6 +19,15 @@ export class EditorComponent implements OnInit {
 
     this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
   }
+  fileDownload()
+  {
+    const link = document.createElement('a');
+    link.href = this.fileUrl;
+    link.setAttribute('download', 'message.hl7');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
   CopyToClipBoard()
   {
     this.bDisplayAlert = true
@@ -84,6 +93,7 @@ export class EditorComponent implements OnInit {
       }
       if(header==''){
         header = selectedWord.trim();
+        selectedWord = "";
       }
       console.log("header =",header)
     }
