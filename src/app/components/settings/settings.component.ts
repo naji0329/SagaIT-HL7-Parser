@@ -22,10 +22,10 @@ export class SettingsComponent implements OnInit {
   constructor(private oThemeService : ThemesService) { }
 
   ngOnInit(): void {
-    this.selectedTheme = localStorage.getItem("selectedTheme") 
-    // this.oThemeService.sSelectedThemeValue.subscribe(res =>{
-    //   this.selectedTheme = res
-    // })
+    this.oThemeService.sSelectedThemeValue.subscribe(res =>{
+      // this.selectedTheme = res
+      this.selectedTheme = localStorage.getItem("selectedTheme") 
+    })
   }
   ChangeTheme(event:any)
   {

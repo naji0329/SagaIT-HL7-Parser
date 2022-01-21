@@ -1,65 +1,80 @@
+<i *ngIf="bDisplayCogIcon" class="fa fa-cog font-30 loading {{AddCogClass}} {{selectedTheme}}" (click)="openNav()"></i>
+<i *ngIf="!bDisplayCogIcon" class="fa fa-cog font-30 loading {{AddCogClass}} {{selectedTheme}}" (click)="closeNav()"></i>
+<div id="mySidebar" class="sidebar-setting shadow {{selectedTheme}}">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 mt-3 px-4">
+                <ngb-tabset [destroyOnHide]="false">
+                    <ngb-tab title="Common">
+                        <ng-template ngbTabContent>
+                            <div class="tab-content hl7-margin">
+                                <!-- Tab Common -->
+                                <div role="tabpanel" class="tab-pane active" id="common">
+                                    <!-- <div class="form-group py-3">
+                                                <label for="inputLanguage" class="col-sm-2 control-label">Language</label>
+                                                <div class="col-sm-10 input-group">
+                                                    <select class="form-control" id="inputLanguage">
+                                                        <option value="en">English</option>
+                                                        <option value="de">German</option>
+                                                    </select>
+                                                </div>
+                                            </div> -->
+                                    <div class="form-group py-2">
+                                        <label for="inputDocUrl" class=" control-label">URL document database</label>
+                                        <div class="col-sm-10 input-group">
+                                            <input type="url" class="form-control" id="inputDocUrl">
 
-<!-- <app-header #b></app-header> -->
-<!-- <div class="{{selectedTheme}} container-fluid">
-    <div class="row">
-        <div class="col-12 mt-3 px-4">
-            <ngb-tabset [destroyOnHide]="false">
-                <ngb-tab title="Common">
-                  <ng-template ngbTabContent>
-                    <div class="tab-content hl7-margin">
-                        <div role="tabpanel" class="tab-pane active" id="common">
-                            
-                            <div class="form-group py-2">
-                                <label for="inputDocUrl" class="col-sm-2 control-label">URL document database</label>
-                                <div class="col-sm-10 input-group">
-                                    <input type="url" class="form-control" id="inputDocUrl">
-    
-                                </div>
-                            </div>
-                            <div class="form-group py-2">
-                                <div class="col-sm-12">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" id="inputLoadMessageSamples">
-                                            <span class="control-label mx-2">Load message samples on startup</span>
-                                        </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group py-2">
+                                        <div class="col-sm-12">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" id="inputLoadMessageSamples">
+                                                    <span class="control-label mx-2">Load message samples on
+                                                        startup</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group py-2">
+                                        <label for="inputHomeTab" class="col-sm-2 control-label">Start Tab</label>
+                                        <div class="col-sm-10 input-group">
+                                            <select class="form-control" id="inputHomeTab">
+                                                <option value="tree">Tree View</option>
+                                                <option value="editor">Editor</option>
+                                                <option value="compare">Compare</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group py-2">
+                                        <label for="inputTheme" class="col-sm-2 control-label">Theme</label>
+                                        <div class="col-sm-10 input-group">
+                                            <select class="form-control" id="inputTheme" (change)="ChangeTheme($event)">
+                                                <option *ngFor="let option of lThemeOptions; let i = index;"
+                                                    [value]="option.value" [selected]="selectedTheme==option.value">
+                                                    {{option.name}}</option>
+
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- Tree View -->
+
                             </div>
-                            <div class="form-group py-2">
-                                <label for="inputHomeTab" class="col-sm-2 control-label">Start Tab</label>
-                                <div class="col-sm-10 input-group">
-                                    <select class="form-control" id="inputHomeTab">
-                                        <option value="tree">Tree View</option>
-                                        <option value="editor">Editor</option>
-                                        <option value="compare">Compare</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group py-2">
-                                <label for="inputTheme" class="col-sm-2 control-label">Theme</label>
-                                <div class="col-sm-10 input-group">
-                                    <select class="form-control" id="inputTheme" (change)="ChangeTheme($event)">
-                                        <option *ngFor="let option of lThemeOptions; let i = index;" [value]="option.value" [selected]="selectedTheme==option.value">{{option.name}}</option>
-                                        
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                       
-                    </div>
-                  </ng-template>
-                </ngb-tab>
-                <ngb-tab title="Tree View">
-                 
-                  <ng-template ngbTabContent>
-                  
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Tree View">
+
+                        <ng-template ngbTabContent>
+
                             <div class="form-group py-2">
                                 <div class="col-sm-12">
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox" id="inputShowEmptyReqFields">
-                                            <span class="mx-2 control-label">Show empty but required fields in the tree view</span>
+                                            <span class="mx-2 control-label">Show empty but required fields in the tree
+                                                view</span>
                                         </label>
                                     </div>
                                 </div>
@@ -69,7 +84,8 @@
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox" id="inputShowEmptyBacFields">
-                                            <span class="mx-2 control-label">Show empty but for backward compatibility fields in the tree view</span>
+                                            <span class="mx-2 control-label">Show empty but for backward compatibility
+                                                fields in the tree view</span>
                                         </label>
                                     </div>
                                 </div>
@@ -79,125 +95,19 @@
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox" id="inputShowEmptyConFields">
-                                            <span class="mx-2 control-label">Show empty but conditional fields in the tree view</span>
+                                            <span class="mx-2 control-label">Show empty but conditional fields in the
+                                                tree view</span>
                                         </label>
                                     </div>
                                 </div>
                             </div>
-                         
-                  </ng-template>
-                </ngb-tab>
-              </ngb-tabset>
-            </div>
-            </div>
-            </div> -->
-            <!-- <app-footer></app-footer> -->
 
-            <i *ngIf="bDisplayCogIcon" class="fa fa-cog font-30 loading {{AddCogClass}}" (click)="openNav()"></i>
-            <i *ngIf="!bDisplayCogIcon" class="fa fa-cog font-30 loading {{AddCogClass}}" (click)="closeNav()"></i>
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
+            </div>
+        </div>
+    </div>
+</div>
 
-            <div id="mySidebar" class="sidebar-setting shadow">
-                <div class="{{selectedTheme}} container-fluid">
-                    <div class="row">
-                        <div class="col-12 mt-3 px-4">
-                            <ngb-tabset [destroyOnHide]="false">
-                                <ngb-tab title="Common">
-                                  <ng-template ngbTabContent>
-                                    <div class="tab-content hl7-margin">
-                                        <!-- Tab Common -->
-                                        <div role="tabpanel" class="tab-pane active" id="common">
-                                            <!-- <div class="form-group py-3">
-                                                <label for="inputLanguage" class="col-sm-2 control-label">Language</label>
-                                                <div class="col-sm-10 input-group">
-                                                    <select class="form-control" id="inputLanguage">
-                                                        <option value="en">English</option>
-                                                        <option value="de">German</option>
-                                                    </select>
-                                                </div>
-                                            </div> -->
-                                            <div class="form-group py-2">
-                                                <label for="inputDocUrl" class="col-sm-2 control-label">URL document database</label>
-                                                <div class="col-sm-10 input-group">
-                                                    <input type="url" class="form-control" id="inputDocUrl">
-                    
-                                                </div>
-                                            </div>
-                                            <div class="form-group py-2">
-                                                <div class="col-sm-12">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" id="inputLoadMessageSamples">
-                                                            <span class="control-label mx-2">Load message samples on startup</span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group py-2">
-                                                <label for="inputHomeTab" class="col-sm-2 control-label">Start Tab</label>
-                                                <div class="col-sm-10 input-group">
-                                                    <select class="form-control" id="inputHomeTab">
-                                                        <option value="tree">Tree View</option>
-                                                        <option value="editor">Editor</option>
-                                                        <option value="compare">Compare</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group py-2">
-                                                <label for="inputTheme" class="col-sm-2 control-label">Theme</label>
-                                                <div class="col-sm-10 input-group">
-                                                    <select class="form-control" id="inputTheme" (change)="ChangeTheme($event)">
-                                                        <option *ngFor="let option of lThemeOptions; let i = index;" [value]="option.value" [selected]="selectedTheme==option.value">{{option.name}}</option>
-                                                        
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Tree View -->
-                                       
-                                    </div>
-                                  </ng-template>
-                                </ngb-tab>
-                                <ngb-tab title="Tree View">
-                                 
-                                  <ng-template ngbTabContent>
-                                  
-                                            <div class="form-group py-2">
-                                                <div class="col-sm-12">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" id="inputShowEmptyReqFields">
-                                                            <span class="mx-2 control-label">Show empty but required fields in the tree view</span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group py-2">
-                                                <div class="col-sm-12">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" id="inputShowEmptyBacFields">
-                                                            <span class="mx-2 control-label">Show empty but for backward compatibility fields in the tree view</span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group py-2">
-                                                <div class="col-sm-12">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" id="inputShowEmptyConFields">
-                                                            <span class="mx-2 control-label">Show empty but conditional fields in the tree view</span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                         
-                                  </ng-template>
-                                </ngb-tab>
-                              </ngb-tabset>
-                            </div>
-                            </div>
-                            </div>
-              </div>
-             
-              <div class="{{sAddOverlay}}" (click)="DismissSettingsSidePanel()"></div>
+<div class="{{sAddOverlay}}" (click)="DismissSettingsSidePanel()"></div>
