@@ -254,6 +254,15 @@ export class TreeViewComponent implements OnInit {
     this.items=this.getItems(this.sampleData,null,0)
 
   }
+  fileDownload()
+  {
+    const link = document.createElement('a');
+    link.href = this.fileUrl;
+    link.setAttribute('download', 'message.hl7');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
   expanded(item:any)
   {
     item.expanded=!item.expanded;
