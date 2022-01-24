@@ -22,19 +22,24 @@
                 <div class="col-md-12">
                     <div class="panel mb-2">
                         <div class="panel-info border p-2 border-bottom-0">
-                            <a class="" data-bs-toggle="collapse" href="#messageHeader" role="button" aria-expanded="false"
+                            <a *ngIf="oSelectedSegment" class="" data-bs-toggle="collapse" href="#messageHeader" role="button" aria-expanded="false"
                                 aria-controls="collapseExample">
-                                MSH - Message Header
+                                {{oSelectedSegment?.seg}} - {{oSelectedSegment?.name}}
+                            </a>
+                            <a *ngIf="!oSelectedSegment" class="" data-bs-toggle="collapse" href="#messageHeader" role="button" aria-expanded="false"
+                                aria-controls="collapseExample">
+                                No segment selected
                             </a>
                         </div>
                         <div class="collapse show" id="messageHeader">
                             <div class="card card-body p-2 border-top-0">
                                 <p>
-                                    The MSH segment defines the intent, source, destination, and some specifics of the syntax of
-                                    a message.
+                                    {{oSelectedSegment?.desc}}
+                                    <!-- The MSH segment defines the intent, source, destination, and some specifics of the syntax of
+                                    a message. -->
                                 </p>
-                                <p>
-                                    Chapter: 2.15.9
+                                <p *ngIf="oSelectedSegment">
+                                    Chapter: {{oSelectedSegment?.chap}}
                                 </p>
                             </div>
                         </div>

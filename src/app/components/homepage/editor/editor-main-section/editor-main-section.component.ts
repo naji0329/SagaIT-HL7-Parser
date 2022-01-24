@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as HL7Inspector from '../../../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.5.1-Profile.json';
+import * as HL7Inspector26 from '../../../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
 
 @Component({
   selector: 'app-editor-main-section',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditorMainSectionComponent implements OnInit {
   fileUrl: any = "";
+  lSegments : any; 
+  oSelectedSegment : any;
   constructor() { }
 
   ngOnInit(): void {
+    let bSelectedProfile = localStorage.getItem('ProfileNumber');
+    switch(bSelectedProfile) 
+    { 
+      case '1' : { 
+        this.lSegments = HL7Inspector.segments ; 
+         break; 
+      } 
+      case '2' : { 
+        this.lSegments = HL7Inspector26.segments ; 
+         break; 
+      }
+      default :  {
+        this.lSegments = HL7Inspector.segments ; 
+         break; 
+      }
+    }
+    console.log("Lsegments List ===>>>",this.lSegments);
   }
   alphafunction(sIncommingTextArea : any)
   {
@@ -61,7 +82,31 @@ export class EditorMainSectionComponent implements OnInit {
       if(header==''){
         header = selectedWord.trim();
       }
-      console.log("header =",header)
+      console.log("header =",header);
+      let bSelectedProfile = localStorage.getItem('ProfileNumber');
+      switch(bSelectedProfile) 
+      { 
+        case '1' : { 
+          this.lSegments = HL7Inspector.segments ; 
+          break; 
+        } 
+        case '2' : { 
+          this.lSegments = HL7Inspector26.segments ; 
+          break; 
+        }
+        default :  {
+          this.lSegments = HL7Inspector.segments ; 
+          break; 
+        }
+      }
+      for(let nIndex = 0;nIndex < this.lSegments.length;nIndex++)
+      {
+        if(this.lSegments[nIndex].seg.seg === header)
+        {
+          this.oSelectedSegment = this.lSegments[nIndex].seg;
+          console.log("Selected Header ===>>>",this.oSelectedSegment)
+        }
+      }
     }
     else
     {
