@@ -58,21 +58,23 @@
                         <form class="form-inline">
                             <div class="form-group">
                                 <label for="displayAs" class="" data-i18n="display-as">Display As &nbsp;</label>
-                                <select class="form-control mb-2" id="displayAs">
-                                    <option value="original">Original Value</option>
-                                    <option value="formatted">Formatted Value</option>
-                                    <option value="datetime">Formatted Date / Time</option>
-                                    <option value="base64">Decoded Base64 String</option>
-                                    <option value="base64-pdf">Decoded Base64 PDF Document</option>
-                                    <option value="base64-image">Decoded Base64 Image</option>
-                                    <option value="base64-xml">Decoded Base64 XML Document</option>
-                                    <option value="base64-cda">Decoded Base64 CDA Document (Experimental)</option>
+                                <select class="form-control mb-2" id="displayAs" (change)="SelectDisplayOptions($event)">
+                                    <option [value]="options.value" *ngFor="let options of ValuePresenterDisplayOptions">{{options.name}}</option>
                                 </select>
                                 <button type="button" class="btn btn-default mb-2 mr-2">Copy To Clipboard</button>
                                 <a type="button" class="btn btn-default mb-2" [href]="fileUrl"
                                     download="file.txt">Download</a>
                             </div>
                         </form>
+                            <div *ngIf="selectedValue == 'original'"><code class="badge bg-danger break-all">{{oOriginalValue }}</code></div>
+                            <!-- <div *ngIf="base_64_pdf" class="mt-2"><code
+                                    class="badge bg-danger break-all">Unable to decode PDF : InvalidPDFException: Invalid PDF structure</code>
+                            </div>
+                            <div *ngIf="base64_xml" class="mt-2">
+                                <pre><code class="xml hljs"></code></pre>
+                            </div> -->
+                            <pdf-viewer *ngIf="selectedValue == 'base64-pdf'" src="data:application/pdf;base64,{{oOriginalValue}}" [render-text]="true" [original-size]="false" style="height: 100vh"></pdf-viewer>
+                           <img *ngIf="selectedValue == 'base64-image'" src="data:image/png;base64,{{oOriginalValue}}" alt="">
                     </div>
                 </div>
             </div>
