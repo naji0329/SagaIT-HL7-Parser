@@ -1,9 +1,9 @@
-* {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  text-decoration: none;
-}
+// * {
+//   margin: 0;
+//   padding: 0;
+//   list-style: none;
+//   text-decoration: none;
+// }
 .menus .item {
   border-top: 1px solid #f6f6f6;
 }
@@ -18,4 +18,11 @@
 .menus .item:target .sub-menus {
   max-height: 10em;
 }
+.SidebarHeading {
+  background: #d9edf7;
+}
 .trash-icon{padding: 10px;}
+
+#sidebar{
+    padding-top: 61px !important;
+}

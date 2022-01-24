@@ -337,12 +337,12 @@
   // transform: translateX(-50%);
   // position: relative;
   background: white;
-  padding: 50px;
+  padding: 10px;
   padding-bottom: 80px;
   // width: 70%;
   // height: 85vh;
   overflow: auto;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  // box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   border-radius: 5px;
   // min-width: 240px;
   overflow-x: hidden;
@@ -417,7 +417,7 @@
   border-radius: 1px;
 }
 .tabs .content {
-  margin-top: 30px;
+  margin-top: 17px;
 }
 .tabs .content section {
   display: none;
@@ -587,4 +587,8 @@
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 20px;
+}
+
+.modal-backdrop{
+  width: 0px !important;
 }

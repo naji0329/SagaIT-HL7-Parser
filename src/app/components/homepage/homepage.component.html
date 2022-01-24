@@ -1,6 +1,4 @@
-<div id="sidebar" class="sidebar shadow {{selectedTheme}}">
-  <app-sidebar></app-sidebar>
-</div>
+
 <div id="main" class="{{selectedTheme}}">
   <app-header></app-header>
   <button *ngIf="bDisplayToggleBtn" class="openbtn shadow border" (click)="openNav()"><span
@@ -10,7 +8,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 mt-3 px-4">
-        <div class="tabs {{selectedTheme}}">
+        <div class="tabs pt-2  {{selectedTheme}}">
 
           <input type="radio" id="tab1" name="tab-control" checked>
           <input type="radio" id="tab2" name="tab-control">
@@ -60,7 +58,9 @@
     </div>
   </div>
 </div>
-
+<div id="sidebar" class="sidebar shadow {{selectedTheme}}">
+  <app-sidebar></app-sidebar>
+</div>
 <div class="{{sAddOverlay}}" (click)=closeNav()></div>
 <!-- <app-footer></app-footer> -->
 <app-settings></app-settings>
