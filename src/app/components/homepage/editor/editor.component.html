@@ -5,19 +5,25 @@
         <span id="hl7length1" class="label label-info info-badge mr-2 mb-1">Selected Value: Event Type Code</span>
     </div>
     <div class="wrapper">
-        <div class="icon facebook" data-bs-toggle="modal" data-bs-target="#newMessage">
+
+        <div class="icon facebook" data-bs-toggle="modal" data-bs-target="#displayValue">
+            <div class="tooltip">Display Value</div>
+            <span><i class="fa fa-eye"></i></span>
+        </div>
+        <!-- <div class="icon facebook" data-bs-toggle="modal" data-bs-target="#newMessage">
             <div class="tooltip">Create message</div>
             <span><i class="fa fa-envelope"></i></span>
         </div>
         <div class="icon facebook" data-bs-toggle="modal" data-bs-target="#editMessage">
             <div class="tooltip">Rename message</div>
             <span><i class="fa fa-edit"></i></span>
-        </div>
+        </div> -->
+        
         <div class="icon facebook" data-toggle="tooltip" (click)="CopyToClipBoard()">
             <div class="tooltip">Copy to clipboard</div>
             <span><i class="fa fa-clipboard"></i></span>
         </div>
-        <div class="icon facebook" (click)="Compared()">
+        <!-- <div class="icon facebook" (click)="Compared()">
             <div class="tooltip">Compare with second message</div>
             <span><i class="fa fa-copy"></i></span>
         </div>
@@ -25,7 +31,7 @@
         <div class="icon facebook" (click)="Compared()">
             <div class="tooltip">Compare with first message</div>
             <span><i class="fa fa-copy"></i></span>
-        </div>
+        </div> -->
         <div class="icon facebook" data-bs-toggle="modal" data-bs-target="#uploadfile">
             <div class="tooltip">Import message</div>
             <span><i class="fa fa-upload"></i></span>
@@ -98,6 +104,7 @@
 </div>
 
 <!-- upload file modal -->
+
 <div class="modal fade" id="uploadfile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
