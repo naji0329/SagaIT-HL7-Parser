@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as HL7Inspector from '../../../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.5.1-Profile.json';
-import * as HL7Inspector26 from '../../../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-editor-main-section',
@@ -21,28 +20,9 @@ export class EditorMainSectionComponent implements OnInit {
     { name: 'Decoded Base64 PDF Document' , value: 'base64-pdf'},
     { name: 'Decoded Base64 Image' , value: 'base64-image'}
   ]
-  selectedValue: any = 'original';
-  constructor() { }
+  constructor(private oDataService : DataService) { }
 
-  ngOnInit(): void {
-    let bSelectedProfile = localStorage.getItem('ProfileNumber');
-    switch(bSelectedProfile) 
-    { 
-      case '1' : { 
-        this.lSegments = HL7Inspector.segments ; 
-         break; 
-      } 
-      case '2' : { 
-        this.lSegments = HL7Inspector26.segments ; 
-         break; 
-      }
-      default :  {
-        this.lSegments = HL7Inspector.segments ; 
-         break; 
-      }
-    }
-    console.log("Lsegments List ===>>>",this.lSegments);
-  }
+  ngOnInit(): void {}
   alphafunction(sIncommingTextArea : any)
   {
     let nStartPosition = sIncommingTextArea.selectionStart;
@@ -76,7 +56,7 @@ export class EditorMainSectionComponent implements OnInit {
       if(selectedWord.search('\n')>0)
         selectedWord=selectedWord.substring(0,selectedWord.indexOf('\n'))
         this.oOriginalValue = selectedWord;
-      console.log("final word=", selectedWord);
+        console.log("final word=", selectedWord);
       // console.log("Originall word=", this.oOriginalValue);
       // let encoded : string = btoa(this.oOriginalValue);
       // console.log("Incoming Encoded Value ==>>",encoded);
@@ -98,40 +78,7 @@ export class EditorMainSectionComponent implements OnInit {
         header = selectedWord.trim();
       }
       console.log("header =",header);
-      let bSelectedProfile = localStorage.getItem('ProfileNumber');
-      switch(bSelectedProfile) 
-      { 
-        case '1' : { 
-          this.lSegments = HL7Inspector.segments ; 
-          break; 
-        } 
-        case '2' : { 
-          this.lSegments = HL7Inspector26.segments ; 
-          break; 
-        }
-        default :  {
-          this.lSegments = HL7Inspector.segments ; 
-          break; 
-        }
-      }
-      for(let nIndex = 0;nIndex < this.lSegments.length;nIndex++)
-      {
-        if(this.lSegments[nIndex].seg.seg === header)
-        {
-          this.oSelectedSegment = this.lSegments[nIndex].seg;
-          console.log("Selected Header ===>>>",this.oSelectedSegment)
-        }
-      }
+      this.oDataService.oWordToSearch.next({header : header, word : this.oOriginalValue});
     }
-    else
-    {
-      console.log("Selected text from ("+ nStartPosition +" to "+ nEndPosition + " of " + sIncommingTextArea.value.length + ")");
-      console.log(sIncommingTextArea.value.substring(nStartPosition,nEndPosition));
-    }
-  }
-  SelectDisplayOptions(options:any) 
-  {
-    this.selectedValue = options.target.value
-    console.log(this.selectedValue);
   }
 }
