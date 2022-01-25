@@ -7,23 +7,12 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./editor-main-section.component.scss']
 })
 export class EditorMainSectionComponent implements OnInit {
-  fileUrl: any = "";
-  lSegments : any; 
-  oSelectedSegment : any;
   oOriginalValue : any;
-  oStringToBase64 : any;
-  bshowOriginalValue : boolean = true;
-  bPDFValue : boolean = false;
-  bImage : boolean = true;
-  ValuePresenterDisplayOptions : any = [
-    { name: 'Original Value' , value: 'original'},
-    { name: 'Decoded Base64 PDF Document' , value: 'base64-pdf'},
-    { name: 'Decoded Base64 Image' , value: 'base64-image'}
-  ]
+
   constructor(private oDataService : DataService) { }
 
   ngOnInit(): void {}
-  alphafunction(sIncommingTextArea : any)
+  EditorMainSectionComponent_CalculateHeaders(sIncommingTextArea : any)
   {
     let nStartPosition = sIncommingTextArea.selectionStart;
     let nEndPosition = sIncommingTextArea.selectionEnd;
@@ -42,7 +31,6 @@ export class EditorMainSectionComponent implements OnInit {
         }
 
       }
-      // -----------------------------------
       else{
         endSubStr=endSubStr+"|^";
         if(endSubStr.indexOf('|') > endSubStr.indexOf('^')){
@@ -56,29 +44,22 @@ export class EditorMainSectionComponent implements OnInit {
       if(selectedWord.search('\n')>0)
         selectedWord=selectedWord.substring(0,selectedWord.indexOf('\n'))
         this.oOriginalValue = selectedWord;
-        console.log("final word=", selectedWord);
-      // console.log("Originall word=", this.oOriginalValue);
-      // let encoded : string = btoa(this.oOriginalValue);
-      // console.log("Incoming Encoded Value ==>>",encoded);
-      // this.oStringToBase64 = encoded;
-      // -----------------------------------
-      
-
-      let header:string ='';
+        // console.log("final word=", selectedWord);
+      let sHeader:string ='';
       if(startSubStr.lastIndexOf('\n') < startSubStr.indexOf('|'))
       {
-        header = startSubStr.substring(startSubStr.lastIndexOf('\n') , startSubStr.indexOf('|')).trim()
+        sHeader = startSubStr.substring(startSubStr.lastIndexOf('\n') , startSubStr.indexOf('|')).trim()
       }
       else
       {
-        header = sIncommingTextArea.value.substring(startSubStr.lastIndexOf('\n'), endSubStr.indexOf('|')+startSubStr.length).trim()
-        header = header.substring(0, header.indexOf('|')).trim()
+        sHeader = sIncommingTextArea.value.substring(startSubStr.lastIndexOf('\n'), endSubStr.indexOf('|')+startSubStr.length).trim()
+        sHeader = sHeader.substring(0, sHeader.indexOf('|')).trim()
       }
-      if(header==''){
-        header = selectedWord.trim();
+      if(sHeader==''){
+        sHeader = selectedWord.trim();
       }
-      console.log("header =",header);
-      this.oDataService.oWordToSearch.next({header : header, word : this.oOriginalValue});
+      // console.log("sHeader =",sHeader);
+      this.oDataService.oWordToSearch.next({header : sHeader, word : this.oOriginalValue});
     }
   }
 }
