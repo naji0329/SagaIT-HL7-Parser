@@ -24,6 +24,7 @@ import { TreeSiewSectionComponent } from './components/homepage/tree-view/tree-v
 import { NgxResizableModule } from '@3dgenomes/ngx-resizable';
 import { EditorMainSectionComponent } from './components/homepage/editor/editor-main-section/editor-main-section.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -53,11 +54,11 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     ReactiveFormsModule,
     ResizableModule,
     NgxResizableModule,
-    PdfViewerModule
-
+    PdfViewerModule,
+    
     
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,77 +9,9 @@
         PV1||I|S2^13^3^CHI^^21||||||||||||||||1234|||||||||||||||||||||||||200601010930||||||||
         OBX|1|ED|EGK_DATA52^eGK-Daten^HL7-DEU||^AP^application/xml^Base64^
         OBX|2|ED|DOC^Document^L||^application^pdf^Base64^
-        OBX|3|ED|502^CHEST XRAY^L||Word^TEXT^^Base64^SnVzdCBhIHNpbXBsZSB0ZXh0
+        OBX|3|ED|502^CHEST XRAY^L||Word^TEXT^^Base64^image^
     </textarea>
       </rsz-layout>
      
-    </rsz-layout>
-    <rsz-layout class="row" [directions]="['none']" [rFlex]="false">
-      <rsz-layout class="cell three" [directions]="['none']" [rFlex]="false">
-        <div class="p-3">
-            <div class="row">
-              
-                <div class="col-md-12">
-                    <div class="panel mb-2">
-                        <div class="panel-info border p-2 border-bottom-0">
-                            <a *ngIf="oSelectedSegment" class="" data-bs-toggle="collapse" href="#messageHeader" role="button" aria-expanded="false"
-                                aria-controls="collapseExample">
-                                {{oSelectedSegment?.seg}} - {{oSelectedSegment?.name}}
-                            </a>
-                            <a *ngIf="!oSelectedSegment" class="" data-bs-toggle="collapse" href="#messageHeader" role="button" aria-expanded="false"
-                                aria-controls="collapseExample">
-                                No segment selected
-                            </a>
-                        </div>
-                        <div class="collapse show" id="messageHeader">
-                            <div class="card card-body p-2 border-top-0">
-                                <p>
-                                    {{oSelectedSegment?.desc}}
-                                    <!-- The MSH segment defines the intent, source, destination, and some specifics of the syntax of
-                                    a message. -->
-                                </p>
-                                <p *ngIf="oSelectedSegment">
-                                    Chapter: {{oSelectedSegment?.chap}}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel mb-2">
-                <div class="panel-info border p-2 border-bottom-0">
-                    <a class="" data-bs-toggle="collapse" href="#valuePresenter" role="button" aria-expanded="false"
-                        aria-controls="collapseExample">
-                        Value Presenter
-                    </a>
-                </div>
-                <div class="collapse show" id="valuePresenter">
-                    <div class="card card-body p-2 border-top-0">
-                        <form class="form-inline">
-                            <div class="form-group">
-                                <label for="displayAs" class="" data-i18n="display-as">Display As &nbsp;</label>
-                                <select class="form-control mb-2" id="displayAs" (change)="SelectDisplayOptions($event)">
-                                    <option [value]="options.value" *ngFor="let options of ValuePresenterDisplayOptions">{{options.name}}</option>
-                                </select>
-                                <button type="button" class="btn btn-default mb-2 mr-2">Copy To Clipboard</button>
-                                <a type="button" class="btn btn-default mb-2" [href]="fileUrl"
-                                    download="file.txt">Download</a>
-                            </div>
-                        </form>
-                            <div *ngIf="selectedValue == 'original'"><code class="badge bg-danger break-all">{{oOriginalValue }}</code></div>
-                            <!-- <div *ngIf="base_64_pdf" class="mt-2"><code
-                                    class="badge bg-danger break-all">Unable to decode PDF : InvalidPDFException: Invalid PDF structure</code>
-                            </div>
-                            <div *ngIf="base64_xml" class="mt-2">
-                                <pre><code class="xml hljs"></code></pre>
-                            </div> -->
-                            <pdf-viewer *ngIf="selectedValue == 'base64-pdf'" src="data:application/pdf;base64,{{oOriginalValue}}" [render-text]="true" [original-size]="false" style="height: 100vh"></pdf-viewer>
-                           <img *ngIf="selectedValue == 'base64-image'" src="data:image/png;base64,{{oOriginalValue}}" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-      </rsz-layout>
-      
     </rsz-layout>
   </div>

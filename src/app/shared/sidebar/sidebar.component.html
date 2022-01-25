@@ -2,14 +2,16 @@
     <div class="row">
         <div class="col-12 p-3">
             <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2">
-                <div style="padding: 3px 0 5px 0">
+                <div style="padding: 3px 0 5px 0" *ngIf="this.oSelectedSegment">
+                    <h6 class="m-2">{{oSelectedSegment?.seg}} - {{oSelectedSegment?.name}}</h6>
+                </div>
+                <div style="padding: 3px 0 5px 0" *ngIf="!this.oSelectedSegment">
                     <h6 class="m-2">No segmant Selected</h6>
                 </div>
             </div>
             <div class="DescriptionParagraph border p-2 mt-2">
-                <p> The MSH segment defines the intent, source, destination, and some specifics of the syntax of a
-                    message.Chapter: 2.15.9
-                </p>
+                <p> {{oSelectedSegment?.desc}}</p>
+                <p>Chapter: {{oSelectedSegment?.chap}}</p>
             </div>
             <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-5">
                 <div style="padding: 3px 0 5px 0">
@@ -17,7 +19,7 @@
                 </div>
                 <div class="wrapper">
 
-                    <div class="icon facebook">
+                    <div class="icon facebook" (click)="ConvertIntoDateTime()">
                         <div class="tooltip">Formatted Date/Time</div>
                         <span><i class="fa fa-calendar"></i></span>
                     </div>
@@ -32,12 +34,12 @@
                         <span><i class="fa fa-image"></i></span>
                     </div>
 
-                    <div class="icon facebook">
+                    <div class="icon facebook" (click)="CopyToClipBoard()">
                         <div class="tooltip">Copy to clipboard</div>
                         <span><i class="fa fa-clipboard"></i></span>
                     </div>
 
-                    <div class="icon facebook">
+                    <div class="icon facebook" (click)="DownloadFile()">
                         <div class="tooltip DownloadTooltip">Download</div>
                         <span><i class="fa fa-download"></i></span>
                     </div>
@@ -46,16 +48,15 @@
                 </div>
             </div>
             <div class="DescriptionParagraph border p-2 mt-2">
-                <p> MSH|^~\&|ADT-HIS||HL7INSPECTOR||20060101100000||ADT^A01|1|P|2.5.1
-                    EVN|A01|20060101
-                </p>
+                <p>{{sDisplayWord}}</p>
             </div>
         </div>
     </div>
 
 
     <div *ngIf="bDisplayPreviewPanel" class="preview-content bg-white shadow">
-        <img src="https://images.unsplash.com/photo-1499417267106-45cebb7187c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=838&q=80" alt="image" class="preview-img">
+        <img *ngIf="!bDisplayImageError" src="data:image/png;base64,{{sSelectedWord}}" alt="" (error)="DisplayImageError()">
+        <p *ngIf="bDisplayImageError">Corrupted Image file</p>
         <i class="fa fa-times" (click)="DismissPreviewPanel()"></i>
 
     </div>
@@ -63,9 +64,12 @@
 
     <div *ngIf="bDisplayPdfPanal" class="preview-content pdf-content bg-white shadow">
         <div>
-            <pdf-viewer [src]="pdfSrc" [render-text]="true" [original-size]="false" style="height: 80vh"></pdf-viewer>
-            <i class="fa fa-times" (click)="DismissPreviewPanel()"></i>
+            <!-- <pdf-viewer [src]="pdfSrc" [render-text]="true" [original-size]="false" style="height: 80vh"></pdf-viewer> -->
+            <pdf-viewer *ngIf="!bDisplayPDFError" src="data:application/pdf;base64,{{sSelectedWord}}" [render-text]="true" [original-size]="false" style="height: 80vh" (error)="DisplayPDFError()"></pdf-viewer>
+            <p *ngIf="bDisplayPDFError">Corrupted base64 file</p>
 
+            <i class="fa fa-times" (click)="DismissPreviewPanel()"></i>
+            <!-- <img *ngIf="selectedValue == 'base64-image'" src="data:image/png;base64,{{oOriginalValue}}" alt=""> -->
         </div>
 
     </div>
