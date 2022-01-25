@@ -2,7 +2,7 @@
     <rsz-layout class="row" [directions]="['bottom']" [rFlex]="true">
       <rsz-layout class="cell one" [directions]="['bottom']" [rFlex]="false">
         <textarea class="hl7texteditor" rows="20" wrap="off" spellcheck="true" autocomplete="off" autocorrect="off"
-        autocapitalize="off" #alpha (click)="alphafunction(alpha)" (keyup)="alphafunction(alpha)">
+        autocapitalize="off" #alpha (click)="EditorMainSectionComponent_CalculateHeaders(alpha)" (keyup)="EditorMainSectionComponent_CalculateHeaders(alpha)">
         MSH|^~\&|ADT-HIS||HL7INSPECTOR||20060101100000||ADT^A01|1|P|2.5.1
         EVN|A01|20060101||
         PID||||4711|Doe^John||19701024|M|||Sesamstreet 11^76137^Karlsruhe^D|||||GS|EV||||
