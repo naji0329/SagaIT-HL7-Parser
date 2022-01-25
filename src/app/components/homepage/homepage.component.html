@@ -2,9 +2,9 @@
 <div id="main" class="{{selectedTheme}}">
   <app-header></app-header>
   <button *ngIf="bDisplayToggleBtn" class="openbtn shadow border" (click)="openNav()"><span
-      class="fa fa-angle-right font-800"></span> </button>
-  <button *ngIf="!bDisplayToggleBtn" class="openbtn shadow border" (click)="closeNav()"><span
       class="fa fa-angle-left font-800"></span> </button>
+  <button *ngIf="!bDisplayToggleBtn" class="openbtn shadow border rightbtn" (click)="closeNav()"><span
+      class="fa fa-angle-right font-800"></span> </button>
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 mt-3 px-4">
@@ -36,24 +36,6 @@
 
           </div>
         </div>
-
-        <!-- <ngb-tabset #homepageTabs="ngbTabset" [destroyOnHide]="false">
-          <ngb-tab id="tree-view" title="Tree View">
-            <ng-template ngbTabContent>
-              <app-tree-view></app-tree-view>
-            </ng-template>
-          </ngb-tab>
-          <ngb-tab id="editor" title="Editor">
-            <ng-template ngbTabContent>
-              <app-editor></app-editor>
-            </ng-template>
-          </ngb-tab>
-          <ngb-tab id="compare" title="Compare">
-            <ng-template ngbTabContent>
-              <app-compare (EditorTab)="homepageTabs.select('editor')"></app-compare>
-            </ng-template>
-          </ngb-tab>
-        </ngb-tabset> -->
       </div>
     </div>
   </div>
@@ -61,6 +43,9 @@
 <div id="sidebar" class="sidebar shadow {{selectedTheme}}">
   <app-sidebar></app-sidebar>
 </div>
-<div class="{{sAddOverlay}}" (click)=closeNav()></div>
+
+
+
+<!-- <div class="{{sAddOverlay}}" (click)=closeNav()></div> -->
 <!-- <app-footer></app-footer> -->
 <app-settings></app-settings>

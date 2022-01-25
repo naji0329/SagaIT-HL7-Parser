@@ -9,6 +9,10 @@ export class SidebarComponent implements OnInit {
   // sidebarOptions : any = ['ADT^A08 with UTF8 Sample','ADT^A01 Sample','ORU^R01 with PDF Sample','ADT^A02 Sample','MDM^T02 with JPG Sample',]
   addActiveClass: any;
   selectedTheme: any = "";
+  bDisplayPreviewPanel = false
+  sOverlay : string = ""
+  bDisplayPdfPanal = false
+  pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   constructor() { }
 
   ngOnInit(): void {
@@ -18,5 +22,26 @@ export class SidebarComponent implements OnInit {
     console.log("Item", item);
     this.addActiveClass = item
   }
+
+  DisplayPreviewModal()
+  {
+    this.bDisplayPreviewPanel = true;
+    this.sOverlay = "overlay-fade";
+  }
+  DisplaypdfFile()
+  {
+    console.log("work");
+    
+    this.bDisplayPdfPanal = true;
+    this.sOverlay = "overlay-fade";
+  }
+  
+  DismissPreviewPanel()
+  {
+    this.bDisplayPreviewPanel = false;
+    this.bDisplayPdfPanal = false;
+    this.sOverlay = '';
+  }
  
 }
+

@@ -22,8 +22,8 @@ export class HomepageComponent implements OnInit {
   }
   openNav()
   {
-    (<HTMLInputElement>document.getElementById('sidebar')).style.width = '400px';
-    (<HTMLInputElement>document.getElementById("main")).style.marginLeft = "400px";
+    (<HTMLInputElement>document.getElementById('sidebar')).style.width = '410px';
+    (<HTMLInputElement>document.getElementById("main")).style.marginRight = "410px";
     this.sAddOverlay = "overlay";
     this.bDisplayToggleBtn = false;
 
@@ -31,7 +31,7 @@ export class HomepageComponent implements OnInit {
   closeNav()
   {
     (<HTMLInputElement>document.getElementById('sidebar')).style.width = '0';
-    (<HTMLInputElement>document.getElementById("main")).style.marginLeft = "0";
+    (<HTMLInputElement>document.getElementById("main")).style.marginRight = "0";
     this.sAddOverlay = "";
     this.bDisplayToggleBtn = true;
   }

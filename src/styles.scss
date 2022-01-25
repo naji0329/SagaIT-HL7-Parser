@@ -103,7 +103,7 @@
     position: fixed;
     z-index: 1;
     top: 0;
-    left: 0;
+    right: 0;
     background-color: #fff;
     overflow-x: hidden;
     transition: 0.5s;
@@ -136,7 +136,12 @@
     border: none;
     position: fixed;
     top: 50%;
-    z-index: 100;
+    right: 0;
+    z-index:0;
+  }
+  .rightbtn {
+    right: 410px !important;
+
   }
   .menus a {
     display: block;
@@ -269,6 +274,15 @@
   pointer-events: none;
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
+
+.wrapper .DownloadTooltip{
+  right: 15px !important
+}
+
+.wrapper .DownloadTooltip::before {
+  left: 92% !important
+}
+
 
 .wrapper .tooltip::before {
   position: absolute;
@@ -591,4 +605,12 @@
 
 .modal-backdrop{
   width: 0px !important;
+}
+.fa-times {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  background-color: white;
+  border-radius: 2px;
+  padding: 5px;
 }

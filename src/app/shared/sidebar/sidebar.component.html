@@ -1,141 +1,72 @@
 <div class="middle {{selectedTheme}}">
-    <!-- <ul class="menus">
-        <li class=""  *ngFor="let item of sidebarOptions; let i = index" (click)="AddActiveClass(i)">
-            <a class="list-group-item" [class.active]="addActiveClass == i" style="min-height:34px">
-                <div style="display: inline">{{item}}</div>
-                <button type="button" class="btn btn-xs btn-default bg-white"
-                style="float: right"><i class="fa fa-trash trash-icon"
-                aria-hidden="true"></i></button>
-                <div class="item-claim">2021-12-17T07:25:20.643Z</div>
-            </a>
-        </li>
-        
-    </ul> -->
+    <div class="row">
+        <div class="col-12 p-3">
+            <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2">
+                <div style="padding: 3px 0 5px 0">
+                    <h6 class="m-2">No segmant Selected</h6>
+                </div>
+            </div>
+            <div class="DescriptionParagraph border p-2 mt-2">
+                <p> The MSH segment defines the intent, source, destination, and some specifics of the syntax of a
+                    message.Chapter: 2.15.9
+                </p>
+            </div>
+            <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-5">
+                <div style="padding: 3px 0 5px 0">
+                    <h6 class="m-2">Value Presenter</h6>
+                </div>
+                <div class="wrapper">
 
-<div class="row">
-<div class="col-12 p-3">
-<div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2">
-    <div style="padding: 3px 0 5px 0">
-        <h6 class="m-2">Value Presenter</h6>
-    </div>
-    <div class="wrapper">
-        <div class="icon facebook" data-bs-toggle="modal" data-bs-target="#newMessage1">
-            <div class="tooltip">Create message</div>
-            <span><i class="fa fa-envelope"></i></span>
-        </div>
-        <div class="icon facebook" data-bs-toggle="modal" data-bs-target="#uploadfile">
-            <div class="tooltip">Import message</div>
-            <span><i class="fa fa-upload"></i></span>
-        </div>
-        <div class="icon facebook" data-toggle="tooltip">
-            <div class="tooltip">Copy to clipboard</div>
-            <span><i class="fa fa-clipboard"></i></span>
-        </div>
-     
-        <div class="icon facebook" data-bs-toggle="modal" data-bs-target="#uploadfile">
-            <div class="tooltip">Import message</div>
-            <span><i class="fa fa-upload"></i></span>
-        </div>
-
-    
-    </div>
-</div>
-<div class="form-group">
-    <textarea class="form-control rounded-0 mt-5" id="exampleFormControlTextarea1" rows="10"></textarea>
-  </div>
-
-</div>
-    </div>
-
-    <!-- <div class="panel mb-5">
-        <div class="panel-info border p-2 border-bottom-0">
-            <a class="collapse show" data-bs-toggle="collapse" href="#valuePresenter" role="button"
-                aria-expanded="false" aria-controls="collapseExample">
-                Value Presenter
-            </a>
-        </div>
-        <div class="collapse show" id="valuePresenter">
-            <div class="card card-body p-2 border-top-0">
-                <form class="form-inline">
-                    <div class="form-group">
-                        <label for="displayAs" class="" data-i18n="display-as">Display As &nbsp;</label>
-                        <select class="form-control mb-2" id="displayAs" >
-                           <option >options.name
-                            </option> 
-                        </select>
-                        <button type="button" class="btn btn-default mb-2 mr-2">Copy To Clipboard</button>
-                        <button type="button" class="btn btn-default">Download</button>
-                        <a class="btn btn-default mb-2"  download="file.txt">Download</a>
+                    <div class="icon facebook">
+                        <div class="tooltip">Formatted Date/Time</div>
+                        <span><i class="fa fa-calendar"></i></span>
                     </div>
-                </form>
-                <div><code class="badge bg-danger break-all">badgeData</code></div>
-                <div *ngIf="base_64_pdf" class="mt-2"><code
-                        class="badge bg-danger break-all">Unable to decode PDF : InvalidPDFException: Invalid PDF structure</code>
-                </div>
-                <div *ngIf="base64_xml" class="mt-2">
-                    <pre><code class="xml hljs"></code></pre>
-                </div>
-                <pdf-viewer [src]="pdfSrc" [render-text]="true" [original-size]="false" style="height: 100vh"></pdf-viewer>
-                <img src="../../../../../assets/images/fe74fe34f8378c63409b88199b138da6.jpeg" alt="">
-            </div>
-        </div>
-    </div> -->
-</div>
+
+                    <div class="icon facebook" (click)="DisplaypdfFile()">
+                        <div class="tooltip">Decoded Base64 PDF Document</div>
+                        <span><i class="fa fa-file"></i></span>
+                    </div>
+
+                    <div class="icon facebook" (click)="DisplayPreviewModal()">
+                        <div class="tooltip">Decoded Base64 Image</div>
+                        <span><i class="fa fa-image"></i></span>
+                    </div>
+
+                    <div class="icon facebook">
+                        <div class="tooltip">Copy to clipboard</div>
+                        <span><i class="fa fa-clipboard"></i></span>
+                    </div>
+
+                    <div class="icon facebook">
+                        <div class="tooltip DownloadTooltip">Download</div>
+                        <span><i class="fa fa-download"></i></span>
+                    </div>
 
 
-
-<!-- new message  modal -->
-<div class="modal fade" id="newMessage1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="staticBackdropLabel">Enter the name of the message.</h4>
-                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal"><i
-                        class="fa fa-times"></i></button>
-
-            </div>
-            <div class="modal-body">
-                <div class="bootbox-body">
-                    <form class="bootbox-form">
-                        <input class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text">
-                    </form>
                 </div>
             </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                <button type="button" class="btn btn-default btn-sm" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Ok</button>
+            <div class="DescriptionParagraph border p-2 mt-2">
+                <p> MSH|^~\&|ADT-HIS||HL7INSPECTOR||20060101100000||ADT^A01|1|P|2.5.1
+                    EVN|A01|20060101
+                </p>
             </div>
         </div>
     </div>
-</div>
 
 
+    <div *ngIf="bDisplayPreviewPanel" class="preview-content bg-white shadow">
+        <img src="https://images.unsplash.com/photo-1499417267106-45cebb7187c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=838&q=80" alt="image" class="preview-img">
+        <i class="fa fa-times" (click)="DismissPreviewPanel()"></i>
 
-<!-- upload file modal -->
-<div class="modal fade" id="uploadfile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="staticBackdropLabel">Upload file</h4>
-                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
-
-            </div>
-            <div class="modal-body">
-                <div class="bootbox-body">
-                    <span class="btn btn-success fileinput-button"><i
-                            class="glyphicon glyphicon-plus"></i><span>Add file...</span><input id="name"
-                            name="files[]" type="file"></span>
-                    <p></p>
-                    <div id="uploadFileStatus" class="label label-success"></div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
     </div>
-</div>
+
+
+    <div *ngIf="bDisplayPdfPanal" class="preview-content pdf-content bg-white shadow">
+        <div>
+            <pdf-viewer [src]="pdfSrc" [render-text]="true" [original-size]="false" style="height: 80vh"></pdf-viewer>
+            <i class="fa fa-times" (click)="DismissPreviewPanel()"></i>
+
+        </div>
+
+    </div>
+    <div class="{{sOverlay}}"></div>
