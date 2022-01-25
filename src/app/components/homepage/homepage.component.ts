@@ -15,6 +15,7 @@ export class HomepageComponent implements OnInit {
   constructor(private oThemeService : ThemesService) { }
 
   ngOnInit(): void {
+    this.openNav()
     this.oThemeService.sSelectedThemeValue.subscribe(res =>{
       // this.selectedTheme =res;
       this.selectedTheme = localStorage.getItem("selectedTheme")

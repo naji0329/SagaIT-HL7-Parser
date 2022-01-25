@@ -27,13 +27,13 @@
     padding-top: 61px !important;
 }
 .preview-content{
-  height: 80vh;
   position: fixed;
   top: 50%;
   left: 50%;
- /* width: 80vw; */
  z-index: 100;
  transform: translate(-50%, -50%);
+ border-radius: 8px;
+ border: 2px solid #202020;
 }
 .preview-img{
   height: 80vh;
@@ -46,3 +46,11 @@
   line-break: anywhere;
 }
 .pdf-content{width: 60vw;}
+.corrupt-image{
+  width: 60vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ff0000;
+}

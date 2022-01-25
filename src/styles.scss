@@ -107,7 +107,7 @@
     background-color: #fff;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 60px;
+    padding-top: 0px;
   }
   
   .sidebar a {
@@ -276,7 +276,7 @@
 }
 
 .wrapper .DownloadTooltip{
-  right: 15px !important
+  right: 0 !important
 }
 
 .wrapper .DownloadTooltip::before {
@@ -610,7 +610,8 @@
   position: absolute;
   top: 40px;
   right: 40px;
-  background-color: white;
+  background-color: #000;
+  color: #fff !important;
   border-radius: 2px;
   padding: 5px;
 }
