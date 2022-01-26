@@ -606,12 +606,88 @@
 .modal-backdrop{
   width: 0px !important;
 }
-.fa-times {
+// .fa-times {
+//   position: absolute;
+//   top: 20px;
+//   right: 20px;
+//   background-color: #000;
+//   color: #fff !important;
+//   border-radius: 2px;
+//   padding: 5px;
+// }
+.aboutcrossbtn {
   position: absolute;
-  top: 40px;
-  right: 40px;
+  top: 20px;
+  right: 20px;
   background-color: #000;
   color: #fff !important;
   border-radius: 2px;
   padding: 5px;
+}
+.closeicon {
+  position: absolute;
+  top:15px;
+  right: 16px;
+  display: inline-flex !important;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 15px;
+  margin: 6px;
+  width: 33px;
+  height: 33px;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgb(0 0 0 / 10%);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.pdfDownload {
+  position: absolute;
+  top: 15px;
+  right: 58px;
+  display: inline-flex !important;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 15px;
+  margin: 6px;
+  width: 33px;
+  height: 33px;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgb(0 0 0 / 10%);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+}
+
+
+.pdfDownload:hover {
+background-color: #3b5999;
+    color: #ffffff;
+    text-align: center;
+}
+.closeicon:hover {
+  background-color: #3b5999;
+      color: #ffffff !important;
+      text-align: center;
+}
+
+
+// .closeicon:before, .closeicon:before, .closeicon:before:hover {
+//   content: "\f00d";
+//   color: #fff(255, 255, 255);
+// }
+
+.border-primary {
+  width: 131px;
+}
+.nav-pills .nav-link {
+  border-radius: 0px !important;
 }

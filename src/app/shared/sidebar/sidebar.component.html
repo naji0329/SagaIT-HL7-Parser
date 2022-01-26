@@ -19,21 +19,21 @@
                 </div>
                 <div class="wrapper">
 
-                    <div class="icon facebook" (click)="SidebarComponent_ConvertIntoDateTime()">
-                        <div class="tooltip">Formatted Date/Time</div>
+                    <!-- <div class="icon facebook" (click)="SidebarComponent_ConvertIntoDateTime()">
+                        <div class="tooltip ">Formatted Date/Time</div>
                         <span><i class="fa fa-calendar"></i></span>
-                    </div>
+                    </div> -->
 
                     <div class="icon facebook" (click)="SidebarComponent_DisplaypdfFile()">
-                        <div class="tooltip">Decoded Base64 PDF Document</div>
+                        <div class="tooltip">View PDF</div>
                         <span><i class="fa fa-file"></i></span>
                     </div>
 
                     <div class="icon facebook" (click)="SidebarComponent_DisplayPreviewModal()">
-                        <div class="tooltip">Decoded Base64 Image</div>
+                        <div class="tooltip DownloadTooltip">View Image</div>
                         <span><i class="fa fa-image"></i></span>
                     </div>
-
+<!-- 
                     <div class="icon facebook" (click)="SidebarComponent_CopyToClipBoard()">
                         <div class="tooltip">Copy to clipboard</div>
                         <span><i class="fa fa-clipboard"></i></span>
@@ -42,7 +42,7 @@
                     <div class="icon facebook" (click)="SidebarComponent_DownloadFile()">
                         <div class="tooltip DownloadTooltip">Download</div>
                         <span><i class="fa fa-download"></i></span>
-                    </div>
+                    </div> -->
 
 
                 </div>
@@ -57,14 +57,18 @@
     <div *ngIf="bDisplayPreviewPanel" class="preview-content bg-white shadow">
         <img *ngIf="!bDisplayImageError" src="data:image/png;base64,{{sSelectedWord}}" alt="" (error)="SidebarComponent_DisplayImageError()">
         <p class="corrupt-image font-24"  *ngIf="bDisplayImageError"> <i class="fa fa-image  mr-2"></i>Corrupted Base64 Image File</p>
-        <i class="fa fa-times" (click)="SidebarComponent_DismissPreviewPanel()"></i>
+        <i class="fa fa-times closeicon" (click)="SidebarComponent_DismissPreviewPanel()"></i>
+        <span><i class="fa fa-download pdfDownload"></i></span>
+          
     </div>
     
     <div *ngIf="bDisplayPdfPanal" class="preview-content pdf-content bg-white shadow">
         <div>
             <pdf-viewer *ngIf="!bDisplayPDFError" src="data:application/pdf;base64,{{sSelectedWord}}" [render-text]="true" [original-size]="false" style="height: 80vh" (error)="SidebarComponent_DisplayPDFError()"></pdf-viewer>
             <p *ngIf="bDisplayPDFError" class="corrupt-image font-24"><i class="fa fa-file  mr-2"></i> Corrupted Base64 PDF File</p>
-            <i class="fa fa-times" (click)="SidebarComponent_DismissPreviewPanel()"></i>
+            <i class="fa fa-times closeicon" (click)="SidebarComponent_DismissPreviewPanel()"></i>
+            <span><i class="fa fa-download pdfDownload"></i></span>
+
         </div>
 
     </div>
