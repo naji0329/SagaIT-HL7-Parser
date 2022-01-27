@@ -50,7 +50,7 @@
 .label {
     display: inline-block;
     padding: 0.2em 0.6em 0.3em;
-    font-size: 75%;
+    font-size: 15px;
     font-weight: 700;
     line-height: 1;
     color: #fff;
@@ -690,4 +690,105 @@ background-color: #3b5999;
 }
 .nav-pills .nav-link {
   border-radius: 0px !important;
+}
+
+
+.button-switch {
+  font-size: 1.5em;
+  height: 1.875em;
+  margin-bottom: 0.625em;
+  position: relative;
+  width: 4.5em;
+  top: 6px;
+  right: -48px;
+}
+.button-switch .lbl-off, .button-switch .lbl-on {
+  cursor: pointer;
+  display: block;
+  font-size: 0.5em;
+  font-weight: bold;
+  line-height: 1em;
+  position: absolute;
+  top: 0.5em;
+  transition: opacity 0.25s ease-out 0.1s;
+  text-transform: uppercase;
+}
+.button-switch .lbl-off {
+  left: 10px;
+  top: 11px;
+}
+.button-switch .lbl-on {
+  color: #fefefe;
+  opacity: 0;
+  left: -10px;
+  top: 12px;
+}
+.button-switch .switch {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 0;
+  font-size: 1em;
+  left: 0;
+  line-height: 0;
+  outline: none;
+  position: absolute;
+  top: 0;
+  width: 0;
+}
+.button-switch .switch:before, .button-switch .switch:after {
+  content: '';
+  font-size: 1em;
+  position: absolute;
+}
+.button-switch .switch:before {
+  border-radius: 1.25em;
+  background: #bdc3c7;
+  height: 1em;
+  left: -1.25em;
+  top: 0.1875em;
+  transition: background-color 0.25s ease-out 0.1s;
+  width: 3.5em;
+}
+.button-switch .switch:after {
+  box-shadow: 0 0.0625em 0.375em 0 #666;
+  border-radius: 50%;
+  background: #fefefe;
+  height: 0.8em;
+  transform: translate(0, 0);
+  transition: transform 0.25s ease-out 0.1s;
+  width: 0.8em;
+  left: -26px;
+  top: 7px;
+}
+.button-switch .switch:checked:after {
+  transform: translate(2.5em, 0);
+  left: -30px;
+  top: 7px;
+}
+.button-switch .switch:checked ~ .lbl-off {
+  opacity: 0;
+}
+.button-switch .switch:checked ~ .lbl-on {
+  opacity: 1;
+}
+.button-switch .switch#switch-orange:checked:before {
+  background: #e67e22;
+}
+.button-switch .switch#switch-blue:checked:before {
+  background: #3498db;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #fff !important;
+  background-color: #5bc0de !important;
+}
+.nav-link {
+  color: #5bc0de !important;
+}
+.nav.nav-pills.border-primary {
+  border-color: #5bc0de !important;
+}
+.SidebarHeading {
+  background: #d9edf7;
 }

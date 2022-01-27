@@ -5,6 +5,7 @@ import { DataService } from 'src/app/services/data.service';
 import * as HL7Inspector from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.5.1-Profile.json';
 import * as HL7Inspector26 from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
 import { saveAs as UploadFilesComponent_DownloadResultAsJSON }  from 'save-as';
+import { ThemesService } from 'src/app/services/themes.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -23,11 +24,14 @@ export class SidebarComponent implements OnInit {
   sDisplayWord : string;
   bDisplayPDFError : boolean = false;
   bDisplayImageError : boolean = false;
-  constructor(private oDataService : DataService, private oDatePipe : DatePipe, private oSanitizer: DomSanitizer) { }
+  constructor(private oDataService : DataService, private oDatePipe : DatePipe, private oSanitizer: DomSanitizer , private oThemeService : ThemesService) { }
 
   ngOnInit(): void 
   {
-    this.selectedTheme = localStorage.getItem('selectedTheme')
+    this.oThemeService.sSelectedThemeValue.subscribe(res=>{
+      console.log("Theme",res);
+      this.selectedTheme = localStorage.getItem('selectedTheme')
+    })
     this.oDataService.oWordToSearch.subscribe(data=>
     {
       console.log("Incomming word : ==> ", data);
