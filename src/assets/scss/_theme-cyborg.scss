@@ -72,3 +72,34 @@
     transition: 0.5s;
     padding-top: 20px;
   }
+
+ .cyborg .nav-pills .nav-link.active, .cyborg .nav-pills .show>.nav-link {
+    color: #000 !important;
+    background-color: #fff;
+}
+.cyborg .border-primary {
+  border-color: #fff!important;
+}
+.cyborg .button-switch .switch#switch-blue:checked:before {
+  background: #fff !important;
+}
+.cyborg .button-switch .switch:after {
+  background: #202020 !important;
+}
+.cyborg .editor-text {
+  background-color: #000 !important; 
+  color: #fff !important;
+}
+ .cyborg .nav-pills .nav-link.active, .cyborg .nav-pills .show>.nav-link {
+  color: #000 !important;
+  background-color: #fff !important;
+}
+.cyborg .nav-link {
+  color: #fff !important;
+}
+.cyborg .nav.nav-pills.border-primary {
+  border-color: #fff !important;
+}
+.cyborg .SidebarHeading {
+  background: #000 !important;
+}

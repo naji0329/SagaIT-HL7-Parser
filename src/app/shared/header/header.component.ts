@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   currentSession: any;
   sAboutModalTitle: string = "";
   sBuildVersion: string;
+  bToggleSwitch: boolean;
 
   constructor(private  oRouter : Router , private oThemeService : ThemesService) 
   {
@@ -37,6 +38,13 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.oThemeService.sSelectedThemeValue.subscribe(res=>{
+      this.selectedTheme = localStorage.getItem('selectedTheme')
+    })
+    if(this.selectedTheme === 'cyborg')
+    {
+      this.bToggleSwitch = true
+    }
     this.sBuildVersion = version;
     let bSelectedProfile = localStorage.getItem('ProfileNumber');
     switch(bSelectedProfile) 
@@ -58,9 +66,9 @@ export class HeaderComponent implements OnInit {
          break; 
       } 
     }
-    this.oThemeService.sSelectedThemeValue.subscribe(res =>{
-    this.selectedTheme = localStorage.getItem("selectedTheme")
-    })
+    // this.oThemeService.sSelectedThemeValue.subscribe(res =>{
+    // this.selectedTheme = localStorage.getItem("selectedTheme")
+    // })
     if(this.selectedTheme === 'cyborg')
     {
       $(function() {
@@ -94,6 +102,33 @@ export class HeaderComponent implements OnInit {
       $('#about').modal('show')
     }
 
+  }
+  ToggleTheme(event)
+  {
+    console.log("Event",event.target.checked);
+    if(event.target.checked)
+    {
+      localStorage.setItem("selectedTheme","cyborg")
+      this.selectedTheme = localStorage.getItem("selectedTheme")
+      this.oThemeService.sSelectedThemeValue.next(this.selectedTheme);
+      if(this.selectedTheme === 'cyborg')
+    
+          $("body").addClass("cyborg-body");
+       
+     const body = document.getElementsByTagName('body')[0]
+     body.classList.add('cyborg-body')
+    }
+ 
+    
+    else 
+    {
+      localStorage.setItem("selectedTheme","default")
+      this.selectedTheme = "default"
+       this.oThemeService.sSelectedThemeValue.next(this.selectedTheme)
+       const body = document.getElementsByTagName('body')[0];
+       body.classList.remove('cyborg-body')
+    }
+    
   }
   ChangeModalTitle()
   {
