@@ -2,10 +2,14 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DataService } from 'src/app/services/data.service';
-import * as HL7Inspector from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.5.1-Profile.json';
-import * as HL7Inspector26 from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
 import { saveAs as UploadFilesComponent_DownloadResultAsJSON }  from 'save-as';
 import { ThemesService } from 'src/app/services/themes.service';
+// import * as HL7Inspector from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.5.1-Profile.json';
+// import * as HL7Inspector26 from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
+import * as HL7VERSION2_3_1 from '../../../assets/standard_profiles/version_2_3_1.json';
+import * as HL7VERSION2_5_1 from '../../../assets/standard_profiles/version_2_5_1.json';
+import * as HL7VERSION2_7_1 from '../../../assets/standard_profiles/version_2_7_1.json';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -67,24 +71,28 @@ export class SidebarComponent implements OnInit {
   let bSelectedProfile = localStorage.getItem('ProfileNumber');
   switch(bSelectedProfile) 
   { 
-    case '1' : { 
-      this.lSegments = HL7Inspector.segments ; 
+    case '2_3_1' : { 
+      this.lSegments = HL7VERSION2_3_1.segments ; 
       break; 
     } 
-    case '2' : { 
-      this.lSegments = HL7Inspector26.segments ; 
+    case '2_5_1' : { 
+      this.lSegments = HL7VERSION2_5_1.segments ; 
+      break; 
+    }
+    case '2_7_1' : { 
+      this.lSegments = HL7VERSION2_7_1.segments ; 
       break; 
     }
     default :  {
-      this.lSegments = HL7Inspector.segments ; 
+      this.lSegments = HL7VERSION2_7_1.segments ; 
       break; 
     }
   }
   for(let nIndex = 0;nIndex < this.lSegments.length;nIndex++)
   {
-    if(this.lSegments[nIndex].seg.seg === oIncommingData.header)
+    if(this.lSegments[nIndex].seg === oIncommingData.header)
     {
-      this.oSelectedSegment = this.lSegments[nIndex].seg;
+      this.oSelectedSegment = this.lSegments[nIndex];
       console.log("Selected Segment ===>>>",this.oSelectedSegment);
       break;
     }
@@ -107,31 +115,25 @@ export class SidebarComponent implements OnInit {
   navigator.clipboard.writeText(this.sSelectedWord);
   console.log(navigator.clipboard.writeText(this.sSelectedWord));
  }
- SidebarComponent_DownloadFile()
+ SidebarComponent_DownloadTXTFile()
  {
-   if(this.bDisplayPDFError)
-   {
-    console.log("//download as a image file")
-   }
-   if(this.bDisplayImageError)
-   {   
-     console.log("//download as a pdf file")
-   }
-   else
-   {
-     console.log("//download as a text file")
-     //download as a text file
-    //  const blob = new Blob([this.sSelectedWord], { type: 'application/octet-stream' });
-    //  let url : any = this.oSanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
-    //  const link = document.createElement('a');
-    //  link.href = url;
-    //  link.setAttribute('download', 'message.txt');
-    //  document.body.appendChild(link);
-    //  link.click();
-    //  document.body.removeChild(link);
-
-     let oJobResults = new Blob([JSON.stringify(this.sSelectedWord, null, 2)], { type: 'text;charset=utf-8' })
-     UploadFilesComponent_DownloadResultAsJSON(oJobResults, 'message.txt');
-   }
+  let oJobResults = new Blob([JSON.stringify(this.sSelectedWord, null, 2)], { type: 'text;charset=utf-8' })
+  UploadFilesComponent_DownloadResultAsJSON(oJobResults, 'message.txt');
+ }
+ SidebarComponent_DownloadImageFile()
+ {
+  const source = `data:image/png;base64,${this.sSelectedWord}`;
+  const link = document.createElement("a");
+  link.href = source;
+  link.download = 'hl7.pdf';
+  link.click();
+ }
+ SidebarComponent_DownloadPDFFile()
+ {
+  const source = `data:application/pdf;base64,${this.sSelectedWord}`;
+  const link = document.createElement("a");
+  link.href = source;
+  link.download = 'hl7.pdf';
+  link.click();
  }
 }

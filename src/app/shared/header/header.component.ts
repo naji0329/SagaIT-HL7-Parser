@@ -1,11 +1,14 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import exportFromJSON from 'export-from-json'
-import * as HL7Inspector from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.5.1-Profile.json';
-import * as HL7Inspector26 from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
+// import exportFromJSON from 'export-from-json'
+// import * as HL7Inspector from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.5.1-Profile.json';
+// import * as HL7Inspector26 from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
 import { ThemesService } from 'src/app/services/themes.service';
 declare var $ : any;
 import { version } from 'package.json';
+import * as HL7VERSION2_3_1 from '../../../assets/standard_profiles/version_2_3_1.json';
+import * as HL7VERSION2_5_1 from '../../../assets/standard_profiles/version_2_5_1.json';
+import * as HL7VERSION2_7_1 from '../../../assets/standard_profiles/version_2_7_1.json';
 
 @Component({
   selector: 'app-header',
@@ -46,16 +49,20 @@ export class HeaderComponent implements OnInit {
     let bSelectedProfile = localStorage.getItem('ProfileNumber');
     switch(bSelectedProfile) 
     { 
-      case '1' : { 
-        this.oProfileName = HL7Inspector.meta.name; 
+      case '2_3_1' : { 
+        this.oProfileName = HL7VERSION2_3_1.meta.name; 
          break; 
       } 
-      case '2' : { 
-        this.oProfileName = HL7Inspector26.meta.name; 
+      case '2_5_1' : { 
+        this.oProfileName = HL7VERSION2_5_1.meta.name; 
+         break; 
+      } 
+      case '2_7_1' : { 
+        this.oProfileName = HL7VERSION2_7_1.meta.name; 
          break; 
       } 
       default: { 
-        this.oProfileName = HL7Inspector.meta.name; 
+        this.oProfileName = HL7VERSION2_7_1.meta.name; 
          break; 
       } 
     }
@@ -132,43 +139,47 @@ export class HeaderComponent implements OnInit {
     sessionStorage.setItem("currentSession","1")
     
   }
-  ExportAsJson()
+  // ExportAsJson()
+  // {
+  //   let bSelectedProfile = localStorage.getItem('ProfileNumber');
+  //   switch(bSelectedProfile) 
+  //   { 
+  //     case '1' : { 
+  //       const data = HL7Inspector
+  //       const fileName = HL7Inspector.meta.name
+  //       const exportType = 'json'
+  //       exportFromJSON({ data, fileName, exportType })
+  //        break; 
+  //     } 
+  //     case '2' : { 
+  //       const data = HL7Inspector26
+  //       const fileName = HL7Inspector26.meta.name
+  //       const exportType = 'json'
+  //       exportFromJSON({ data, fileName, exportType })
+  //       break; 
+  //     } 
+  //     default: { 
+  //       const data = HL7Inspector
+  //       const fileName = HL7Inspector.meta.name
+  //       const exportType = 'json'
+  //       exportFromJSON({ data, fileName, exportType }) 
+  //       break; 
+  //     } 
+  //   }
+  // }
+  HeaderComponent_LoadProfileHL7Version_2_3_1()
   {
-    let bSelectedProfile = localStorage.getItem('ProfileNumber');
-    switch(bSelectedProfile) 
-    { 
-      case '1' : { 
-        const data = HL7Inspector
-        const fileName = HL7Inspector.meta.name
-        const exportType = 'json'
-        exportFromJSON({ data, fileName, exportType })
-         break; 
-      } 
-      case '2' : { 
-        const data = HL7Inspector26
-        const fileName = HL7Inspector26.meta.name
-        const exportType = 'json'
-        exportFromJSON({ data, fileName, exportType })
-        break; 
-      } 
-      default: { 
-        const data = HL7Inspector
-        const fileName = HL7Inspector.meta.name
-        const exportType = 'json'
-        exportFromJSON({ data, fileName, exportType }) 
-        break; 
-      } 
-    }
+    localStorage.setItem('ProfileNumber','2_3_1');
+    this.oProfileName = HL7VERSION2_3_1.meta.name; 
   }
-  HeaderComponent_LoadProfileHL7Version2_5()
+  HeaderComponent_LoadProfileHL7Version_2_5_1()
   {
-    localStorage.setItem('ProfileNumber','1');
-    this.oProfileName = HL7Inspector.meta.name; 
+    localStorage.setItem('ProfileNumber', '2_5_1')
+    this.oProfileName = HL7VERSION2_5_1.meta.name; 
   }
-  HeaderComponent_LoadProfileHL7Version2_6()
+  HeaderComponent_LoadProfileHL7Version_2_7_1()
   {
-    localStorage.setItem('ProfileNumber', '2')
-    this.oProfileName = HL7Inspector26.meta.name; 
+    localStorage.setItem('ProfileNumber', '2_7_1')
+    this.oProfileName = HL7VERSION2_7_1.meta.name; 
   }
-
 }
