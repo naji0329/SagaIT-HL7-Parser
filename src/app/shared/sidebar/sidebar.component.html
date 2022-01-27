@@ -9,11 +9,16 @@
                     <h6 class="m-2">No Segment Selected</h6>
                 </div>
             </div>
-            <div class="DescriptionParagraph border p-2 mt-2">
+            <div class="DescriptionParagraph border p-2">
                 <p> {{oSelectedSegment?.desc}}</p>
-                <p>Chapter: {{oSelectedSegment?.chap}}</p>
+                <p *ngIf="this.oSelectedSegment">Chapter: {{oSelectedSegment?.chap}}</p>
             </div>
-            <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-5">
+            <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-3">
+                <div style="padding: 3px 0 5px 0">
+                    <h6 class="m-2">Field Length: {{sDisplayWord?sDisplayWord.length:0}}</h6>
+                </div>
+            </div>
+            <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-3">
                 <div style="padding: 3px 0 5px 0">
                     <h6 class="m-2">Value Presenter</h6>
                 </div>
@@ -39,7 +44,7 @@
                         <span><i class="fa fa-clipboard"></i></span>
                     </div>
 
-                    <div class="icon facebook" (click)="SidebarComponent_DownloadFile()">
+                    <div class="icon facebook" (click)="SidebarComponent_DownloadTXTFile()">
                         <div class="tooltip DownloadTooltip">Download</div>
                         <span><i class="fa fa-download"></i></span>
                     </div> -->
@@ -47,7 +52,8 @@
 
                 </div>
             </div>
-            <div class="DescriptionParagraph border p-2 mt-2">
+
+            <div class="DescriptionParagraph border p-2">
                 <p>{{sDisplayWord}}</p>
             </div>
         </div>
@@ -58,7 +64,7 @@
         <img *ngIf="!bDisplayImageError" src="data:image/png;base64,{{sSelectedWord}}" alt="" (error)="SidebarComponent_DisplayImageError()">
         <p class="corrupt-image font-24"  *ngIf="bDisplayImageError"> <i class="fa fa-image  mr-2"></i>Corrupted Base64 Image File</p>
         <i class="fa fa-times closeicon" (click)="SidebarComponent_DismissPreviewPanel()"></i>
-        <span><i class="fa fa-download pdfDownload"></i></span>
+        <span *ngIf="!bDisplayImageError" (click)="SidebarComponent_DownloadImageFile()"><i class="fa fa-download pdfDownload"></i></span>
           
     </div>
     
@@ -67,7 +73,7 @@
             <pdf-viewer *ngIf="!bDisplayPDFError" src="data:application/pdf;base64,{{sSelectedWord}}" [render-text]="true" [original-size]="false" style="height: 80vh" (error)="SidebarComponent_DisplayPDFError()"></pdf-viewer>
             <p *ngIf="bDisplayPDFError" class="corrupt-image font-24"><i class="fa fa-file  mr-2"></i> Corrupted Base64 PDF File</p>
             <i class="fa fa-times closeicon" (click)="SidebarComponent_DismissPreviewPanel()"></i>
-            <span><i class="fa fa-download pdfDownload"></i></span>
+            <span *ngIf="!bDisplayPDFError"  (click)="SidebarComponent_DownloadPDFFile()"><i class="fa fa-download pdfDownload"></i></span>
 
         </div>
 
