@@ -792,3 +792,12 @@ background-color: #3b5999;
 .SidebarHeading {
   background: #d9edf7;
 }
+ .form-check-input:checked[type=checkbox] {
+  display: none !important;
+}
+.form-check-input[type=checkbox]:indeterminate {
+display: none !important;
+}
+
+.treeview-container .row-item {display: flex !important; align-items: center !important;}
+.treeview-container .row-item .bi {  margin-bottom: 8px !important; width: 15px; height: 15px;}

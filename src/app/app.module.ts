@@ -24,6 +24,8 @@ import { TreeSiewSectionComponent } from './components/homepage/tree-view/tree-v
 import { NgxResizableModule } from '@3dgenomes/ngx-resizable';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { DatePipe } from '@angular/common';
+import { TreeviewModule } from 'ngx-treeview';
+import { TestComponent } from './components/test/test.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { DatePipe } from '@angular/common';
     SettingsComponent,
     FooterComponent,
     TreeSiewSectionComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,7 @@ import { DatePipe } from '@angular/common';
     ResizableModule,
     NgxResizableModule,
     PdfViewerModule,
-    
+    TreeviewModule.forRoot()
     
   ],
   providers: [DatePipe],
