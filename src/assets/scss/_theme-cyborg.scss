@@ -93,6 +93,7 @@
  .cyborg .nav-pills .nav-link.active, .cyborg .nav-pills .show>.nav-link {
   color: #000 !important;
   background-color: #fff !important;
+  border: 1px solid #fff !important;
 }
 .cyborg .nav-link {
   color: #fff !important;
@@ -102,4 +103,8 @@
 }
 .cyborg .SidebarHeading {
   background: #000 !important;
+}
+.cyborg .nav-pills .nav-link {
+  border-radius: 0 !important;
+  border: 1px solid #fff !important;
 }
