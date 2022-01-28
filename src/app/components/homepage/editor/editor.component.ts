@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DataService } from 'src/app/services/data.service';
+import { saveAs as EditorMainSectionComponent_DownloadResultAsJSON }  from 'save-as';
 
 @Component({
   selector: 'app-editor',
@@ -10,41 +11,26 @@ export class EditorComponent implements OnInit {
   bDisplayAlert: boolean = false;
   sText: string = "";
   fileUrl: any = "";
+  oOriginalValue : any;
+  sTextAreaValue : string;
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private oDataService : DataService) { }
 
-  ngOnInit(): void {
-    const data = 'some text';
-    const blob = new Blob([data], { type: 'application/octet-stream' });
-
-    this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
-  }
-  fileDownload()
+  ngOnInit(): void {}
+  
+  EditorMainSectionComponent_ExportFile()
   {
-    const link = document.createElement('a');
-    link.href = this.fileUrl;
-    link.setAttribute('download', 'message.hl7');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    let oJobResults = new Blob([JSON.stringify(this.sTextAreaValue, null, 2)], { type: 'text;charset=utf-8' })
+    EditorMainSectionComponent_DownloadResultAsJSON(oJobResults, 'message.hl7');
   }
-  CopyToClipBoard()
+  EditorMainSectionComponent_CopyToClipBoard()
   {
-    this.bDisplayAlert = true
-    this.sText = "Successful copied to clipboard"
-    setTimeout(() => {
-      this.bDisplayAlert = false
-    }, 3000);
+    navigator.clipboard.writeText(this.sTextAreaValue);
+    this.bDisplayAlert = true;
+    this.sText = "Successful copied to clipboard";
+    setTimeout(() => {this.bDisplayAlert = false}, 3000);
   }
-  Compared()
-  {
-    this.bDisplayAlert = true
-    this.sText = "Successful Compared. See the results in compare tab"
-    setTimeout(() => {
-      this.bDisplayAlert = false
-    }, 3000);
-  }
-  alphafunction(sIncommingTextArea : any)
+  EditorMainSectionComponent_CalculateHeaders(sIncommingTextArea : any)
   {
     let nStartPosition = sIncommingTextArea.selectionStart;
     let nEndPosition = sIncommingTextArea.selectionEnd;
@@ -53,55 +39,67 @@ export class EditorComponent implements OnInit {
       let startSubStr : string = sIncommingTextArea.value.substring(0, nStartPosition)
       let endSubStr: string = sIncommingTextArea.value.substring(nStartPosition, sIncommingTextArea.value.length)
       let selectedWord = "";
-      if(startSubStr.lastIndexOf('|') > startSubStr.lastIndexOf('^')){
+      if(startSubStr.lastIndexOf('|') > startSubStr.lastIndexOf('^'))
+      {
         endSubStr=endSubStr+"|^";
-        if(endSubStr.indexOf('|') > endSubStr.indexOf('^')){
+        if(endSubStr.indexOf('|') > endSubStr.indexOf('^'))
+        {
           selectedWord= startSubStr.substring(startSubStr.lastIndexOf('|')+1, startSubStr.length) + endSubStr.substring(0, endSubStr.indexOf('^'))
         }
-        else{
+        else
+        {
           selectedWord= startSubStr.substring(startSubStr.lastIndexOf('|')+1, startSubStr.length) + endSubStr.substring(0, endSubStr.indexOf('|'))
         }
 
       }
-      // -----------------------------------
-      else{
+      else
+      {
         endSubStr=endSubStr+"|^";
-        if(endSubStr.indexOf('|') > endSubStr.indexOf('^')){
+        if(endSubStr.indexOf('|') > endSubStr.indexOf('^'))
+        {
           selectedWord= startSubStr.substring(startSubStr.lastIndexOf('^')+1, startSubStr.length) + endSubStr.substring(0, endSubStr.indexOf('^'))
         }
-        else{
+        else
+        {
           selectedWord= startSubStr.substring(startSubStr.lastIndexOf('^')+1, startSubStr.length) + endSubStr.substring(0, endSubStr.indexOf('|'))
         }
 
       }
       if(selectedWord.search('\n')>0)
-        selectedWord=selectedWord.substring(0,selectedWord.indexOf('\n'))
-      console.log("final word=", selectedWord);
-      
-      // -----------------------------------
-      
-
-      let header:string ='';
+      {
+        selectedWord=selectedWord.substring(0,selectedWord.indexOf('\n'));
+      }
+      this.oOriginalValue = selectedWord;
+      let sHeader:string ='';
       if(startSubStr.lastIndexOf('\n') < startSubStr.indexOf('|'))
       {
-        header = startSubStr.substring(startSubStr.lastIndexOf('\n') , startSubStr.indexOf('|')).trim()
+        sHeader = startSubStr.substring(startSubStr.lastIndexOf('\n') , startSubStr.indexOf('|')).trim()
       }
       else
       {
-        header = sIncommingTextArea.value.substring(startSubStr.lastIndexOf('\n'), endSubStr.indexOf('|')+startSubStr.length).trim()
-        header = header.substring(0, header.indexOf('|')).trim()
+        sHeader = sIncommingTextArea.value.substring(startSubStr.lastIndexOf('\n'), endSubStr.indexOf('|')+startSubStr.length).trim()
+        sHeader = sHeader.substring(0, sHeader.indexOf('|')).trim()
       }
-      if(header==''){
-        header = selectedWord.trim();
-        selectedWord = "";
+      if(sHeader=='')
+      {
+        sHeader = selectedWord.trim();
       }
-      console.log("header =",header)
+      // console.log("sHeader =",sHeader);
+      this.oDataService.oWordToSearch.next({header : sHeader, word : this.oOriginalValue});
     }
-    else
+  }
+  EditorMainSectionComponent_ImportFile(event : any)
+  {
+    let file = event.target.files[0];
+    if(file)
     {
-      console.log("Selected text from ("+ nStartPosition +" to "+ nEndPosition + " of " + sIncommingTextArea.value.length + ")");
-      console.log(sIncommingTextArea.value.substring(nStartPosition,nEndPosition));
-
+      const reader = new FileReader();
+      reader.onload = (e)=>
+      {
+        let file = e.target.result;
+        this.sTextAreaValue = file.toString();
+      }
+      reader.readAsText(file);
     }
   }
 }

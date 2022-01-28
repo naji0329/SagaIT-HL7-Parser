@@ -2,7 +2,6 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DataService } from 'src/app/services/data.service';
-import { saveAs as UploadFilesComponent_DownloadResultAsJSON }  from 'save-as';
 import { ThemesService } from 'src/app/services/themes.service';
 // import * as HL7Inspector from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.5.1-Profile.json';
 // import * as HL7Inspector26 from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
@@ -28,7 +27,8 @@ export class SidebarComponent implements OnInit {
   sDisplayWord : string;
   bDisplayPDFError : boolean = false;
   bDisplayImageError : boolean = false;
-  constructor(private oDataService : DataService, private oDatePipe : DatePipe, private oSanitizer: DomSanitizer , private oThemeService : ThemesService) { }
+
+  constructor(private oDataService : DataService, private oDatePipe : DatePipe, private oThemeService : ThemesService) { }
 
   ngOnInit(): void 
   {
@@ -88,6 +88,7 @@ export class SidebarComponent implements OnInit {
       break; 
     }
   }
+  this.oSelectedSegment = undefined;
   for(let nIndex = 0;nIndex < this.lSegments.length;nIndex++)
   {
     if(this.lSegments[nIndex].seg === oIncommingData.header)
@@ -100,7 +101,7 @@ export class SidebarComponent implements OnInit {
  }
  SidebarComponent_ConvertIntoDateTime()
  {
-  this.sDisplayWord = this.oDatePipe.transform(this.sSelectedWord,'EEE, d MMM y hh:mm:ss')
+  this.sDisplayWord = this.oDatePipe.transform(this.sSelectedWord,'EEE, d MMM y hh:mm:ss');
  }
  SidebarComponent_DisplayImageError()
  {
@@ -109,16 +110,6 @@ export class SidebarComponent implements OnInit {
  SidebarComponent_DisplayPDFError()
  {
    this.bDisplayPDFError = true;
- }
- SidebarComponent_CopyToClipBoard()
- {
-  navigator.clipboard.writeText(this.sSelectedWord);
-  console.log(navigator.clipboard.writeText(this.sSelectedWord));
- }
- SidebarComponent_DownloadTXTFile()
- {
-  let oJobResults = new Blob([JSON.stringify(this.sSelectedWord, null, 2)], { type: 'text;charset=utf-8' })
-  UploadFilesComponent_DownloadResultAsJSON(oJobResults, 'message.txt');
  }
  SidebarComponent_DownloadImageFile()
  {
