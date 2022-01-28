@@ -685,11 +685,10 @@ background-color: #3b5999;
 //   color: #fff(255, 255, 255);
 // }
 
-.border-primary {
-  width: 131px;
-}
+
 .nav-pills .nav-link {
-  border-radius: 0px !important;
+  border-radius: 0 !important;
+  border: 1px solid #5bc0de !important;
 }
 
 
@@ -782,6 +781,7 @@ background-color: #3b5999;
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
   color: #fff !important;
   background-color: #5bc0de !important;
+  border: 1px solid #5bc0de !important;
 }
 .nav-link {
   color: #5bc0de !important;
