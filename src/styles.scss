@@ -792,3 +792,9 @@ background-color: #3b5999;
 .SidebarHeading {
   background: #d9edf7;
 }
+ .form-check-input:checked[type=checkbox] {
+  display: none !important;
+}
+.form-check-input[type=checkbox]:indeterminate {
+display: none !important;
+}
