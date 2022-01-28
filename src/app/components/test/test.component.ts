@@ -10,7 +10,7 @@ import { ThemesService } from 'src/app/services/themes.service';
 })
 export class TestComponent implements OnInit {
   bDisplayChild1: boolean = false;
- 
+  heroes = [1,2]
   constructor(private service : ThemesService) {}
   
   items: TreeviewItem[];
