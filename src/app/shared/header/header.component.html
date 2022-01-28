@@ -1,6 +1,6 @@
 <nav class="{{selectedTheme}} navbar navbar-expand-lg navbar-light bg-light shadow">
     <div class="container-fluid">
-        <div class="logo" ><span class="name">Saga</span><br><em class="subtitle text-nowrap">Healthcare IT</em></div>
+        <div class="logo"><span class="name">Saga</span><br><em class="subtitle text-nowrap">Healthcare IT</em></div>
         <a class="navbar-brand ml-3" href="javascript:void(0)" routerLink="/">HL7-Tool</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,52 +49,14 @@
             <input type="checkbox" id="switch-blue" class="switch" (change)="ToggleTheme($event)" [checked]="bToggleSwitch" />
             <label for="switch-blue" class="lbl-off">Dark</label>
             <label for="switch-blue" class="lbl-on">Light</label>
-          </div> <span class="ml-1"> | </span>
+          </div> <span class="ml-1"> | &nbsp;</span>  
+          <span (click)="ChangeModalTitle()" href="#"  role="button" class="z-index-999"
+          data-bs-toggle="modal"
+          data-bs-target="#about" aria-expanded="false">
+              About
+          </span>
                 
-            <form class="d-flex ml-2">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <!-- <li *ngIf="bDisplayProfileOptions" class="nav-item">
-                        <a class="nav-link active" aria-current="page" routerLink="/settings">Settings</a>
-                    </li> -->
-                 
-                        <span  (click)="ChangeModalTitle()" href="#"  role="button"
-                        data-bs-toggle="modal"
-                        data-bs-target="#about" aria-expanded="false">
-                            About
-                        </span>
-
-                        <!-- <li (click)="ChangeModalTitle()"><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
-                            data-bs-target="#about">About</a></li>
-
-                        <ul class="help dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="javascript:void(0)"
-                                    > <span class="fa fa-external-link font-800"></span> HL7 Tool </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="javascript:void(0)"
-                                    ><span class="fa fa-external-link font-800"></span> Wiki</a></li>
-                            <li><a class="dropdown-item"
-                                    href="javascript:void(0)"
-                                    ><span class="fa fa-external-link font-800"></span> Release Notes</a></li>
-                            <li><a class="dropdown-item"
-                                    href="javascript:void(0)"
-                                    ><span class="fa fa-external-link font-800"></span> Repor a bug</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li *ngIf="bDisplayImprintOption"><a class="dropdown-item" href="javascript:void(0)">Imprint</a>
-                            </li>
-                            <li>
-                                <hr *ngIf="bDisplayImprintOption" class="dropdown-divider">
-                            </li>
-                            <li (click)="ChangeModalTitle()"><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
-                                    data-bs-target="#about">About</a></li>
-                        </ul> -->
-                    <!-- </li> -->
-
-                </ul>
-            </form>
+            
         </div>
       
     </div>
