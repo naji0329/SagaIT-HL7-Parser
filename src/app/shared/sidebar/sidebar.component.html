@@ -43,7 +43,7 @@
 
     <div *ngIf="bDisplayPreviewPanel" class="preview-content bg-white shadow">
         <img *ngIf="!bDisplayImageError" src="data:image/png;base64,{{sSelectedWord}}" alt="" (error)="SidebarComponent_DisplayImageError()">
-        <p class="corrupt-image font-24"  *ngIf="bDisplayImageError"> <i class="fa fa-image  mr-2"></i>Corrupted Base64 Image File</p>
+        <p class="corrupt-image font-24"  *ngIf="bDisplayImageError"> <i class="fa fa-image  mr-2"></i>Invalid Base64 Image Data</p>
         <i class="fa fa-times closeicon" (click)="SidebarComponent_DismissPreviewPanel()"></i>
         <span *ngIf="!bDisplayImageError" (click)="SidebarComponent_DownloadImageFile()"><i class="fa fa-download pdfDownload"></i></span>
           
@@ -52,7 +52,7 @@
     <div *ngIf="bDisplayPdfPanal" class="preview-content pdf-content bg-white shadow">
         <div>
             <pdf-viewer *ngIf="!bDisplayPDFError" src="data:application/pdf;base64,{{sSelectedWord}}" [render-text]="true" [original-size]="false" style="height: 80vh" (error)="SidebarComponent_DisplayPDFError()"></pdf-viewer>
-            <p *ngIf="bDisplayPDFError" class="corrupt-image font-24"><i class="fa fa-file  mr-2"></i> Corrupted Base64 PDF File</p>
+            <p *ngIf="bDisplayPDFError" class="corrupt-image font-24"><i class="fa fa-file  mr-2"></i> Invalid Base64 PDF Data</p>
             <i class="fa fa-times closeicon" (click)="SidebarComponent_DismissPreviewPanel()"></i>
             <span *ngIf="!bDisplayPDFError"  (click)="SidebarComponent_DownloadPDFFile()"><i class="fa fa-download pdfDownload"></i></span>
 
