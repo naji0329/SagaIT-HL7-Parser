@@ -243,6 +243,19 @@ export class TreeSiewSectionComponent implements OnInit {
   title: string = this.app.name;
   version: string = this.app.version;
   bDisplaySelectedOption: boolean;
+  bDisplayChild1: boolean = false;
+  bDisplayChild2: boolean = false;
+  bDisplayChild3: boolean = false;
+  bDisplayChild4: boolean = false;
+  bDisplayChild5: boolean = false;
+  bDisplayChild6: boolean = false;
+  bDisplayChild7: boolean = false;
+  bDisplayChild8: boolean = false;
+  bDisplayChild9: boolean = false;
+
+
+
+
   constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
@@ -313,5 +326,38 @@ export class TreeSiewSectionComponent implements OnInit {
     console.log(this.selectedValue);
     
   }
+  DisplayChild1()
+{
+  this.bDisplayChild1 =  !this.bDisplayChild1
+}
+DisplayChild2()
+{
+  this.bDisplayChild2 =  !this.bDisplayChild2
+}DisplayChild3()
+{
+  this.bDisplayChild3 =  !this.bDisplayChild3
+}
+DisplayChild4()
+{
+  this.bDisplayChild4 =  !this.bDisplayChild4
+}
+
+DisplayChild5()
+{
+  this.bDisplayChild5 =  !this.bDisplayChild5
+}
+DisplayChild6()
+{
+  this.bDisplayChild6 =  !this.bDisplayChild6
+}DisplayChild7()
+{
+  this.bDisplayChild7 =  !this.bDisplayChild7
+}DisplayChild8()
+{
+  this.bDisplayChild8 =  !this.bDisplayChild8
+}DisplayChild9()
+{
+  this.bDisplayChild9 =  !this.bDisplayChild9
+}
 
 }
