@@ -6,12 +6,8 @@
                     <h6 class="m-2">{{oSelectedSegment?.seg}} - {{oSelectedSegment?.name}}</h6>
                 </div>
                 <div style="padding: 3px 0 5px 0" *ngIf="!this.oSelectedSegment">
-                    <h6 class="m-2">No Segment Selected</h6>
+                    <h6 class="m-2">Field Name</h6>
                 </div>
-            </div>
-            <div class="DescriptionParagraph border p-2">
-                <p> {{oSelectedSegment?.desc}}</p>
-                <p *ngIf="this.oSelectedSegment">Chapter: {{oSelectedSegment?.chap}}</p>
             </div>
             <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-3">
                 <div style="padding: 3px 0 5px 0">
@@ -20,7 +16,8 @@
             </div>
             <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-3">
                 <div style="padding: 3px 0 5px 0">
-                    <h6 class="m-2">Value Presenter</h6>
+                    <h6 class="m-2">Field Value
+                    </h6>
                 </div>
                 <div class="wrapper">
                     <div class="icon facebook" (click)="SidebarComponent_DisplaypdfFile()">
@@ -34,29 +31,53 @@
                 </div>
             </div>
 
-            <div class="DescriptionParagraph border p-2">
+            <div id="find-value" class="ValueParagraph border p-2">
                 <p>{{sDisplayWord}}</p>
+                <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni odit illum vitae ut fuga aliquid, quod delectus laudantium possimus velit neque assumenda voluptas. Reprehenderit autem consequuntur natus ullam? Ullam, illo.
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere omnis iure cupiditate quo. Obcaecati illum distinctio culpa quod. Nemo nihil cupiditate corrupti deleniti minima qui doloribus enim voluptate repellendus ullam.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel ullam illum voluptates, quas placeat doloribus perferendis deleniti tempore, ad delectus eos deserunt enim adipisci totam molestias id architecto fugiat ipsum.
+                   </p> -->
+            </div>
+
+            <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-3">
+                <div style="padding: 3px 0 5px 0">
+                    <h6 class="m-2">Field Description
+                    </h6>
+                </div>
+            </div>
+
+            <div class="DescriptionParagraph border p-2">
+       <div>
+        <p> {{oSelectedSegment?.desc}}</p>
+        <p *ngIf="this.oSelectedSegment">Chapter: {{oSelectedSegment?.chap}}</p>
+       </div>
             </div>
         </div>
-    </div>
 
 
-    <div *ngIf="bDisplayPreviewPanel" class="preview-content bg-white shadow">
-        <img *ngIf="!bDisplayImageError" src="data:image/png;base64,{{sSelectedWord}}" alt="" (error)="SidebarComponent_DisplayImageError()">
-        <p class="corrupt-image font-24"  *ngIf="bDisplayImageError"> <i class="fa fa-image  mr-2"></i>Invalid Base64 Image Data</p>
-        <i class="fa fa-times closeicon" (click)="SidebarComponent_DismissPreviewPanel()"></i>
-        <span *ngIf="!bDisplayImageError" (click)="SidebarComponent_DownloadImageFile()"><i class="fa fa-download pdfDownload"></i></span>
-          
-    </div>
-    
-    <div *ngIf="bDisplayPdfPanal" class="preview-content pdf-content bg-white shadow">
-        <div>
-            <pdf-viewer *ngIf="!bDisplayPDFError" src="data:application/pdf;base64,{{sSelectedWord}}" [render-text]="true" [original-size]="false" style="height: 80vh" (error)="SidebarComponent_DisplayPDFError()"></pdf-viewer>
-            <p *ngIf="bDisplayPDFError" class="corrupt-image font-24"><i class="fa fa-file  mr-2"></i> Invalid Base64 PDF Data</p>
+        <div *ngIf="bDisplayPreviewPanel" class="preview-content bg-white shadow">
+            <img *ngIf="!bDisplayImageError" src="data:image/png;base64,{{sSelectedWord}}" alt=""
+                (error)="SidebarComponent_DisplayImageError()">
+            <p class="corrupt-image font-24" *ngIf="bDisplayImageError"> <i class="fa fa-image  mr-2"></i>Invalid Base64
+                Image Data</p>
             <i class="fa fa-times closeicon" (click)="SidebarComponent_DismissPreviewPanel()"></i>
-            <span *ngIf="!bDisplayPDFError"  (click)="SidebarComponent_DownloadPDFFile()"><i class="fa fa-download pdfDownload"></i></span>
+            <span *ngIf="!bDisplayImageError" (click)="SidebarComponent_DownloadImageFile()"><i
+                    class="fa fa-download pdfDownload"></i></span>
 
         </div>
 
-    </div>
-    <div class="{{sOverlay}}"></div>
+        <div *ngIf="bDisplayPdfPanal" class="preview-content pdf-content bg-white shadow">
+            <div>
+                <pdf-viewer *ngIf="!bDisplayPDFError" src="data:application/pdf;base64,{{sSelectedWord}}"
+                    [render-text]="true" [original-size]="false" style="height: 80vh"
+                    (error)="SidebarComponent_DisplayPDFError()"></pdf-viewer>
+                <p *ngIf="bDisplayPDFError" class="corrupt-image font-24"><i class="fa fa-file  mr-2"></i> Invalid
+                    Base64 PDF Data</p>
+                <i class="fa fa-times closeicon" (click)="SidebarComponent_DismissPreviewPanel()"></i>
+                <span *ngIf="!bDisplayPDFError" (click)="SidebarComponent_DownloadPDFFile()"><i
+                        class="fa fa-download pdfDownload"></i></span>
+
+            </div>
+
+        </div>
+        <div class="{{sOverlay}}"></div>

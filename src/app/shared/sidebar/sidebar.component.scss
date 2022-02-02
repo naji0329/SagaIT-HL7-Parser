@@ -39,13 +39,46 @@
   /* object-fit: cover; */
   padding: 20px;
 }
-.DescriptionParagraph {
-  line-height: 2rem;
+// .ValueParagraph {
+//   height: 20vh;
+//   line-break: anywhere;
+//   line-height: 2rem;
+//   overflow: auto;
+// }
+// .DescriptionParagraph {
+//   height: calc(60vh - 150px);
+//   line-break: anywhere;
+//   line-height: 2rem;
+//   overflow: auto;
+// }
+// @media(min-height:1050px)
+// {
+//   .DescriptionParagraph {
+//     height: calc(60vh - 100px);
+//     line-break: anywhere;
+//     line-height: 2rem;
+//     overflow: auto;
+//   } 
+// }
+
+
+
+.ValueParagraph {
+  max-height: 30vh;
   line-break: anywhere;
+  line-height: 2rem;
+  overflow: auto;
 }
+.DescriptionParagraph {
+  max-height: 30vh;
+  line-break: anywhere;
+  line-height: 2rem;
+  overflow: auto;
+}
+
 .pdf-content{width: 60vw;}
 .corrupt-image{
-  width: 60vw;
+    width: 60vw;
     height: 80vh;
     display: flex;
     justify-content: center;

@@ -35,6 +35,7 @@
 .mr-5 {margin-right: 2rem !important;}
 // dropdown
 .help.dropdown-menu { right: 0 !important; left: -175px !important; }
+ul.dropdown-menu {min-width: auto !important;}
 .fileinput-button input {
     position: absolute;
     top: 0; 
@@ -801,6 +802,9 @@ background-color: #3b5999;
 }
 .nav-link {
   color: #5bc0de !important;
+}
+.versionnumber .nav-link {
+  color: #343a40 !important;
 }
 .nav.nav-pills.border-primary {
   border-color: #5bc0de !important;
