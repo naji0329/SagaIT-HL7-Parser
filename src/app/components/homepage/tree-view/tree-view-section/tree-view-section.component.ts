@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { DataService } from 'src/app/services/data.service';
 declare var require: any;
 export let sampleData: any[] = [
   // 1
@@ -215,7 +216,7 @@ export let sampleData: any[] = [
   templateUrl: './tree-view-section.component.html',
   styleUrls: ['./tree-view-section.component.scss']
 })
-export class TreeSiewSectionComponent implements OnInit {
+export class TreeSiewSectionComponent implements OnInit, OnDestroy {
   pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   bDisplayAlert: boolean = false;
   sText: string = "";
@@ -253,17 +254,49 @@ export class TreeSiewSectionComponent implements OnInit {
   bDisplayChild8: boolean = false;
   bDisplayChild9: boolean = false;
 
-
-
-
-  constructor(private sanitizer: DomSanitizer) { }
-
+  oIncommingTextSubscription : any;
+  sIncommingText : string;
+  lFirstLevelNesting : any = [];
+  lSecondLevelNesting : any = [];
+  lThirdLevelNesting : any = [];
+  constructor(private sanitizer: DomSanitizer, private oDataService : DataService) { }
+  
   ngOnInit(): void {
     const data = 'some text';
     const blob = new Blob([data], { type: 'application/octet-stream' });
-
+    
     this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
     this.items=this.getItems(this.sampleData,null,0)
+    this.TreeSiewSectionComponent_DrawTreeView();
+  }
+  ngOnDestroy(){this.oIncommingTextSubscription.unsubscribe();}
+  TreeSiewSectionComponent_DrawTreeView()
+  {
+    this.oIncommingTextSubscription = this.oDataService.sTreeViewData.subscribe(data=> 
+    {
+      this.sIncommingText = data;
+      this.lFirstLevelNesting = this.sIncommingText.split('\n');
+      for (let nTreeNodeIndex = 0; nTreeNodeIndex < this.lFirstLevelNesting.length; nTreeNodeIndex++) 
+      {
+        const first = this.lFirstLevelNesting[nTreeNodeIndex];
+        
+      }
+      console.log("First level Nesting : ==> ",this.lFirstLevelNesting);
+      
+    })
+  }
+  splitBasedOnBar(sIncommingText : string)
+  {
+    console.log("Selected text : ==>", sIncommingText);
+    let split = sIncommingText.split('|');
+    console.log("Text after split  : ==>", split);
+
+  }
+  splitBasedOnCap(sIncommingText : string)
+  {
+    console.log("Selected text : ==>", sIncommingText);
+    let split = sIncommingText.split('^');
+    console.log("Text after split  : ==>", split);
 
   }
   expanded(item:any)

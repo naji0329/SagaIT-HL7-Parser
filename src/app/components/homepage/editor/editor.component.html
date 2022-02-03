@@ -24,7 +24,7 @@
 </div>
 <!-- text editor -->
 <div class="content">
-    <textarea class="hl7texteditor editor-text"  wrap="off" spellcheck="true" autocomplete="off" autocorrect="off"
+    <textarea class="hl7texteditor editor-text"  wrap="off" spellcheck="true" autocomplete="off" autocorrect="off" (change)="EditorMainSectionComponent_PassValueToTreeView()"
     autocapitalize="off" #msgtextarea (click)="EditorMainSectionComponent_CalculateHeaders(msgtextarea)" [(ngModel)]="sTextAreaValue" (keyup)="EditorMainSectionComponent_CalculateHeaders(msgtextarea)"></textarea>
 </div>
 

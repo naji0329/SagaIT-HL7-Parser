@@ -102,4 +102,8 @@ export class EditorComponent implements OnInit {
       reader.readAsText(file);
     }
   }
+  EditorMainSectionComponent_PassValueToTreeView()
+  {
+    this.oDataService.sTreeViewData.next(this.sTextAreaValue);
+  }
 }
