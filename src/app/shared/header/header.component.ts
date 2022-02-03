@@ -177,20 +177,17 @@ export class HeaderComponent implements OnInit {
     localStorage.setItem('ProfileNumber','2_3_1');
     this.oProfileName = HL7VERSION2_3_1.meta.name; 
     this.oProfileName = this.oProfileName.substring(5);
-    console.log("11111111111111",this.oProfileName);
   }
   HeaderComponent_LoadProfileHL7Version_2_5_1()
   {
     localStorage.setItem('ProfileNumber', '2_5_1')
     this.oProfileName = HL7VERSION2_5_1.meta.name; 
     this.oProfileName = this.oProfileName.substring(5);
-    console.log("22222222222222222",this.oProfileName);
   }
   HeaderComponent_LoadProfileHL7Version_2_7_1()
   {
     localStorage.setItem('ProfileNumber', '2_7_1')
     this.oProfileName = HL7VERSION2_7_1.meta.name; 
     this.oProfileName = this.oProfileName.substring(5);
-    console.log("333333333333333",this.oProfileName);
   }
 }

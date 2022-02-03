@@ -19,14 +19,20 @@
 .cyborg .panel-info a {color: #fff !important;}
 .cyborg .card {border-radius: 0 0 .25rem .25rem !important; border-color: #9933cc !important; background-color: #222222 !important; }
 .cyborg p , .cyborg label {color: #888888 !important;}
-.cyborg .label-info {background-color: #9933cc !important;}
+.cyborg .ValueParagraph p {color: #ffffffc4 !important;}
+.cyborg .DescriptionParagraph p {color: #ffffffc4 !important;}
+
+
+// .cyborg .DescriptionParagraph p , .cyborg label {color: #fff !important;}
+
+.cyborg .label-info {background-color: #9933cc !important;} 
 .cyborg small {color: #888888;}
 .cyborg .modal-header ,.cyborg .modal-body,.cyborg .modal-footer{background-color: #202020 !important; color: #fff !important; border: none !important;}
 .cyborg .modal-header , .cyborg .modal-body{border-bottom: 1px solid #282828 !important;}
 .cyborg .fa-times {color: #fff !important;}
 .cyborg .closeicon {color: #000 !important;}
 .cyborg .btn-primary{background-color: #2a9fd6 !important; border-color: #2a9fd6 !important;}
-.cyborg h1 , .cyborg h2 , .cyborg h3, .cyborg h4, .cyborg h5, .cyborg h6 {color: #888888 !important;}
+.cyborg h1 , .cyborg h2 , .cyborg h3, .cyborg h4, .cyborg h5, .cyborg h6 {color: #fff !important;}
 .cyborg .page-item.active .page-link { color: #fff; background-color: #202020 !important; border-color: #202020 !important; }
 .cyborg .openbtn { background-color: #202020; color: #fff; border:1px solid #44475a !important; box-shadow: 0 .5rem 1rem rgba(0,0,0,.50) !important; }
 .cyborg.sidebar {background-color: #202020 !important;}

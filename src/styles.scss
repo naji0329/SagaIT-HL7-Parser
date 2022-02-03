@@ -721,6 +721,7 @@ background-color: #3b5999;
 .button-switch .lbl-off, .button-switch .lbl-on {
   cursor: pointer;
   display: block;
+  color: #fff;
   font-size: 0.5em;
   font-weight: bold;
   line-height: 1em;
@@ -736,8 +737,8 @@ background-color: #3b5999;
 .button-switch .lbl-on {
   color: #fefefe;
   opacity: 0;
-  left: -10px;
-  top: 12px;
+  left: -20px;
+  top: 11px;
 }
 .button-switch .switch {
   -webkit-appearance: none;
@@ -759,7 +760,7 @@ background-color: #3b5999;
 }
 .button-switch .switch:before {
   border-radius: 1.25em;
-  background: #bdc3c7;
+  background: #000;
   height: 1em;
   left: -1.25em;
   top: 0.1875em;
