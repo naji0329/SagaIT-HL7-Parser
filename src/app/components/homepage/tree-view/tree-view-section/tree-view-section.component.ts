@@ -23,7 +23,7 @@ export class TreeSiewSectionComponent implements OnInit, OnDestroy {
 
 
 
-  constructor( private oDataService : DataService) { }
+  constructor( private oDataService : DataService,) { }
   
   ngOnInit(): void {
     this.TreeSiewSectionComponent_DrawTreeView();
@@ -37,23 +37,51 @@ export class TreeSiewSectionComponent implements OnInit, OnDestroy {
       this.lFirstLevelNesting = this.sIncommingText.split('\n');
       for (let nTreeNodeIndex = 0; nTreeNodeIndex < this.lFirstLevelNesting.length; nTreeNodeIndex++) 
       {
-        var obj = { parentNode : [], childNodes : [], grandChildNodes : []};
         const parent = this.lFirstLevelNesting[nTreeNodeIndex];
-        obj.parentNode = parent;
-        const child = this.splitBasedOnBar(parent);
-        obj.childNodes = child;
-        for (let nGrandChildIndex = 0; nGrandChildIndex < child.length; nGrandChildIndex++) 
+        if(parent !== "")
         {
-          const currentChild = child[nGrandChildIndex];
-          const grandChild = this.splitBasedOnCap(currentChild);
-          obj.grandChildNodes = grandChild;
-        }
+          let obj = 
+          { 
+            parentNode :  "" , childNodes : []
+          };
+          obj.parentNode = parent;
+          const child = this.splitBasedOnBar(parent);
+          for (let nChildIndex = 0; nChildIndex < child.length; nChildIndex++) 
+          {
+            const currentChild = child[nChildIndex];
+            const grandChild = this.splitBasedOnCap(currentChild);
 
-        this.lSecondLevelNesting.push(obj);
+            obj.childNodes.push({ node : currentChild, grandChildNodes : grandChild })
+            
+            // obj.grandChildNodes = grandChild;
+          }
+          // obj.childNodes.unshift()
+          // for (let nGrandChildIndex = 0; nGrandChildIndex < child.length; nGrandChildIndex++) 
+          // {
+          //   const currentChild = child[nGrandChildIndex];
+          //   const grandChild = this.splitBasedOnCap(currentChild);
+          //   obj.grandChildNodes = grandChild;
+          // }
+  
+          this.lSecondLevelNesting.push(obj);
+        }
       }
       console.log("First level Nesting + Second Level Nesting : ==> ",this.lSecondLevelNesting);
       
     })
+  }
+  toggleDisplay(sIncommingObjectID : string)
+  {
+    let item = document.getElementById(sIncommingObjectID);
+    if(item.classList.contains('d-none'))
+    {
+      item.classList.remove('d-none');
+    }
+    else
+    {
+      item.classList.add('d-none');
+    }
+    console.log("Taggle display : ==> ", item);
   }
   splitBasedOnBar(sIncommingText : any)
   {
