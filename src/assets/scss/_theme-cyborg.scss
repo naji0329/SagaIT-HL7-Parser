@@ -35,6 +35,7 @@
 .cyborg h1 , .cyborg h2 , .cyborg h3, .cyborg h4, .cyborg h5, .cyborg h6 {color: #fff !important;}
 .cyborg .page-item.active .page-link { color: #fff; background-color: #202020 !important; border-color: #202020 !important; }
 .cyborg .openbtn { background-color: #202020; color: #fff; border:1px solid #44475a !important; box-shadow: 0 .5rem 1rem rgba(0,0,0,.50) !important; }
+.cyborg .closeBtn{ background-color: #202020 !important;color: #fff; border:1px solid #44475a !important;}
 .cyborg.sidebar {background-color: #202020 !important;}
 .cyborg .menus a{background-color: #202020 !important; color: #aaaaaa;}
 .cyborg .list-group-item:hover {cursor: pointer; background-color: #282828 !important; border-color: #282828 !important; color: #fff !important;}
@@ -134,4 +135,11 @@
 
 .cyborg .tree li {
  color: #fff !important;
+}
+.cyborg.cell {background-color: #000 !important; } 
+.cyborg.cell { border: 0 !important; } 
+
+.cyborg.cell.asidebar {background-color: #202020 !important; border-left: 2px solid #3d3a3a !important;} 
+.cell.resizable {
+  height: 100vh !important;
 }

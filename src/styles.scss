@@ -3,7 +3,7 @@
 @import 'src/assets/scss/_theme-yeti.scss';
 @import 'src/assets/scss/_theme-cyborg.scss';
 @import 'src/assets/scss/_theme-slate.scss';
-
+html { overflow-x: hidden;}
 /* You can add global styles to this file, and also import other style files */
 // fonts size
 .font-14 {font-size: 14px;}.font-16 {font-size: 16px;}.font-18 {font-size: 18px;}.font-20 {font-size: 20px;}.font-22 {font-size: 22px;}
@@ -151,10 +151,23 @@ ul.dropdown-menu {min-width: auto !important;}
     color: #000;
     padding: 10px;
     border: none;
-    position: fixed;
-    top: 50%;
-    right: 0;
+    position: absolute;
+    top: 48%;
+    right: 10px;
     z-index:0;
+  }
+
+  .closeBtn{
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #fff;
+    color: #000;
+    padding: 10px;
+    border: none;
+    position: absolute;
+    top: 48%;
+    left: -40px;
+    z-index:3;
   }
   .rightbtn {
     right: 410px !important;

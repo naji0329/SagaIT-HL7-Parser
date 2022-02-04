@@ -48,6 +48,7 @@ export class SidebarComponent implements OnInit {
     })
   }
 
+
   SidebarComponent_DisplayPreviewModal()
   {
     this.bDisplayPreviewPanel = true;
