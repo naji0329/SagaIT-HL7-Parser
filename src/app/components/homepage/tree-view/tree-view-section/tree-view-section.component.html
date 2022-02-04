@@ -1,68 +1,38 @@
 <div class="table-responsive">
-    
-    
-    <!-- 
-        <table class="table table-border mx-2 table-responsive">
-            <thead>
-                <th>
-                    <th>Value</th>
-                    <th>Opt</th>
-                    <th>RP#</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of items; let i = index" (click)="ReadValues(item)">
-                    <td [style.padding-left]="item.index*40+'px'">
-                        <span (click)="expanded(item)" *ngIf="item.icon && !item.expanded"
-                        class="fa fa-chevron-right toggle-icon"></span>
-                        <span (click)="expanded(item)" *ngIf="item.icon && item.expanded"
-                        class="fa fa-chevron-down toggle-icon"></span>
-                        {{item.value}}
-                        <span *ngIf="item.label" id="hl7length1" class="label label-info">Encapsulated
-                            Data</span>
-                        </td>
-                        <td>{{item.opt}}</td>
-                        <td><span class="fa fa-{{item.rp}}" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                            title="Repeatable Field"></span></td>
-                            <td>{{item.description}}</td>
-                        </tr>
-                    </tbody>
-                </table> -->
-                
+
                 <!-- <div class="tree well">
                     <ul>
                         <li>
-                            <span class="bg-yellow" (click)="DisplayChild1()"><i class="icon-folder-open"></i></span> MSH<em style="font-style: normal;"> (Message Header)</em> 
-                            <ul *ngIf="bDisplayChild1">
+                            <span class="bg-yellow"><i class="icon-folder-open"></i></span> MSH<em style="font-style: normal;"> (Message Header)</em> 
+                            <ul>
                                 <li>
                                     <span class="bg-green"><i class="icon-minus-sign"></i> </span> MSH<em style="font-style: normal;"></em>
                                 </li>
                                 <li>
-                                    <span class="bg-yellow" (click)="DisplayChild2()"><i class="icon-minus-sign"></i> </span> MSH. 1<em style="font-style: normal;"> (Field Separator)</em>
-                                    <ul *ngIf="bDisplayChild2">
+                                    <span class="bg-yellow"><i class="icon-minus-sign"></i> </span> MSH. 1<em style="font-style: normal;"> (Field Separator)</em>
+                                    <ul>
                                         <li>
                                             <span class="bg-green"><i class="icon-leaf"></i>  </span> |<em style="font-style: normal;"></em>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <span class="bg-yellow" (click)="DisplayChild3()"><i class="icon-minus-sign"></i> </span> MSH. 2<em style="font-style: normal;"> (Encoding Characters)</em>
-                                    <ul *ngIf="bDisplayChild3">
+                                    <span class="bg-yellow"><i class="icon-minus-sign"></i> </span> MSH. 2<em style="font-style: normal;"> (Encoding Characters)</em>
+                                    <ul>
                                         <li>
                                             <span class="bg-green"><i class="icon-leaf"></i>  </span> ^~\&<em style="font-style: normal;"></em>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <span class="bg-yellow" (click)="DisplayChild4()"><i class="icon-minus-sign"></i> </span> MSH. 3<em style="font-style: normal;"> (Sending Application)</em>
-                                    <ul *ngIf="bDisplayChild4">
+                                    <span class="bg-yellow"><i class="icon-minus-sign"></i> </span> MSH. 3<em style="font-style: normal;"> (Sending Application)</em>
+                                    <ul>
                                         <li>
                                             <span class="bg-green"><i class="icon-leaf"></i>  </span> MSH. 3<em style="font-style: normal;"></em>
                                         </li>
                                         <li>
-                                            <span class="bg-yellow" (click)="DisplayChild5()"><i class="icon-leaf"></i>  </span> MSH. 3.1<em style="font-style: normal;">(Namespace ID)</em>
-                                            <ul *ngIf="bDisplayChild5">
+                                            <span class="bg-yellow"><i class="icon-leaf"></i>  </span> MSH. 3.1<em style="font-style: normal;">(Namespace ID)</em>
+                                            <ul>
                                                 <li>
                                                     <span class="bg-green"><i class="icon-leaf"></i>  </span> [empty]<em style="font-style: normal;"></em>
                                                 </li>
@@ -74,30 +44,30 @@
                                     <span class="bg-green"><i class="icon-minus-sign"></i> </span> MSH<em style="font-style: normal;"></em>
                                 </li>
                                 <li>
-                                <span class="bg-yellow" (click)="DisplayChild6()"><i class="icon-minus-sign"></i> </span> MSH. 1<em style="font-style: normal;"> (Field Separator)</em>
-                                <ul *ngIf="bDisplayChild6">
+                                <span class="bg-yellow"><i class="icon-minus-sign"></i> </span> MSH. 1<em style="font-style: normal;"> (Field Separator)</em>
+                                <ul>
                                     <li>
                                         <span class="bg-green"><i class="icon-leaf"></i>  </span> |<em style="font-style: normal;"></em>
                                     </li>
                                 </ul>
                                 </li>
                                 <li>
-                                    <span class="bg-yellow" (click)="DisplayChild7()"><i class="icon-minus-sign"></i> </span> MSH. 2<em style="font-style: normal;"> (Encoding Characters)</em>
-                                    <ul *ngIf="bDisplayChild7">
+                                    <span class="bg-yellow"><i class="icon-minus-sign"></i> </span> MSH. 2<em style="font-style: normal;"> (Encoding Characters)</em>
+                                    <ul>
                                         <li>
                                             <span class="bg-green"><i class="icon-leaf"></i>  </span> ^~\&<em style="font-style: normal;"></em>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <span class="bg-yellow" (click)="DisplayChild8()"><i class="icon-minus-sign"></i> </span> MSH. 3<em style="font-style: normal;"> (Sending Application)</em>
-                                    <ul *ngIf="bDisplayChild8">
+                                    <span class="bg-yellow"><i class="icon-minus-sign"></i> </span> MSH. 3<em style="font-style: normal;"> (Sending Application)</em>
+                                    <ul>
                                         <li>
                                             <span class="bg-green"><i class="icon-leaf"></i>  </span> MSH. 3<em style="font-style: normal;"></em>
                                         </li>
                                         <li>
-                                            <span class="bg-yellow" (click)="DisplayChild9()"><i class="icon-leaf"></i>  </span> MSH. 3.1<em style="font-style: normal;">(Namespace ID)</em>
-                                            <ul *ngIf="bDisplayChild9">
+                                            <span class="bg-yellow"><i class="icon-leaf"></i>  </span> MSH. 3.1<em style="font-style: normal;">(Namespace ID)</em>
+                                            <ul>
                                                 <li>
                                                     <span class="bg-green"><i class="icon-leaf"></i>  </span> [empty]<em style="font-style: normal;"></em>
                                                 </li>
@@ -109,11 +79,31 @@
                         </li>
                     </ul>
                 </div> -->
-        
+               
                 <div class="tree well">
                     <ul>
-                        <li *ngFor="let first of lFirstLevelNesting">
-                            <span class="bg-yellow" (click)="splitBasedOnBar(first)"><i class="icon-folder-open"></i></span>{{first}}<em style="font-style: normal;"></em>
+                        <li *ngFor="let parent of lSecondLevelNesting; index as parentIndex" >
+                            <span class="bg-yellow"  (click)="toggleDisplay('parent'+parentIndex)"><i class="icon-folder-open"></i></span>{{parent.parentNode}}
+                            <ul class="d-none" [id]="'parent'+parentIndex">
+                                <!-- <ng-container > -->
+                                    <li *ngFor="let child of parent.childNodes; index as childIndex">
+                                        <span class="bg-yellow" (click)="toggleDisplay('child'+childIndex)"><i class="icon-minus-sign"></i> </span> {{child.node}}
+                                        <ul  class="d-none" [id]="'child'+childIndex">
+                                            <li *ngFor="let grandChild of child.grandChildNodes; index as childIndex">
+                                                <span class="bg-green"><i class="icon-leaf"></i></span> {{grandChild}}
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- <li *ngIf="child.grandChild">
+                                        <span class="bg-yellow"><i class="icon-minus-sign"></i> </span> MSH. 1<em style="font-style: normal;"> (Field Separator)</em>
+                                        <ul [id]="'child'+childIndex" class="d-none">
+                                            <li>
+                                                <span class="bg-green"><i class="icon-leaf"></i>  </span> |<em style="font-style: normal;"></em>
+                                            </li>
+                                        </ul>
+                                    </li> -->
+                                <!-- </ng-container> -->
+                            </ul>
                         </li>
                     </ul>
                 </div>        
