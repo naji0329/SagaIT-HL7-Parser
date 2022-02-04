@@ -4,10 +4,11 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { ImprintComponent } from './components/imprint/imprint.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { SidebarTestComponent } from './components/sidebar-test/sidebar-test.component';
 import { TestComponent } from './components/test/test.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'homepage', pathMatch: 'full' },
+  { path: '', redirectTo: 'Tool', pathMatch: 'full' },
   {
     path: 'homepage',
     component: HomepageComponent
@@ -28,6 +29,11 @@ const routes: Routes = [
   {
     path: 'test',
     component: TestComponent
+  }
+  ,
+  {
+    path: 'Tool',
+    component: SidebarTestComponent
   }
 ];
 

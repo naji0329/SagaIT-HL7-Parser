@@ -26,6 +26,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { DatePipe } from '@angular/common';
 import { TreeviewModule } from 'ngx-treeview';
 import { TestComponent } from './components/test/test.component';
+import { SidebarTestComponent } from './components/sidebar-test/sidebar-test.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { TestComponent } from './components/test/test.component';
     FooterComponent,
     TreeSiewSectionComponent,
     TestComponent,
+    SidebarTestComponent,
   ],
   imports: [
     BrowserModule,
