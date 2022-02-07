@@ -27,7 +27,10 @@ export class SidebarComponent implements OnInit {
   sDisplayWord : string;
   bDisplayPDFError : boolean = false;
   bDisplayImageError : boolean = false;
-
+  bToggleInputField : boolean = true
+  addBorderClass: string;
+  adjustHeight: string;
+  bDisplayInputIcons : boolean = false;
   constructor(private oDataService : DataService, private oDatePipe : DatePipe, private oThemeService : ThemesService) { }
 
   ngOnInit(): void 
@@ -127,5 +130,19 @@ export class SidebarComponent implements OnInit {
   link.href = source;
   link.download = 'hl7.pdf';
   link.click();
+ }
+ SidebarComponent_EditFieldValue()
+ {
+   this.bToggleInputField = false;
+   this.addBorderClass = 'border';
+   this.adjustHeight = "field-value-height";
+   this.bDisplayInputIcons = true
+ }
+ SidebarComponent_RevertToReadOnly()
+ {
+   this.bToggleInputField = true;
+   this.addBorderClass = "";
+   this.adjustHeight = "";
+   this.bDisplayInputIcons = false;
  }
 }
