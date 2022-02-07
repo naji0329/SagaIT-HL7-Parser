@@ -1,9 +1,9 @@
 
 <div class="d-md-flex justify-content-between align-items-center">
     <div style="padding: 3px 0 5px 0">
-        <span id="messageName1" class="label label-info info-badge mr-2 mb-1">Name: Copy of sample MDM^T02 with JPG</span>
+        <!-- <span id="messageName1" class="label label-info info-badge mr-2 mb-1">Name: Copy of sample MDM^T02 with JPG</span> -->
         <span id="hl7length1" class="label label-info info-badge mr-2 mb-1">Message Length: 9917 Characters</span>
-        <span id="selectedField" class="label label-info info-badge mr-2 mb-1">Selected Field: Event Type Code</span>
+        <!-- <span id="selectedField" class="label label-info info-badge mr-2 mb-1">Selected Field: Event Type Code</span> -->
     </div>
     <div class="wrapper">
 
@@ -22,8 +22,26 @@
     
     </div>
 </div>
-<!-- main section -->
-<app-tree-view-section></app-tree-view-section>  
+<!-- Tree view main section -->
+<div class="table-responsive">
+    <div class="tree well">
+        <ul>
+            <li *ngFor="let parent of lSecondLevelNesting; index as parentIndex" >
+                <span class="bg-yellow"  (click)="toggleDisplay('parent'+parentIndex)"><i class="icon-folder-open"></i></span>{{parent.parentNode}}
+                <ul class="d-none" [id]="'parent'+parentIndex">
+                    <li *ngFor="let child of parent.childNodes; index as childIndex">
+                        <span class="bg-yellow" (click)="toggleDisplay('child'+childIndex)"><i class="icon-minus-sign"></i> </span> {{child.node}}
+                        <ul  class="d-none" [id]="'child'+childIndex">
+                            <li *ngFor="let grandChild of child.grandChildNodes; index as grandChildIndex" [id]="'grandChild'+grandChildIndex">
+                                <span class="bg-green" (click)="toggleDisplay('grandChild'+grandChildIndex)"><i class="icon-leaf"></i></span> {{grandChild}}
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>        
+</div>
 
 <!-- new message  modal -->
 <div class="modal fade" id="new-message" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
