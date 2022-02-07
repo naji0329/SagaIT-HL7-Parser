@@ -20,7 +20,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SettingsComponent } from './components/settings/settings.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ResizableModule } from 'angular-resizable-element';
-import { TreeSiewSectionComponent } from './components/homepage/tree-view/tree-view-section/tree-view-section.component';
 import { NgxResizableModule } from '@3dgenomes/ngx-resizable';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { DatePipe } from '@angular/common';
@@ -45,7 +44,6 @@ import { SidebarTestComponent } from './components/sidebar-test/sidebar-test.com
     DataTypesComponent,
     SettingsComponent,
     FooterComponent,
-    TreeSiewSectionComponent,
     TestComponent,
     SidebarTestComponent,
   ],
