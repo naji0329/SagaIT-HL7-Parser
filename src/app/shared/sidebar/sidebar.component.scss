@@ -43,13 +43,12 @@
 
   padding: 20px;
 }
-
-
 .ValueParagraph {
   max-height: 30vh;
   line-break: anywhere;
   line-height: 2rem;
   overflow: auto;
+  min-height: 50px;
 }
 .DescriptionParagraph {
   max-height: 35vh;
@@ -68,3 +67,19 @@
     align-items: center;
     color: #ff0000;
 }
+.ValueParagraph .form-control {
+  border: 0;
+}
+.ValueParagraph .form-control:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #86b7fe;
+  // border: 1px solid #dcdcdc;
+  outline: 0;
+  box-shadow: none !important;
+}
+.ValueParagraph .input-icons {background-color: #fff; padding: 5px; cursor: pointer;}
+.check-icon{position: absolute; bottom: 5px; right: 30px;}
+.cross-icon{position: absolute; bottom: 5px; right: 10px;}
+.field-value-height{min-height: 80px;}
+.ValueParagraph .form-control:disabled, .form-control[readonly] {  background-color: transparent !important;}

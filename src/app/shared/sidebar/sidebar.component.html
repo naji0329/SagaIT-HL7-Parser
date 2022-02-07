@@ -20,6 +20,10 @@
                     </h6>
                 </div>
                 <div class="wrapper">
+                    <div class="icon facebook" (click)="SidebarComponent_EditFieldValue()">
+                        <div class="tooltip">Edit</div>
+                        <span><i class="fa fa-edit"></i></span>
+                    </div>
                     <div class="icon facebook" (click)="SidebarComponent_DisplaypdfFile()">
                         <div class="tooltip">View PDF</div>
                         <span><i class="fa fa-file"></i></span>
@@ -35,9 +39,11 @@
                 </div>
             </div>
 
-            <div id="find-value" class="ValueParagraph border p-2">
-                <p>{{sDisplayWord}}</p>
-   
+            <div id="find-value" class="ValueParagraph {{adjustHeight}} border p-2 position-relative">
+                <!-- <p>{{sDisplayWord}}</p> -->
+                <input *ngIf="sDisplayWord" type="text" class="form-control {{addBorderClass}}" [readonly]="bToggleInputField" [value]="sDisplayWord">
+                <span *ngIf="bDisplayInputIcons" (click)="SidebarComponent_RevertToReadOnly()" class="fa fa-check shadow input-icons mr-2 check-icon"></span>
+                <span *ngIf="bDisplayInputIcons" (click)="SidebarComponent_RevertToReadOnly()" class="fa fa-times shadow input-icons cross-icon"></span>
             </div>
 
             <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-3">
