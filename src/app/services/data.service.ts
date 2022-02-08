@@ -8,5 +8,6 @@ export class DataService {
 
   oWordToSearch = new BehaviorSubject<any>({header : "", word : ""});
   sTreeViewData = new BehaviorSubject<string>("");
+  oWordToUpdate = new BehaviorSubject<any>({header : "", word : ""});
   constructor() { }
 }

@@ -13,10 +13,15 @@ export class EditorComponent implements OnInit {
   fileUrl: any = "";
   oOriginalValue : any;
   sTextAreaValue : string;
-
+  nStartIndex: number;
+  sStartString: any;
+  sEndString: any;
   constructor(private oDataService : DataService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void 
+  {
+    this.EditorMainSectionComponent_UpdateEditedText()
+  }
   
   EditorMainSectionComponent_ExportFile()
   {
@@ -32,19 +37,38 @@ export class EditorComponent implements OnInit {
   }
   EditorMainSectionComponent_CalculateHeaders(sIncommingTextArea : any)
   {
-    let nStartPosition = sIncommingTextArea.selectionStart;
+    let nStartPosition = sIncommingTextArea.selectionStart;  
     let nEndPosition = sIncommingTextArea.selectionEnd;
     if(nStartPosition == nEndPosition)
     {
       let startSubStr : string = sIncommingTextArea.value.substring(0, nStartPosition)
       let endSubStr: string = sIncommingTextArea.value.substring(nStartPosition, sIncommingTextArea.value.length)
+      if((startSubStr.lastIndexOf('|') > startSubStr.lastIndexOf('^')) == true)
+      {
+        this.nStartIndex = startSubStr.lastIndexOf('|');
+        // console.log("The Start index is===>>>", this.nStartIndex);
+        this.sStartString = sIncommingTextArea.value.substring(0, this.nStartIndex);
+        // console.log("The start string is===>>>",this.sStartString);
+        this.sEndString = sIncommingTextArea.value.substring(this.nStartIndex, sIncommingTextArea.value.length);
+        // console.log("The end string is===>>>", this.sEndString);
+      }
+      else if((startSubStr.lastIndexOf('|') > startSubStr.lastIndexOf('^')) == false)
+      {
+        this.nStartIndex = startSubStr.lastIndexOf('^');
+        // console.log("The Start index is===>>>", this.nStartIndex);
+        this.sStartString = sIncommingTextArea.value.substring(0, this.nStartIndex);
+        // console.log("The start string is===>>>",this.sStartString);
+        this.sEndString = sIncommingTextArea.value.substring(this.nStartIndex, sIncommingTextArea.value.length);
+        // console.log("The end string is===>>>", this.sEndString);
+
+      }
       let selectedWord = "";
       if(startSubStr.lastIndexOf('|') > startSubStr.lastIndexOf('^'))
       {
         endSubStr=endSubStr+"|^";
         if(endSubStr.indexOf('|') > endSubStr.indexOf('^'))
         {
-          selectedWord= startSubStr.substring(startSubStr.lastIndexOf('|')+1, startSubStr.length) + endSubStr.substring(0, endSubStr.indexOf('^'))
+          selectedWord= startSubStr.substring(startSubStr.lastIndexOf('|')+1, startSubStr.length) + endSubStr.substring(0, endSubStr.indexOf('^'));
         }
         else
         {
@@ -105,5 +129,20 @@ export class EditorComponent implements OnInit {
   EditorMainSectionComponent_PassValueToTreeView()
   {
     this.oDataService.sTreeViewData.next(this.sTextAreaValue);
+  }
+  EditorMainSectionComponent_UpdateEditedText()
+  {
+    this.oDataService.oWordToUpdate.subscribe(data=>
+      {
+        console.log("The Incomming Updtaed Word===>>", data)
+        if(data.header!=="")
+        {
+          if(this.sEndString.includes(this.oOriginalValue))
+          {
+            this.sEndString = this.sEndString.replace(this.oOriginalValue, data.word);
+          }
+          this.sTextAreaValue = this.sStartString+this.sEndString;
+        }
+      });
   }
 }

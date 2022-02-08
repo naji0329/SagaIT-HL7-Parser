@@ -31,6 +31,7 @@ export class SidebarComponent implements OnInit {
   addBorderClass: string;
   adjustHeight: string;
   bDisplayInputIcons : boolean = false;
+  sSelectedHeader: any;
   constructor(private oDataService : DataService, private oDatePipe : DatePipe, private oThemeService : ThemesService) { }
 
   ngOnInit(): void 
@@ -70,6 +71,7 @@ export class SidebarComponent implements OnInit {
   }
   SidebarComponent_ExtractHeaderDetails(oIncommingData : any)
  {
+  this.sSelectedHeader = oIncommingData.header;
   this.sSelectedWord = oIncommingData.word;
   this.sDisplayWord = JSON.parse(JSON.stringify(this.sSelectedWord));
   let bSelectedProfile = localStorage.getItem('ProfileNumber');
@@ -140,6 +142,8 @@ export class SidebarComponent implements OnInit {
  }
  SidebarComponent_RevertToReadOnly()
  {
+   let obj = this.sDisplayWord;
+   this.oDataService.oWordToUpdate.next({header : this.sSelectedHeader , word :obj});
    this.bToggleInputField = true;
    this.addBorderClass = "";
    this.adjustHeight = "";
