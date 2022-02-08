@@ -143,7 +143,7 @@ export class SidebarComponent implements OnInit {
      this.bDisplayInputIcons = true
    }
    }
- SidebarComponent_RevertToReadOnly()
+   SidebarComponent_SendUpdatedText()
  {
    let obj = this.sDisplayWord;
    this.oDataService.oWordToUpdate.next({header : this.sSelectedHeader , word :obj});
@@ -151,5 +151,12 @@ export class SidebarComponent implements OnInit {
    this.addBorderClass = "";
    this.adjustHeight = "";
    this.bDisplayInputIcons = false;
+ }
+ SidebarComponent_RevertToReadOnlyCross()
+ {
+  this.bToggleInputField = true;
+  this.addBorderClass = "";
+  this.adjustHeight = "";
+  this.bDisplayInputIcons = false;
  }
 }
