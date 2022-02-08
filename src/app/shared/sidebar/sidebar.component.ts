@@ -135,11 +135,14 @@ export class SidebarComponent implements OnInit {
  }
  SidebarComponent_EditFieldValue()
  {
-   this.bToggleInputField = false;
-   this.addBorderClass = 'border';
-   this.adjustHeight = "field-value-height";
-   this.bDisplayInputIcons = true
- }
+   if(this.sDisplayWord)
+   {
+     this.bToggleInputField = false;
+     this.addBorderClass = 'border';
+     this.adjustHeight = "field-value-height";
+     this.bDisplayInputIcons = true
+   }
+   }
  SidebarComponent_RevertToReadOnly()
  {
    let obj = this.sDisplayWord;
