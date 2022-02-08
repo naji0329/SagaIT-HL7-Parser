@@ -12,16 +12,20 @@ export class TreeViewComponent implements OnInit, OnDestroy {
   fileUrl: any = "";
 
   oIncommingTextSubscription : any;
-  sIncommingText : string;
+  sIncommingText : any;
   lFirstLevelNesting : any = [];
   lSecondLevelNesting : any = [];
   lThirdLevelNesting : any = [];
-  
+  oIncomingFilterValue : any;
+  oIncomingFilterText : any;
+  filterData : any;
+  lSecondLevelNestingCopy : any = [];
   constructor(private oDataService : DataService,) {  }
 
 
   ngOnInit(): void {
     this.TreeSiewSectionComponent_DrawTreeView();
+    this.TreeSiewSectionComponent_FilterText();
   }
   fileDownload()
   {
@@ -40,7 +44,10 @@ export class TreeViewComponent implements OnInit, OnDestroy {
       this.bDisplayAlert = false
     }, 3000);
   }
-  ngOnDestroy(){this.oIncommingTextSubscription.unsubscribe();}
+  ngOnDestroy(){
+    this.oIncommingTextSubscription.unsubscribe();
+    this.oIncomingFilterText.unsubscribe();
+  }
   TreeSiewSectionComponent_DrawTreeView()
   {
     this.oIncommingTextSubscription = this.oDataService.sTreeViewData.subscribe(data=> 
@@ -67,6 +74,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
           }
   
           this.lSecondLevelNesting.push(obj);
+          this.lSecondLevelNestingCopy = this.lSecondLevelNesting;
         }
       }
       console.log("First level Nesting + Second Level Nesting : ==> ",this.lSecondLevelNesting);
@@ -95,4 +103,24 @@ export class TreeViewComponent implements OnInit, OnDestroy {
     return sIncommingText.split('^');
 
   }
+  // Filter Text 
+  TreeSiewSectionComponent_FilterText()
+  {
+    this.oIncomingFilterText = this.oDataService.oWordToFilter.subscribe(data=> 
+    {
+      this.oIncomingFilterValue = data;
+      console.log("Filtering The Value : ==> ", this.oIncomingFilterValue);
+      this.search(this.oIncomingFilterValue);
+    })
+  }
+  search(term: any) {
+    if(!term) {
+      this.lSecondLevelNesting = this.lSecondLevelNestingCopy;
+    } else {
+      term = term.toLowerCase();
+      this.filterData = this.lSecondLevelNesting.filter(element => element.parentNode.toLowerCase().includes(term));
+      this.lSecondLevelNesting = this.filterData;
+    }
+  }
+
 }

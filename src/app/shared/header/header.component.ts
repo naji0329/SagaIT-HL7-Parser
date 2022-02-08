@@ -9,6 +9,7 @@ import { version } from 'package.json';
 import * as HL7VERSION2_3_1 from '../../../assets/standard_profiles/version_2_3_1.json';
 import * as HL7VERSION2_5_1 from '../../../assets/standard_profiles/version_2_5_1.json';
 import * as HL7VERSION2_7_1 from '../../../assets/standard_profiles/version_2_7_1.json';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit {
   sBuildVersion: string;
   bToggleSwitch: boolean;
 
-  constructor(private  oRouter : Router , private oThemeService : ThemesService) 
+  constructor(private  oRouter : Router , private oThemeService : ThemesService, private oDataService : DataService) 
   {
     if(this.oRouter.url === '/imprint')
     {
@@ -189,5 +190,11 @@ export class HeaderComponent implements OnInit {
     localStorage.setItem('ProfileNumber', '2_7_1')
     this.oProfileName = HL7VERSION2_7_1.meta.name; 
     this.oProfileName = this.oProfileName.substring(5);
+  }
+  HeaderComponent_FilterWord(event)
+  {
+    let oValue = event.target.value;
+    console.log("Incoming Value ===>>>",oValue);
+    this.oDataService.oWordToFilter.next(oValue)
   }
 }
