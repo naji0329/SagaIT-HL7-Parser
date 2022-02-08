@@ -41,7 +41,7 @@
 
             <div id="find-value" class="ValueParagraph {{adjustHeight}} border p-2 position-relative">
                 <!-- <p>{{sDisplayWord}}</p> -->
-                <input type="text" class="form-control {{addBorderClass}}" [readonly]="bToggleInputField" [value]="sDisplayWord" [(ngModel)]="sDisplayWord">
+                <input type="text" class="form-control" [readonly]="bToggleInputField" [value]="sDisplayWord" [(ngModel)]="sDisplayWord">
                 <span *ngIf="bDisplayInputIcons" (click)="SidebarComponent_SendUpdatedText()" class="fa fa-check shadow input-icons mr-2 check-icon"></span>
                 <span *ngIf="bDisplayInputIcons" (click)="SidebarComponent_RevertToReadOnlyCross()" class="fa fa-times shadow input-icons cross-icon"></span>
             </div>
@@ -62,7 +62,7 @@
         </div>
 
 
-        <div *ngIf="bDisplayPreviewPanel" class="preview-content bg-white shadow">
+        <div *ngIf="bDisplayPreviewPanel" class="preview-content bg-white shadow p-0">
             <img *ngIf="!bDisplayImageError" src="data:image/png;base64,{{sSelectedWord}}" alt=""
                 (error)="SidebarComponent_DisplayImageError()">
             <p class="corrupt-image font-24" *ngIf="bDisplayImageError"> <i class="fa fa-image  mr-2"></i>Invalid Base64

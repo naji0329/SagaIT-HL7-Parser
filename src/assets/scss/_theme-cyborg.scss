@@ -21,8 +21,13 @@
 .cyborg p , .cyborg label {color: #888888 !important;}
 .cyborg .ValueParagraph p {color: #ffffffc4 !important;}
 .cyborg .DescriptionParagraph p {color: #ffffffc4 !important;}
+.cyborg .ValueParagraph input {color: #ffffffc4 !important;}
+.cyborg .ValueParagraph input {background: #212529;}
+.cyborg .ValueParagraph .form-control:focus {background-color: #212529 !important;}
 
-
+.cyborg .ValueParagraph .input-icons {
+  color: black !important;  
+}
 // .cyborg .DescriptionParagraph p , .cyborg label {color: #fff !important;}
 
 .cyborg .label-info {background-color: #9933cc !important;} 
