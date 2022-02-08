@@ -154,6 +154,7 @@ export class SidebarComponent implements OnInit {
  }
  SidebarComponent_RevertToReadOnlyCross()
  {
+  this.sDisplayWord= this.sSelectedWord;
   this.bToggleInputField = true;
   this.addBorderClass = "";
   this.adjustHeight = "";
