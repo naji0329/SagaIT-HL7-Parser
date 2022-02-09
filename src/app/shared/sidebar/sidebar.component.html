@@ -76,7 +76,7 @@
         <div *ngIf="bDisplayPdfPanal" class="preview-content pdf-content bg-white shadow">
             <div>
                 <pdf-viewer *ngIf="!bDisplayPDFError" src="data:application/pdf;base64,{{sSelectedWord}}"
-                    [render-text]="true" [original-size]="false" style="height: 80vh"
+                    [render-text]="true" [original-size]="false" style="height: 78vh"
                     (error)="SidebarComponent_DisplayPDFError()"></pdf-viewer>
                 <p *ngIf="bDisplayPDFError" class="corrupt-image font-24"><i class="fa fa-file  mr-2"></i> Invalid
                     Base64 PDF Data</p>
