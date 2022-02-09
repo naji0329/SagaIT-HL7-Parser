@@ -16,6 +16,9 @@ export class EditorComponent implements OnInit {
   nStartIndex: number;
   sStartString: any;
   sEndString: any;
+  stri: string;
+  nBarcount: number;
+  nCarrotsCount: number;
   constructor(private oDataService : DataService) { }
 
   ngOnInit(): void 
@@ -41,6 +44,7 @@ export class EditorComponent implements OnInit {
     let nEndPosition = sIncommingTextArea.selectionEnd;
     if(nStartPosition == nEndPosition)
     {
+      this.stri = sIncommingTextArea.value.substring(0, nStartPosition);
       let startSubStr : string = sIncommingTextArea.value.substring(0, nStartPosition)
       let endSubStr: string = sIncommingTextArea.value.substring(nStartPosition, sIncommingTextArea.value.length)
       if((startSubStr.lastIndexOf('|') > startSubStr.lastIndexOf('^')) == true)
@@ -109,7 +113,8 @@ export class EditorComponent implements OnInit {
         sHeader = selectedWord.trim();
       }
       // console.log("sHeader =",sHeader);
-      this.oDataService.oWordToSearch.next({header : sHeader, word : this.oOriginalValue});
+      this.EditorMainSectionComponent_CalculateBarLength(this.stri);
+      this.oDataService.oWordToSearch.next({header : sHeader, word : this.oOriginalValue, bars: this.nBarcount, carrots: this.nCarrotsCount});
     }
   }
   EditorMainSectionComponent_ImportFile(event : any)
@@ -144,5 +149,39 @@ export class EditorComponent implements OnInit {
           this.sTextAreaValue = this.sStartString+this.sEndString;
         }
       });
+  }
+  EditorMainSectionComponent_CalculateBarLength(oIncommingData)
+  {
+    var str : any=[] = oIncommingData.split('\n');
+    str = str[str.length-1];
+    console.log("The list >>>>>", str);
+    this.EditorMainSectionComponent_CountBars(str);
+    this.EditorMainSectionComponent_CountCarrots(str);
+  }
+  EditorMainSectionComponent_CountBars(str)
+  {
+    this.nBarcount = 0;
+    for(let i = 0; i< str.length; i++)
+    {
+      if(str.charAt(i) == '|')
+      {
+        this.nBarcount += 1;
+      }
+    }
+    console.log("The Bar Length is>>>",this.nBarcount);
+  }
+  EditorMainSectionComponent_CountCarrots(oIncommingData)
+  {
+    var str: any=[] = oIncommingData.split('|');
+    str = str[str.length-1];
+    this.nCarrotsCount = 0;
+    for(let i = 0; i< str.length; i++)
+    {
+      if(str.charAt(i) == '^')
+      {
+        this.nCarrotsCount += 1;
+      }
+    }
+    console.log("The Carrotts are>>>",this.nCarrotsCount);
   }
 }

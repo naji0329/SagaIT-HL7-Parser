@@ -32,6 +32,13 @@ export class SidebarComponent implements OnInit {
   adjustHeight: string;
   bDisplayInputIcons : boolean = false;
   sSelectedHeader: any;
+  nBarCount: number;
+  nCrrotsCount: number;
+  lFields: any;
+  ldatatypes: any;
+  oDatatype: any;
+  bDatatype: boolean=false;
+  oSelectedDatatypeSeg: any;
   constructor(private oDataService : DataService, private oDatePipe : DatePipe, private oThemeService : ThemesService) { }
 
   ngOnInit(): void 
@@ -73,31 +80,151 @@ export class SidebarComponent implements OnInit {
  {
   this.sSelectedHeader = oIncommingData.header;
   this.sSelectedWord = oIncommingData.word;
+  this.nBarCount = oIncommingData.bars;
+  this.nCrrotsCount = oIncommingData.carrots;
   this.sDisplayWord = JSON.parse(JSON.stringify(this.sSelectedWord));
   let bSelectedProfile = localStorage.getItem('ProfileNumber');
   switch(bSelectedProfile) 
   { 
-    case '2_3_1' : { 
-      this.lSegments = HL7VERSION2_3_1.segments ; 
+    case '2_3_1' : {
+      if(this.nBarCount == 0 && this.nCrrotsCount == 0)
+      {
+        this.lSegments = HL7VERSION2_3_1.segments ; 
+        this.SidebarComponent_MatchSegments();
+      }
+      else if(this.nBarCount>0 && this.nCrrotsCount == 0)
+      {
+        this.lFields = HL7VERSION2_3_1.fields;
+        this.SidebarComponent_MatchFields();
+      }
+      else if(this.nBarCount>0 && this.nCrrotsCount>0)
+      {
+        this.lFields = HL7VERSION2_3_1.fields;
+        this.SidebarComponent_MatchDatatypes();
+      }
       break; 
     } 
-    case '2_5_1' : { 
+    case '2_5_1' : {
+      if(this.nBarCount == 0 && this.nCrrotsCount == 0)
+      { 
       this.lSegments = HL7VERSION2_5_1.segments ; 
+      this.SidebarComponent_MatchSegments();
+      }
+      else if(this.nBarCount>0 && this.nCrrotsCount == 0)
+      {
+        this.lFields = HL7VERSION2_5_1.fields;
+        this.SidebarComponent_MatchFields();
+      }
+      else if(this.nBarCount>0 && this.nCrrotsCount>0)
+      {
+        this.lFields = HL7VERSION2_5_1.fields;
+        this.SidebarComponent_MatchDatatypes();
+      }
       break; 
     }
     case '2_7_1' : { 
-      this.lSegments = HL7VERSION2_7_1.segments ; 
+      if(this.nBarCount == 0 && this.nCrrotsCount == 0)
+      {
+        this.lSegments = HL7VERSION2_7_1.segments ;
+        this.SidebarComponent_MatchSegments();
+      }
+      else if(this.nBarCount>0 && this.nCrrotsCount == 0)
+      {
+        this.lFields = HL7VERSION2_7_1.fields ;
+        this.SidebarComponent_MatchFields();
+      }
+      else if(this.nBarCount>0 && this.nCrrotsCount>0)
+      {
+        this.lFields = HL7VERSION2_7_1.fields ;
+        this.SidebarComponent_MatchDatatypes();
+      }
       break; 
     }
     default :  {
-      this.lSegments = HL7VERSION2_7_1.segments ; 
+      if(this.nBarCount == 0 && this.nCrrotsCount == 0)
+      {
+        this.lSegments = HL7VERSION2_7_1.segments ;
+        this.SidebarComponent_MatchSegments();
+      }
+      else if(this.nBarCount>0 && this.nCrrotsCount == 0)
+      {
+        this.lFields = HL7VERSION2_7_1.fields;
+        this.SidebarComponent_MatchFields();
+      }
+      else if(this.nBarCount>0 && this.nCrrotsCount>0)
+      {
+        this.lFields = HL7VERSION2_7_1.fields;
+        this.SidebarComponent_MatchDatatypes();
+      }
       break; 
     }
   }
+ }
+ SidebarComponent_MatchDatatypes()
+ {
+   this.bDatatype=true;
+  this.oSelectedDatatypeSeg = undefined;
+  let nField = this.sSelectedHeader+"."+this.nBarCount;
+  for(let nIndex = 0;nIndex < this.lFields.length;nIndex++)
+  {
+    if(this.lFields[nIndex].seg === nField)
+    {
+    this.oDatatype = this.lFields[nIndex].datatype;
+    }
+  }
+  console.log("The Data Type is>>>", this.oDatatype);
+  this.ldatatypes = HL7VERSION2_3_1.datatypes;
+  this.oSelectedDatatypeSeg = undefined;
+  for(let nIndex = 0;nIndex < this.ldatatypes.length;nIndex++)
+  {
+    if(this.ldatatypes[nIndex].id === this.oDatatype)
+    {
+      this.oSelectedDatatypeSeg = this.ldatatypes[nIndex];
+      console.log("Selected DataType ===>>>",this.oSelectedDatatypeSeg);
+      if(this.ldatatypes[nIndex].fields.length>0)
+      {
+        this.SidebarComponent_MatchFieldsInDatatypes();
+      }
+      break;
+    }
+  }
+}
+SidebarComponent_MatchFieldsInDatatypes()
+{
+  let lfieldsinDataTypes = this.oSelectedDatatypeSeg.fields;
+  // console.log("The fields of selected datatype>>>", lfieldsinDataTypes);
+  for(let nIndex = 0;nIndex < lfieldsinDataTypes.length;nIndex++)
+  {
+    if(lfieldsinDataTypes[nIndex].id === this.oDatatype+"."+this.nCrrotsCount)
+    {
+      this.oSelectedDatatypeSeg = lfieldsinDataTypes[nIndex];
+      break;
+    }
+  }
+  console.log("Selected Field of Datatype ===>>>",this.oSelectedDatatypeSeg);
+}
+ SidebarComponent_MatchFields()
+ {
+  this.bDatatype = false;
+  this.oSelectedSegment = undefined;
+  let nField = this.sSelectedHeader+"."+this.nBarCount;
+  for(let nIndex = 0;nIndex < this.lFields.length;nIndex++)
+  {
+    if(this.lFields[nIndex].seg === nField)
+    {
+      this.oSelectedSegment = this.lFields[nIndex];
+      console.log("Selected Field ===>>>",this.oSelectedSegment);
+      break;
+    }
+  }
+ }
+ SidebarComponent_MatchSegments()
+ {
+  this.bDatatype = false;
   this.oSelectedSegment = undefined;
   for(let nIndex = 0;nIndex < this.lSegments.length;nIndex++)
   {
-    if(this.lSegments[nIndex].seg === oIncommingData.header)
+    if(this.lSegments[nIndex].seg === this.sSelectedHeader)
     {
       this.oSelectedSegment = this.lSegments[nIndex];
       console.log("Selected Segment ===>>>",this.oSelectedSegment);
