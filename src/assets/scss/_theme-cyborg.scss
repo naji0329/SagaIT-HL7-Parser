@@ -57,6 +57,19 @@
 .cyborg .tabs .slider .indicator { background: #fff;}
 .cyborg .label-info.info-badge{font-size: 15px !important;}
 
+.cyborg .ValueParagraph .input-icons{
+  background-color: #9933cc !important;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 60%;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  color: #fff !important;
+}
+.cyborg .ValueParagraph .input-icons:hover{
+  background-color: #000 !important;
+  color: #fff !important;
+}
 .cyborg .wrapper .icon {
 	background-color: #9933cc;
 	color: #fff !important;

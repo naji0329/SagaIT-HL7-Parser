@@ -27,13 +27,13 @@
     <div class="tree well">
         <ul>
             <li *ngFor="let parent of lSecondLevelNesting; index as parentIndex" >
-                <span class="bg-yellow"  (click)="toggleDisplay('parent'+parentIndex)"><i class="icon-folder-open"></i></span>{{parent.parentNode}}
+                <span class="bg-yellow"  (click)="toggleDisplay('parent'+parentIndex)"><i class="icon-folder-open"></i></span>{{parent.parentNode | slice : 0 : 129}} 
                 <ul class="d-none" [id]="'parent'+parentIndex">
                     <li *ngFor="let child of parent.childNodes; index as childIndex">
-                        <span class="bg-yellow" (click)="toggleDisplay('child'+childIndex)"><i class="icon-minus-sign"></i> </span> {{child.node}}
+                        <span class="bg-yellow" (click)="toggleDisplay('child'+childIndex)"><i class="icon-minus-sign"></i> </span> {{child.node | slice : 0 : 129}}
                         <ul  class="d-none" [id]="'child'+childIndex">
                             <li *ngFor="let grandChild of child.grandChildNodes; index as grandChildIndex" [id]="'grandChild'+grandChildIndex">
-                                <span class="bg-green" (click)="toggleDisplay('grandChild'+grandChildIndex)"><i class="icon-leaf"></i></span> {{grandChild}}
+                                <span class="bg-green" (click)="toggleDisplay('grandChild'+grandChildIndex)"><i class="icon-leaf"></i></span> {{grandChild | slice : 0 : 129}}
                             </li>
                         </ul>
                     </li>
