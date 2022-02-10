@@ -35,7 +35,7 @@ export class SidebarComponent implements OnInit {
   nBarCount: number;
   nCrrotsCount: number;
   lFields: any;
-  ldatatypes: any;
+  lDatatypes: any;
   oDatatype: any;
   bDatatype: boolean=false;
   oSelectedDatatypeSeg: any;
@@ -78,6 +78,9 @@ export class SidebarComponent implements OnInit {
   }
   SidebarComponent_ExtractHeaderDetails(oIncommingData : any)
  {
+  this.lFields =[];
+  this.lSegments =[];
+  this.lDatatypes =[];
   this.sSelectedHeader = oIncommingData.header;
   this.sSelectedWord = oIncommingData.word;
   this.nBarCount = oIncommingData.bars;
@@ -100,6 +103,17 @@ export class SidebarComponent implements OnInit {
       else if(this.nBarCount>0 && this.nCrrotsCount>0)
       {
         this.lFields = HL7VERSION2_3_1.fields;
+        this.oSelectedSegment = undefined;
+        let nField = this.sSelectedHeader+"."+this.nBarCount;
+        for(let nIndex = 0;nIndex < this.lFields.length;nIndex++)
+        {
+          if(this.lFields[nIndex].seg === nField)
+          {
+            this.oSelectedSegment = this.lFields[nIndex];
+            console.log("Selected Field ===>>>",this.oSelectedSegment);
+            break;
+          }
+        }
         this.SidebarComponent_MatchDatatypes();
       }
       break; 
@@ -118,6 +132,17 @@ export class SidebarComponent implements OnInit {
       else if(this.nBarCount>0 && this.nCrrotsCount>0)
       {
         this.lFields = HL7VERSION2_5_1.fields;
+        this.oSelectedSegment = undefined;
+        let nField = this.sSelectedHeader+"."+this.nBarCount;
+        for(let nIndex = 0;nIndex < this.lFields.length;nIndex++)
+        {
+          if(this.lFields[nIndex].seg === nField)
+          {
+            this.oSelectedSegment = this.lFields[nIndex];
+            console.log("Selected Field ===>>>",this.oSelectedSegment);
+            break;
+          }
+        }
         this.SidebarComponent_MatchDatatypes();
       }
       break; 
@@ -136,6 +161,17 @@ export class SidebarComponent implements OnInit {
       else if(this.nBarCount>0 && this.nCrrotsCount>0)
       {
         this.lFields = HL7VERSION2_7_1.fields ;
+        this.oSelectedSegment = undefined;
+        let nField = this.sSelectedHeader+"."+this.nBarCount;
+        for(let nIndex = 0;nIndex < this.lFields.length;nIndex++)
+        {
+          if(this.lFields[nIndex].seg === nField)
+          {
+            this.oSelectedSegment = this.lFields[nIndex];
+            console.log("Selected Field ===>>>",this.oSelectedSegment);
+            break;
+          }
+        }
         this.SidebarComponent_MatchDatatypes();
       }
       break; 
@@ -154,6 +190,17 @@ export class SidebarComponent implements OnInit {
       else if(this.nBarCount>0 && this.nCrrotsCount>0)
       {
         this.lFields = HL7VERSION2_7_1.fields;
+        this.oSelectedSegment = undefined;
+        let nField = this.sSelectedHeader+"."+this.nBarCount;
+        for(let nIndex = 0;nIndex < this.lFields.length;nIndex++)
+        {
+          if(this.lFields[nIndex].seg === nField)
+          {
+            this.oSelectedSegment = this.lFields[nIndex];
+            console.log("Selected Field ===>>>",this.oSelectedSegment);
+            break;
+          }
+        }
         this.SidebarComponent_MatchDatatypes();
       }
       break; 
@@ -162,7 +209,7 @@ export class SidebarComponent implements OnInit {
  }
  SidebarComponent_MatchDatatypes()
  {
-   this.bDatatype=true;
+  this.bDatatype=true;
   this.oSelectedDatatypeSeg = undefined;
   let nField = this.sSelectedHeader+"."+this.nBarCount;
   for(let nIndex = 0;nIndex < this.lFields.length;nIndex++)
@@ -173,15 +220,15 @@ export class SidebarComponent implements OnInit {
     }
   }
   console.log("The Data Type is>>>", this.oDatatype);
-  this.ldatatypes = HL7VERSION2_3_1.datatypes;
+  this.lDatatypes = HL7VERSION2_3_1.datatypes;
   this.oSelectedDatatypeSeg = undefined;
-  for(let nIndex = 0;nIndex < this.ldatatypes.length;nIndex++)
+  for(let nIndex = 0;nIndex < this.lDatatypes.length;nIndex++)
   {
-    if(this.ldatatypes[nIndex].id === this.oDatatype)
+    if(this.lDatatypes[nIndex].id === this.oDatatype)
     {
-      this.oSelectedDatatypeSeg = this.ldatatypes[nIndex];
+      this.oSelectedDatatypeSeg = this.lDatatypes[nIndex];
       console.log("Selected DataType ===>>>",this.oSelectedDatatypeSeg);
-      if(this.ldatatypes[nIndex].fields.length>0)
+      if(this.lDatatypes[nIndex].fields.length>0)
       {
         this.SidebarComponent_MatchFieldsInDatatypes();
       }
@@ -201,7 +248,7 @@ SidebarComponent_MatchFieldsInDatatypes()
       break;
     }
   }
-  console.log("Selected Field of Datatype ===>>>",this.oSelectedDatatypeSeg);
+  console.log("Selected Datatype Field ===>>>",this.oSelectedDatatypeSeg);
 }
  SidebarComponent_MatchFields()
  {

@@ -3,7 +3,7 @@
         <div class="col-12 p-3">
             <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2">
                 <div style="padding: 3px 0 5px 0" *ngIf="this.oSelectedSegment">
-                    <h6 class="m-2">{{oSelectedSegment?.seg}}.{{bDatatype?nCrrotsCount:''}}  - {{bDatatype ? oSelectedDatatypeSeg?.id: oSelectedSegment?.name}}</h6>
+                    <h6 class="m-2">{{oSelectedSegment?.seg}}{{bDatatype?'.':''}}{{bDatatype?nCrrotsCount:''}}  - {{bDatatype ? oSelectedDatatypeSeg?.id: oSelectedSegment?.name}}</h6>
                 </div>
                 <div style="padding: 3px 0 5px 0" *ngIf="!this.oSelectedSegment">
                     <h6 class="m-2">Field Name</h6>
