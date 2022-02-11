@@ -153,11 +153,17 @@ ul.dropdown-menu {min-width: auto !important;}
     border: none;
     position: absolute;
     top: 48%;
-    right: 10px;
+    right: 12px;
     z-index:0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .closeBtn{
+  .closeBtn {
     font-size: 20px;
     cursor: pointer;
     background-color: #fff;
@@ -166,9 +172,15 @@ ul.dropdown-menu {min-width: auto !important;}
     border: none;
     position: absolute;
     top: 48%;
-    left: -40px;
-    z-index:3;
-  }
+    left: -50px;
+    z-index: 3;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
   .rightbtn {
     right: 410px !important;
 
