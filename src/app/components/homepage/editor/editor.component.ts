@@ -12,7 +12,7 @@ export class EditorComponent implements OnInit {
   sText: string = "";
   fileUrl: any = "";
   oOriginalValue : any;
-  sTextAreaValue : string;
+  sTextAreaValue : string="";
   nStartIndex: number;
   sStartString: any;
   sEndString: any;
@@ -45,77 +45,47 @@ export class EditorComponent implements OnInit {
     if(nStartPosition == nEndPosition)
     {
       this.sStartStringtoCalculateBars = sIncommingTextArea.value.substring(0, nStartPosition);
+      // pick selected word
       let startSubStr : string = sIncommingTextArea.value.substring(0, nStartPosition)
+      let startStr1 = startSubStr.split('\n');
+      let startStr2 = startStr1[startStr1.length-1].split('|');
+      this.nBarcount = startStr2.length-1;
+      // console.log("str 1 bar count:",startStr2.length-1);
+      
+      let startStr3 = startStr2[startStr2.length-1].split("^");
+      this.nCarrotsCount = startStr3.length-1;
+      // console.log("str 1 cart count:",startStr3.length-1);
+      let firstWord = startStr3[startStr3.length-1];
+
       let endSubStr: string = sIncommingTextArea.value.substring(nStartPosition, sIncommingTextArea.value.length)
-      if((startSubStr.lastIndexOf('|') > startSubStr.lastIndexOf('^')) == true)
+      let endStr1 = endSubStr.split('\n');
+      let endStr2 = endStr1[0].split('|');
+      let endStr3 = endStr2[0].split("^");
+      let lastWord = endStr3[0];
+      let completeWord =  firstWord+lastWord;
+      console.log("complete word:",completeWord.trim());
+      
+      // pick selected header
+      let headerTemp = startSubStr.split("\n");
+      let segHeader= headerTemp[headerTemp.length-1].split('|')[0];
+      if(!headerTemp[headerTemp.length-1].includes('|'))
       {
-        this.nStartIndex = startSubStr.lastIndexOf('|');
-        // console.log("The Start index is===>>>", this.nStartIndex);
-        this.sStartString = sIncommingTextArea.value.substring(0, this.nStartIndex);
-        // console.log("The start string is===>>>",this.sStartString);
-        this.sEndString = sIncommingTextArea.value.substring(this.nStartIndex, sIncommingTextArea.value.length);
-        // console.log("The end string is===>>>", this.sEndString);
+        segHeader = segHeader + lastWord;
       }
-      else if((startSubStr.lastIndexOf('|') > startSubStr.lastIndexOf('^')) == false)
-      {
-        this.nStartIndex = startSubStr.lastIndexOf('^');
-        // console.log("The Start index is===>>>", this.nStartIndex);
-        this.sStartString = sIncommingTextArea.value.substring(0, this.nStartIndex);
-        // console.log("The start string is===>>>",this.sStartString);
-        this.sEndString = sIncommingTextArea.value.substring(this.nStartIndex, sIncommingTextArea.value.length);
-        // console.log("The end string is===>>>", this.sEndString);
-      }
-      let selectedWord = "";
+
       if(startSubStr.lastIndexOf('|') > startSubStr.lastIndexOf('^'))
       {
-        endSubStr=endSubStr+"|^";
-        if(endSubStr.indexOf('|') > endSubStr.indexOf('^'))
-        {
-          selectedWord= startSubStr.substring(startSubStr.lastIndexOf('|')+1, startSubStr.length) + endSubStr.substring(0, endSubStr.indexOf('^'));
-        }
-        else
-        {
-          selectedWord= startSubStr.substring(startSubStr.lastIndexOf('|')+1, startSubStr.length) + endSubStr.substring(0, endSubStr.indexOf('|'))
-        }
-
+        this.nStartIndex = startSubStr.lastIndexOf('|');
       }
       else
       {
-        endSubStr=endSubStr+"|^";
-        if(endSubStr.indexOf('|') > endSubStr.indexOf('^'))
-        {
-          selectedWord= startSubStr.substring(startSubStr.lastIndexOf('^')+1, startSubStr.length) + endSubStr.substring(0, endSubStr.indexOf('^'))
-        }
-        else
-        {
-          selectedWord= startSubStr.substring(startSubStr.lastIndexOf('^')+1, startSubStr.length) + endSubStr.substring(0, endSubStr.indexOf('|'))
-        }
-
+        this.nStartIndex = startSubStr.lastIndexOf('^');
       }
-      if(selectedWord.search('\n')>0)
-      {
-        selectedWord=selectedWord.substring(0,selectedWord.indexOf('\n'));
-      }
-      this.oOriginalValue = selectedWord;
-      let sHeader:string ='';
-      if(startSubStr.lastIndexOf('\n') < startSubStr.indexOf('|'))
-      {
-        sHeader = startSubStr.substring(startSubStr.lastIndexOf('\n') , startSubStr.indexOf('|')).trim()
-      }
-      else
-      {
-        // sHeader = sIncommingTextArea.value.substring(startSubStr.lastIndexOf('\n'), endSubStr.indexOf('|')+startSubStr.length).trim()
-        // sHeader = sHeader.substring(0, sHeader.indexOf('|')).trim()
-        sHeader = sIncommingTextArea.value.substring(startSubStr.lastIndexOf('\n'), endSubStr.indexOf('|')+startSubStr.length).trim()
-        let oHeader = sHeader.split('|');
-        sHeader = oHeader[0];
-      }
-      if(sHeader=='')
-      {
-        sHeader = selectedWord.trim();
-      }
-      this.EditorMainSectionComponent_CalculateBarLength(this.sStartStringtoCalculateBars);
-      this.oDataService.oWordToSearch.next({header : sHeader, word : this.oOriginalValue, bars: this.nBarcount, carrots: this.nCarrotsCount, focus: false});
+      this.sStartString = sIncommingTextArea.value.substring(0, this.nStartIndex);
+      this.sEndString = sIncommingTextArea.value.substring(this.nStartIndex, sIncommingTextArea.value.length);
+      console.log("header =",segHeader)
+      this.oOriginalValue  = completeWord;
+      this.oDataService.oWordToSearch.next({header : segHeader, word : this.oOriginalValue, bars: this.nBarcount, carrots: this.nCarrotsCount, focus: false});
     }
   }
   EditorMainSectionComponent_ImportFile(event : any)
@@ -150,40 +120,6 @@ export class EditorComponent implements OnInit {
           this.sTextAreaValue = this.sStartString+this.sEndString;
         }
       });
-  }
-  EditorMainSectionComponent_CalculateBarLength(oIncommingData)
-  {
-    var str : any=[] = oIncommingData.split('\n');
-    str = str[str.length-1];
-    console.log("The list >>>>>", str);
-    this.EditorMainSectionComponent_CountBars(str);
-    this.EditorMainSectionComponent_CountCarrots(str);
-  }
-  EditorMainSectionComponent_CountBars(str)
-  {
-    this.nBarcount = 0;
-    for(let i = 0; i< str.length; i++)
-    {
-      if(str.charAt(i) == '|')
-      {
-        this.nBarcount += 1;
-      }
-    }
-    console.log("The Bar Length is>>>",this.nBarcount);
-  }
-  EditorMainSectionComponent_CountCarrots(oIncommingData)
-  {
-    var str: any=[] = oIncommingData.split('|');
-    str = str[str.length-1];
-    this.nCarrotsCount = 0;
-    for(let i = 0; i< str.length; i++)
-    {
-      if(str.charAt(i) == '^')
-      {
-        this.nCarrotsCount += 1;
-      }
-    }
-    console.log("The Carrotts are>>>",this.nCarrotsCount);
   }
   
 }
