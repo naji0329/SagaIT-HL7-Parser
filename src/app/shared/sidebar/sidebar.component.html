@@ -3,7 +3,8 @@
         <div class="col-12 p-3">
             <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2">
                 <div style="padding: 3px 0 5px 0" *ngIf="this.oSelectedSegment">
-                    <h6 class="m-2">{{oSelectedSegment?.seg}}{{bDatatype?'.':''}}{{bDatatype?nCrrotsCount:''}}  - {{bDatatype ? oSelectedDatatypeSeg?.id: oSelectedSegment?.name}}</h6>
+                    <h6 class="m-2">{{oSelectedSegment?.seg}}{{bDatatype?'.':''}}{{bDatatype?nCrrotsCount:''}} -
+                        {{bDatatype ? oSelectedDatatypeSeg?.id: oSelectedSegment?.name}}</h6>
                 </div>
                 <div style="padding: 3px 0 5px 0" *ngIf="!this.oSelectedSegment">
                     <h6 class="m-2">Field Name</h6>
@@ -14,6 +15,7 @@
                     <h6 class="m-2">Field Length: {{sDisplayWord?sDisplayWord.length:0}}</h6>
                 </div>
             </div>
+            <div class="position-relative">
             <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-3">
                 <div style="padding: 3px 0 5px 0">
                     <h6 class="m-2">Field Value
@@ -25,27 +27,29 @@
                         <div *ngIf="bCheck && bTick" class="tooltip">Please click on editor first.</div>
 
                         <span><i class="fa fa-edit"></i></span>
+                   
+                        </div>
+                        <div class="icon facebook" (click)="SidebarComponent_DisplaypdfFile()">
+                            <div class="tooltip">View PDF</div>
+                            <span><i class="fa fa-file"></i></span>
+                        </div>
+                        <div class="icon facebook" (click)="SidebarComponent_DisplayPreviewModal()">
+                            <div class="tooltip ">View Image</div>
+                            <span><i class="fa fa-image"></i></span>
+                        </div>
                     </div>
-                    <div class="icon facebook" (click)="SidebarComponent_DisplaypdfFile()">
-                        <div class="tooltip">View PDF</div>
-                        <span><i class="fa fa-file"></i></span>
-                    </div>
-                    <div class="icon facebook" (click)="SidebarComponent_DisplayPreviewModal()">
-                        <div class="tooltip ">View Image</div>
-                        <span><i class="fa fa-image"></i></span>
-                    </div>
-                    <!-- <div class="icon facebook" >
-                        <div class="tooltip DownloadTooltip">Edit</div>
-                        <span><i class="fa fa-edit"></i></span>
-                    </div> -->
                 </div>
-            </div>
 
-            <div id="find-value" class="ValueParagraph {{adjustHeight}} border p-2 position-relative">
-                <!-- <p>{{sDisplayWord}}</p> -->
-                <input type="text" class="form-control" [readonly]="bToggleInputField" [value]="sDisplayWord" [(ngModel)]="sDisplayWord">
-                <span *ngIf="bDisplayInputIcons" (click)="SidebarComponent_SendUpdatedText()" class="fa fa-check shadow input-icons mr-2 check-icon"></span>
-                <span *ngIf="bDisplayInputIcons" (click)="SidebarComponent_RevertToReadOnlyCross()" class="fa fa-times  shadow input-icons cross-icon"></span>               
+                <div id="find-value" class="value-paragraph {{adjustHeight}} border p-2">
+                    <p *ngIf="bEnableTextarea">{{sDisplayWord}}</p>
+                    <textarea *ngIf="!bEnableTextarea" autocomplete="off" [(ngModel)]="sDisplayWord" appTextareaAutoresize
+                        type="text" class="form-control" [readonly]="bToggleInputField"
+                        [value]="sDisplayWord"> </textarea>
+                    <span *ngIf="bDisplayInputIcons" (click)="SidebarComponent_SendUpdatedText()"
+                        class="fa fa-check shadow input-icons mr-2 check-icon"></span>
+                    <span *ngIf="bDisplayInputIcons" (click)="SidebarComponent_RevertToReadOnlyCross()"
+                        class="fa fa-times  shadow input-icons cross-icon"></span>
+                </div>
             </div>
 
             <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-3">
@@ -56,11 +60,11 @@
             </div>
 
             <div class="DescriptionParagraph border p-2">
-       <div>
-        <p *ngIf="!bDatatype"> {{oSelectedSegment?.desc}}</p>
-        <p *ngIf="bDatatype"> {{oSelectedDatatypeSeg?.desc}}</p>
-        <p *ngIf="this.oSelectedSegment">Chapter: {{oSelectedSegment?.chap}}</p>
-       </div>
+                <div>
+                    <p *ngIf="!bDatatype"> {{oSelectedSegment?.desc}}</p>
+                    <p *ngIf="bDatatype"> {{oSelectedDatatypeSeg?.desc}}</p>
+                    <p *ngIf="this.oSelectedSegment">Chapter: {{oSelectedSegment?.chap}}</p>
+                </div>
             </div>
         </div>
 

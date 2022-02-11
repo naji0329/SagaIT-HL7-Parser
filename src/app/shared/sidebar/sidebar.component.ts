@@ -39,6 +39,8 @@ export class SidebarComponent implements OnInit {
   oDatatype: any;
   bDatatype: boolean=false;
   oSelectedDatatypeSeg: any;
+  userInput : any;
+  bEnableTextarea : boolean = true;
   bCheck: boolean=false;
   bTick: boolean=false;
   constructor(private oDataService : DataService, private oDatePipe : DatePipe, private oThemeService : ThemesService) { }
@@ -84,6 +86,7 @@ export class SidebarComponent implements OnInit {
   this.lSegments =[];
   this.lDatatypes =[];
   this.bCheck = oIncommingData.focus;
+  
   this.bTick = false;
   this.sSelectedHeader = oIncommingData.header;
   this.sSelectedWord = oIncommingData.word;
@@ -313,8 +316,10 @@ SidebarComponent_MatchFieldsInDatatypes()
  }
  SidebarComponent_EditFieldValue()
  {
+   
    if(this.sDisplayWord && this.bCheck==false)
    {
+    this.bEnableTextarea=false;
     this.bToggleInputField = false;
     this.addBorderClass = 'border';
     this.adjustHeight = "field-value-height";
@@ -324,13 +329,15 @@ SidebarComponent_MatchFieldsInDatatypes()
    }
    SidebarComponent_SendUpdatedText()
  {
-   let obj = this.sDisplayWord;
+   let obj = this.sDisplayWord;   
    this.oDataService.oWordToUpdate.next({header : this.sSelectedHeader , word :obj});
    this.bToggleInputField = true;
    this.addBorderClass = "";
    this.adjustHeight = "";
    this.bDisplayInputIcons = false;
+   this.bEnableTextarea=true;
    this.bTick = true;
+   this.Testarea_focusout();
  }
  SidebarComponent_RevertToReadOnlyCross()
  {
@@ -339,6 +346,18 @@ SidebarComponent_MatchFieldsInDatatypes()
   this.addBorderClass = "";
   this.adjustHeight = "";
   this.bDisplayInputIcons = false;
+  this.bEnableTextarea=true;
   this.bTick = true;
+  this.Testarea_focusout();
+
  }
+ Testarea_focusout()
+ {
+   this.bEnableTextarea = true
+   this.bDisplayInputIcons = false
+   
+ }
+
 }
+
+
