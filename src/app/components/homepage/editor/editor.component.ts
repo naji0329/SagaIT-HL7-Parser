@@ -104,15 +104,18 @@ export class EditorComponent implements OnInit {
       }
       else
       {
+        // sHeader = sIncommingTextArea.value.substring(startSubStr.lastIndexOf('\n'), endSubStr.indexOf('|')+startSubStr.length).trim()
+        // sHeader = sHeader.substring(0, sHeader.indexOf('|')).trim()
         sHeader = sIncommingTextArea.value.substring(startSubStr.lastIndexOf('\n'), endSubStr.indexOf('|')+startSubStr.length).trim()
-        sHeader = sHeader.substring(0, sHeader.indexOf('|')).trim()
+        let oHeader = sHeader.split('|');
+        sHeader = oHeader[0];
       }
       if(sHeader=='')
       {
         sHeader = selectedWord.trim();
       }
       this.EditorMainSectionComponent_CalculateBarLength(this.sStartStringtoCalculateBars);
-      this.oDataService.oWordToSearch.next({header : sHeader, word : this.oOriginalValue, bars: this.nBarcount, carrots: this.nCarrotsCount});
+      this.oDataService.oWordToSearch.next({header : sHeader, word : this.oOriginalValue, bars: this.nBarcount, carrots: this.nCarrotsCount, focus: false});
     }
   }
   EditorMainSectionComponent_ImportFile(event : any)

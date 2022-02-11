@@ -21,7 +21,9 @@
                 </div>
                 <div class="wrapper">
                     <div class="icon facebook" (click)='SidebarComponent_EditFieldValue()'>
-                        <div class="tooltip">Edit</div>
+                        <div  *ngIf="!bCheck" class="tooltip">Edit</div>
+                        <div *ngIf="bCheck && bTick" class="tooltip">Please click on editor first.</div>
+
                         <span><i class="fa fa-edit"></i></span>
                     </div>
                     <div class="icon facebook" (click)="SidebarComponent_DisplaypdfFile()">

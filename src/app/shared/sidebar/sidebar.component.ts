@@ -39,6 +39,8 @@ export class SidebarComponent implements OnInit {
   oDatatype: any;
   bDatatype: boolean=false;
   oSelectedDatatypeSeg: any;
+  bCheck: boolean=false;
+  bTick: boolean=false;
   constructor(private oDataService : DataService, private oDatePipe : DatePipe, private oThemeService : ThemesService) { }
 
   ngOnInit(): void 
@@ -81,6 +83,8 @@ export class SidebarComponent implements OnInit {
   this.lFields =[];
   this.lSegments =[];
   this.lDatatypes =[];
+  this.bCheck = oIncommingData.focus;
+  this.bTick = false;
   this.sSelectedHeader = oIncommingData.header;
   this.sSelectedWord = oIncommingData.word;
   this.nBarCount = oIncommingData.bars;
@@ -309,12 +313,13 @@ SidebarComponent_MatchFieldsInDatatypes()
  }
  SidebarComponent_EditFieldValue()
  {
-   if(this.sDisplayWord)
+   if(this.sDisplayWord && this.bCheck==false)
    {
-     this.bToggleInputField = false;
-     this.addBorderClass = 'border';
-     this.adjustHeight = "field-value-height";
-     this.bDisplayInputIcons = true
+    this.bToggleInputField = false;
+    this.addBorderClass = 'border';
+    this.adjustHeight = "field-value-height";
+    this.bDisplayInputIcons = true
+    this.bCheck = true;
    }
    }
    SidebarComponent_SendUpdatedText()
@@ -325,6 +330,7 @@ SidebarComponent_MatchFieldsInDatatypes()
    this.addBorderClass = "";
    this.adjustHeight = "";
    this.bDisplayInputIcons = false;
+   this.bTick = true;
  }
  SidebarComponent_RevertToReadOnlyCross()
  {
@@ -333,5 +339,6 @@ SidebarComponent_MatchFieldsInDatatypes()
   this.addBorderClass = "";
   this.adjustHeight = "";
   this.bDisplayInputIcons = false;
+  this.bTick = true;
  }
 }
