@@ -81,3 +81,10 @@
 textarea {
   resize: none !important;
 }
+
+.view-image.tooltip {
+  left: -125px !important;
+}
+.view-image.tooltip::before {
+  left: 140px !important;
+}
