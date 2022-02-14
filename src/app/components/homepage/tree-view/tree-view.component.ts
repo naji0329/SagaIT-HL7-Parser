@@ -69,7 +69,6 @@ export class TreeViewComponent implements OnInit, OnDestroy {
           {
             const currentChild = child[nChildIndex];
             const grandChild = this.splitBasedOnCap(currentChild);
-
             obj.childNodes.push({ node : currentChild, grandChildNodes : grandChild })
           }
   
@@ -92,16 +91,31 @@ export class TreeViewComponent implements OnInit, OnDestroy {
     {
       item.classList.add('d-none');
     }
-    console.log("Toggle display : ==> ", item);
+    console.log("Incomming Element ID : ==> ", sIncommingObjectID);
   }
   splitBasedOnBar(sIncommingText : any)
   {
-    return sIncommingText.split('|');
+    let lSplittedList =  sIncommingText.split('|');
+    for (let nChildIndex = 0; nChildIndex < lSplittedList.length; nChildIndex++) 
+    {
+      if(lSplittedList[nChildIndex] == "")
+      {
+        lSplittedList[nChildIndex] = "|";
+      }
+    }
+    return lSplittedList;
   }
   splitBasedOnCap(sIncommingText : any)
   {
-    return sIncommingText.split('^');
-
+    let lSplittedList = sIncommingText.split('^');
+    for (let nGrandChildIndex = 0; nGrandChildIndex < lSplittedList.length; nGrandChildIndex++) 
+    {
+      if(lSplittedList[nGrandChildIndex] == "|" || lSplittedList[nGrandChildIndex] == "")
+      {
+        lSplittedList[nGrandChildIndex] = "[empty]";
+      }
+    }
+    return lSplittedList;
   }
   // Filter Text 
   TreeSiewSectionComponent_FilterText()
@@ -122,5 +136,9 @@ export class TreeViewComponent implements OnInit, OnDestroy {
       this.lSecondLevelNesting = this.filterData;
     }
   }
-
+  CalculateHeaders(sIncommingHeader : string ,sIncommingWord : string ,nIncommingBarsCount : number ,nIncommignCarrotsCount : number)
+  {
+    let word = sIncommingWord.includes("|") || sIncommingWord.includes("^") || sIncommingWord.includes("[empty]")?"":sIncommingWord;
+    this.oDataService.oWordToSearch.next({header : sIncommingHeader, word : word, bars: nIncommingBarsCount, carrots: nIncommignCarrotsCount, focus: false});
+  }
 }
