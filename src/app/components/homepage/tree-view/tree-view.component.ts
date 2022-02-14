@@ -52,6 +52,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
   {
     this.oIncommingTextSubscription = this.oDataService.sTreeViewData.subscribe(data=> 
     {
+      this.lSecondLevelNesting=[];
       this.sIncommingText = data;
       this.lFirstLevelNesting = this.sIncommingText.split('\n');
       for (let nTreeNodeIndex = 0; nTreeNodeIndex < this.lFirstLevelNesting.length; nTreeNodeIndex++) 
@@ -140,5 +141,6 @@ export class TreeViewComponent implements OnInit, OnDestroy {
   {
     let word = sIncommingWord.includes("|") || sIncommingWord.includes("^") || sIncommingWord.includes("[empty]")?"":sIncommingWord;
     this.oDataService.oWordToSearch.next({header : sIncommingHeader, word : word, bars: nIncommingBarsCount, carrots: nIncommignCarrotsCount, focus: false});
+    localStorage.setItem("lsSelectedView", 'treeview');
   }
 }

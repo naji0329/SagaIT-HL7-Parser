@@ -86,6 +86,7 @@ export class EditorComponent implements OnInit {
       console.log("header =",segHeader)
       this.oOriginalValue  = completeWord;
       this.oDataService.oWordToSearch.next({header : segHeader, word : this.oOriginalValue, bars: this.nBarcount, carrots: this.nCarrotsCount, focus: false});
+      localStorage.setItem("lsSelectedView", 'editview');
     }
   }
   EditorMainSectionComponent_ImportFile(event : any)
@@ -109,9 +110,12 @@ export class EditorComponent implements OnInit {
   EditorMainSectionComponent_UpdateEditedText()
   {
     this.oDataService.oWordToUpdate.subscribe(data=>
+    {
+      console.log("The Incomming Updtaed Word===>>", data)
+      const sSelectedView = localStorage.getItem('lsSelectedView');
+      if(data.header!=="")
       {
-        console.log("The Incomming Updtaed Word===>>", data)
-        if(data.header!=="")
+        if(sSelectedView=='editview')
         {
           if(this.sEndString.includes(this.oOriginalValue))
           {
@@ -119,7 +123,13 @@ export class EditorComponent implements OnInit {
           }
           this.sTextAreaValue = this.sStartString+this.sEndString;
         }
-      });
+        else
+        {
+          //get start and end index from local storage
+        }
+        this.EditorMainSectionComponent_PassValueToTreeView();
+      }
+    });
   }
   
 }
