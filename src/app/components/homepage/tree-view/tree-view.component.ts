@@ -50,6 +50,21 @@ export class TreeViewComponent implements OnInit, OnDestroy {
     this.sText = "Successful copied to clipboard";
     setTimeout(() => {this.bDisplayAlert = false}, 3000);
   }
+  TreeSiewSectionComponent_ImportFile(event : any)
+  {
+    let file = event.target.files[0];
+    if(file)
+    {
+      const reader = new FileReader();
+      reader.onload = (e)=>
+      {
+        let file = e.target.result;
+        this.sIncommingText = file;
+        this.oDataService.sTreeViewData.next(this.sIncommingText);
+      }
+      reader.readAsText(file);
+    }
+  }
   ngOnDestroy(){
     this.oIncommingTextSubscription.unsubscribe();
     this.oIncomingFilterText.unsubscribe();

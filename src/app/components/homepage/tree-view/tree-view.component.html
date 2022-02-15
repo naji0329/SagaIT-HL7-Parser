@@ -11,10 +11,11 @@
             <div class="tooltip">Copy to clipboard</div>
             <span><i class="fa fa-clipboard"></i></span>
         </div>
-        <div class="icon facebook" data-bs-toggle="modal" data-bs-target="#upload-file">
+        <label for="fileUpload" class="icon facebook">
             <div class="tooltip">Import message</div>
             <span><i class="fa fa-upload"></i></span>
-        </div>
+            <input id="fileUpload"  accept="text/plain, .hl7" type="file" (change)="TreeSiewSectionComponent_ImportFile($event)">
+        </label>
         <div class="icon facebook" (click)="TreeSiewSectionComponent_ExportFile()" >
             <div class="tooltip DownloadTooltip">Export message</div>
             <span ><i class="fa fa-download"></i></span>

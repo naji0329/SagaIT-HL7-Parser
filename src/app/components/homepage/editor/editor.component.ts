@@ -24,6 +24,7 @@ export class EditorComponent implements OnInit {
   ngOnInit(): void 
   {
     this.EditorMainSectionComponent_UpdateEditedText()
+    this.EditorMainSectionComponent_GetTreeValue()
   }
   
   EditorMainSectionComponent_ExportFile()
@@ -107,6 +108,14 @@ export class EditorComponent implements OnInit {
   EditorMainSectionComponent_PassValueToTreeView()
   {
     this.oDataService.sTreeViewData.next(this.sTextAreaValue);
+  }
+  EditorMainSectionComponent_GetTreeValue()
+  {
+    this.oDataService.sTreeViewData.subscribe(data=>
+    {
+      this.sTextAreaValue = data;
+      console.log("Subscribed : ==> ",this.sTextAreaValue )
+    })
   }
   EditorMainSectionComponent_UpdateEditedText()
   {
