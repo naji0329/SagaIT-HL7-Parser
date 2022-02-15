@@ -148,7 +148,10 @@ export class TreeViewComponent implements OnInit, OnDestroy {
     let word = sIncommingWord.includes("|") || sIncommingWord.includes("^") || sIncommingWord.includes("[empty]")?"":sIncommingWord;
     this.oDataService.oWordToSearch.next({header : sIncommingHeader, word : word, bars: nIncommingBarsCount, carrots: nIncommignCarrotsCount, focus: bIncommingFocus});
     localStorage.setItem("lsSelectedView", 'treeview');
-    this.SetStringIndexes(nIncommingSelectedLineIndex,nIncommingBarsCount,nIncommignCarrotsCount,sIncommingWord);
+    if(!bIncommingFocus)
+    {
+      this.SetStringIndexes(nIncommingSelectedLineIndex,nIncommingBarsCount,nIncommignCarrotsCount,sIncommingWord);
+    }
   }
 
   SetStringIndexes(nIncommingSelectedLineIndex : number,nIncommingBarsCount : number,nIncommignCarrotsCount : number, sIncommingWord : string)
@@ -163,10 +166,10 @@ export class TreeViewComponent implements OnInit, OnDestroy {
     {
       if(nIncommingBarsCount == 0 && nIncommignCarrotsCount == 0){break;}
       const sCurrentCharacter = sSelectedLine[nStringToSplitIndex];
-      if(sCurrentCharacter=="|"){nIncommingBarsCount--;}
-      if(sCurrentCharacter=="^"){nIncommignCarrotsCount--;}
-      console.log("BAr count : ==> ",nIncommingBarsCount)
-      console.log("Carrots count : ==> ",nIncommignCarrotsCount)
+      if(sCurrentCharacter=="|"){nIncommingBarsCount==0?nIncommingBarsCount:nIncommingBarsCount--;}
+      if(sCurrentCharacter=="^"){nIncommignCarrotsCount==0?nIncommignCarrotsCount:nIncommignCarrotsCount--;}
+      // console.log("BAr count : ==> ",nIncommingBarsCount)
+      // console.log("Carrots count : ==> ",nIncommignCarrotsCount)
       nBreakPointIndex++;
     }
     console.log("Break point index : ==> ", nBreakPointIndex);
@@ -179,12 +182,12 @@ export class TreeViewComponent implements OnInit, OnDestroy {
       nFirstStringIndex = nFirstStringIndex + nCurrentLineLength;
     }
     nFirstStringIndex = nFirstStringIndex + nBreakPointIndex;
-    console.log("First string index : ==> ", nFirstStringIndex);
+    // console.log("First string index : ==> ", nFirstStringIndex);
     localStorage.setItem('lsOriginalWord', sIncommingWord);
     localStorage.setItem('lsStartIndex', JSON.stringify(nFirstStringIndex));
-    let sStartString = this.sIncommingText.substring(0, nFirstStringIndex);
-    let sEndString= this.sIncommingText.substring(nFirstStringIndex, this.sIncommingText.length);
-    console.log("Start String : ==> ",sStartString);
-    console.log("End String : ==> ",sEndString);
+    // let sStartString = this.sIncommingText.substring(0, nFirstStringIndex);
+    // let sEndString= this.sIncommingText.substring(nFirstStringIndex, this.sIncommingText.length);
+    // console.log("Start String : ==> ",sStartString);
+    // console.log("End String : ==> ",sEndString);
   }
 }
