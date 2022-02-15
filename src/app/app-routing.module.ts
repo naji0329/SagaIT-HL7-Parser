@@ -5,10 +5,10 @@ import { ImprintComponent } from './components/imprint/imprint.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { SidebarTestComponent } from './components/sidebar-test/sidebar-test.component';
-import { TestComponent } from './components/test/test.component';
+// import { TestComponent } from './components/test/test.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'Tool', pathMatch: 'full' },
+  { path: '', redirectTo: 'tool', pathMatch: 'full' },
   {
     path: 'homepage',
     component: HomepageComponent
@@ -26,13 +26,13 @@ const routes: Routes = [
     component: SettingsComponent
   }
   ,
+  // {
+  //   path: 'test',
+  //   component: TestComponent
+  // }
+  // ,
   {
-    path: 'test',
-    component: TestComponent
-  }
-  ,
-  {
-    path: 'Tool',
+    path: 'tool',
     component: SidebarTestComponent
   }
 ];
