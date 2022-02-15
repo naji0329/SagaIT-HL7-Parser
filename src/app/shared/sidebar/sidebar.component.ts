@@ -204,7 +204,7 @@ export class SidebarComponent implements OnInit {
           if(this.lFields[nIndex].seg === nField)
           {
             this.oSelectedSegment = this.lFields[nIndex];
-            console.log("Selected Field ===>>>",this.oSelectedSegment);
+            // console.log("Selected Field ===>>>",this.oSelectedSegment);
             break;
           }
         }

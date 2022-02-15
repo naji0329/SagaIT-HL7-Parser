@@ -7,7 +7,7 @@
     </div>
     <div class="wrapper">
 
-        <div class="icon facebook" data-toggle="tooltip" (click)="CopyToClipBoard()">
+        <div class="icon facebook" data-toggle="tooltip" (click)="TreeSiewSectionComponent_CopyToClipBoard()">
             <div class="tooltip">Copy to clipboard</div>
             <span><i class="fa fa-clipboard"></i></span>
         </div>
@@ -15,7 +15,7 @@
             <div class="tooltip">Import message</div>
             <span><i class="fa fa-upload"></i></span>
         </div>
-        <div class="icon facebook" (click)="fileDownload()" >
+        <div class="icon facebook" (click)="TreeSiewSectionComponent_ExportFile()" >
             <div class="tooltip DownloadTooltip">Export message</div>
             <span ><i class="fa fa-download"></i></span>
         </div>
@@ -27,13 +27,13 @@
     <div class="tree well">
         <ul>
             <li *ngFor="let parent of lSecondLevelNesting; index as parentIndex" >
-                <span class="bg-yellow"  (click)="toggleDisplay('parent'+parentIndex)"><i class="icon-folder-open"></i></span> <em class="font-style-normal" (click)="CalculateHeaders(parent.childNodes[0].node,parent.childNodes[0].node,0,0)">{{parentIndex+1}} : {{parent.parentNode | slice : 0 : 129}}</em> 
+                <span class="bg-yellow"  (click)="toggleDisplay('parent'+parentIndex)"><i class="icon-folder-open"></i></span> <em class="font-style-normal" (click)="CalculateHeaders(parent.childNodes[0].node,parent.childNodes[0].node,0,0,parentIndex,true)">{{parentIndex+1}} : {{parent.parentNode | slice : 0 : 129}}</em> 
                 <ul class="d-none" [id]="'parent'+parentIndex">
                     <li *ngFor="let child of parent.childNodes; index as childIndex">
-                        <span class="bg-yellow" (click)="toggleDisplay('child'+childIndex+'parent'+parentIndex)"><i class="icon-minus-sign"></i> </span><em class="font-style-normal" (click)="CalculateHeaders(parent.childNodes[0].node,child.node,childIndex,0)">{{childIndex!==0?childIndex+' : ':''}} {{child.node | slice : 0 : 129}}</em>
+                        <span class="bg-yellow" (click)="toggleDisplay('child'+childIndex+'parent'+parentIndex)"><i class="icon-minus-sign"></i> </span><em class="font-style-normal" (click)="CalculateHeaders(parent.childNodes[0].node,child.node,childIndex,0,parentIndex,true)">{{childIndex!==0?childIndex+' : ':''}} {{child.node | slice : 0 : 129}}</em>
                         <ul  class="d-none" [id]="'child'+childIndex+'parent'+parentIndex">
                             <li *ngFor="let grandChild of child.grandChildNodes; index as grandChildIndex">
-                                <span class="bg-green"><i class="icon-leaf"></i></span><em class="font-style-normal" (click)="CalculateHeaders(parent.childNodes[0].node,grandChild,childIndex,grandChildIndex)">{{grandChildIndex!==0?grandChildIndex+' : ':''}}{{grandChild | slice : 0 : 129}}</em>
+                                <span class="bg-green"><i class="icon-leaf"></i></span><em class="font-style-normal" (click)="CalculateHeaders(parent.childNodes[0].node,grandChild,childIndex,grandChildIndex,parentIndex,false)">{{grandChildIndex!==0?grandChildIndex+' : ':''}}{{grandChild | slice : 0 : 129}}</em>
                             </li>
                         </ul>
                     </li>

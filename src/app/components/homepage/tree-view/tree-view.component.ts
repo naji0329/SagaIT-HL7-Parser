@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
+import { saveAs as TreeSiewSectionComponent_DownloadResultAsJSON }  from 'save-as';
+
 @Component({
   selector: 'app-tree-view',
   templateUrl: './tree-view.component.html',
@@ -36,13 +38,17 @@ export class TreeViewComponent implements OnInit, OnDestroy {
     link.click();
     document.body.removeChild(link);
   }
-  CopyToClipBoard()
+  TreeSiewSectionComponent_ExportFile()
   {
-    this.bDisplayAlert = true
-    this.sText = "Successful copied to clipboard"
-    setTimeout(() => {
-      this.bDisplayAlert = false
-    }, 3000);
+    let oResults = new Blob([this.sIncommingText], { type: 'text;charset=utf-8' })
+    TreeSiewSectionComponent_DownloadResultAsJSON(oResults, 'message.hl7');
+  }
+  TreeSiewSectionComponent_CopyToClipBoard()
+  {
+    navigator.clipboard.writeText(this.sIncommingText);
+    this.bDisplayAlert = true;
+    this.sText = "Successful copied to clipboard";
+    setTimeout(() => {this.bDisplayAlert = false}, 3000);
   }
   ngOnDestroy(){
     this.oIncommingTextSubscription.unsubscribe();
@@ -137,10 +143,48 @@ export class TreeViewComponent implements OnInit, OnDestroy {
       this.lSecondLevelNesting = this.filterData;
     }
   }
-  CalculateHeaders(sIncommingHeader : string ,sIncommingWord : string ,nIncommingBarsCount : number ,nIncommignCarrotsCount : number)
+  CalculateHeaders(sIncommingHeader : string ,sIncommingWord : string ,nIncommingBarsCount : number ,nIncommignCarrotsCount : number,nIncommingSelectedLineIndex : number, bIncommingFocus  : boolean)
   {
     let word = sIncommingWord.includes("|") || sIncommingWord.includes("^") || sIncommingWord.includes("[empty]")?"":sIncommingWord;
-    this.oDataService.oWordToSearch.next({header : sIncommingHeader, word : word, bars: nIncommingBarsCount, carrots: nIncommignCarrotsCount, focus: false});
+    this.oDataService.oWordToSearch.next({header : sIncommingHeader, word : word, bars: nIncommingBarsCount, carrots: nIncommignCarrotsCount, focus: bIncommingFocus});
     localStorage.setItem("lsSelectedView", 'treeview');
+    this.SetStringIndexes(nIncommingSelectedLineIndex,nIncommingBarsCount,nIncommignCarrotsCount,sIncommingWord);
+  }
+
+  SetStringIndexes(nIncommingSelectedLineIndex : number,nIncommingBarsCount : number,nIncommignCarrotsCount : number, sIncommingWord : string)
+  {
+    let nBreakPointIndex = 0;
+    let lSplittedList = this.sIncommingText.split('\n');
+    const sSelectedLine = lSplittedList[nIncommingSelectedLineIndex];
+    console.log("Selected Line : ==> ", sSelectedLine);
+    // console.log("Selected Line Length : ==> ", sSelectedLine.length);
+    //Find cursor position of selected line
+    for (let nStringToSplitIndex = 0; nStringToSplitIndex <= sSelectedLine.length; nStringToSplitIndex++) 
+    {
+      if(nIncommingBarsCount == 0 && nIncommignCarrotsCount == 0){break;}
+      const sCurrentCharacter = sSelectedLine[nStringToSplitIndex];
+      if(sCurrentCharacter=="|"){nIncommingBarsCount--;}
+      if(sCurrentCharacter=="^"){nIncommignCarrotsCount--;}
+      console.log("BAr count : ==> ",nIncommingBarsCount)
+      console.log("Carrots count : ==> ",nIncommignCarrotsCount)
+      nBreakPointIndex++;
+    }
+    console.log("Break point index : ==> ", nBreakPointIndex);
+    //calculate cursor position in all lines
+    let nFirstStringIndex = 0;
+    for (let nConcatStringIndex = 0; nConcatStringIndex < nIncommingSelectedLineIndex; nConcatStringIndex++) 
+    {
+      const nCurrentLineLength = this.lFirstLevelNesting[nConcatStringIndex].length+1;
+      // console.log("Curent line index : ==> ", nCurrentLineLength);
+      nFirstStringIndex = nFirstStringIndex + nCurrentLineLength;
+    }
+    nFirstStringIndex = nFirstStringIndex + nBreakPointIndex;
+    console.log("First string index : ==> ", nFirstStringIndex);
+    localStorage.setItem('lsOriginalWord', sIncommingWord);
+    localStorage.setItem('lsStartIndex', JSON.stringify(nFirstStringIndex));
+    let sStartString = this.sIncommingText.substring(0, nFirstStringIndex);
+    let sEndString= this.sIncommingText.substring(nFirstStringIndex, this.sIncommingText.length);
+    console.log("Start String : ==> ",sStartString);
+    console.log("End String : ==> ",sEndString);
   }
 }
