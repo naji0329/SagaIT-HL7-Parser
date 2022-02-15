@@ -12,7 +12,7 @@ export class EditorComponent implements OnInit {
   sText: string = "";
   fileUrl: any = "";
   oOriginalValue : any;
-  sTextAreaValue : string="";
+  sTextAreaValue : any="";
   nStartIndex: number;
   sStartString: any;
   sEndString: any;
@@ -28,8 +28,8 @@ export class EditorComponent implements OnInit {
   
   EditorMainSectionComponent_ExportFile()
   {
-    let oJobResults = new Blob([JSON.stringify(this.sTextAreaValue, null, 2)], { type: 'text;charset=utf-8' })
-    EditorMainSectionComponent_DownloadResultAsJSON(oJobResults, 'message.hl7');
+    let oResults = new Blob([this.sTextAreaValue], { type: 'text;charset=utf-8' })
+    EditorMainSectionComponent_DownloadResultAsJSON(oResults, 'message.hl7');
   }
   EditorMainSectionComponent_CopyToClipBoard()
   {
@@ -98,7 +98,8 @@ export class EditorComponent implements OnInit {
       reader.onload = (e)=>
       {
         let file = e.target.result;
-        this.sTextAreaValue = file.toString();
+        this.sTextAreaValue = file;
+        this.EditorMainSectionComponent_PassValueToTreeView();
       }
       reader.readAsText(file);
     }
@@ -115,18 +116,21 @@ export class EditorComponent implements OnInit {
       const sSelectedView = localStorage.getItem('lsSelectedView');
       if(data.header!=="")
       {
-        if(sSelectedView=='editview')
+        if(sSelectedView=='treeview')
         {
-          if(this.sEndString.includes(this.oOriginalValue))
-          {
-            this.sEndString = this.sEndString.replace(this.oOriginalValue, data.word);
-          }
-          this.sTextAreaValue = this.sStartString+this.sEndString;
+          //Update start and end string
+          this.oOriginalValue = localStorage.getItem("lsOriginalWord");
+          this.nStartIndex =  JSON.parse(localStorage.getItem("lsStartIndex"));
+          this.sStartString = this.sTextAreaValue.substring(0, this.nStartIndex);
+          this.sEndString = this.sTextAreaValue.substring(this.nStartIndex, this.sTextAreaValue.length);
         }
-        else
+        if(this.sEndString.includes(this.oOriginalValue))
         {
-          //get start and end index from local storage
+          console.log("Origianl value : ==> ", this.oOriginalValue);
+          this.sEndString = this.sEndString.replace(this.oOriginalValue, data.word);
+          console.log("End String : ==> ", this.sEndString);
         }
+        this.sTextAreaValue = this.sStartString+this.sEndString;
         this.EditorMainSectionComponent_PassValueToTreeView();
       }
     });
