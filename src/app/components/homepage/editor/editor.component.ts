@@ -114,7 +114,7 @@ export class EditorComponent implements OnInit {
     this.oDataService.sTreeViewData.subscribe(data=>
     {
       this.sTextAreaValue = data;
-      console.log("Subscribed : ==> ",this.sTextAreaValue )
+      // console.log("Subscribed : ==> ",this.sTextAreaValue )
     })
   }
   EditorMainSectionComponent_UpdateEditedText()

@@ -22,6 +22,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
   oIncomingFilterText : any;
   filterData : any;
   lSecondLevelNestingCopy : any = [];
+  sSelectedTextId : string;
   constructor(private oDataService : DataService,) {  }
 
 
@@ -81,37 +82,75 @@ export class TreeViewComponent implements OnInit, OnDestroy {
         const parent = this.lFirstLevelNesting[nTreeNodeIndex];
         if(parent !== "")
         {
-          let obj = 
+          let oParentObject = 
           { 
-            parentNode :  "" , childNodes : []
+            parentNode :  { collapsed : "", expanded: "" ,isCollapsed : true} ,  childNodes : []
           };
-          obj.parentNode = parent;
+          oParentObject.parentNode.collapsed = parent;
           const child = this.splitBasedOnBar(parent);
+          // console.log("Childs list : ==> ",child)
+          
+
           for (let nChildIndex = 0; nChildIndex < child.length; nChildIndex++) 
           {
+            if(nChildIndex==0)
+            {
+              oParentObject.parentNode.expanded = child[nChildIndex];
+            }
+
+            let oChildObject = 
+            { 
+              collapsed : "", expanded: "", isCollapsed : true,grandChild : [] 
+            };
             const currentChild = child[nChildIndex];
+
+            oChildObject.collapsed = currentChild;
             const grandChild = this.splitBasedOnCap(currentChild);
-            obj.childNodes.push({ node : currentChild, grandChildNodes : grandChild })
+            if(grandChild.length>1)
+            {
+              oChildObject.expanded = grandChild[0];
+              oChildObject.grandChild = grandChild;
+              //remove first grand child
+              oChildObject.grandChild.splice(0,1);
+            }
+            else
+            {
+              oChildObject.expanded = currentChild;
+              oChildObject.grandChild = [];
+            }
+            oParentObject.childNodes.push(oChildObject)
           }
-  
-          this.lSecondLevelNesting.push(obj);
-          this.lSecondLevelNestingCopy = this.lSecondLevelNesting;
+          //remove first child
+          oParentObject.childNodes.splice(0,1);
+          this.lSecondLevelNesting.push(oParentObject);
         }
       }
+      this.lSecondLevelNestingCopy = this.lSecondLevelNesting;
       console.log("First level Nesting + Second Level Nesting : ==> ",this.lSecondLevelNesting);
       
     })
   }
+  ToggleParentCollapsed(oIncommingParentNodeIndex : number)
+  {
+    this.lSecondLevelNesting[oIncommingParentNodeIndex].parentNode.isCollapsed = !this.lSecondLevelNesting[oIncommingParentNodeIndex].parentNode.isCollapsed;
+  }
+  ToggleChildCollapsed(oIncommingParentNodeIndex : number, oIncommingChildNodeIndex : number)
+  {
+    this.lSecondLevelNesting[oIncommingParentNodeIndex].childNodes[oIncommingChildNodeIndex].isCollapsed = !this.lSecondLevelNesting[oIncommingParentNodeIndex].childNodes[oIncommingChildNodeIndex].isCollapsed;
+  }
   toggleDisplay(sIncommingObjectID : string)
   {
     let item = document.getElementById(sIncommingObjectID);
-    if(item.classList.contains('d-none'))
+    if(item)
     {
-      item.classList.remove('d-none');
-    }
-    else
-    {
-      item.classList.add('d-none');
+      if(item.classList.contains('d-none'))
+      {
+        item.classList.remove('d-none');
+      }
+      else
+      {
+        item.classList.add('d-none');
+      }
     }
     console.log("Incomming Element ID : ==> ", sIncommingObjectID);
   }
@@ -122,7 +161,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
     {
       if(lSplittedList[nChildIndex] == "")
       {
-        lSplittedList[nChildIndex] = "|";
+        lSplittedList[nChildIndex] = "[empty]";
       }
     }
     return lSplittedList;
@@ -132,7 +171,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
     let lSplittedList = sIncommingText.split('^');
     for (let nGrandChildIndex = 0; nGrandChildIndex < lSplittedList.length; nGrandChildIndex++) 
     {
-      if(lSplittedList[nGrandChildIndex] == "|" || lSplittedList[nGrandChildIndex] == "")
+      if(lSplittedList[nGrandChildIndex] == "")
       {
         lSplittedList[nGrandChildIndex] = "[empty]";
       }

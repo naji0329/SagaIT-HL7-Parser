@@ -28,20 +28,31 @@
     <div class="tree well">
         <ul>
             <li *ngFor="let parent of lSecondLevelNesting; index as parentIndex" >
-                <span class="bg-yellow"  (click)="toggleDisplay('parent'+parentIndex)"><i class="icon-folder-open"></i></span> <em class="font-style-normal" (click)="CalculateHeaders(parent.childNodes[0].node,parent.childNodes[0].node,0,0,parentIndex,true)">{{parentIndex+1}} : {{parent.parentNode | slice : 0 : 129}}</em> 
+                <span [ngClass]="parent.parentNode.isCollapsed?'bg-yellow':'bg-green'"  (click)="toggleDisplay('parent'+parentIndex);ToggleParentCollapsed(parentIndex)">
+                    <i class="icon-folder-open"></i>
+                </span> 
+                    <em *ngIf="parent.parentNode.isCollapsed==true" (click)="CalculateHeaders(parent.parentNode.expanded,parent.parentNode.expanded,0,0,parentIndex,true);sSelectedTextId ='parent'+parentIndex;">{{parentIndex+1}}: <em [ngClass]="sSelectedTextId=='parent'+parentIndex?'highlight':''">{{parent.parentNode.collapsed | slice : 0 : 129}}</em> </em> 
+                    <em *ngIf="parent.parentNode.isCollapsed==false" (click)="CalculateHeaders(parent.parentNode.expanded,parent.parentNode.expanded,0,0,parentIndex,false);sSelectedTextId ='parent'+parentIndex;">{{parentIndex+1}}: <em [ngClass]="sSelectedTextId=='parent'+parentIndex?'highlight':''">{{parent.parentNode.expanded}}</em></em> 
                 <ul class="d-none" [id]="'parent'+parentIndex">
                     <li *ngFor="let child of parent.childNodes; index as childIndex">
-                        <span class="bg-yellow" (click)="toggleDisplay('child'+childIndex+'parent'+parentIndex)"><i class="icon-minus-sign"></i> </span><em class="font-style-normal" (click)="CalculateHeaders(parent.childNodes[0].node,child.node,childIndex,0,parentIndex,true)">{{childIndex!==0?childIndex+' : ':''}} {{child.node | slice : 0 : 129}}</em>
+                        <span [ngClass]="child.grandChild.length>0 && child.isCollapsed?'bg-yellow':'bg-green'" (click)="toggleDisplay('child'+childIndex+'parent'+parentIndex);ToggleChildCollapsed(parentIndex,childIndex)">
+                            <i class="icon-minus-sign"></i> 
+                        </span>
+                            <em *ngIf="child.isCollapsed==true" (click)="CalculateHeaders(parent.parentNode.expanded,child.expanded,childIndex,0,parentIndex,child.grandChild.length>0?true:false);sSelectedTextId ='child'+childIndex+'parent'+parentIndex"> {{childIndex+1}}: <em [ngClass]="sSelectedTextId=='child'+childIndex+'parent'+parentIndex?'highlight':''">{{child.collapsed | slice : 0 : 129}}</em></em>
+                            <em *ngIf="child.isCollapsed==false" (click)="CalculateHeaders(parent.parentNode.expanded,child.expanded,childIndex,0,parentIndex,false);sSelectedTextId ='child'+childIndex+'parent'+parentIndex;">{{childIndex+1}}: <em [ngClass]="sSelectedTextId=='child'+childIndex+'parent'+parentIndex?'highlight':''">{{child.expanded}}</em></em>
                         <ul  class="d-none" [id]="'child'+childIndex+'parent'+parentIndex">
-                            <li *ngFor="let grandChild of child.grandChildNodes; index as grandChildIndex">
-                                <span class="bg-green"><i class="icon-leaf"></i></span><em class="font-style-normal" (click)="CalculateHeaders(parent.childNodes[0].node,grandChild,childIndex,grandChildIndex,parentIndex,false)">{{grandChildIndex!==0?grandChildIndex+' : ':''}}{{grandChild | slice : 0 : 129}}</em>
+                            <li *ngFor="let grandChild of child.grandChild; index as grandChildIndex">
+                                <span class="bg-green">
+                                    <i class="icon-leaf"></i>
+                                </span>
+                                    <em (click)="CalculateHeaders(child.expanded,grandChild,childIndex,grandChildIndex,parentIndex,false);sSelectedTextId ='grandChild'+grandChildIndex+'child'+childIndex+'parent'+parentIndex">{{grandChildIndex+1}}: <em [ngClass]="sSelectedTextId=='grandChild'+grandChildIndex+'child'+childIndex+'parent'+parentIndex?'highlight':''">{{grandChild | slice : 0 : 129}}</em></em>
                             </li>
                         </ul>
                     </li>
                 </ul>
             </li>
         </ul>
-    </div>        
+    </div> 
 </div>
 
 <!-- new message  modal -->
