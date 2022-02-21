@@ -235,7 +235,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
     localStorage.setItem("lsSelectedView", 'treeview');
     if(!bIncommingFocus)
     {
-      this.TreeViewSectionComponent_SetStringIndexes(nIncommingSelectedLineIndex,nIncommingBarsCount,nIncommignCarrotsCount,sIncommingWord);
+      this.TreeViewSectionComponent_SetStringIndexes(nIncommingSelectedLineIndex-1,nIncommingBarsCount,nIncommignCarrotsCount,sIncommingWord);
     }
   }
 
@@ -243,6 +243,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
   {
     let nBreakPointIndex = 0;
     let lSplittedList = this.sIncommingText.split('\n');
+    console.log("lSplittedList : ==>",lSplittedList)
     const sSelectedLine = lSplittedList[nIncommingSelectedLineIndex];
     console.log("Selected Line : ==> ", sSelectedLine);
     // console.log("Selected Line Length : ==> ", sSelectedLine.length);

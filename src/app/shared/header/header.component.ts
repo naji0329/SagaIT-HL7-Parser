@@ -205,4 +205,12 @@ export class HeaderComponent implements OnInit {
       this.oDataService.oWordToFilter.next(oValue)
     }
   }
+  HeaderComponent_ResetFilter(event: any)
+  {
+    let oValue = event.target.value;
+    if(oValue == "")
+    {
+      this.oDataService.oWordToFilter.next(oValue)
+    }
+  }
 }
