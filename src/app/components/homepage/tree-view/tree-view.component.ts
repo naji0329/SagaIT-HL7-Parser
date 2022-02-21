@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
-import { saveAs as TreeSiewSectionComponent_DownloadResultAsJSON }  from 'save-as';
+import { saveAs as TreeViewSectionComponent_DownloadResultAsJSON }  from 'save-as';
 
 @Component({
   selector: 'app-tree-view',
@@ -27,31 +27,23 @@ export class TreeViewComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    this.TreeSiewSectionComponent_DrawTreeView();
-    this.TreeSiewSectionComponent_FilterText();
+    this.sSelectedTextId="";
+    this.TreeViewSectionComponent_DrawTreeView();
+    this.TreeViewSectionComponent_FilterText();
   }
-  fileDownload()
-  {
-    const link = document.createElement('a');
-    link.href = this.fileUrl;
-    link.setAttribute('download', 'message.hl7');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
-  TreeSiewSectionComponent_ExportFile()
+  TreeViewSectionComponent_ExportFile()
   {
     let oResults = new Blob([this.sIncommingText], { type: 'text;charset=utf-8' })
-    TreeSiewSectionComponent_DownloadResultAsJSON(oResults, 'message.hl7');
+    TreeViewSectionComponent_DownloadResultAsJSON(oResults, 'message.hl7');
   }
-  TreeSiewSectionComponent_CopyToClipBoard()
+  TreeViewSectionComponent_CopyToClipBoard()
   {
     navigator.clipboard.writeText(this.sIncommingText);
     this.bDisplayAlert = true;
     this.sText = "Successful copied to clipboard";
     setTimeout(() => {this.bDisplayAlert = false}, 3000);
   }
-  TreeSiewSectionComponent_ImportFile(event : any)
+  TreeViewSectionComponent_ImportFile(event : any)
   {
     let file = event.target.files[0];
     if(file)
@@ -70,10 +62,11 @@ export class TreeViewComponent implements OnInit, OnDestroy {
     this.oIncommingTextSubscription.unsubscribe();
     this.oIncomingFilterText.unsubscribe();
   }
-  TreeSiewSectionComponent_DrawTreeView()
+  TreeViewSectionComponent_DrawTreeView()
   {
     this.oIncommingTextSubscription = this.oDataService.sTreeViewData.subscribe(data=> 
     {
+      this.sSelectedTextId="";
       this.lSecondLevelNesting=[];
       this.sIncommingText = data;
       this.lFirstLevelNesting = this.sIncommingText.split('\n');
@@ -87,9 +80,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
             parentNode :  { collapsed : "", expanded: "" ,isCollapsed : true} ,  childNodes : []
           };
           oParentObject.parentNode.collapsed = parent;
-          const child = this.splitBasedOnBar(parent);
-          // console.log("Childs list : ==> ",child)
-          
+          const child = this.TreeViewSectionComponent_SplitBasedOnBar(parent);
 
           for (let nChildIndex = 0; nChildIndex < child.length; nChildIndex++) 
           {
@@ -105,7 +96,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
             const currentChild = child[nChildIndex];
 
             oChildObject.collapsed = currentChild;
-            const grandChild = this.splitBasedOnCap(currentChild);
+            const grandChild = this.TreeViewSectionComponent_SplitBasedOnCap(currentChild);
             if(grandChild.length>1)
             {
               oChildObject.expanded = grandChild[0];
@@ -125,7 +116,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
           this.lSecondLevelNesting.push(oParentObject);
         }
       }
-      this.lSecondLevelNestingCopy = this.lSecondLevelNesting;
+      this.lSecondLevelNestingCopy = JSON.parse(JSON.stringify(this.lSecondLevelNesting));
       console.log("First level Nesting + Second Level Nesting : ==> ",this.lSecondLevelNesting);
       
     })
@@ -138,7 +129,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
   {
     this.lSecondLevelNesting[oIncommingParentNodeIndex].childNodes[oIncommingChildNodeIndex].isCollapsed = !this.lSecondLevelNesting[oIncommingParentNodeIndex].childNodes[oIncommingChildNodeIndex].isCollapsed;
   }
-  toggleDisplay(sIncommingObjectID : string)
+  ToggleDisplay(sIncommingObjectID : string)
   {
     let item = document.getElementById(sIncommingObjectID);
     if(item)
@@ -154,7 +145,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
     }
     console.log("Incomming Element ID : ==> ", sIncommingObjectID);
   }
-  splitBasedOnBar(sIncommingText : any)
+  TreeViewSectionComponent_SplitBasedOnBar(sIncommingText : any)
   {
     let lSplittedList =  sIncommingText.split('|');
     for (let nChildIndex = 0; nChildIndex < lSplittedList.length; nChildIndex++) 
@@ -166,7 +157,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
     }
     return lSplittedList;
   }
-  splitBasedOnCap(sIncommingText : any)
+  TreeViewSectionComponent_SplitBasedOnCap(sIncommingText : any)
   {
     let lSplittedList = sIncommingText.split('^');
     for (let nGrandChildIndex = 0; nGrandChildIndex < lSplittedList.length; nGrandChildIndex++) 
@@ -179,36 +170,76 @@ export class TreeViewComponent implements OnInit, OnDestroy {
     return lSplittedList;
   }
   // Filter Text 
-  TreeSiewSectionComponent_FilterText()
+  TreeViewSectionComponent_FilterText()
   {
     this.oIncomingFilterText = this.oDataService.oWordToFilter.subscribe(data=> 
     {
       this.oIncomingFilterValue = data;
       console.log("Filtering The Value : ==> ", this.oIncomingFilterValue);
-      this.search(this.oIncomingFilterValue);
+      this.TreeViewSectionComponent_DrawTreeView();
+      this.TreeViewSectionComponent_Search(this.oIncomingFilterValue);
     })
   }
-  search(term: any) {
-    if(!term) {
+  TreeViewSectionComponent_Search(term: any) 
+  {
+    if(!term) 
+    {
       this.lSecondLevelNesting = this.lSecondLevelNestingCopy;
-    } else {
+    } 
+    else 
+    {
       term = term.toLowerCase();
-      this.filterData = this.lSecondLevelNesting.filter(element => element.parentNode.toLowerCase().includes(term));
-      this.lSecondLevelNesting = this.filterData;
+      const lFilteredRecord = this.lSecondLevelNesting.filter(element => element.parentNode.collapsed.toLowerCase().includes(term));
+      let lFirstLevelFiltering = lFilteredRecord;
+      if(lFirstLevelFiltering)
+      {
+        for (let nFirstLevelFilterIndex = 0; nFirstLevelFilterIndex < lFirstLevelFiltering.length; nFirstLevelFilterIndex++) 
+        {
+          let currentNode = lFirstLevelFiltering[nFirstLevelFilterIndex];
+          for (let nChildNodesFilterIndex = 0; nChildNodesFilterIndex < currentNode.childNodes.length; nChildNodesFilterIndex++) 
+          {
+            let currentChildNode = currentNode.childNodes[nChildNodesFilterIndex];
+            // console.log("Child : ==> ", currentChildNode);
+            if(currentChildNode.collapsed.toLowerCase().includes(term))
+            {
+              // console.log("Child Node Found : ==> ", currentChildNode);
+              for (let nGrandChildFilterIndex = 0; nGrandChildFilterIndex < currentChildNode.grandChild.length; nGrandChildFilterIndex++) 
+              {
+                let currentGrandChildNode = currentChildNode.grandChild[nGrandChildFilterIndex];
+                // console.log("Grand Child Node : ==> ", currentGrandChildNode);
+                if (currentGrandChildNode.toLowerCase().includes(term)) 
+                {
+                  // console.log("Grand child found : ==> ", currentGrandChildNode);
+                }
+                else
+                {
+                  lFirstLevelFiltering[nFirstLevelFilterIndex].childNodes[nChildNodesFilterIndex].grandChild[nGrandChildFilterIndex] = "";
+                }
+              }
+            }
+            else
+            {
+              lFirstLevelFiltering[nFirstLevelFilterIndex].childNodes[nChildNodesFilterIndex]=[];
+            }
+          }
+        }
+        console.log("First level filtering",lFirstLevelFiltering);
+        this.lSecondLevelNesting = lFirstLevelFiltering;
+      }
     }
   }
-  CalculateHeaders(sIncommingHeader : string ,sIncommingWord : string ,nIncommingBarsCount : number ,nIncommignCarrotsCount : number,nIncommingSelectedLineIndex : number, bIncommingFocus  : boolean)
+  TreeViewSectionComponent_CalculateHeaders(sIncommingHeader : string ,sIncommingWord : string ,nIncommingBarsCount : number ,nIncommignCarrotsCount : number,nIncommingSelectedLineIndex : number, bIncommingFocus  : boolean)
   {
     let word = sIncommingWord.includes("|") || sIncommingWord.includes("^") || sIncommingWord.includes("[empty]")?"":sIncommingWord;
     this.oDataService.oWordToSearch.next({header : sIncommingHeader, word : word, bars: nIncommingBarsCount, carrots: nIncommignCarrotsCount, focus: bIncommingFocus});
     localStorage.setItem("lsSelectedView", 'treeview');
     if(!bIncommingFocus)
     {
-      this.SetStringIndexes(nIncommingSelectedLineIndex,nIncommingBarsCount,nIncommignCarrotsCount,sIncommingWord);
+      this.TreeViewSectionComponent_SetStringIndexes(nIncommingSelectedLineIndex,nIncommingBarsCount,nIncommignCarrotsCount,sIncommingWord);
     }
   }
 
-  SetStringIndexes(nIncommingSelectedLineIndex : number,nIncommingBarsCount : number,nIncommignCarrotsCount : number, sIncommingWord : string)
+  TreeViewSectionComponent_SetStringIndexes(nIncommingSelectedLineIndex : number,nIncommingBarsCount : number,nIncommignCarrotsCount : number, sIncommingWord : string)
   {
     let nBreakPointIndex = 0;
     let lSplittedList = this.sIncommingText.split('\n');
@@ -222,8 +253,6 @@ export class TreeViewComponent implements OnInit, OnDestroy {
       const sCurrentCharacter = sSelectedLine[nStringToSplitIndex];
       if(sCurrentCharacter=="|"){nIncommingBarsCount==0?nIncommingBarsCount:nIncommingBarsCount--;}
       if(sCurrentCharacter=="^"){nIncommignCarrotsCount==0?nIncommignCarrotsCount:nIncommignCarrotsCount--;}
-      // console.log("BAr count : ==> ",nIncommingBarsCount)
-      // console.log("Carrots count : ==> ",nIncommignCarrotsCount)
       nBreakPointIndex++;
     }
     console.log("Break point index : ==> ", nBreakPointIndex);

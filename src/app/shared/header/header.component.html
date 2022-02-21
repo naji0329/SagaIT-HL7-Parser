@@ -46,7 +46,7 @@
                 </li>
 
                 <li *ngIf="bDisplayProfileOptions" class="nav-item mt-2 ml-2">
-                    <input class="form-control me-2" type="search" placeholder="Filter" aria-label="Search" (keyup)="HeaderComponent_FilterWord($event)">
+                    <input class="form-control me-2" type="search" placeholder="Filter" aria-label="Search" (keyup)="HeaderComponent_FilterWord($event, $event.keyCode)">
                 </li>
 
 
