@@ -7,16 +7,16 @@
     </div>
     <div class="wrapper">
 
-        <div class="icon facebook" data-toggle="tooltip" (click)="TreeSiewSectionComponent_CopyToClipBoard()">
+        <div class="icon facebook" data-toggle="tooltip" (click)="TreeViewSectionComponent_CopyToClipBoard()">
             <div class="tooltip">Copy to clipboard</div>
             <span><i class="fa fa-clipboard"></i></span>
         </div>
         <label for="fileUpload" class="icon facebook">
             <div class="tooltip">Import message</div>
             <span><i class="fa fa-upload"></i></span>
-            <input id="fileUpload"  accept="text/plain, .hl7" type="file" (change)="TreeSiewSectionComponent_ImportFile($event)">
+            <input id="fileUpload"  accept="text/plain, .hl7" type="file" (change)="TreeViewSectionComponent_ImportFile($event)">
         </label>
-        <div class="icon facebook" (click)="TreeSiewSectionComponent_ExportFile()" >
+        <div class="icon facebook" (click)="TreeViewSectionComponent_ExportFile()" >
             <div class="tooltip DownloadTooltip">Export message</div>
             <span ><i class="fa fa-download"></i></span>
         </div>
@@ -28,24 +28,20 @@
     <div class="tree well">
         <ul>
             <li *ngFor="let parent of lSecondLevelNesting; index as parentIndex" >
-                <span [ngClass]="parent.parentNode.isCollapsed?'bg-yellow':'bg-green'"  (click)="toggleDisplay('parent'+parentIndex);ToggleParentCollapsed(parentIndex)">
+                <span [ngClass]="parent.parentNode.isCollapsed?'bg-yellow':'bg-green'"  (click)="ToggleDisplay('parent'+parentIndex);ToggleParentCollapsed(parentIndex)">
                     <i class="icon-folder-open"></i>
                 </span> 
-                    <em *ngIf="parent.parentNode.isCollapsed==true" (click)="CalculateHeaders(parent.parentNode.expanded,parent.parentNode.expanded,0,0,parentIndex,true);sSelectedTextId ='parent'+parentIndex;">{{parentIndex+1}}: <em [ngClass]="sSelectedTextId=='parent'+parentIndex?'highlight':''">{{parent.parentNode.collapsed | slice : 0 : 129}}</em> </em> 
-                    <em *ngIf="parent.parentNode.isCollapsed==false" (click)="CalculateHeaders(parent.parentNode.expanded,parent.parentNode.expanded,0,0,parentIndex,false);sSelectedTextId ='parent'+parentIndex;">{{parentIndex+1}}: <em [ngClass]="sSelectedTextId=='parent'+parentIndex?'highlight':''">{{parent.parentNode.expanded}}</em></em> 
+                    <em *ngIf="parent.parentNode.isCollapsed==true" (click)="TreeViewSectionComponent_CalculateHeaders(parent.parentNode.expanded,parent.parentNode.expanded,0,0,parentIndex+1,true);sSelectedTextId ='parent'+parentIndex;">{{parentIndex+1}}: <em [ngClass]="sSelectedTextId=='parent'+parentIndex?'highlight':''">{{parent.parentNode.collapsed | slice : 0 : 129}}</em> </em> 
+                    <em *ngIf="parent.parentNode.isCollapsed==false" (click)="TreeViewSectionComponent_CalculateHeaders(parent.parentNode.expanded,parent.parentNode.expanded,0,0,parentIndex+1,false);sSelectedTextId ='parent'+parentIndex+'expanded';">{{parentIndex+1}}: <em [ngClass]="sSelectedTextId=='parent'+parentIndex+'expanded'?'highlight':''">{{parent.parentNode.expanded}}</em></em> 
                 <ul class="d-none" [id]="'parent'+parentIndex">
-                    <li *ngFor="let child of parent.childNodes; index as childIndex">
-                        <span [ngClass]="child.grandChild.length>0 && child.isCollapsed?'bg-yellow':'bg-green'" (click)="toggleDisplay('child'+childIndex+'parent'+parentIndex);ToggleChildCollapsed(parentIndex,childIndex)">
-                            <i class="icon-minus-sign"></i> 
-                        </span>
-                            <em *ngIf="child.isCollapsed==true" (click)="CalculateHeaders(parent.parentNode.expanded,child.expanded,childIndex,0,parentIndex,child.grandChild.length>0?true:false);sSelectedTextId ='child'+childIndex+'parent'+parentIndex"> {{childIndex+1}}: <em [ngClass]="sSelectedTextId=='child'+childIndex+'parent'+parentIndex?'highlight':''">{{child.collapsed | slice : 0 : 129}}</em></em>
-                            <em *ngIf="child.isCollapsed==false" (click)="CalculateHeaders(parent.parentNode.expanded,child.expanded,childIndex,0,parentIndex,false);sSelectedTextId ='child'+childIndex+'parent'+parentIndex;">{{childIndex+1}}: <em [ngClass]="sSelectedTextId=='child'+childIndex+'parent'+parentIndex?'highlight':''">{{child.expanded}}</em></em>
+                    <li *ngFor="let child of parent.childNodes; index as childIndex" [ngClass]="child.length==0?'d-none':''">
+                        <span [ngClass]="child.grandChild?.length>0 && child.isCollapsed?'bg-yellow':'bg-green'" (click)="ToggleDisplay('child'+childIndex+'parent'+parentIndex);ToggleChildCollapsed(parentIndex,childIndex)"></span>
+                            <em *ngIf="child.isCollapsed==true" (click)="TreeViewSectionComponent_CalculateHeaders(parent.parentNode.expanded,child.expanded,childIndex+1,0,parentIndex+1,child.grandChild.length>0?true:false);sSelectedTextId ='child'+childIndex+'parent'+parentIndex"> {{childIndex+1}}: <em [ngClass]="sSelectedTextId=='child'+childIndex+'parent'+parentIndex?'highlight':''">{{child.collapsed | slice : 0 : 129}}</em></em>
+                            <em *ngIf="child.isCollapsed==false" (click)="TreeViewSectionComponent_CalculateHeaders(parent.parentNode.expanded,child.expanded,childIndex+1,0,parentIndex+1,false);sSelectedTextId ='child'+childIndex+'parent'+parentIndex+'expanded';">{{childIndex+1}}: <em [ngClass]="sSelectedTextId=='child'+childIndex+'parent'+parentIndex+'expanded'?'highlight':''">{{child.expanded}}</em></em>
                         <ul  class="d-none" [id]="'child'+childIndex+'parent'+parentIndex">
-                            <li *ngFor="let grandChild of child.grandChild; index as grandChildIndex">
-                                <span class="bg-green">
-                                    <i class="icon-leaf"></i>
-                                </span>
-                                    <em (click)="CalculateHeaders(child.expanded,grandChild,childIndex,grandChildIndex,parentIndex,false);sSelectedTextId ='grandChild'+grandChildIndex+'child'+childIndex+'parent'+parentIndex">{{grandChildIndex+1}}: <em [ngClass]="sSelectedTextId=='grandChild'+grandChildIndex+'child'+childIndex+'parent'+parentIndex?'highlight':''">{{grandChild | slice : 0 : 129}}</em></em>
+                            <li *ngFor="let grandChild of child.grandChild; index as grandChildIndex" [ngClass]="grandChild==''?'d-none':''">
+                                <span class="bg-green"></span>
+                                    <em (click)="TreeViewSectionComponent_CalculateHeaders(parent.parentNode.expanded,grandChild,childIndex+1,grandChildIndex+1,parentIndex+1,false);sSelectedTextId ='grandChild'+grandChildIndex+'child'+childIndex+'parent'+parentIndex">{{grandChildIndex+1}}: <em [ngClass]="sSelectedTextId=='grandChild'+grandChildIndex+'child'+childIndex+'parent'+parentIndex?'highlight':''">{{grandChild | slice : 0 : 129}}</em></em>
                             </li>
                         </ul>
                     </li>

@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 // import exportFromJSON from 'export-from-json'
 // import * as HL7Inspector from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.5.1-Profile.json';
@@ -191,10 +191,26 @@ export class HeaderComponent implements OnInit {
     this.oProfileName = HL7VERSION2_7_1.meta.name; 
     this.oProfileName = this.oProfileName.substring(5);
   }
-  HeaderComponent_FilterWord(event)
+  HeaderComponent_FilterWord(event: any, keycode : number)
   {
     let oValue = event.target.value;
-    console.log("Incoming Value ===>>>",oValue);
-    this.oDataService.oWordToFilter.next(oValue)
+    //pass value on pressing enter
+    if(keycode == 13)
+    {
+      // console.log("Incoming Value ===>>>",oValue);
+      this.oDataService.oWordToFilter.next(oValue)
+    }
+    if(oValue == "")
+    {
+      this.oDataService.oWordToFilter.next(oValue)
+    }
+  }
+  HeaderComponent_ResetFilter(event: any)
+  {
+    let oValue = event.target.value;
+    if(oValue == "")
+    {
+      this.oDataService.oWordToFilter.next(oValue)
+    }
   }
 }
