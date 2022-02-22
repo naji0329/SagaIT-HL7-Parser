@@ -18,3 +18,7 @@ textarea {resize: none; }
 }
 .panel .panel-info a {text-decoration: none;}
 .panel .panel-info a:hover{text-decoration: underline;}
+
+.alert-success {
+    z-index: 1111111 !important;
+}
