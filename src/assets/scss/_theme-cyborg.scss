@@ -1,6 +1,6 @@
 
 .cyborg-body {background-color: #060606 !important;}
-.cyborg.navbar.navbar-expand-lg.navbar-light.bg-light { background-color: #060606 !important; color: #fff;}
+.cyborg.navbar.navbar-expand-lg.navbar-light.bg-light { background-color: #202020 !important; color: #fff;}
 .cyborg .navbar-brand{color: #fff !important;}
 .cyborg.navbar-light .navbar-nav .nav-link { color:#fff !important; }
 .cyborg .dropdown-menu.show {background:#222 !important; color: #fff !important;}
@@ -15,9 +15,9 @@
 .cyborg .table>:not(caption)>*>* { color: #fff !important;}
 .cyborg .btn.btn-default {background-color: #424242 !important; color: #fff !important; border-color: #424242 !important;}
 .cyborg table {background-color: #181818 !important;}
-.cyborg .panel-info {background-color: #9933cc !important; border-color: transparent !important;}
+.cyborg .panel-info {background-color: #5bc0de !important; border-color: transparent !important;}
 .cyborg .panel-info a {color: #fff !important;}
-.cyborg .card {border-radius: 0 0 .25rem .25rem !important; border-color: #9933cc !important; background-color: #222222 !important; }
+.cyborg .card {border-radius: 0 0 .25rem .25rem !important; border-color: #5bc0de !important; background-color: #222222 !important; }
 .cyborg p , .cyborg label {color: #888888 !important;}
 .cyborg .value-paragraph p {color: #ffffffc4 !important;}
 .cyborg .DescriptionParagraph p {color: #ffffffc4 !important;}
@@ -38,7 +38,7 @@
 }
 // .cyborg .DescriptionParagraph p , .cyborg label {color: #fff !important;}
 
-.cyborg .label-info {background-color: #9933cc !important;} 
+.cyborg .label-info {background-color: #5bc0de !important;} 
 .cyborg small {color: #888888;}
 .cyborg .modal-header ,.cyborg .modal-body,.cyborg .modal-footer{background-color: #202020 !important; color: #fff !important; border: none !important;}
 .cyborg .modal-header , .cyborg .modal-body{border-bottom: 1px solid #282828 !important;}
@@ -66,7 +66,7 @@
 .cyborg .label-info.info-badge{font-size: 15px !important;}
 
 .cyborg .value-paragraph .input-icons{
-  background-color: #9933cc !important;
+  background-color: #5bc0de !important;
   padding: 5px;
   cursor: pointer;
   border-radius: 60%;
@@ -79,13 +79,13 @@
   color: #fff !important;
 }
 .cyborg .wrapper .icon {
-	background-color: #9933cc;
+	background-color: #5bc0de;
 	color: #fff !important;
   }
   .cyborg .wrapper .facebook:hover,
   .cyborg .wrapper .facebook:hover .tooltip,
   .cyborg .wrapper .facebook:hover .tooltip::before {
-  background-color: #000;
+  background-color: #31aed4 !important;
   color: #ffffff;
 }
 
@@ -108,7 +108,7 @@
   }
 
  .cyborg .nav-pills .nav-link.active, .cyborg .nav-pills .show>.nav-link {
-    color: #000 !important;
+    color: #fff !important;
     background-color: #fff;
 }
 .cyborg .border-primary {
@@ -125,9 +125,9 @@
   color: #fff !important;
 }
  .cyborg .nav-pills .nav-link.active, .cyborg .nav-pills .show>.nav-link {
-  color: #000 !important;
-  background-color: #fff !important;
-  border: 1px solid #fff !important;
+  color: #fff !important;
+  background-color: #5bc0de !important;
+  border: 1px solid #5bc0de !important;
 }
 .cyborg .nav-link {
   color: #fff !important;
@@ -140,7 +140,7 @@
 }
 .cyborg .nav-pills .nav-link {
   border-radius: 0 !important;
-  border: 1px solid #fff !important;
+  border: 1px solid #000 !important;
 }
 // logo
 .cyborg .saga-logo{
@@ -172,6 +172,11 @@
 
 .cyborg .btn-primary {
   color: #fff !important;
-  background-color: #9933cc !important;
-  border-color: #9933cc !important;
+  background-color: #5bc0de !important;
+  border-color: #5bc0de !important;
+}
+
+.cyborg .leaf-nodes{
+  border: 1px solid #fff !important;
+  background: #fff !important;
 }
