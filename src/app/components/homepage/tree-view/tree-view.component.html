@@ -28,19 +28,18 @@
     <div class="tree well">
         <ul>
             <li *ngFor="let parent of lSecondLevelNesting; index as parentIndex" >
-                <span [ngClass]="parent.parentNode.isCollapsed?'bg-yellow':'bg-green'"  (click)="ToggleDisplay('parent'+parentIndex);ToggleParentCollapsed(parentIndex)">
-                    <i class="icon-folder-open"></i>
-                </span> 
+                <i class="custom-nodes" (click)="ToggleDisplay('parent'+parentIndex);ToggleParentCollapsed(parentIndex)" [ngClass]="parent.parentNode.isCollapsed?'fa fa-plus':'fa fa-minus'" aria-hidden="true"></i>
                     <em *ngIf="parent.parentNode.isCollapsed==true" (click)="TreeViewSectionComponent_CalculateHeaders(parent.parentNode.expanded,parent.parentNode.expanded,0,0,parentIndex+1,true);sSelectedTextId ='parent'+parentIndex;">{{parentIndex+1}}: <em [ngClass]="sSelectedTextId=='parent'+parentIndex?'highlight':''">{{parent.parentNode.collapsed | slice : 0 : 129}}</em> </em> 
                     <em *ngIf="parent.parentNode.isCollapsed==false" (click)="TreeViewSectionComponent_CalculateHeaders(parent.parentNode.expanded,parent.parentNode.expanded,0,0,parentIndex+1,false);sSelectedTextId ='parent'+parentIndex+'expanded';">{{parentIndex+1}}: <em [ngClass]="sSelectedTextId=='parent'+parentIndex+'expanded'?'highlight':''">{{parent.parentNode.expanded}}</em></em> 
                 <ul class="d-none" [id]="'parent'+parentIndex">
                     <li *ngFor="let child of parent.childNodes; index as childIndex" [ngClass]="child.length==0?'d-none':''">
-                        <span [ngClass]="child.grandChild?.length>0 && child.isCollapsed?'bg-yellow':'bg-green'" (click)="ToggleDisplay('child'+childIndex+'parent'+parentIndex);ToggleChildCollapsed(parentIndex,childIndex)"></span>
+                        <i *ngIf="child.grandChild?.length>0" class="custom-nodes" (click)="ToggleDisplay('child'+childIndex+'parent'+parentIndex);ToggleChildCollapsed(parentIndex,childIndex)" [ngClass]="child.grandChild?.length>0 && child.isCollapsed?'fa fa-plus':'fa fa-minus'" aria-hidden="true"></i>
+                        <i *ngIf="child.grandChild?.length==0" class="leaf-nodes" (click)="ToggleDisplay('child'+childIndex+'parent'+parentIndex);ToggleChildCollapsed(parentIndex,childIndex)"></i>
                             <em *ngIf="child.isCollapsed==true" (click)="TreeViewSectionComponent_CalculateHeaders(parent.parentNode.expanded,child.expanded,childIndex+1,0,parentIndex+1,child.grandChild.length>0?true:false);sSelectedTextId ='child'+childIndex+'parent'+parentIndex"> {{childIndex+1}}: <em [ngClass]="sSelectedTextId=='child'+childIndex+'parent'+parentIndex?'highlight':''">{{child.collapsed | slice : 0 : 129}}</em></em>
                             <em *ngIf="child.isCollapsed==false" (click)="TreeViewSectionComponent_CalculateHeaders(parent.parentNode.expanded,child.expanded,childIndex+1,0,parentIndex+1,false);sSelectedTextId ='child'+childIndex+'parent'+parentIndex+'expanded';">{{childIndex+1}}: <em [ngClass]="sSelectedTextId=='child'+childIndex+'parent'+parentIndex+'expanded'?'highlight':''">{{child.expanded}}</em></em>
                         <ul  class="d-none" [id]="'child'+childIndex+'parent'+parentIndex">
                             <li *ngFor="let grandChild of child.grandChild; index as grandChildIndex" [ngClass]="grandChild==''?'d-none':''">
-                                <span class="bg-green"></span>
+                                    <i  class="leaf-nodes"></i>
                                     <em (click)="TreeViewSectionComponent_CalculateHeaders(parent.parentNode.expanded,grandChild,childIndex+1,grandChildIndex+1,parentIndex+1,false);sSelectedTextId ='grandChild'+grandChildIndex+'child'+childIndex+'parent'+parentIndex">{{grandChildIndex+1}}: <em [ngClass]="sSelectedTextId=='grandChild'+grandChildIndex+'child'+childIndex+'parent'+parentIndex?'highlight':''">{{grandChild | slice : 0 : 129}}</em></em>
                             </li>
                         </ul>
