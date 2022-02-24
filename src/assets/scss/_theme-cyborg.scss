@@ -181,7 +181,12 @@
   background: #fff !important;
 }
 .cyborg .shadow {
-  box-shadow: 0 .15rem 1rem rgba(135,135,135,0.2)!important
-;
-  
+  box-shadow: 0 .15rem 1rem rgba(135,135,135,0.2)!important;
 }
+
+.cyborg .closeicon:hover {
+  background-color: #5bc0de;
+  color: #ffffff !important;
+  text-align: center;
+}
+.cyborg .pdfDownload:hover { background-color: #5bc0de;}
