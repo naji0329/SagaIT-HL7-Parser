@@ -43,6 +43,7 @@ export class SidebarComponent implements OnInit {
   bEnableTextarea : boolean = true;
   bCheck: boolean=false;
   bTick: boolean=false;
+  bSelectedProfile: string;
   constructor(private oDataService : DataService, private oDatePipe : DatePipe, private oThemeService : ThemesService) { }
 
   ngOnInit(): void 
@@ -93,8 +94,8 @@ export class SidebarComponent implements OnInit {
   this.nBarCount = oIncommingData.bars;
   this.nCrrotsCount = oIncommingData.carrots;
   this.sDisplayWord = JSON.parse(JSON.stringify(this.sSelectedWord));
-  let bSelectedProfile = localStorage.getItem('ProfileNumber');
-  switch(bSelectedProfile) 
+  this.bSelectedProfile = localStorage.getItem('ProfileNumber');
+  switch(this.bSelectedProfile) 
   { 
     case '2_3_1' : {
       if(this.nBarCount == 0 && this.nCrrotsCount == 0)
@@ -227,7 +228,18 @@ export class SidebarComponent implements OnInit {
     }
   }
   console.log("The Data Type is>>>", this.oDatatype);
+  if(this.bSelectedProfile === '2_5_1')
+  {
+  this.lDatatypes = HL7VERSION2_5_1.datatypes;
+  }
+  else if(this.bSelectedProfile === '2_3_1')
+  {
   this.lDatatypes = HL7VERSION2_3_1.datatypes;
+  }
+  else if(this.bSelectedProfile === '2_7_1')
+  {
+  this.lDatatypes = HL7VERSION2_7_1.datatypes;
+  }
   this.oSelectedDatatypeSeg = undefined;
   for(let nIndex = 0;nIndex < this.lDatatypes.length;nIndex++)
   {
