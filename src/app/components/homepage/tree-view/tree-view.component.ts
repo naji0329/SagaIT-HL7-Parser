@@ -130,8 +130,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
       }
       this.lSecondLevelNestingCopy = JSON.parse(JSON.stringify(this.lSecondLevelNesting));
       console.log("First level Nesting + Second Level Nesting : ==> ",this.lSecondLevelNesting);
-      
-    })
+    });
   }
   ToggleParentCollapsed(oIncommingParentNodeIndex : number)
   {
@@ -247,7 +246,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
     localStorage.setItem("lsSelectedView", 'treeview');
     if(!bIncommingFocus)
     {
-      this.TreeViewSectionComponent_SetStringIndexes(nIncommingSelectedLineIndex-1,nIncommingBarsCount,nIncommignCarrotsCount,sIncommingWord);
+      this.TreeViewSectionComponent_SetStringIndexes(nIncommingSelectedLineIndex-1,sIncommingHeader=="MSH"?nIncommingBarsCount-1:nIncommingBarsCount,nIncommignCarrotsCount,sIncommingWord);
     }
   }
 
