@@ -51,10 +51,13 @@ export class EditorComponent implements OnInit {
       let startStr1 = startSubStr.split('\n');
       let startStr2 = startStr1[startStr1.length-1].split('|');
       this.nBarcount = startStr2.length-1;
+      // this.nBarcount = startStr2.length;
       // console.log("str 1 bar count:",startStr2.length-1);
       
+      //selecting carrots 
       let startStr3 = startStr2[startStr2.length-1].split("^");
-      this.nCarrotsCount = startStr3.length-1;
+      // this.nCarrotsCount = startStr3.length-1;
+      this.nCarrotsCount = startStr3.length;
       // console.log("str 1 cart count:",startStr3.length-1);
       let firstWord = startStr3[startStr3.length-1];
 
@@ -62,10 +65,13 @@ export class EditorComponent implements OnInit {
       let endStr1 = endSubStr.split('\n');
       let endStr2 = endStr1[0].split('|');
       let endStr3 = endStr2[0].split("^");
+      //with carrots complete word
+      let sCarrotStr = startStr2[startStr2.length-1] + endStr2[0];
+      console.log("the value is ====>>>", sCarrotStr);
+      //last word
       let lastWord = endStr3[0];
       let completeWord =  firstWord+lastWord;
       console.log("complete word:",completeWord.trim());
-      
       // pick selected header
       let headerTemp = startSubStr.split("\n");
       let segHeader= headerTemp[headerTemp.length-1].split('|')[0];
@@ -73,7 +79,6 @@ export class EditorComponent implements OnInit {
       {
         segHeader = segHeader + lastWord;
       }
-
       if(startSubStr.lastIndexOf('|') > startSubStr.lastIndexOf('^'))
       {
         this.nStartIndex = startSubStr.lastIndexOf('|');
@@ -86,6 +91,39 @@ export class EditorComponent implements OnInit {
       this.sEndString = sIncommingTextArea.value.substring(this.nStartIndex, sIncommingTextArea.value.length);
       console.log("header =",segHeader)
       this.oOriginalValue  = completeWord;
+      if(!sCarrotStr.includes("^"))
+      {
+        this.nCarrotsCount=0;
+      }
+      // if(this.oOriginalValue === '~\\&')
+      // {
+      //   this.nCarrotsCount=0;
+      // }
+      if(segHeader===this.oOriginalValue)
+      {
+        this.nBarcount=0;
+        this.nCarrotsCount=0;
+      }
+      //MSH HANDLING//
+      //MSH HANDLING//
+
+      //if MSH>1 Bar = bar+1
+      if(segHeader=="MSH" && this.nBarcount > 1)
+      {
+        this.nBarcount = this.nBarcount+1;
+      }
+      //if MSH1.1 bar 1 , carrot 0
+      if(segHeader=="MSH" && this.nBarcount == 1 && this.nCarrotsCount == 1)
+      {
+        this.nBarcount = 1;
+        this.nCarrotsCount = 0;
+      }
+      //if MSH1.2 bar 2 , carrot 0  
+      if(segHeader=="MSH" && this.nBarcount == 1 && this.nCarrotsCount == 2)
+      {
+        this.nBarcount = 2;
+        this.nCarrotsCount = 0;
+      }
       this.oDataService.oWordToSearch.next({header : segHeader, word : this.oOriginalValue, bars: this.nBarcount, carrots: this.nCarrotsCount, focus: false});
       localStorage.setItem("lsSelectedView", 'editview');
     }

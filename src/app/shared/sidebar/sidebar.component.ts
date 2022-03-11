@@ -98,6 +98,8 @@ export class SidebarComponent implements OnInit {
   switch(this.bSelectedProfile) 
   { 
     case '2_3_1' : {
+      console.log("case 2.3.1");
+      
       if(this.nBarCount == 0 && this.nCrrotsCount == 0)
       {
         this.lSegments = HL7VERSION2_3_1.segments ; 
@@ -127,6 +129,8 @@ export class SidebarComponent implements OnInit {
       break; 
     } 
     case '2_5_1' : {
+      console.log("case 2.5.1");
+
       if(this.nBarCount == 0 && this.nCrrotsCount == 0)
       { 
       this.lSegments = HL7VERSION2_5_1.segments ; 
@@ -156,6 +160,8 @@ export class SidebarComponent implements OnInit {
       break; 
     }
     case '2_7_1' : { 
+      console.log("case 2.7.1");
+
       if(this.nBarCount == 0 && this.nCrrotsCount == 0)
       {
         this.lSegments = HL7VERSION2_7_1.segments ;
@@ -168,6 +174,20 @@ export class SidebarComponent implements OnInit {
       }
       else if(this.nBarCount>0 && this.nCrrotsCount>0)
       {
+        // this.lSegments = HL7VERSION2_7_1.segments;
+        // this.bDatatype = false;
+        // this.oSelectedSegment = undefined;
+        // let nSeg = this.sSelectedHeader+"."+this.nBarCount;
+        // for(let nIndex = 0;nIndex < this.lSegments.length;nIndex++)
+        // {
+        //   if(this.lSegments[nIndex].seg === nSeg)
+        //   {
+        //     this.oSelectedSegment = this.lSegments[nIndex];
+        //     console.log("Selected Segment ===>>>",this.oSelectedSegment);
+        //     break;
+        //   }
+        // }
+
         this.lFields = HL7VERSION2_7_1.fields ;
         this.oSelectedSegment = undefined;
         let nField = this.sSelectedHeader+"."+this.nBarCount;

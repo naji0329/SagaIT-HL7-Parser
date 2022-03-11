@@ -102,7 +102,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
               oChildObject.expanded = grandChild[0];
               oChildObject.grandChild = grandChild;
               //remove first grand child
-              oChildObject.grandChild.splice(0,1);
+             // oChildObject.grandChild.splice(0,1);
             }
             else
             {
@@ -114,6 +114,18 @@ export class TreeViewComponent implements OnInit, OnDestroy {
           //remove first child
           oParentObject.childNodes.splice(0,1);
           this.lSecondLevelNesting.push(oParentObject);
+        }
+      }
+      //MSH handling
+      for (let nMSHHeaderIndex = 0; nMSHHeaderIndex < this.lSecondLevelNesting.length; nMSHHeaderIndex++) 
+      {
+        let oCurrentLine = this.lSecondLevelNesting[nMSHHeaderIndex];
+        if(oCurrentLine.parentNode.expanded == "MSH")
+        {
+          this.lSecondLevelNesting[nMSHHeaderIndex].childNodes.splice(0,1);
+          this.lSecondLevelNesting[nMSHHeaderIndex].childNodes.unshift({ collapsed : "^~\\&", expanded: "^~\\&", isCollapsed : true,grandChild : []});
+          this.lSecondLevelNesting[nMSHHeaderIndex].childNodes.unshift({ collapsed : "|", expanded: "|", isCollapsed : true,grandChild : []});
+          break;
         }
       }
       this.lSecondLevelNestingCopy = JSON.parse(JSON.stringify(this.lSecondLevelNesting));
