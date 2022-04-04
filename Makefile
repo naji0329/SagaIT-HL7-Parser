@@ -10,7 +10,7 @@
 ##-- Environment Variables --#
 
 # Image and container registry
-IMAGE_NAME := saga-hl7tool
+IMAGE_NAME := hl7tool
 # IMAGE_PATH := mygroup/myproject
 IMAGE_PATH := saga-it
 # REGISTRY   := registry-url:port
