@@ -44,6 +44,8 @@ export class SidebarComponent implements OnInit {
   bCheck: boolean=false;
   bTick: boolean=false;
   bSelectedProfile: string;
+  sFhirResult: string = "nothing yet";
+
   constructor(private oDataService : DataService, private oDatePipe : DatePipe, private oThemeService : ThemesService) { }
 
   ngOnInit(): void 
@@ -62,6 +64,11 @@ export class SidebarComponent implements OnInit {
         this.bDisplayImageError = false;
       }
     })
+    this.oDataService.convertHL7ToFHIR("hello").subscribe(data=>
+    {
+      console.log("Incomming fhir : ==> ", data);
+      this.sFhirResult = data;
+    });
   }
 
 

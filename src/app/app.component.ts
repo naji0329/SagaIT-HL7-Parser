@@ -8,5 +8,9 @@ import { ThemesService } from './services/themes.service';
 })
 export class AppComponent {
   title = 'hl7';
- 
+  constructor() {
+    if(localStorage.getItem("selectedTheme") == null) {
+      localStorage.setItem("selectedTheme", "cyborg");
+    }
+  }
 }

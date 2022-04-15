@@ -21,6 +21,7 @@ import { DatePipe } from '@angular/common';
 import { TreeviewModule } from 'ngx-treeview';
 import { SidebarTestComponent } from './components/sidebar-test/sidebar-test.component';
 import { TextareaAutoresizeDirective } from './shared/sidebar/textarea-autoresize.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { TextareaAutoresizeDirective } from './shared/sidebar/textarea-autoresiz
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
@@ -47,7 +49,6 @@ import { TextareaAutoresizeDirective } from './shared/sidebar/textarea-autoresiz
     NgxResizableModule,
     PdfViewerModule,
     TreeviewModule.forRoot()
-    
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
