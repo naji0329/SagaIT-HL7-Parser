@@ -16,7 +16,7 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   convertHL7ToFHIR(sHL7: string) {
-    return this.http.get("https://localhost:9443/api/anti-forgery-token",
+    return this.http.get("/api/anti-forgery-token",
     { 
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
