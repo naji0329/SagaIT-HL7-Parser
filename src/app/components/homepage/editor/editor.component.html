@@ -19,6 +19,10 @@
             <div class="tooltip DownloadTooltip">Export message</div>
             <span ><i class="fa fa-download"></i></span>
         </div>
+        <div class="icon facebook" (click)="EditorMainSectionComponent_ConvertToFHIR()">
+            <div class="tooltip">View as FHIR</div>
+            <span><i class="fa fa-fire"></i></span>
+        </div>
     
     </div>
 </div>
@@ -26,6 +30,41 @@
 <div class="content">
     <textarea class="hl7texteditor editor-text"  placeholder="Paste or type your message here..." wrap="off" spellcheck="true" autocomplete="off" autocorrect="off" (change)="EditorMainSectionComponent_PassValueToTreeView()"
     autocapitalize="off" #msgtextarea (click)="EditorMainSectionComponent_CalculateHeaders(msgtextarea)" [(ngModel)]="sTextAreaValue" (keyup)="EditorMainSectionComponent_CalculateHeaders(msgtextarea)"></textarea>
+</div>
+
+<div *ngIf="bDisplayFHIRPanel" class="fhir-content bg-white shadow p-0">
+    <i class="fa fa-times closeicon" (click)="EditorMainSectionComponent_DismissFHIRPanel()"></i>
+    <div *ngIf="bDisplaySpinner" class="spinner-border" role="status">
+    </div>
+    <pre>
+        <code class="hl7-fhir">{{sFHIRResult}}</code>
+    </pre>
+</div>
+
+<div class="modal fade" id="viewFHIR" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="staticBackdropLabel">HL7v2 to FHIR Result</h4>
+                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal"><i
+                        class="fa fa-times"></i></button>
+
+            </div>
+            <div class="modal-body">
+                <div class="bootbox-body">
+                    <form class="bootbox-form">
+                        <input class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text">
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                <!-- <button type="button" class="btn btn-default btn-sm" data-bs-dismiss="modal">Cancel</button>-->
+                <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div> 
 </div>
 
 <!-- new message  modal -->

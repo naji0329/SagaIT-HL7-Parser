@@ -20,7 +20,7 @@ export class SidebarComponent implements OnInit {
   bDisplayPreviewPanel = false
   sOverlay : string = ""
   bDisplayPdfPanal = false
-  pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
+  pdfSrc = ""; //"https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   lSegments : any; 
   oSelectedSegment : any;
   sSelectedWord : string;
@@ -44,7 +44,6 @@ export class SidebarComponent implements OnInit {
   bCheck: boolean=false;
   bTick: boolean=false;
   bSelectedProfile: string;
-  sFhirResult: string = "nothing yet";
 
   constructor(private oDataService : DataService, private oDatePipe : DatePipe, private oThemeService : ThemesService) { }
 
@@ -64,13 +63,7 @@ export class SidebarComponent implements OnInit {
         this.bDisplayImageError = false;
       }
     })
-    this.oDataService.convertHL7ToFHIR("hello").subscribe(data=>
-    {
-      console.log("Incomming fhir : ==> ", data);
-      this.sFhirResult = data;
-    });
   }
-
 
   SidebarComponent_DisplayPreviewModal()
   {

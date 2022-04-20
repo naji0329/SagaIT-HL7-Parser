@@ -22,3 +22,31 @@ textarea {resize: none; }
 .alert-success {
     z-index: 1111111 !important;
 }
+
+.fhir-content{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    width: auto;
+    max-width: 80vw;
+    max-height: 80vh;
+    min-width: 50vw;
+    min-height: 70vh;
+    border: 2px solid #202020;
+    overflow: auto;
+    // width: calc(100vw - 20px);
+    // height: calc(100vh - 180px);
+
+    .spinner-border {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+    }
+    .closeicon {
+        position:sticky;
+        float:right;
+    }
+}

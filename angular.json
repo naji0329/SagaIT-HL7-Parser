@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/hl7",
+            "outputPath": "dist/hl7-tool",
             "baseHref": "/hl7-tool/",
             "deployUrl": "/hl7-tool/",
             "index": "src/index.html",
