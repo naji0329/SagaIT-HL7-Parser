@@ -1,0 +1,40 @@
+#+TITLE: Kubernetes Stuff
+
+* create cluster and dashboard
+#+begin_src shell
+minikube start --driver=podman --container-runtime=cri-o
+kubectl get po -A
+minikube dashboard
+minikube addons enable ingress
+eval $(minikube podman-env)eval $(minikube podman-env)
+podman-remote build -t hl7tool .
+kubectl apply -f k8s.yaml
+kubectl get ingress
+curl minikube-dev.local
+## edit /etc/hosts
+
+#+end_src
+
+
+
+* nginx ingress and test deployment
+#+begin_src shell
+kubectl apply ./nginx-ingress.yaml
+
+kubectl wait --namespace ingress-nginx \
+  --for=condition=ready pod \
+  --selector=app.kubernetes.io/component=controller \
+  --timeout=120s
+
+kubectl create deployment demo --image=httpd --port=80
+kubectl expose deployment demo
+
+kubectl create ingress demo-localhost --class=nginx \
+  --rule=demo.localdev.me/*=demo:80
+
+kubectl port-forward --namespace=ingress-nginx service/ingress-nginx-controller 8080:80
+
+## delete ingress, service, and deployment
+
+minikube addons enable ingress
+#+end_src

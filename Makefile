@@ -56,8 +56,8 @@ node-clean:
 # shell - open a shell on the build container
 .PHONY: docker-shell
 docker-shell:
-	docker exec -it $(IMAGE_NAME) /bin/sh
-# docker run --interactive --tty --rm --name testing $(BUILD_TAG) /bin/sh
+	docker run --interactive --tty --rm --name testing $(BUILD_TAG) /bin/sh
+# docker exec -it $(IMAGE_NAME) /bin/sh
 
 # build-lein - build the project uberjar
 .PHONY: node-build
