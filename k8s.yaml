@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: hl7tool-container
-        image: localhost/hl7tool:latest
+        image: localhost/hl7-tool:latest
         ports:
         - containerPort: 80
         readinessProbe:

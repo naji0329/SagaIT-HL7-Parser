@@ -91,6 +91,11 @@ docker-login:
 # 						$(CI_REGISTRY), \
 # 	   docker login $(REGISTRY))
 
+.PHONY: minikube-image
+minikube-image:
+	 eval $$(minikube podman-env) && podman-remote build -t hl7-tool $(PWD)
+
+
 ##-- Debug --##
 
 # debug - display all environment variables
