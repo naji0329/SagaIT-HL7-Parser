@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  enableCrsfTokenRequest : false,
+  hl7JavaConvertUrl: 'http://localhost:3000/hl72fhir',
+  hl7CsharpConvertUrl: 'http://localhost:5108/convert',
 };
 
 /*
