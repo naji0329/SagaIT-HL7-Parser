@@ -50,7 +50,7 @@ export class EditorComponent implements OnInit {
     this.oDataService.convertHL7ToFHIR(this.sTextAreaValue).subscribe((data) =>
     {
       this.bDisplaySpinner = false;
-      this.sFHIRResult = JSON.stringify(data, null, 2);
+      this.sFHIRResult = data;//JSON.stringify(data, null, 2);
     });
 
   }
