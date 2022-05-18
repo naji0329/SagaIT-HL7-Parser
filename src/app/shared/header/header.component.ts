@@ -5,10 +5,10 @@ import { Router } from '@angular/router';
 // import * as HL7Inspector26 from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
 import { ThemesService } from 'src/app/services/themes.service';
 declare var $ : any;
-import { version } from 'package.json';
-import * as HL7VERSION2_3_1 from '../../../assets/standard_profiles/version_2_3_1.json';
-import * as HL7VERSION2_5_1 from '../../../assets/standard_profiles/version_2_5_1.json';
-import * as HL7VERSION2_7_1 from '../../../assets/standard_profiles/version_2_7_1.json';
+import packageInfo from 'package.json';
+import HL7VERSION2_3_1 from '../../../assets/standard_profiles/version_2_3_1.json';
+import HL7VERSION2_5_1 from '../../../assets/standard_profiles/version_2_5_1.json';
+import HL7VERSION2_7_1 from '../../../assets/standard_profiles/version_2_7_1.json';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -46,7 +46,7 @@ export class HeaderComponent implements OnInit {
     {
       this.bToggleSwitch = true
     }
-    this.sBuildVersion = version;
+    this.sBuildVersion = packageInfo.version;
     let bSelectedProfile = localStorage.getItem('ProfileNumber');
     switch(bSelectedProfile) 
     { 

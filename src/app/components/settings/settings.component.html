@@ -4,8 +4,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 mt-3 px-4">
-                <ngb-tabset [destroyOnHide]="false">
-                    <ngb-tab title="Common">
+                <ul ngbNav #nav="ngbNav" [destroyOnHide]="false" class="nav-tabs">
+                    <li [ngbNavItem]="1">
+                        <a ngbNavLink>Common</a>
                         <ng-template ngbTabContent>
                             <div class="tab-content hl7-margin">
                                 <!-- Tab Common -->
@@ -63,9 +64,9 @@
 
                             </div>
                         </ng-template>
-                    </ngb-tab>
-                    <ngb-tab title="Tree View">
-
+                    </li>
+                    <li [ngbNavItem]="2">
+                        <a ngbNavLink>Tree View</a>
                         <ng-template ngbTabContent>
 
                             <div class="form-group py-2">
@@ -103,8 +104,8 @@
                             </div>
 
                         </ng-template>
-                    </ngb-tab>
-                </ngb-tabset>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

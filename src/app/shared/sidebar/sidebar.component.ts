@@ -5,9 +5,9 @@ import { DataService } from 'src/app/services/data.service';
 import { ThemesService } from 'src/app/services/themes.service';
 // import * as HL7Inspector from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.5.1-Profile.json';
 // import * as HL7Inspector26 from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
-import * as HL7VERSION2_3_1 from '../../../assets/standard_profiles/version_2_3_1.json';
-import * as HL7VERSION2_5_1 from '../../../assets/standard_profiles/version_2_5_1.json';
-import * as HL7VERSION2_7_1 from '../../../assets/standard_profiles/version_2_7_1.json';
+import HL7VERSION2_3_1 from '../../../assets/standard_profiles/version_2_3_1.json';
+import HL7VERSION2_5_1 from '../../../assets/standard_profiles/version_2_5_1.json';
+import HL7VERSION2_7_1 from '../../../assets/standard_profiles/version_2_7_1.json';
 
 
 @Component({
