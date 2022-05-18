@@ -71,6 +71,8 @@
 
             </ul>
 
+            <button *ngIf="isLoggedIn" type="button" (click)="logout()">Log out</button>
+            <button *ngIf="!isLoggedIn" type="button" (click)="login()">Log in</button>
             <!-- <div>
             <span role="text" class="mr-2">Theme</span>
            </div> -->
