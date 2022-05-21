@@ -93,8 +93,9 @@ docker-login:
 
 .PHONY: minikube-image
 minikube-image:
-	 eval $$(minikube podman-env) && podman-remote build -t hl7-tool $(PWD)
-
+	podman build --tag $$(minikube ip):5000/$(IMAGE_NAME) $(PWD)
+	podman push --tls-verify=false $$(minikube ip):5000/$(IMAGE_NAME)
+#eval $$(minikube podman-env) && podman-remote build -t $(IMAGE_NAME) $(PWD)
 
 ##-- Debug --##
 
