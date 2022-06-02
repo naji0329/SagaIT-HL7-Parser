@@ -95,6 +95,10 @@ docker-login:
 minikube-image:
 	minikube image build -t $(TAG) .
 
+.PHONY: minikube-apply
+minikube-apply:
+	sed -e "s|{{IMAGE_NAME}}|$(TAG)|g" k8s.yaml | minikube kubectl -- apply -f -
+
 #podman build --tag minikube-dev.local:5000/$(IMAGE_NAME) $(PWD)
 #podman push --tls-verify=false minikube-dev.local:5000/$(IMAGE_NAME)
 #eval $$(minikube podman-env) && podman-remote build -t $(IMAGE_NAME) $(PWD)
