@@ -7,9 +7,6 @@ export const environment = {
   enableCrsfTokenRequest : false,
   hl7JavaConvertUrl: 'http://localhost:3000/hl72fhir',
   hl7CsharpConvertUrl: 'http://localhost:5108/convert',
-  keycloakUrl: 'https://minikube-dev.local' + '/ident/',
-  keycloakRealm: 'saga-realm',
-  keycloakClientId: 'hl7-tool',
 };
 
 /*

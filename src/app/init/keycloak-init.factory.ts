@@ -1,5 +1,4 @@
 import { KeycloakService } from "keycloak-angular";
-import { environment } from '../../environments/environment';
 
 export function initializeKeycloak(
   keycloak: KeycloakService
@@ -7,9 +6,9 @@ export function initializeKeycloak(
     return () =>
       keycloak.init({
         config: {
-          url: environment.keycloakUrl,
-          realm: environment.keycloakRealm,
-          clientId: environment.keycloakClientId,
+          url: 'https://minikube-dev.local' + '/ident/',
+          realm: 'saga-realm',
+          clientId: 'hl7-tool',
         },
         initOptions: {
             //onLoad: 'login-required', // don't think this is needed
