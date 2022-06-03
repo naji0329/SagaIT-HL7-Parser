@@ -10,8 +10,6 @@ import HL7VERSION2_3_1 from '../../../assets/standard_profiles/version_2_3_1.jso
 import HL7VERSION2_5_1 from '../../../assets/standard_profiles/version_2_5_1.json';
 import HL7VERSION2_7_1 from '../../../assets/standard_profiles/version_2_7_1.json';
 import { DataService } from 'src/app/services/data.service';
-import { KeycloakService } from 'keycloak-angular';
-import { KeycloakProfile } from 'keycloak-js';
 
 @Component({
   selector: 'app-header',
@@ -27,10 +25,8 @@ export class HeaderComponent implements OnInit {
   sAboutModalTitle: string = "";
   sBuildVersion: string;
   bToggleSwitch: boolean;
-  isLoggedIn = false;
-  userProfile: KeycloakProfile | null = null;
 
-  constructor(private  oRouter : Router , private oThemeService : ThemesService, private oDataService : DataService, private readonly keycloak: KeycloakService) 
+  constructor(private  oRouter : Router , private oThemeService : ThemesService, private oDataService : DataService) 
   {
     if(this.oRouter.url === '/imprint')
     {
@@ -42,14 +38,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  async ngOnInit() {
-
-    this.isLoggedIn = await this.keycloak.isLoggedIn();
-
-    if (this.isLoggedIn) {
-      this.userProfile = await this.keycloak.loadUserProfile();
-    }
-
+  ngOnInit(): void {
     this.oThemeService.sSelectedThemeValue.subscribe(res=>{
       this.selectedTheme = localStorage.getItem('selectedTheme')
     })
@@ -223,13 +212,5 @@ export class HeaderComponent implements OnInit {
     {
       this.oDataService.oWordToFilter.next(oValue)
     }
-  }
-
-  public login() {
-    this.keycloak.login();
-  }
-
-  public logout() {
-    this.keycloak.logout();
   }
 }

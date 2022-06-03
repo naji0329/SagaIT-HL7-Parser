@@ -4,7 +4,6 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { ImprintComponent } from './components/imprint/imprint.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { SidebarTestComponent } from './components/sidebar-test/sidebar-test.component';
-import { AuthGuard } from './guard/auth.guard';
 // import { TestComponent } from './components/test/test.component';
 
 const routes: Routes = [
@@ -29,8 +28,7 @@ const routes: Routes = [
   // ,
   {
     path: 'tool',
-    component: SidebarTestComponent,
-    canActivate: [AuthGuard]
+    component: SidebarTestComponent
   }
 ];
 

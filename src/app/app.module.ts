@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,8 +22,6 @@ import { TreeviewModule } from 'ngx-treeview';
 import { SidebarTestComponent } from './components/sidebar-test/sidebar-test.component';
 import { TextareaAutoresizeDirective } from './shared/sidebar/textarea-autoresize.directive';
 import { HttpClientModule } from '@angular/common/http';
-import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
-import { initializeKeycloak } from './init/keycloak-init.factory';
 
 @NgModule({
   declarations: [
@@ -44,7 +42,6 @@ import { initializeKeycloak } from './init/keycloak-init.factory';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    KeycloakAngularModule,
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
@@ -53,13 +50,7 @@ import { initializeKeycloak } from './init/keycloak-init.factory';
     PdfViewerModule,
     TreeviewModule.forRoot()
   ],
-  providers: [DatePipe,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeKeycloak,
-      multi: true,
-      deps: [KeycloakService],
-    }],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
