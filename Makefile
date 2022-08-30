@@ -14,7 +14,7 @@ IMAGE_NAME := hl7tool
 # IMAGE_PATH := mygroup/myproject
 IMAGE_PATH := saga-it
 # REGISTRY   := registry-url:port
-REGISTRY   := 454003496224.dkr.ecr.us-east-1.amazonaws.com
+REGISTRY   := 853450806095.dkr.ecr.us-east-2.amazonaws.com
 IMAGE      := $(REGISTRY)/$(IMAGE_PATH)/$(IMAGE_NAME)
 
 # Get current branch and transform '/' to '-'
@@ -83,7 +83,7 @@ docker-tag:
 #                otherwise interactive login.
 .PHONY: docker-login
 docker-login:
-	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 454003496224.dkr.ecr.us-east-1.amazonaws.com
+	aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 853450806095.dkr.ecr.us-east-2.amazonaws.com
 # docker-login:
 # 		@$(if $(and $(CI_REGISTRY_USER), $(CI_REGISTRY_PASSWORD)), \
 # 				docker login -u $(CI_REGISTRY_USER) \
@@ -95,9 +95,13 @@ docker-login:
 minikube-image:
 	minikube image build -t $(TAG) .
 
-.PHONY: minikube-apply
-minikube-apply:
-	sed -e "s|{{IMAGE_NAME}}|$(TAG)|g" k8s.yaml | minikube kubectl -- apply -f -
+.PHONY: kubectl-apply
+kubectl-apply:
+	@echo "Is the following the correct context!? If not - use CTRL-C to stop this script. Otherwise press Enter."
+	kubectl config current-context
+	read
+	sleep 3
+	sed -e "s|{{IMAGE_NAME}}|$(TAG)|g" k8s.yaml | kubectl apply -f -
 
 #podman build --tag minikube-dev.local:5000/$(IMAGE_NAME) $(PWD)
 #podman push --tls-verify=false minikube-dev.local:5000/$(IMAGE_NAME)
