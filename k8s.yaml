@@ -26,15 +26,15 @@ spec:
           periodSeconds: 4
           timeoutSeconds: 3
           failureThreshold: 1
-      # Karpenter is for AWS only
-      #Deploy this app on the Karpenter nodes created by the default-lt provisioner
-      nodeSelector:
-        type: "karpenter"
-        provisioner: "default-lt"
-      tolerations:
-        - key: "default-lt"
-          operator: "Exists"
-          effect: "NoSchedule"
+      # # Karpenter is for AWS only
+      # #Deploy this app on the Karpenter nodes created by the default-lt provisioner
+      # nodeSelector:
+      #   type: "karpenter"
+      #   provisioner: "default-lt"
+      # tolerations:
+      #   - key: "default-lt"
+      #     operator: "Exists"
+      #     effect: "NoSchedule"
 ---
 apiVersion: v1
 kind: Service
