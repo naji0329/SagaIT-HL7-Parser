@@ -16,6 +16,7 @@ spec:
       containers:
       - name: hl7tool-container
         image: {{IMAGE_NAME}}
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         readinessProbe:
