@@ -15,9 +15,9 @@
 .cyborg .table>:not(caption)>*>* { color: #fff !important;}
 .cyborg .btn.btn-default {background-color: #424242 !important; color: #fff !important; border-color: #424242 !important;}
 .cyborg table {background-color: #181818 !important;}
-.cyborg .panel-info {background-color: #5bc0de !important; border-color: transparent !important;}
+.cyborg .panel-info {background-color: #168af9 !important; border-color: transparent !important;}
 .cyborg .panel-info a {color: #fff !important;}
-.cyborg .card {border-radius: 0 0 .25rem .25rem !important; border-color: #5bc0de !important; background-color: #222222 !important; }
+.cyborg .card {border-radius: 0 0 .25rem .25rem !important; border-color: #168af9 !important; background-color: #222222 !important; }
 .cyborg p , .cyborg label {color: #888888 !important;}
 .cyborg .value-paragraph p {color: #ffffffc4 !important;}
 .cyborg .DescriptionParagraph p {color: #ffffffc4 !important;}
@@ -38,7 +38,7 @@
 }
 // .cyborg .DescriptionParagraph p , .cyborg label {color: #fff !important;}
 
-.cyborg .label-info {background-color: #5bc0de !important;} 
+.cyborg .label-info {background-color: #168af9 !important;} 
 .cyborg small {color: #888888;}
 .cyborg .modal-header ,.cyborg .modal-body,.cyborg .modal-footer{background-color: #202020 !important; color: #fff !important; border: none !important;}
 .cyborg .modal-header , .cyborg .modal-body{border-bottom: 1px solid #282828 !important;}
@@ -66,7 +66,7 @@
 .cyborg .label-info.info-badge{font-size: 15px !important;}
 
 .cyborg .value-paragraph .input-icons{
-  background-color: #5bc0de !important;
+  background-color: #168af9 !important;
   padding: 5px;
   cursor: pointer;
   border-radius: 60%;
@@ -79,7 +79,7 @@
   color: #fff !important;
 }
 .cyborg .wrapper .icon {
-	background-color: #5bc0de;
+	background-color: #168af9;
 	color: #fff !important;
   }
   .cyborg .wrapper .facebook:hover,
@@ -126,8 +126,8 @@
 }
  .cyborg .nav-pills .nav-link.active, .cyborg .nav-pills .show>.nav-link {
   color: #fff !important;
-  background-color: #5bc0de !important;
-  border: 1px solid #5bc0de !important;
+  background-color: #168af9 !important;
+  border: 1px solid #168af9 !important;
 }
 .cyborg .nav-link {
   color: #fff !important;
@@ -140,23 +140,16 @@
 }
 .cyborg .nav-pills .nav-link {
   border-radius: 0 !important;
-  border: 1px solid #5bc0de !important;
+  border: 1px solid #168af9 !important;
 }
 // logo
 .cyborg .saga-logo{
-  background-image: url(../../assets/images/saga.png);
+  background-image: url(../../assets/images/logo_white.svg);
   display: block;
   width: auto;
-  height: 40px;
-  width: 80px;
+  height: 41px;
+  width: 136px;
   transition: .3s ease-in-out;
-}
-.cyborg .saga-logo:hover{
-  background-image: url(../../assets/images/saga-hover.png);
-  display: block;
-  width: auto;
-  height: 40px;
-  width: 80px;
 }
 
 .cyborg .tree li {
@@ -172,8 +165,8 @@
 
 .cyborg .btn-primary {
   color: #fff !important;
-  background-color: #5bc0de !important;
-  border-color: #5bc0de !important;
+  background-color: #168af9 !important;
+  border-color: #168af9 !important;
 }
 
 .cyborg .leaf-nodes{
@@ -185,8 +178,8 @@
 }
 
 .cyborg .closeicon:hover {
-  background-color: #5bc0de;
+  background-color: #168af9;
   color: #ffffff !important;
   text-align: center;
 }
-.cyborg .pdfDownload:hover { background-color: #5bc0de;}
+.cyborg .pdfDownload:hover { background-color: #168af9;}

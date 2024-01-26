@@ -1,7 +1,7 @@
 <nav class="{{selectedTheme}} navbar navbar-expand-lg navbar-light bg-light shadow">
     <div class="container-fluid">
         <div class="logo">
-            <!-- <img src="../../../assets/images/saga.png" alt=""> -->
+            <!-- <img src="../../../assets/images/logo_white.svg" alt=""> -->
             <span class="saga-logo"></span>
             <!-- <span class="name">Saga</span><br><em class="subtitle text-nowrap">Healthcare IT</em> -->
         </div>
@@ -10,15 +10,15 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <div class="collapse navbar-collapse ml-3" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 items-center">
 
-                <span class="mt-3 ml-3" role="button">
+                <span role="button">
                     HL7 Version :
                 </span>
 
-                <li *ngIf="bDisplayProfileOptions" class="nav-item dropdown mt-2 versionnumber">
-                    <a class="nav-link dropdown-toggle mt-1 " href="#" id="navbarDropdown" role="button"
+                <li *ngIf="bDisplayProfileOptions" class="nav-item dropdown versionnumber">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         {{oProfileName}}
                     </a>
@@ -29,38 +29,25 @@
                                 (click)="HeaderComponent_LoadProfileHL7Version_2_5_1()"> 2.5.1</a></li>
                         <li><a class="dropdown-item" href="javascript:void(0)"
                                 (click)="HeaderComponent_LoadProfileHL7Version_2_3_1()"> 2.3.1</a></li>
-                        <!-- <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" routerLink="/profile">Edit current profile</a></li>
-                        <li><a class="dropdown-item" href="javscript:void(0)" data-bs-toggle="modal"
-                                data-bs-target="#upload-profile">Upload profile </a></li>
-                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="ExportAsJson()">Backup current
-                                profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
-                                data-bs-target="#reset">Reset profile</a></li> -->
                     </ul>
                 </li>
 
-                <li *ngIf="bDisplayProfileOptions" class="nav-item mt-2 ml-2">
+                <li *ngIf="bDisplayProfileOptions" class="nav-item ml-2">
                     <input class="form-control me-2" type="search" placeholder="Filter" aria-label="Search" (keyup)="HeaderComponent_FilterWord($event, $event.keyCode)" (change)="HeaderComponent_ResetFilter($event)">
                 </li>
 
 
 
                 <div class="row">
-                    <div class="col-12 ml-4 mt-2">
-                        <ul class="nav nav-pills mb-3 rounded" id="pills-tab" role="tablist">
+                    <div class="col-12 ml-4">
+                        <ul class="nav nav-pills rounded" id="pills-tab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link " id="pills-home-tab" data-bs-toggle="pill"
+                                <button class="nav-link btn-left-radius" id="pills-home-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                                     aria-selected="false">View</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active " id="pills-profile-tab" data-bs-toggle="pill"
+                                <button class="nav-link active btn-right-radius" id="pills-profile-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-profile" type="button" role="tab"
                                     aria-controls="pills-profile" aria-selected="true">Edit</button>
                             </li>
@@ -76,13 +63,13 @@
            </div> -->
 
 
-            <div class="button-switch mb-0">
+            <div class="button-switch mb-0 pr-2">
                 <input type="checkbox" id="switch-blue" class="switch" (change)="ToggleTheme($event)"
                     [checked]="bToggleSwitch" />
                 <label for="switch-blue" class="lbl-off">Dark</label>
                 <label for="switch-blue" class="lbl-on">Light</label>
-            </div> <span class="mx-1"> | </span>
-            <span (click)="ChangeModalTitle()" href="#" role="button" class="z-index-999" data-bs-toggle="modal"
+            </div>
+            <span (click)="ChangeModalTitle()" href="#" role="button" class="z-index-999 about ml-4" data-bs-toggle="modal"
                 data-bs-target="#about" aria-expanded="false">
                 About
             </span>
@@ -137,7 +124,7 @@
             <div class="modal-footer">
                 <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                    (click)="DismissModal()">Ok</button>
+                    (click)="DismissModal()">Close</button>
             </div>
         </div>
     </div>

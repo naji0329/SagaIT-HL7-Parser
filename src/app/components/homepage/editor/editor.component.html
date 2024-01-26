@@ -1,7 +1,7 @@
 <div class="d-md-flex justify-content-between align-items-center">
     <div style="padding: 3px 0 5px 0">
         <!-- <span id="messageName1" class="label label-info info-badge mr-2 mb-1">Name: Copy of sample MDM^T02 with JPG</span> -->
-        <span id="hl7length1" class="label label-info info-badge mr-2 mb-1">Message Length: {{msgtextarea?msgtextarea.value.length:0}} Characters</span>
+        <span id="hl7length1" class="label-light label-info info-badge pr-2">Message Length: {{msgtextarea?msgtextarea.value.length:0}} Characters</span>
         <!-- <span id="hl7length1" class="label label-info info-badge mr-2 mb-1">Selected Value: Event Type Code</span> -->
     </div>
     <div class="wrapper">
@@ -27,9 +27,18 @@
     </div>
 </div>
 <!-- text editor -->
+
+<!-- <div class="content">
+    <app-textarea-highlight
+        [(ngModel)]="sTextAreaValue"
+        [highlightTexts]="highlightTexts"
+    >
+    </app-textarea-highlight>
+</div> -->
+
 <div class="content">
     <textarea class="hl7texteditor editor-text"  placeholder="Paste or type your message here..." wrap="off" spellcheck="true" autocomplete="off" autocorrect="off" (change)="EditorMainSectionComponent_PassValueToTreeView()"
-    autocapitalize="off" #msgtextarea (click)="EditorMainSectionComponent_CalculateHeaders(msgtextarea)" [(ngModel)]="sTextAreaValue" (keyup)="EditorMainSectionComponent_CalculateHeaders(msgtextarea)"></textarea>
+    autocapitalize="off" #msgtextarea  [(ngModel)]="sTextAreaValue" (keyup)="EditorMainSectionComponent_CalculateHeaders(msgtextarea)" (click)="EditorMainSectionComponent_CalculateHeaders(msgtextarea)"></textarea>
 </div>
 
 <div *ngIf="bDisplayFHIRPanel" class="fhir-content bg-white shadow p-0">

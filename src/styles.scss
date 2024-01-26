@@ -3,6 +3,194 @@
 @import 'src/assets/scss/_theme-yeti.scss';
 @import 'src/assets/scss/_theme-cyborg.scss';
 @import 'src/assets/scss/_theme-slate.scss';
+
+/**
+ * @license
+ *
+ * Font Family: General Sans
+ * Designed by: Frode Helland
+ * URL: https://www.fontshare.com/fonts/GeneralSans/general-sans
+ * © 2023 Indian Type Foundry
+ *
+ * Font Styles:
+ * General Sans Variable(Variable font)
+ * General Sans Variable Italic(Variable font)
+ * General Sans Extralight
+ * General Sans Extralight Italic
+ * General Sans Light
+ * General Sans Light Italic
+ * General Sans Regular
+ * General Sans Italic
+ * General Sans Medium
+ * General Sans Medium Italic
+ * General Sans Semibold
+ * General Sans Semibold Italic
+ * General Sans Bold
+ * General Sans Bold Italic
+ *
+*/
+/**
+* This is a variable font
+* You can controll variable axes as shown below:
+* font-variation-settings: 'wght' 700.0;
+*
+* available axes:
+
+* 'wght' (range from 200.0 to 700.0)
+
+*/
+@font-face {
+	font-family: 'GeneralSans-Variable';
+	src: url('./assets/fonts/GeneralSans/GeneralSans-Variable.woff2') format('woff2'),
+		url('./assets/fonts/GeneralSans/GeneralSans-Variable.woff') format('woff'),
+		url('./assets/fonts/GeneralSans/GeneralSans-Variable.ttf') format('truetype');
+	font-weight: 200 700;
+	font-display: swap;
+	font-style: normal;
+}
+/**
+* This is a variable font
+* You can controll variable axes as shown below:
+* font-variation-settings: 'wght' 700.0;
+*
+* available axes:
+
+* 'wght' (range from 200.0 to 700.0)
+
+*/
+@font-face {
+	font-family: 'GeneralSans-VariableItalic';
+	src: url('./assets/fonts/GeneralSans/GeneralSans-VariableItalic.woff2')
+			format('woff2'),
+		url('./assets/fonts/GeneralSans/GeneralSans-VariableItalic.woff') format('woff'),
+		url('./assets/fonts/GeneralSans/GeneralSans-VariableItalic.ttf')
+			format('truetype');
+	font-weight: 200 700;
+	font-display: swap;
+	font-style: italic;
+}
+@font-face {
+	font-family: 'GeneralSans-Extralight';
+	src: url('./assets/fonts/GeneralSans/GeneralSans-Extralight.woff2') format('woff2'),
+		url('./assets/fonts/GeneralSans/GeneralSans-Extralight.woff') format('woff'),
+		url('./assets/fonts/GeneralSans/GeneralSans-Extralight.ttf') format('truetype');
+	font-weight: 200;
+	font-display: swap;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'GeneralSans';
+	src: url('./assets/fonts/GeneralSans/GeneralSans-ExtralightItalic.woff2')
+			format('woff2'),
+		url('./assets/fonts/GeneralSans/GeneralSans-ExtralightItalic.woff')
+			format('woff'),
+		url('./assets/fonts/GeneralSans/GeneralSans-ExtralightItalic.ttf')
+			format('truetype');
+	font-weight: 200;
+	font-display: swap;
+	font-style: italic;
+}
+@font-face {
+	font-family: 'GeneralSans';
+	src: url('./assets/fonts/GeneralSans/GeneralSans-Light.woff2') format('woff2'),
+		url('./assets/fonts/GeneralSans/GeneralSans-Light.woff') format('woff'),
+		url('./assets/fonts/GeneralSans/GeneralSans-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-display: swap;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'GeneralSans';
+	src: url('./assets/fonts/GeneralSans/GeneralSans-LightItalic.woff2') format('woff2'),
+		url('./assets/fonts/GeneralSans/GeneralSans-LightItalic.woff') format('woff'),
+		url('./assets/fonts/GeneralSans/GeneralSans-LightItalic.ttf') format('truetype');
+	font-weight: 300;
+	font-display: swap;
+	font-style: italic;
+}
+@font-face {
+	font-family: 'GeneralSans';
+	src: url('./assets/fonts/GeneralSans/GeneralSans-Regular.woff2') format('woff2'),
+		url('./assets/fonts/GeneralSans/GeneralSans-Regular.woff') format('woff'),
+		url('./assets/fonts/GeneralSans/GeneralSans-Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-display: swap;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'GeneralSans';
+	src: url('./assets/fonts/GeneralSans/GeneralSans-Italic.woff2') format('woff2'),
+		url('./assets/fonts/GeneralSans/GeneralSans-Italic.woff') format('woff'),
+		url('./assets/fonts/GeneralSans/GeneralSans-Italic.ttf') format('truetype');
+	font-weight: 400;
+	font-display: swap;
+	font-style: italic;
+}
+@font-face {
+	font-family: 'GeneralSans';
+	src: url('./assets/fonts/GeneralSans/GeneralSans-Medium.woff2') format('woff2'),
+		url('./assets/fonts/GeneralSans/GeneralSans-Medium.woff') format('woff'),
+		url('./assets/fonts/GeneralSans/GeneralSans-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-display: swap;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'GeneralSans';
+	src: url('./assets/fonts/GeneralSans/GeneralSans-MediumItalic.woff2')
+			format('woff2'),
+		url('./assets/fonts/GeneralSans/GeneralSans-MediumItalic.woff') format('woff'),
+		url('./assets/fonts/GeneralSans/GeneralSans-MediumItalic.ttf')
+			format('truetype');
+	font-weight: 500;
+	font-display: swap;
+	font-style: italic;
+}
+@font-face {
+	font-family: 'GeneralSans';
+	src: url('./assets/fonts/GeneralSans/GeneralSans-Semibold.woff2') format('woff2'),
+		url('./assets/fonts/GeneralSans/GeneralSans-Semibold.woff') format('woff'),
+		url('./assets/fonts/GeneralSans/GeneralSans-Semibold.ttf') format('truetype');
+	font-weight: 600;
+	font-display: swap;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'GeneralSans';
+	src: url('./assets/fonts/GeneralSans/GeneralSans-SemiboldItalic.woff2')
+			format('woff2'),
+		url('./assets/fonts/GeneralSans/GeneralSans-SemiboldItalic.woff') format('woff'),
+		url('./assets/fonts/GeneralSans/GeneralSans-SemiboldItalic.ttf')
+			format('truetype');
+	font-weight: 600;
+	font-display: swap;
+	font-style: italic;
+}
+@font-face {
+	font-family: 'GeneralSans';
+	src: url('./assets/fonts/GeneralSans/GeneralSans-Bold.woff2') format('woff2'),
+		url('./assets/fonts/GeneralSans/GeneralSans-Bold.woff') format('woff'),
+		url('./assets/fonts/GeneralSans/GeneralSans-Bold.ttf') format('truetype');
+	font-weight: 700;
+	font-display: swap;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'GeneralSans';
+	src: url('./assets/fonts/GeneralSans/GeneralSans-BoldItalic.woff2') format('woff2'),
+		url('./assets/fonts/GeneralSans/GeneralSans-BoldItalic.woff') format('woff'),
+		url('./assets/fonts/GeneralSans/GeneralSans-BoldItalic.ttf') format('truetype');
+	font-weight: 700;
+	font-display: swap;
+	font-style: italic;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'GeneralSans';
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
 html { overflow-x: hidden;}
 /* You can add global styles to this file, and also import other style files */
 // fonts size
@@ -16,21 +204,15 @@ html { overflow-x: hidden;}
 .ml-1 {margin-left: .25rem !important;}.ml-2 {margin-left: .5rem !important;}.ml-3 {margin-left: 1rem !important;}
 .ml-4 {margin-left: 1.5rem !important;}.ml-5 {margin-left: 2rem !important;}.mr-1 {margin-right: .25rem !important;}
 .mr-2 {margin-right: .5rem !important;}.mr-3 {margin-right: 1rem !important;}.mr-4 {margin-right: 1.5rem !important;}
+.pr-2 { padding: 8px !important; }
 // logo
 .saga-logo{
-  background-image: url(./assets/images/saga-black.png);
+  background-image: url(./assets/images/logo.svg);
   display: block;
   width: auto;
-  height: 40px;
-  width: 80px;
+  height: 41px;
+  width: 136px;
   transition: 0.3s ease-in-out;
-}
-.saga-logo:hover{
-  background-image: url(./assets/images/saga-hover.png);
-  display: block;
-  width: auto;
-  height: 40px;
-  width: 80px;
 }
 .mr-5 {margin-right: 2rem !important;}
 // dropdown
@@ -62,7 +244,7 @@ ul.dropdown-menu {min-width: auto !important;}
     width: 50%;
 }
 .label-info {
-    background-color: #5bc0de;
+    background-color: #168af9;
 }
 .label {
     display: inline-block;
@@ -75,6 +257,18 @@ ul.dropdown-menu {min-width: auto !important;}
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: 0.25em;
+}
+.label-light {
+  display: inline-block;
+  padding: 0.2em 0.6em 0.3em;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25em;
 }
 .list-group-item.active {
     z-index: 2;
@@ -148,7 +342,7 @@ ul.dropdown-menu {min-width: auto !important;}
     font-size: 20px;
     cursor: pointer;
     background-color: #fff;
-    color: #000;
+    color: #168af9;
     padding: 10px;
     border: none;
     position: absolute;
@@ -183,7 +377,7 @@ ul.dropdown-menu {min-width: auto !important;}
 }
   .rightbtn {
     right: 410px !important;
-
+    color: #168af9;
   }
   .menus a {
     display: block;
@@ -285,7 +479,8 @@ ul.dropdown-menu {min-width: auto !important;}
 .wrapper .icon {
   position: relative;
   display: inline-flex !important;
-  background-color: #e5e8e8;
+  background-color: #168af9;
+  color: white;
   border-radius: 50%;
   padding: 15px;
   margin: 6px;
@@ -299,6 +494,10 @@ ul.dropdown-menu {min-width: auto !important;}
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.items-center {
+  align-items: center;
 }
 
 .wrapper .tooltip {
@@ -353,7 +552,7 @@ ul.dropdown-menu {min-width: auto !important;}
 .wrapper .facebook:hover,
 .wrapper .facebook:hover .tooltip,
 .wrapper .facebook:hover .tooltip::before {
-  background-color: #3b5999;
+  background-color: #36aaf9;
   color: #ffffff;
   text-align: center;
 }
@@ -610,7 +809,10 @@ ul.dropdown-menu {min-width: auto !important;}
  }
 }
 .label-info .info-badge{font-size: 15 !important;}
-.cell {background-color: transparent !important;}
+.cell {
+  background-color: transparent !important;
+  border: 0px !important;
+}
 
 // settings
 .fa-cog
@@ -661,10 +863,15 @@ ul.dropdown-menu {min-width: auto !important;}
   position: absolute;
   top: 20px;
   right: 20px;
-  background-color: #000;
   color: #fff !important;
   border-radius: 2px;
   padding: 5px;
+}
+.modal-header {
+  background: #168af9;
+}
+.modal-title {
+  color: white;
 }
 .closeicon {
   position: absolute;
@@ -729,8 +936,8 @@ background-color: #3b5999;
 
 
 .nav-pills .nav-link {
-  border-radius: 0 !important;
-  border: 1px solid #5bc0de !important;
+  border-radius: 0;
+  border: 1px solid #168af9 !important;
 }
 
 
@@ -762,7 +969,7 @@ background-color: #3b5999;
 .button-switch .lbl-on {
   color: #fefefe;
   opacity: 0;
-  left: -20px;
+  left: -16px;
   top: 11px;
 }
 .button-switch .switch {
@@ -783,14 +990,18 @@ background-color: #3b5999;
   font-size: 1em;
   position: absolute;
 }
+.button-switch {
+  scale: 1.1;
+}
 .button-switch .switch:before {
+  padding: 4px;
   border-radius: 1.25em;
-  background: #000;
-  height: 1em;
-  left: -1.25em;
-  top: 0.1875em;
+  background: #062a69;
+  height: 1.25em;
+  left: -1em;
+  top: 0.0625em;
   transition: background-color 0.25s ease-out 0.1s;
-  width: 3.5em;
+  width: 3.25em;
 }
 .button-switch .switch:after {
   box-shadow: 0 0.0625em 0.375em 0 #666;
@@ -800,12 +1011,12 @@ background-color: #3b5999;
   transform: translate(0, 0);
   transition: transform 0.25s ease-out 0.1s;
   width: 0.8em;
-  left: -26px;
+  left: -16px;
   top: 7px;
 }
 .button-switch .switch:checked:after {
   transform: translate(2.5em, 0);
-  left: -30px;
+  left: -34px;
   top: 7px;
 }
 .button-switch .switch:checked ~ .lbl-off {
@@ -823,20 +1034,21 @@ background-color: #3b5999;
 
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
   color: #fff !important;
-  background-color: #5bc0de !important;
-  border: 1px solid #5bc0de !important;
+  background-color: #168af9 !important;
+  border: 1px solid #168af9 !important;
 }
 .nav-link {
-  color: #5bc0de !important;
+  color: #168af9 !important;
 }
 .versionnumber .nav-link {
   color: #343a40 !important;
 }
 .nav.nav-pills.border-primary {
-  border-color: #5bc0de !important;
+  border-color: #168af9 !important;
 }
 .SidebarHeading {
-  background: #d9edf7;
+  background: #166ad9;
+  color: white;
 }
  .form-check-input:checked[type=checkbox] {
   display: none !important;
@@ -849,8 +1061,54 @@ display: none !important;
 .treeview-container .row-item .bi {  margin-bottom: 8px !important; width: 15px; height: 15px;}
 .btn-primary {
   color: #fff;
-  background-color: #54b4eb !important;
-  border-color: #54b4eb !important;
+  background-color: #168af9 !important;
+  border-color: #168af9 !important;
 }
 
+.navbar {
+  padding: 0.85em 0 !important;
+}
 
+.about {
+  border: 1px solid dodgerblue;
+  border-radius: 25px;
+  padding: 12px 24px;
+  background-color: dodgerblue;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.btn-left-radius {
+  border-radius: 0 !important;
+  border-top-left-radius: 12px !important;
+  border-bottom-left-radius: 12px !important;
+}
+
+.btn-right-radius {
+  border-radius: 0 !important;
+  border-top-right-radius: 12px !important;
+  border-bottom-right-radius: 12px !important;
+}
+input.form-control {
+  border: 1px solid dodgerblue !important;
+}
+
+.asidebar .rg-left {
+  background-color: #168af911 !important;
+}
+
+.highlight-mark {
+  border-radius: 0 !important;
+  padding: 0 !important;
+  color: transparent;
+  background-color: yellow;
+}
+
+textarea {
+  border: 1px solid #168af9 !important;
+}
+
+:focus-visible {
+  outline: none;
+}
