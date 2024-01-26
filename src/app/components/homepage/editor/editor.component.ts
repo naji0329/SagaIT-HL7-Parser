@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { saveAs as EditorMainSectionComponent_DownloadResultAsJSON }  from 'save-as';
 import { environment } from 'src/environments/environment';
@@ -21,8 +21,11 @@ export class EditorComponent implements OnInit {
   sStartString: any;
   sEndString: any;
   nBarcount: number;
+  nLineCount: number;
   nCarrotsCount: number;
   sStartStringtoCalculateBars: string;
+  textarea: any = null;
+  ctrlKeyDown: boolean = false;
   constructor(private oDataService : DataService) { }
 
   ngOnInit(): void 
@@ -72,17 +75,49 @@ export class EditorComponent implements OnInit {
     this.sText = "Successful copied to clipboard";
     setTimeout(() => {this.bDisplayAlert = false}, 3000);
   }
-  EditorMainSectionComponent_CalculateHeaders(sIncommingTextArea : any)
+  EditorMainSectionComponent_GetPosition(line: number, bar: number, carrot: number)
   {
+    const value = this.textarea.value;
+    const lines = value.split("\n");
+    let startPosition = 0, endPosition = 0;
+    for (let i = 0; i < line; i++) {
+      startPosition += lines[i].length + 1;
+    }
+    const pipes = lines[line].split("|");
+    for (let i = 0; i < bar; i++) {
+       startPosition += pipes[i].length + 1;
+    }
+    if (carrot >= 0) {
+      const segs = pipes[bar].split("^");
+      for (let i = 0; i < carrot - 1; i++) {
+        startPosition += segs[i].length + 1;
+      }
+    }
+    for (endPosition = startPosition; endPosition < value.length && value[endPosition] !== '|' && value[endPosition] !== '\n' && !(value[endPosition] === '^' && carrot >= 0); endPosition++);
+    return {
+      startPosition,
+      endPosition
+    };
+  }
+  EditorMainSectionComponent_CalculateHeaders(sIncommingTextArea : any, isDoubleClick: boolean = false)
+  {
+    console.log("position: ", {isDoubleClick}, this.textarea);
+    if (!this.textarea) {
+      this.textarea = sIncommingTextArea;
+      this.textarea.addEventListener("dblclick", () => {
+        this.EditorMainSectionComponent_CalculateHeaders(sIncommingTextArea, true);
+      });
+    }
     let nStartPosition = sIncommingTextArea.selectionStart;  
     let nEndPosition = sIncommingTextArea.selectionEnd;
-    if(nStartPosition == nEndPosition)
+    // if(nStartPosition == nEndPosition)
     {
       this.sStartStringtoCalculateBars = sIncommingTextArea.value.substring(0, nStartPosition);
       // pick selected word
       let startSubStr : string = sIncommingTextArea.value.substring(0, nStartPosition)
       let startStr1 = startSubStr.split('\n');
       let startStr2 = startStr1[startStr1.length-1].split('|');
+      this.nLineCount = startStr1.length - 1;
       this.nBarcount = startStr2.length-1;
       // this.nBarcount = startStr2.length;
       // console.log("str 1 bar count:",startStr2.length-1);
@@ -91,6 +126,7 @@ export class EditorComponent implements OnInit {
       let startStr3 = startStr2[startStr2.length-1].split("^");
       // this.nCarrotsCount = startStr3.length-1;
       this.nCarrotsCount = startStr3.length;
+      console.log({startSubStr, startStr1, startStr2, startStr3});
       // console.log("str 1 cart count:",startStr3.length-1);
       let firstWord = startStr3[startStr3.length-1];
 
@@ -158,6 +194,9 @@ export class EditorComponent implements OnInit {
         this.nCarrotsCount = 0;
       }
       this.oDataService.oWordToSearch.next({header : segHeader, word : this.oOriginalValue, bars: this.nBarcount, carrots: this.nCarrotsCount, focus: false});
+      
+      const position = this.EditorMainSectionComponent_GetPosition(this.nLineCount, this.nBarcount, isDoubleClick ? -1 : this.nCarrotsCount);
+      this.textarea.setSelectionRange(position.startPosition, position.endPosition);
       localStorage.setItem("lsSelectedView", 'editview');
     }
   }
