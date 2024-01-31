@@ -110,17 +110,20 @@
 <!-- about modal -->
 <div class="modal fade {{selectedTheme}}" id="about" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="staticBackdropLabel">{{sAboutModalTitle}}</h4>
-                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal" aria-label="Close"><i
-                        class="fa fa-times aboutcrossbtn"></i></button>
+                <button type="button" class="bg-transparent border-0 btn-close" data-bs-dismiss="modal" (click)="DismissModal()" aria-label="Close"></button>
             </div>
+
             <div class="modal-body">
+                <h2 class="modal-title" id="staticBackdropLabel">
+                    <img src="/../../../assets/images/icon.png" class="hl7-icon" />
+                    {{sAboutModalTitle}}
+                </h2>
                 <div class="bootbox-body">HL7-Tool Version {{sBuildVersion}}<p></p>
                     <p>Saga-IT offers HL7-Tool for composing/editing Hl7 standard messages</p>
-                    <p>© All rights reserved by, Saga-IT</p>
+                    <p>© All rights reserved by Saga-IT</p>
                 </div>
             </div>
             <div class="modal-footer">
@@ -131,10 +134,11 @@
         </div>
     </div>
 </div>
+<div *ngIf="sOverlay" class="{{sOverlay}}"></div>
 <!-- upload profile modal -->
 <div class="modal fade" id="upload-profile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="staticBackdropLabel">Upload profile</h4>

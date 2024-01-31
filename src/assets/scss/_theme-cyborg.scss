@@ -18,9 +18,11 @@
 .cyborg .panel-info {background-color: #168af9 !important; border-color: transparent !important;}
 .cyborg .panel-info a {color: #fff !important;}
 .cyborg .card {border-radius: 0 0 .25rem .25rem !important; border-color: #168af9 !important; background-color: #222222 !important; }
-.cyborg p , .cyborg label {color: #888888 !important;}
+.cyborg p { color: #fff !important; }
+.cyborg label {color: #888888 !important;}
 .cyborg .value-paragraph p {color: #ffffffc4 !important;}
 .cyborg .DescriptionParagraph p {color: #ffffffc4 !important;}
+.cyborg .field-length-paragraph p {color: #ffffffc4 !important;}
 .cyborg .value-paragraph input {color: #ffffffc4 !important;}
 .cyborg .value-paragraph input {background: #212529;}
 .cyborg .value-paragraph .form-control:focus {background-color: #212529 !important;}
@@ -39,9 +41,10 @@
 // .cyborg .DescriptionParagraph p , .cyborg label {color: #fff !important;}
 
 .cyborg .label-info {background-color: #168af9 !important;} 
+.cyborg .btn-close { color: white !important; filter: invert(1); }
 .cyborg small {color: #888888;}
 .cyborg .modal-header ,.cyborg .modal-body,.cyborg .modal-footer{background-color: #202020 !important; color: #fff !important; border: none !important;}
-.cyborg .modal-header , .cyborg .modal-body{border-bottom: 1px solid #282828 !important;}
+.cyborg .modal-body{border-bottom: 1px solid #282828 !important;}
 .cyborg .fa-times {color: #fff !important;}
 .cyborg .closeicon {color: #000 !important;}
 .cyborg .btn-primary{background-color: #2a9fd6 !important; border-color: #2a9fd6 !important;}

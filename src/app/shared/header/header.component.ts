@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
   sAboutModalTitle: string = "";
   sBuildVersion: string;
   bToggleSwitch: boolean;
+  sOverlay: string;
 
   constructor(private  oRouter : Router , private oThemeService : ThemesService, private oDataService : DataService) 
   {
@@ -139,10 +140,14 @@ export class HeaderComponent implements OnInit {
   ChangeModalTitle()
   {
     this.sAboutModalTitle = "HL7-Tool"
+    if (this.sOverlay)
+      this.sOverlay = '';
+    else this.sOverlay = 'overlay-fade';
   }
   DismissModal()
   {
-    sessionStorage.setItem("currentSession","1")
+    sessionStorage.setItem("currentSession","1");
+    this.sOverlay = '';
     
   }
   // ExportAsJson()

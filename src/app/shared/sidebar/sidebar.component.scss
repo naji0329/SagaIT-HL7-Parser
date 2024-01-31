@@ -29,10 +29,18 @@
     overflow: auto;
     min-height: 50px;
   }
+  .field-length-paragraph {
+    max-height: 30vh;
+    line-break: anywhere;
+    line-height: 2rem;
+    overflow: auto;
+    min-height: 50px;
+  }
   .DescriptionParagraph {
     max-height: 35vh;
     line-height: 2rem;
     overflow: auto;
+    word-break: break-all;
   }
 
 .pdf-content{width: 42vw; padding: 0px;}
