@@ -479,8 +479,8 @@ ul.dropdown-menu {min-width: auto !important;}
 .wrapper .icon {
   position: relative;
   display: inline-flex !important;
-  background-color: #168af9;
-  color: white;
+  background-color: white;
+  color: #168af9;
   border-radius: 50%;
   padding: 15px;
   margin: 6px;
@@ -494,6 +494,11 @@ ul.dropdown-menu {min-width: auto !important;}
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper-blue .icon {
+  color: white;
+  background-color: #168af9;
 }
 
 .items-center {
@@ -996,7 +1001,7 @@ background-color: #3b5999;
 .button-switch .switch:before {
   padding: 4px;
   border-radius: 1.25em;
-  background: #062a69;
+  background: #168af9;
   height: 1.25em;
   left: -1em;
   top: 0.0625em;
@@ -1047,7 +1052,7 @@ background-color: #3b5999;
   border-color: #168af9 !important;
 }
 .SidebarHeading {
-  background: #166ad9;
+  background: #168af9;
   color: white;
 }
  .form-check-input:checked[type=checkbox] {
@@ -1066,17 +1071,17 @@ display: none !important;
 }
 
 .navbar {
-  padding: 0.85em 0 !important;
+  padding: 0.8em 0 !important;
 }
 
 .about {
   border: 1px solid dodgerblue;
   border-radius: 25px;
-  padding: 12px 24px;
+  padding: 2.7px 24px;
   background-color: dodgerblue;
   color: white;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .btn-left-radius {
@@ -1094,15 +1099,11 @@ input.form-control {
   border: 1px solid dodgerblue !important;
 }
 
-.asidebar .rg-left {
-  background-color: #168af911 !important;
-}
-
 .highlight-mark {
   border-radius: 0 !important;
   padding: 0 !important;
   color: transparent;
-  background-color: yellow;
+  background-color: #168af9;
 }
 
 textarea {
@@ -1111,4 +1112,161 @@ textarea {
 
 :focus-visible {
   outline: none;
+}
+
+.me-auto2 {
+  margin-right: auto !important;
+}
+
+.navbar-content {
+  .navbar-toggler {
+    margin-right: 30px;
+  }
+  .logo {
+    padding-left: 110px !important;
+  }
+  padding-right: 20px !important;
+}
+
+// Mobile Responsiveness
+@media screen and (max-width: 991px) {
+  .navbar {
+    width: calc(100vw - 10px) !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+  .main-sec {
+    min-width: 320px !important;
+  }
+  .rsp-flex-row {
+    flex-direction: column !important;
+    width: calc(100vw - 10px) !important;
+  }
+  .container-fluid {
+    padding: 0px !important;
+  }
+  .app-header {
+    width: fit-content !important;
+    display: block !important;
+  }
+  .rsp-full-width {
+    width: 100% !important;
+    margin-left: 0px !important;
+  }
+  #main {
+    width: fit-content !important;
+  }
+  .rsp-fit-content {
+    width: fit-content !important;
+  }
+  .asidebar {
+    padding-right: 0px !important;
+  }
+  rsz-layout {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .navbar-nav {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+  .dropdown-menu {
+    position: absolute !important;
+  }
+  #navbarSupportedContent.show {
+    display: flex;
+    flex-direction: column;
+  }
+  .overlay-fade {
+    height: 3000px !important;
+  }
+  .preview-content {
+    z-index: 10000 !important;
+    min-width: 80vw !important;
+  }
+  .pills-tab-wrapper {
+    margin-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .nav-item {
+    margin-left: 0px !important;
+  }
+  #pills-home {
+    width: calc(100vw - 48px) !important;
+  }
+  .cyborg.cell.asidebar {
+    border-width: 0 !important;
+  }
+  .me-auto2 {
+    margin-right: 0px !important;
+  }
+  .collapsing {
+    transition: none !important;
+  }
+  .rsp-mb-4 {
+    margin-bottom: 16px !important;
+  }
+  .rg-left {
+    width: 0 !important;
+  }
+  .rsp-flex {
+    flex-direction: column;
+  }
+  .navbar-content .logo {
+    padding-left: 10px !important;
+  }
+  .navbar-content .navbar-toggler {
+    margin-right: 10px !important;
+  }
+}
+
+.navbar-nav2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cyborg .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+.cyborg .navbar-toggler {
+  border: 1px solid white !important;
+}
+
+.cyborg .main-sec.rsp-full-width {
+  background: #202020 !important;
+}
+
+.cyborg .rsp-dark-bg {
+}
+
+.cyborg .value-paragraph {
+  border-color: #168af9 !important;
+}
+
+.cyborg .DescriptionParagraph {
+  border-color: #168af9 !important;
+}
+
+textarea::selection {
+  background-color: #168af9; 
+}
+
+.asidebar .rg-left {
+  background-color: #168af911 !important;
+}
+
+.app-header nav {
+  box-shadow: 0 2px 4px rgba(22,138,249,.15);
+  border-bottom: 1px solid rgba(22,138,249,.2);
+  border-radius: 0 0 40px 40px;
+}
+
+.rsp-flex {
+  display: flex;
 }

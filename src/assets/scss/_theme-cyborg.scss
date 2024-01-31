@@ -79,8 +79,8 @@
   color: #fff !important;
 }
 .cyborg .wrapper .icon {
-	background-color: #168af9;
-	color: #fff !important;
+	background-color: white;
+	color: #168af9 !important;
   }
   .cyborg .wrapper .facebook:hover,
   .cyborg .wrapper .facebook:hover .tooltip,
@@ -135,9 +135,9 @@
 .cyborg .nav.nav-pills.border-primary {
   border-color: #fff !important;
 }
-.cyborg .SidebarHeading {
-  background: #000 !important;
-}
+// .cyborg .SidebarHeading {
+//   background: #000 !important;
+// }
 .cyborg .nav-pills .nav-link {
   border-radius: 0 !important;
   border: 1px solid #168af9 !important;
@@ -157,10 +157,13 @@
 }
 .cyborg.cell {background-color: #000 !important; } 
 .cyborg.cell { border: 0 !important; } 
+.cyborg #mainArea {
+  background-color: #202020 !important;
+}
 
 .cyborg.cell.asidebar {background-color: #202020 !important; border-left: 2px solid #3d3a3a !important;} 
 .cell.resizable {
-  height: 100vh !important;
+  height: calc(100vh - 80px) !important;
 }
 
 .cyborg .btn-primary {
