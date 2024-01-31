@@ -876,7 +876,12 @@ ul.dropdown-menu {min-width: auto !important;}
   top: 20% !important;
 }
 .modal-content {
-  border-radius: 16px !important;
+  border-radius: 16px !important;  
+}
+@media (min-width: 576px) {
+  .modal-dialog {
+      max-width: 550px !important;
+  }
 }
 .modal-header {
   color: #606060 !important;
@@ -1266,6 +1271,12 @@ textarea {
   .navbar-content .navbar-toggler {
     margin-right: 10px !important;
   }
+  .sidebar .rightbtn {
+    display: none;
+  }
+  #navbarSupportedContent {
+    margin-top: 10px;
+  }
 }
 
 .navbar-nav2 {
@@ -1287,6 +1298,7 @@ textarea {
 }
 
 .cyborg .rsp-dark-bg {
+  background: #202020 !important;
 }
 
 .cyborg .value-paragraph {

@@ -102,11 +102,12 @@ export class HeaderComponent implements OnInit {
       const body = document.getElementsByTagName('body')[0];
       body.classList.remove('slate-body')
     }
-    this.sAboutModalTitle ="Welcome to the HL7-Tool"
+    this.sAboutModalTitle ="Welcome to the HL7\u2011Tool"
     this.currentSession = sessionStorage.getItem("currentSession")
     if(this.currentSession != '1')
     {
-      $('#about').modal('show')
+      $('#about').modal('show');
+      this.sOverlay = 'overlay-fade';
     }
 
   }

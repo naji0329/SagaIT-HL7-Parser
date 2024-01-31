@@ -2,7 +2,7 @@
     <div class="container-fluid navbar-content">
         <div class="logo">
             <!-- <img src="../../../assets/images/logo_white.svg" alt=""> -->
-            <span class="saga-logo"></span>
+            <a class="saga-logo" href="/"></a>
             <!-- <span class="name">Saga</span><br><em class="subtitle text-nowrap">Healthcare IT</em> -->
         </div>
         <!-- <a class="navbar-brand ml-3" href="javascript:void(0)" routerLink="/">HL7 Version :</a>  -->
@@ -11,10 +11,10 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse ml-3" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto2 mb-2 mb-lg-0 items-center">
+            <ul class="navbar-nav me-auto2 mb-0 mb-lg-0 items-center">
 
                 <span role="button">
-                    HL7 Version:
+                    HL7&#160;Version:
                 </span>
 
                 <li *ngIf="bDisplayProfileOptions" class="nav-item dropdown versionnumber">
@@ -54,16 +54,6 @@
                         </ul>
                     </div>
                 </div>
-
-
-            </ul>
-
-            <!-- <div>
-            <span role="text" class="mr-2">Theme</span>
-           </div> -->
-
-
-            <div class="navbar-nav2">
                 <div class="button-switch mb-0 pr-2">
                     <input type="checkbox" id="switch-blue" class="switch" (change)="ToggleTheme($event)"
                         [checked]="bToggleSwitch" />
@@ -74,7 +64,25 @@
                     data-bs-target="#about" aria-expanded="false">
                     About
                 </span>
-            </div>
+            </ul>
+
+            <!-- <div>
+            <span role="text" class="mr-2">Theme</span>
+           </div> -->
+
+
+            <!-- <div class="navbar-nav2">
+                <div class="button-switch mb-0 pr-2">
+                    <input type="checkbox" id="switch-blue" class="switch" (change)="ToggleTheme($event)"
+                        [checked]="bToggleSwitch" />
+                    <label for="switch-blue" class="lbl-off">Dark</label>
+                    <label for="switch-blue" class="lbl-on">Light</label>
+                </div>
+                <span (click)="ChangeModalTitle()" href="#" role="button" class="z-index-999 about ml-4" data-bs-toggle="modal"
+                    data-bs-target="#about" aria-expanded="false">
+                    About
+                </span>
+            </div> -->
 
 
         </div>
@@ -119,7 +127,7 @@
             <div class="modal-body">
                 <h2 class="modal-title" id="staticBackdropLabel">
                     <img src="/../../../assets/images/icon.png" class="hl7-icon" />
-                    {{sAboutModalTitle}}
+                    <span>{{sAboutModalTitle}}</span>
                 </h2>
                 <div class="bootbox-body">HL7-Tool Version {{sBuildVersion}}<p></p>
                     <p>Saga-IT offers HL7-Tool for composing/editing Hl7 standard messages</p>
