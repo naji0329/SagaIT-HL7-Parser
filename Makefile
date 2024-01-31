@@ -32,8 +32,8 @@ TAG := $(IMAGE):$(BRANCH)-$(SHORT_HASH)
 
 ##-- Main Makefile Targets --##
 
-.PHONY: dist
-build: node-clean node-build docker-build docker-tag
+.PHONY: docker-dist
+docker-dist: docker-build docker-tag
 
 # test - run unit tests
 .PHONY: node-test
