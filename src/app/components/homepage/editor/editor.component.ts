@@ -176,6 +176,8 @@ export class EditorComponent implements OnInit {
       //MSH HANDLING//
       //MSH HANDLING//
 
+      const position = this.EditorMainSectionComponent_GetPosition(this.nLineCount, this.nBarcount, isDoubleClick ? -1 : this.nCarrotsCount);
+
       //if MSH>1 Bar = bar+1
       if(segHeader=="MSH" && this.nBarcount > 1)
       {
@@ -195,7 +197,7 @@ export class EditorComponent implements OnInit {
       }
       this.oDataService.oWordToSearch.next({header : segHeader, word : this.oOriginalValue, bars: this.nBarcount, carrots: this.nCarrotsCount, focus: false});
       
-      const position = this.EditorMainSectionComponent_GetPosition(this.nLineCount, this.nBarcount, isDoubleClick ? -1 : this.nCarrotsCount);
+      
       this.textarea.setSelectionRange(position.startPosition, position.endPosition);
       localStorage.setItem("lsSelectedView", 'editview');
     }

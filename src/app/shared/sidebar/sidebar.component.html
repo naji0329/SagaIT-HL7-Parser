@@ -1,6 +1,6 @@
 <div class="middle {{selectedTheme}}">
-    <div class="row">
-        <div class="col-12 p-3">
+    <div class="row rsp-full-width">
+        <div class="col-12 p-4 rsp-dark-bg">
             <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2">
                 <div style="padding: 3px 0 5px 0" *ngIf="this.oSelectedSegment">
                     <h6 class="m-2">{{oSelectedSegment?.seg}}{{bDatatype?'.':''}}{{bDatatype?nCrrotsCount:''}} -
@@ -94,4 +94,4 @@
             </div>
 
         </div>
-        <div class="{{sOverlay}}"></div>
+        <div *ngIf="sOverlay" class="{{sOverlay}}"></div>
