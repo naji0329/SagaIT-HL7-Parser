@@ -138,6 +138,10 @@ export class HeaderComponent implements OnInit {
     }
     
   }
+  HeaderComponent_OnViewHL7Diagram() {
+    const viewBtn = document.getElementById("pills-home-tab");
+    viewBtn.classList.remove("flash");
+  }
   ChangeModalTitle()
   {
     this.sAboutModalTitle = "HL7-Tool"

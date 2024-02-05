@@ -1335,3 +1335,22 @@ textarea::selection {
   font-size: 1.1rem;
   font-weight: 500;
 }
+
+@keyframes glowing-light {
+  0% {
+    background-color: #f8f9fa;
+    box-shadow: 0 0 3px #168af9;
+  }
+  50% {
+    background-color: #f8f9fa;
+    box-shadow: 0 0 20px #36aaf9;
+  }
+  100% {
+    background-color: #f8f9fa;
+    box-shadow: 0 0 0px #168af9;
+  }
+}
+
+#pills-home-tab.flash {
+  animation: glowing-light 1500ms infinite;
+}

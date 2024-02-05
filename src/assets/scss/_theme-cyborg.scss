@@ -189,3 +189,22 @@
   text-align: center;
 }
 .cyborg .pdfDownload:hover { background-color: #168af9;}
+
+@keyframes glowing-dark {
+  0% {
+    background-color: #202020;
+    box-shadow: 0 0 3px #168af9;
+  }
+  50% {
+    background-color: #202020;
+    box-shadow: 0 0 20px #36aaf9;
+  }
+  100% {
+    background-color: #202020;
+    box-shadow: 0 0 0px #168af9;
+  }
+}
+
+.cyborg #pills-home-tab.flash {
+  animation: glowing-dark 1500ms infinite;
+}

@@ -110,7 +110,7 @@ export class EditorComponent implements OnInit {
     }
     let nStartPosition = sIncommingTextArea.selectionStart;  
     let nEndPosition = sIncommingTextArea.selectionEnd;
-    // if(nStartPosition == nEndPosition)
+    if(nStartPosition == nEndPosition || isDoubleClick)
     {
       this.sStartStringtoCalculateBars = sIncommingTextArea.value.substring(0, nStartPosition);
       // pick selected word
@@ -215,6 +215,15 @@ export class EditorComponent implements OnInit {
         this.EditorMainSectionComponent_PassValueToTreeView();
       }
       reader.readAsText(file);
+    }
+  }
+  EditorMainSectionComponent_FlashView() {
+    const viewButton = document.getElementById("pills-home-tab");
+    if (viewButton) {
+      viewButton.classList.add("flash");
+      setTimeout(() => {
+        viewButton.classList.remove("flash");
+      }, 6000);
     }
   }
   EditorMainSectionComponent_PassValueToTreeView()
