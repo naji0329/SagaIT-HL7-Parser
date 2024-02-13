@@ -99,7 +99,6 @@ minikube-image:
 kubectl-apply:
 	@echo "Is the following the correct context!? If not - use CTRL-C to stop this script. Otherwise press Enter."
 	kubectl config current-context
-	read
 	sleep 3
 	sed -e "s|{{IMAGE_NAME}}|$(TAG)|g" k8s.yaml | kubectl apply -f -
 
