@@ -99,7 +99,7 @@ minikube-image:
 kubectl-apply:
 	@echo "Is the following the correct context!? If not - use CTRL-C to stop this script."
 	kubectl config current-context
-	sed -e "s|{{IMAGE_NAME}}|$(TAG)|g" k8s.yaml | kubectl apply --namespace=production -f -
+	sed -e "s|{{IMAGE_NAME}}|$(TAG)|g" k8s/deployment.yaml | kubectl apply --namespace=production -f -
 	kubectl apply --namespace=production -f k8s/service.yaml
 	kubectl apply --namespace=production -f k8s/ingress.yaml
 
