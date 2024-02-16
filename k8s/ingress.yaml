@@ -27,6 +27,6 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: hl7-tool
+              name: hl7tool
               port:
                 number: 80
