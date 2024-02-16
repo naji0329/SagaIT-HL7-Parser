@@ -8,4 +8,5 @@ COPY . .
 RUN npm run build -- --base-href=/hl7-tool/ --prod
 
 FROM docker.io/nginx:stable-alpine@sha256:1865a131612a5b8407d596a035b6ce1fa53c94f2f1b175c52d110565192d2f0d
-COPY --from=build /usr/src/app/dist /usr/share/nginx/html
+COPY --from=build /usr/src/app/dist /usr/share/nginx/html/hl7-tool
+COPY --from=build /usr/src/app/nginx/ /etc/nginx/
