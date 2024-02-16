@@ -97,9 +97,8 @@ minikube-image:
 
 .PHONY: kubectl-apply
 kubectl-apply:
-	@echo "Is the following the correct context!? If not - use CTRL-C to stop this script. Otherwise press Enter."
+	@echo "Is the following the correct context!? If not - use CTRL-C to stop this script."
 	kubectl config current-context
-	sleep 3
 	sed -e "s|{{IMAGE_NAME}}|$(TAG)|g" k8s.yaml | kubectl apply -f -
 
 #podman build --tag minikube-dev.local:5000/$(IMAGE_NAME) $(PWD)
