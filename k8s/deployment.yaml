@@ -1,10 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hl7tool-deployment
+  name: hl7tool
   labels:
     app: hl7tool
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: hl7tool
@@ -13,15 +14,24 @@ spec:
       labels:
         app: hl7tool
     spec:
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app: hl7tool
+        matchLabelKeys:
+          - pod-template-hash
       containers:
-      - name: hl7tool-container
+      - name: hl7tool
         image: {{IMAGE_NAME}}
         imagePullPolicy: Always
         ports:
         - containerPort: 80
         readinessProbe:
           httpGet:
-            path: /index.html
+            path: /healthz
             port: 80
           initialDelaySeconds: 6
           periodSeconds: 4
@@ -36,16 +46,3 @@ spec:
       # #   - key: "default-lt"
       # #     operator: "Exists"
       # #     effect: "NoSchedule"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: hl7tool-service
-spec:
-  type: ClusterIP
-  selector:
-    app: hl7tool
-  ports:
-  - protocol: TCP
-    port: 8080
-    targetPort: 80
