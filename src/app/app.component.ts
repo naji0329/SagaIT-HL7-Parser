@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'hl7';
   constructor() {
     if(localStorage.getItem("selectedTheme") == null) {
-      localStorage.setItem("selectedTheme", "cyborg");
+      localStorage.setItem("selectedTheme", "default");
     }
   }
 }
