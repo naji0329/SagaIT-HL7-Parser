@@ -22,7 +22,7 @@ spec:
     - host: preprod.saga-dev2.com
       http:
         paths:
-        - path: /hl7-tool
+        - path: /hl7-online-parser
           pathType: Prefix
           backend:
             service:

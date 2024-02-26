@@ -7,7 +7,7 @@ import { SidebarTestComponent } from './components/sidebar-test/sidebar-test.com
 // import { TestComponent } from './components/test/test.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'tool', pathMatch: 'full' },
+  { path: '', redirectTo: 'app', pathMatch: 'full' },
   {
     path: 'homepage',
     component: HomepageComponent
@@ -27,7 +27,7 @@ const routes: Routes = [
   // }
   // ,
   {
-    path: 'tool',
+    path: 'app',
     component: SidebarTestComponent
   }
 ];
