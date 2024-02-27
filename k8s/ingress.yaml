@@ -6,13 +6,17 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/ip-address-type: ipv4
-    alb.ingress.kubernetes.io/group.name: saga-site-prod-alb
+    alb.ingress.kubernetes.io/group.name: saga-site-dev-alb
     alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-east-2:853450806095:certificate/359db7fe-71fb-49c5-8fce-e094a58847c9"
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/ssl-redirect: '443'
     alb.ingress.kubernetes.io/healthcheck-path: /healthz
-    alb.ingress.kubernetes.io/inbound-cidrs: 12.8.238.3/32, 76.108.211.199/32
+    # alb.ingress.kubernetes.io/inbound-cidrs: 12.8.238.3/32, 76.108.211.199/32
     alb.ingress.kubernetes.io/group.order: '0'
+    alb.ingress.kubernetes.io/actions.hl7tool: >
+      {"type":"forward","forwardConfig":{"targetGroups":[{"serviceName":"hl7tool","servicePort":80,"weight":100}],"targetGroupStickinessConfig":{"enabled":true,"durationSeconds":200}}}
+    alb.ingress.kubernetes.io/conditions.hl7tool: >
+      [{"field":"http-header","httpHeaderConfig":{"httpHeaderName": "X-LETMEIN", "values":["KamziVn2oLb"]}}]
 spec:
   ingressClassName: alb
   tls:
@@ -28,4 +32,4 @@ spec:
             service:
               name: hl7tool
               port:
-                number: 80
+                name: use-annotation
