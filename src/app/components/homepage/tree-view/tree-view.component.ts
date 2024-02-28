@@ -158,7 +158,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
   }
   TreeViewSectionComponent_SplitBasedOnBar(sIncommingText : any)
   {
-    let lSplittedList =  sIncommingText.split('|');
+    let lSplittedList = sIncommingText.split('|');
     for (let nChildIndex = 0; nChildIndex < lSplittedList.length; nChildIndex++) 
     {
       if(lSplittedList[nChildIndex] == "")
@@ -166,7 +166,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
         lSplittedList[nChildIndex] = "[empty]";
       }
     }
-    return lSplittedList;
+    return lSplittedList.filter(item => item !== '[empty]');
   }
   TreeViewSectionComponent_SplitBasedOnCap(sIncommingText : any)
   {
@@ -178,7 +178,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
         lSplittedList[nGrandChildIndex] = "[empty]";
       }
     }
-    return lSplittedList;
+    return lSplittedList.filter(item => item !== '[empty]');
   }
   // Filter Text 
   TreeViewSectionComponent_FilterText()
