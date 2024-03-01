@@ -68,7 +68,7 @@
                 <div>
                     <p *ngIf="!bDatatype"> {{oSelectedSegment?.desc}}</p>
                     <p *ngIf="bDatatype"> {{oSelectedDatatypeSeg?.desc}}</p>
-                    <p *ngIf="this.oSelectedSegment">Chapter: {{oSelectedSegment?.chap}}</p>
+                    <p *ngIf="this.oSelectedSegment.chap" class="DescriptionChapter">Chapter: {{oSelectedSegment?.chap}}</p>
                 </div>
             </div>
         </div>
@@ -76,7 +76,7 @@
 
         <div *ngIf="bDisplayPreviewPanel" class="preview-content bg-white shadow p-0">
             <img *ngIf="!bDisplayImageError" src="data:image/png;base64,{{sSelectedWord}}" alt=""
-                (error)="SidebarComponent_DisplayImageError()">
+                (error)="SidebarComponent_DisplayImageError()" alt="Selected Word">
             <p class="corrupt-image font-24" *ngIf="bDisplayImageError"> <i class="fa fa-image  mr-2"></i>Invalid Base64
                 Image Data</p>
             <i class="fa fa-times closeicon" (click)="SidebarComponent_DismissPreviewPanel()"></i>

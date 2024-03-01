@@ -102,7 +102,7 @@ export class HeaderComponent implements OnInit {
       const body = document.getElementsByTagName('body')[0];
       body.classList.remove('slate-body')
     }
-    this.sAboutModalTitle ="Welcome to the HL7 Parser"
+    this.sAboutModalTitle ="Welcome to the HL7 Online Parser"
     this.currentSession = sessionStorage.getItem("currentSession")
     if(this.currentSession != '1')
     {
@@ -144,7 +144,7 @@ export class HeaderComponent implements OnInit {
   }
   ChangeModalTitle()
   {
-    this.sAboutModalTitle = "HL7 Parser"
+    this.sAboutModalTitle = "Welcome to the HL7 Online Parser"
     if (this.sOverlay)
       this.sOverlay = '';
     else this.sOverlay = 'overlay-fade';

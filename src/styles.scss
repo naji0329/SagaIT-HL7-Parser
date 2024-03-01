@@ -893,6 +893,7 @@ ul.dropdown-menu {min-width: auto !important;}
     font-size: 14px !important;
     font-weight: 700 !important;
     color: #606060 !important;
+    z-index: 50 !important;
   }
 }
 .modal-body {
@@ -907,15 +908,18 @@ ul.dropdown-menu {min-width: auto !important;}
   align-items: center;
   gap: 10px;
 }
+.modal-title.about-modal {
+  margin-top: -45px !important;
+  .modal-title-text {
+    text-align: left;
+  }
+}
 .modal-footer {
   justify-content: center !important;
   .btn {
     min-width: 140px !important;
   }
-}
-.hl7-icon {
-  filter: grayscale(1);
-}
+} 
 .closeicon {
   position: absolute;
   top:15px;

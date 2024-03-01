@@ -18,17 +18,17 @@
                 </span>
 
                 <li *ngIf="bDisplayProfileOptions" class="nav-item dropdown versionnumber">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    <div class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         {{oProfileName}}
-                    </a>
+                    </div>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="javascript:void(0)"
-                                (click)="HeaderComponent_LoadProfileHL7Version_2_7_1()"> 2.7.1</a></li>
-                        <li><a class="dropdown-item" href="javascript:void(0)"
-                                (click)="HeaderComponent_LoadProfileHL7Version_2_5_1()"> 2.5.1</a></li>
-                        <li><a class="dropdown-item" href="javascript:void(0)"
-                                (click)="HeaderComponent_LoadProfileHL7Version_2_3_1()"> 2.3.1</a></li>
+                        <li><div class="dropdown-item" href="javascript:void(0)"
+                                (click)="HeaderComponent_LoadProfileHL7Version_2_7_1()" role="button"> 2.7.1</div></li>
+                        <li><div class="dropdown-item" href="javascript:void(0)"
+                                (click)="HeaderComponent_LoadProfileHL7Version_2_5_1()" role="button"> 2.5.1</div></li>
+                        <li><div class="dropdown-item" href="javascript:void(0)"
+                                (click)="HeaderComponent_LoadProfileHL7Version_2_3_1()" role="button"> 2.3.1</div></li>
                     </ul>
                 </li>
 
@@ -125,12 +125,12 @@
             </div>
 
             <div class="modal-body">
-                <h2 class="modal-title" id="staticBackdropLabel">
-                    <img src="assets/images/icon.png" class="hl7-icon" />
-                    <span>{{sAboutModalTitle}}</span>
+                <h2 class="modal-title about-modal" id="staticBackdropLabel">
+                    <img src="assets/images/icon.png" class="hl7-icon" alt="SagaIT logo" />
+                    <span class="modal-title-text">{{sAboutModalTitle}}</span>
                 </h2>
-                <div class="bootbox-body">HL7 Parser Version {{sBuildVersion}}<p></p>
-                    <p>Saga-IT offers HL7 Parser for composing/editing Hl7 standard messages</p>
+                <div class="bootbox-body">HL7 Online Parser Version {{sBuildVersion}}<p></p>
+                    <p>Saga-IT offers HL7 Online Parser for composing/editing Hl7 standard messages</p>
                     <p>© All rights reserved by Saga-IT</p>
                 </div>
             </div>

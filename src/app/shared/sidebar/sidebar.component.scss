@@ -40,7 +40,10 @@
     max-height: 35vh;
     line-height: 2rem;
     overflow: auto;
-    word-break: break-all;
+    text-align: justify;
+  }
+  .DescriptionChapter {
+    font-weight: 600;
   }
 
 .pdf-content{width: 42vw; padding: 0px;}
