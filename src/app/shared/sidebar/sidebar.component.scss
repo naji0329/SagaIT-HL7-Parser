@@ -98,3 +98,14 @@ textarea {
 .view-image.tooltip::before {
   left: 140px !important;
 }
+
+.SidebarTitle {
+  padding-top: 10px !important;
+  padding-bottom: 0px !important;
+  background: none !important;
+  color: black !important;
+
+  h6 {
+    font-size: 1.5rem !important;
+  }
+}
