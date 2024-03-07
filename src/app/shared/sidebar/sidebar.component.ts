@@ -82,159 +82,66 @@ export class SidebarComponent implements OnInit {
     this.sOverlay = '';
   }
   SidebarComponent_ExtractHeaderDetails(oIncommingData : any)
- {
-  this.lFields =[];
-  this.lSegments =[];
-  this.lDatatypes =[];
-  this.bCheck = oIncommingData.focus;
-  
-  this.bTick = false;
-  this.sSelectedHeader = oIncommingData.header;
-  this.sSelectedWord = oIncommingData.word;
-  this.nBarCount = oIncommingData.bars;
-  this.nCrrotsCount = oIncommingData.carrots;
-  this.sDisplayWord = JSON.parse(JSON.stringify(this.sSelectedWord));
-  this.bSelectedProfile = localStorage.getItem('ProfileNumber');
-  switch(this.bSelectedProfile) 
-  { 
-    case '2_3_1' : {
-      console.log("case 2.3.1");
+  {
+    this.lFields =[];
+    this.lSegments =[];
+    this.lDatatypes =[];
+    this.bCheck = oIncommingData.focus;
+    
+    this.bTick = false;
+    this.sSelectedHeader = oIncommingData.header;
+    this.sSelectedWord = oIncommingData.word;
+    this.nBarCount = oIncommingData.bars;
+    this.nCrrotsCount = oIncommingData.carrots;
+    this.sDisplayWord = JSON.parse(JSON.stringify(this.sSelectedWord));
+    this.bSelectedProfile = localStorage.getItem('ProfileNumber');
+    let hl7Version = HL7VERSION2_7_1;
+    switch(this.bSelectedProfile) 
+    { 
+      case '2_3_1' : {
+        console.log("case 2.3.1");
+        hl7Version = HL7VERSION2_3_1;
+        break;
+      }
+      case '2_5_1' : {
+        console.log("case 2.5.1");
+        hl7Version = HL7VERSION2_5_1;
+        break;
+      }
+      default: {
+        console.log("case 2.7.1");
+        hl7Version = HL7VERSION2_7_1;
+        break;
+      }
+    }
       
-      if(this.nBarCount == 0 && this.nCrrotsCount == 0)
-      {
-        this.lSegments = HL7VERSION2_3_1.segments ; 
-        this.SidebarComponent_MatchSegments();
-      }
-      else if(this.nBarCount>0 && this.nCrrotsCount == 0)
-      {
-        this.lFields = HL7VERSION2_3_1.fields;
-        this.SidebarComponent_MatchFields();
-      }
-      else if(this.nBarCount>0 && this.nCrrotsCount>0)
-      {
-        this.lFields = HL7VERSION2_3_1.fields;
-        this.oSelectedSegment = undefined;
-        let nField = this.sSelectedHeader+"."+this.nBarCount;
-        for(let nIndex = 0;nIndex < this.lFields.length;nIndex++)
-        {
-          if(this.lFields[nIndex].seg === nField)
-          {
-            this.oSelectedSegment = this.lFields[nIndex];
-            console.log("Selected Field ===>>>",this.oSelectedSegment);
-            break;
-          }
-        }
-        this.SidebarComponent_MatchDatatypes();
-      }
-      break; 
-    } 
-    case '2_5_1' : {
-      console.log("case 2.5.1");
-
-      if(this.nBarCount == 0 && this.nCrrotsCount == 0)
-      { 
-      this.lSegments = HL7VERSION2_5_1.segments ; 
+    if(this.nBarCount == 0 && this.nCrrotsCount == 0)
+    {
+      this.lSegments = hl7Version.segments ; 
       this.SidebarComponent_MatchSegments();
-      }
-      else if(this.nBarCount>0 && this.nCrrotsCount == 0)
-      {
-        this.lFields = HL7VERSION2_5_1.fields;
-        this.SidebarComponent_MatchFields();
-      }
-      else if(this.nBarCount>0 && this.nCrrotsCount>0)
-      {
-        this.lFields = HL7VERSION2_5_1.fields;
-        this.oSelectedSegment = undefined;
-        let nField = this.sSelectedHeader+"."+this.nBarCount;
-        for(let nIndex = 0;nIndex < this.lFields.length;nIndex++)
-        {
-          if(this.lFields[nIndex].seg === nField)
-          {
-            this.oSelectedSegment = this.lFields[nIndex];
-            console.log("Selected Field ===>>>",this.oSelectedSegment);
-            break;
-          }
-        }
-        this.SidebarComponent_MatchDatatypes();
-      }
-      break; 
     }
-    case '2_7_1' : { 
-      console.log("case 2.7.1");
-
-      if(this.nBarCount == 0 && this.nCrrotsCount == 0)
-      {
-        this.lSegments = HL7VERSION2_7_1.segments ;
-        this.SidebarComponent_MatchSegments();
-      }
-      else if(this.nBarCount>0 && this.nCrrotsCount == 0)
-      {
-        this.lFields = HL7VERSION2_7_1.fields ;
-        this.SidebarComponent_MatchFields();
-      }
-      else if(this.nBarCount>0 && this.nCrrotsCount>0)
-      {
-        // this.lSegments = HL7VERSION2_7_1.segments;
-        // this.bDatatype = false;
-        // this.oSelectedSegment = undefined;
-        // let nSeg = this.sSelectedHeader+"."+this.nBarCount;
-        // for(let nIndex = 0;nIndex < this.lSegments.length;nIndex++)
-        // {
-        //   if(this.lSegments[nIndex].seg === nSeg)
-        //   {
-        //     this.oSelectedSegment = this.lSegments[nIndex];
-        //     console.log("Selected Segment ===>>>",this.oSelectedSegment);
-        //     break;
-        //   }
-        // }
-
-        this.lFields = HL7VERSION2_7_1.fields ;
-        this.oSelectedSegment = undefined;
-        let nField = this.sSelectedHeader+"."+this.nBarCount;
-        for(let nIndex = 0;nIndex < this.lFields.length;nIndex++)
-        {
-          if(this.lFields[nIndex].seg === nField)
-          {
-            this.oSelectedSegment = this.lFields[nIndex];
-            console.log("Selected Field ===>>>",this.oSelectedSegment);
-            break;
-          }
-        }
-        this.SidebarComponent_MatchDatatypes();
-      }
-      break; 
+    else if(this.nBarCount>0 && this.nCrrotsCount == 0)
+    {
+      this.lFields = hl7Version.fields;
+      this.SidebarComponent_MatchFields();
     }
-    default :  {
-      if(this.nBarCount == 0 && this.nCrrotsCount == 0)
+    else if(this.nBarCount>0 && this.nCrrotsCount>0)
+    {
+      this.lFields = hl7Version.fields;
+      this.oSelectedSegment = undefined;
+      let nField = this.sSelectedHeader+"."+this.nBarCount;
+      for(let nIndex = 0;nIndex < this.lFields.length;nIndex++)
       {
-        this.lSegments = HL7VERSION2_7_1.segments ;
-        this.SidebarComponent_MatchSegments();
-      }
-      else if(this.nBarCount>0 && this.nCrrotsCount == 0)
-      {
-        this.lFields = HL7VERSION2_7_1.fields;
-        this.SidebarComponent_MatchFields();
-      }
-      else if(this.nBarCount>0 && this.nCrrotsCount>0)
-      {
-        this.lFields = HL7VERSION2_7_1.fields;
-        this.oSelectedSegment = undefined;
-        let nField = this.sSelectedHeader+"."+this.nBarCount;
-        for(let nIndex = 0;nIndex < this.lFields.length;nIndex++)
+        if(this.lFields[nIndex].seg === nField)
         {
-          if(this.lFields[nIndex].seg === nField)
-          {
-            this.oSelectedSegment = this.lFields[nIndex];
-            // console.log("Selected Field ===>>>",this.oSelectedSegment);
-            break;
-          }
+          this.oSelectedSegment = this.lFields[nIndex];
+          console.log("Selected Field ===>>>",this.oSelectedSegment);
+          break;
         }
-        this.SidebarComponent_MatchDatatypes();
       }
-      break; 
+      // this.SidebarComponent_MatchDatatypes();
     }
   }
- }
  SidebarComponent_MatchDatatypes()
  {
   this.bDatatype=true;

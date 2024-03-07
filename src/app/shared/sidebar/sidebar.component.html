@@ -68,7 +68,7 @@
                 <div>
                     <p *ngIf="!bDatatype"> {{oSelectedSegment?.desc}}</p>
                     <p *ngIf="bDatatype"> {{oSelectedDatatypeSeg?.desc}}</p>
-                    <p *ngIf="this.oSelectedSegment.chap" class="DescriptionChapter">Chapter: {{oSelectedSegment?.chap}}</p>
+                    <p *ngIf="this.oSelectedSegment?.chap" class="DescriptionChapter">Chapter: {{oSelectedSegment?.chap}}</p>
                 </div>
             </div>
         </div>

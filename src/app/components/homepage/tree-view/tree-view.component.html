@@ -14,7 +14,7 @@
         <label for="fileUpload" class="icon facebook">
             <div class="tooltip">Import message</div>
             <span><i class="fa fa-upload"></i></span>
-            <input id="fileUpload"  accept="text/plain, .hl7" type="file" (change)="TreeViewSectionComponent_ImportFile($event)">
+            <input id="fileUpload"  accept="text/plain, .hl7" type="file" (change)="TreeViewSectionComponent_ImportFile($event)" class="hidden">
         </label>
         <div class="icon facebook" (click)="TreeViewSectionComponent_ExportFile()" >
             <div class="tooltip DownloadTooltip">Export message</div>

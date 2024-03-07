@@ -45,7 +45,7 @@ ul {
         margin:0;
         padding:8px 5px 0 5px;
         position:relative;
-        white-space: nowrap !important;
+        word-break: break-all;
     }
     .tree li::before, .tree li::after {
         content:'';
