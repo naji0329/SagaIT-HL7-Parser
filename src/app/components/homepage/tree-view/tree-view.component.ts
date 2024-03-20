@@ -158,15 +158,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
   }
   TreeViewSectionComponent_SplitBasedOnBar(sIncommingText : any)
   {
-    let lSplittedList = sIncommingText.split('|');
-    for (let nChildIndex = 0; nChildIndex < lSplittedList.length; nChildIndex++) 
-    {
-      if(lSplittedList[nChildIndex] == "")
-      {
-        lSplittedList[nChildIndex] = "[empty]";
-      }
-    }
-    return lSplittedList.filter(item => item !== '[empty]');
+    return sIncommingText.split('|');
   }
   TreeViewSectionComponent_SplitBasedOnCap(sIncommingText : any)
   {
