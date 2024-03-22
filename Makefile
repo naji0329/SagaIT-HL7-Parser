@@ -20,15 +20,17 @@ IMAGE      := $(REGISTRY)/$(IMAGE_PATH)/$(IMAGE_NAME)
 # Get current branch and transform '/' to '-'
 BRANCH := $(or $(CI_COMMIT_REF_NAME), `git rev-parse --abbrev-ref HEAD`)
 BRANCH := $(shell echo $(BRANCH) | tr / -)
+VERSION := $(shell git describe --always)
 
 # Retrieve first 7 characters of current commit hash
 SHORT_HASH := `git rev-parse --short HEAD`
 
 # Docker image tag for a local build
-BUILD_TAG := $(IMAGE):build
+BUILD_TAG := $(IMAGE):latest-dev
 
 # Docker image tag that will be pushed to the registry
-TAG := $(IMAGE):$(BRANCH)-$(SHORT_HASH)
+#TAG := $(IMAGE):$(BRANCH)-$(SHORT_HASH)
+TAG := $(IMAGE):$(VERSION)
 
 ##-- Main Makefile Targets --##
 
@@ -45,6 +47,7 @@ test:
 .PHONY: docker-push
 docker-push: docker-login
 	docker push $(TAG)
+	docker push $(BUILD_TAG)
 
 ##-- Extra Makefile Targets --##
 
@@ -97,9 +100,7 @@ minikube-image:
 
 .PHONY: kubectl-apply
 kubectl-apply:
-	@echo "Is the following the correct context!? If not - use CTRL-C to stop this script."
-	kubectl config current-context
-	sed -e "s|{{IMAGE_NAME}}|$(TAG)|g" k8s/deployment.yaml | kubectl apply -f -
+	kubectl apply -f k8s/deployment.yaml
 	kubectl apply -f k8s/service.yaml
 	kubectl apply -f k8s/ingress.yaml
 

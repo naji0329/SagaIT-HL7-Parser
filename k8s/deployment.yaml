@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hl7tool
+  namespace: pre-production
   labels:
     app: hl7tool
 spec:
@@ -25,7 +26,7 @@ spec:
           - pod-template-hash
       containers:
       - name: hl7tool
-        image: {{IMAGE_NAME}}
+        image: 853450806095.dkr.ecr.us-east-2.amazonaws.com/saga-it/hl7tool:latest-dev
         imagePullPolicy: Always
         ports:
         - containerPort: 80
