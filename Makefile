@@ -103,6 +103,7 @@ kubectl-apply:
 	kubectl apply -f k8s/deployment.yaml
 	kubectl apply -f k8s/service.yaml
 	kubectl apply -f k8s/ingress.yaml
+	kubectl rollout restart -f k8s/deployment.yaml
 
 #podman build --tag minikube-dev.local:5000/$(IMAGE_NAME) $(PWD)
 #podman push --tls-verify=false minikube-dev.local:5000/$(IMAGE_NAME)
