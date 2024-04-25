@@ -626,6 +626,12 @@ ul.dropdown-menu {min-width: auto !important;}
   align-items: flex-end;
   flex-wrap: wrap;
 }
+@media (max-width: 480px) {
+  .navbar-content {
+    gap: 10px;
+    justify-content: center !important;
+  }
+}
 .tabs ul li {
   box-sizing: border-box;
   flex: 1;
@@ -886,9 +892,9 @@ ul.dropdown-menu {min-width: auto !important;}
 .modal-header {
   color: #606060 !important;
   border: none !important;
-  padding-top: 40px !important;
+  padding-top: 20px !important;
   padding-bottom: 15px !important;
-  padding-right: 40px !important;
+  padding-right: 20px !important;
   .btn-close {
     font-size: 14px !important;
     font-weight: 700 !important;
@@ -907,10 +913,12 @@ ul.dropdown-menu {min-width: auto !important;}
   justify-content: center;
   align-items: center;
   gap: 10px;
+  font-size: 1.6rem;
 }
 .modal-title.about-modal {
   margin-top: -45px !important;
   .modal-title-text {
+    margin-top: 30px !important;
     text-align: left;
   }
 }
@@ -1165,7 +1173,7 @@ textarea {
     margin-right: 30px;
   }
   .logo {
-    padding-left: 110px !important;
+    padding-left: 10px !important;
   }
   padding-right: 20px !important;
 }
@@ -1361,4 +1369,20 @@ textarea::selection {
 
 .hidden {
   display: none;
+}
+
+.page-title {
+  margin: 0 0 0 4px;
+  font-size: 24px;
+}
+
+#navbarSupportedContent {
+  justify-content: end;
+  margin-right: 20px;
+}
+
+@media (min-width: 960px) and (max-width: 1160px) {
+  .page-title {
+    display: none;
+  }
 }
