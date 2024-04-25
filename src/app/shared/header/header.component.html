@@ -1,17 +1,22 @@
 <nav class="{{selectedTheme}} navbar navbar-expand-lg navbar-light bg-light shadow">
     <div class="container-fluid navbar-content">
-        <div class="logo">
-            <!-- <img src="../../../assets/images/logo_white.svg" alt=""> -->
-            <a class="saga-logo" href="/"></a>
-            <!-- <span class="name">Saga</span><br><em class="subtitle text-nowrap">Healthcare IT</em> -->
+        <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+            <div class="logo">
+                <!-- <img src="../../../assets/images/logo_white.svg" alt=""> -->
+                <a class="saga-logo" href="/"></a>
+                <!-- <span class="name">Saga</span><br><em class="subtitle text-nowrap">Healthcare IT</em> -->
+            </div>
+            <h1 class="page-title">HL7 Parser Online</h1>
         </div>
-        <!-- <a class="navbar-brand ml-3" href="javascript:void(0)" routerLink="/">HL7 Version :</a>  -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <h2 class="hidden">
+            View and edit your HL7 messages easily online with our HL7 Parser Online. A completely free and easy way to inspect HL7 messages from your browser.
+        </h2>
         <div class="collapse navbar-collapse ml-3" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto2 mb-0 mb-lg-0 items-center">
+            <ul class="navbar-nav mb-0 mb-lg-0 items-center">
 
                 <span role="button" class="dropdown-label">
                     HL7&#160;Version:
@@ -28,7 +33,7 @@
                         <li><div class="dropdown-item" href="javascript:void(0)"
                                 (click)="HeaderComponent_LoadProfileHL7Version_2_5_1()" role="button"> 2.5.1</div></li>
                         <li><div class="dropdown-item" href="javascript:void(0)"
-                                (click)="HeaderComponent_LoadProfileHL7Version_2_3_1()" role="button"> 2.3.1</div></li>
+                                (click)="HeaderComponent_LoadProfileHL7Version_2_3_1()" role="button"> 2.3.1</div></li> 
                     </ul>
                 </li>
 
@@ -44,7 +49,9 @@
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link btn-left-radius" id="pills-home-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                                    aria-selected="false" (click)="HeaderComponent_OnViewHL7Diagram()">View</button>
+                                    aria-selected="false" (click)="HeaderComponent_OnViewHL7Diagram()" style="display: flex;">
+                                    <img src="../../../assets/images/tree.svg" class="icon-tree" height="24" width="24" style="margin-left: 4px;"  />
+                                </button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active btn-right-radius" id="pills-profile-tab" data-bs-toggle="pill"
@@ -126,11 +133,10 @@
 
             <div class="modal-body">
                 <h2 class="modal-title about-modal" id="staticBackdropLabel">
-                    <img src="assets/images/icon.png" class="hl7-icon" alt="SagaIT logo" />
                     <span class="modal-title-text">{{sAboutModalTitle}}</span>
                 </h2>
-                <div class="bootbox-body">HL7 Online Parser Version {{sBuildVersion}}<p></p>
-                    <p>Saga-IT offers HL7 Online Parser for composing/editing Hl7 standard messages</p>
+                <div class="bootbox-body">HL7 Parser Online Version {{sBuildVersion}}<p></p>
+                    <p>View and edit your HL7 messages easily online with our HL7 Parser Online. A completely free and easy way to inspect HL7 messages from your browser.</p>
                     <p>© All rights reserved by Saga-IT</p>
                 </div>
             </div>
