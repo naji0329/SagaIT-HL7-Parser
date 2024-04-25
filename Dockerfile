@@ -7,6 +7,7 @@ RUN npm install --force
 COPY . .
 RUN npm run build -- --base-href=/hl7-online-parser/ --prod
 
-FROM docker.io/nginx:stable-alpine@sha256:1865a131612a5b8407d596a035b6ce1fa53c94f2f1b175c52d110565192d2f0d
+# FROM docker.io/nginx:stable-alpine@sha256:1865a131612a5b8407d596a035b6ce1fa53c94f2f1b175c52d110565192d2f0d
+FROM docker.io/nginx:stable-alpine
 COPY --from=build /usr/src/app/dist /usr/share/nginx/html/hl7-online-parser
 COPY --from=build /usr/src/app/nginx/ /etc/nginx/
