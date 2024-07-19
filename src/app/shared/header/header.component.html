@@ -1,84 +1,172 @@
-<nav class="{{selectedTheme}} navbar navbar-expand-lg navbar-light bg-light shadow">
-    <div class="container-fluid navbar-content">
-        <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
-            <div class="logo">
-                <!-- <img src="../../../assets/images/logo_white.svg" alt=""> -->
-                <a class="saga-logo" href="/"></a>
-                <!-- <span class="name">Saga</span><br><em class="subtitle text-nowrap">Healthcare IT</em> -->
-            </div>
-            <h1 class="page-title">HL7 Parser Online</h1>
-        </div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <h2 class="hidden">
-            View and edit your HL7 messages easily online with our HL7 Parser Online. A completely free and easy way to inspect HL7 messages from your browser.
-        </h2>
-        <div class="collapse navbar-collapse ml-3" id="navbarSupportedContent">
-            <ul class="navbar-nav mb-0 mb-lg-0 items-center">
+<nav
+  class="{{
+    selectedTheme
+  }} navbar navbar-expand-lg navbar-light bg-light shadow"
+>
+  <div class="container-fluid navbar-content">
+    <div
+      style="
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <div class="logo">
+        <!-- <img src="../../../assets/images/logo_white.svg" alt=""> -->
+        <a class="saga-logo" href="/"></a>
+        <!-- <span class="name">Saga</span><br><em class="subtitle text-nowrap">Healthcare IT</em> -->
+      </div>
+      <h1 class="page-title">HL7 Parser Online</h1>
+    </div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <h2 class="hidden">
+      View and edit your HL7 messages easily online with our HL7 Parser Online.
+      A completely free and easy way to inspect HL7 messages from your browser.
+    </h2>
+    <div class="collapse navbar-collapse ml-3" id="navbarSupportedContent">
+      <ul class="navbar-nav mb-0 mb-lg-0 items-center">
+        <span role="button" class="dropdown-label"> HL7&#160;Version: </span>
 
-                <span role="button" class="dropdown-label">
-                    HL7&#160;Version:
-                </span>
+        <li
+          *ngIf="bDisplayProfileOptions"
+          class="nav-item dropdown versionnumber"
+        >
+          <div
+            class="nav-link dropdown-toggle"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ oProfileName }}
+          </div>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <div
+                class="dropdown-item"
+                href="javascript:void(0)"
+                (click)="HeaderComponent_LoadProfileHL7Version_2_7_1()"
+                role="button"
+              >
+                2.7.1
+              </div>
+            </li>
+            <li>
+              <div
+                class="dropdown-item"
+                href="javascript:void(0)"
+                (click)="HeaderComponent_LoadProfileHL7Version_2_5_1()"
+                role="button"
+              >
+                2.5.1
+              </div>
+            </li>
+            <li>
+              <div
+                class="dropdown-item"
+                href="javascript:void(0)"
+                (click)="HeaderComponent_LoadProfileHL7Version_2_3_1()"
+                role="button"
+              >
+                2.3.1
+              </div>
+            </li>
+          </ul>
+        </li>
 
-                <li *ngIf="bDisplayProfileOptions" class="nav-item dropdown versionnumber">
-                    <div class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        {{oProfileName}}
-                    </div>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><div class="dropdown-item" href="javascript:void(0)"
-                                (click)="HeaderComponent_LoadProfileHL7Version_2_7_1()" role="button"> 2.7.1</div></li>
-                        <li><div class="dropdown-item" href="javascript:void(0)"
-                                (click)="HeaderComponent_LoadProfileHL7Version_2_5_1()" role="button"> 2.5.1</div></li>
-                        <li><div class="dropdown-item" href="javascript:void(0)"
-                                (click)="HeaderComponent_LoadProfileHL7Version_2_3_1()" role="button"> 2.3.1</div></li> 
-                    </ul>
-                </li>
+        <li *ngIf="bDisplayProfileOptions" class="nav-item ml-2">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Filter"
+            aria-label="Search"
+            (keyup)="HeaderComponent_FilterWord($event, $event.keyCode)"
+            (change)="HeaderComponent_ResetFilter($event)"
+          />
+        </li>
 
-                <li *ngIf="bDisplayProfileOptions" class="nav-item ml-2">
-                    <input class="form-control me-2" type="search" placeholder="Filter" aria-label="Search" (keyup)="HeaderComponent_FilterWord($event, $event.keyCode)" (change)="HeaderComponent_ResetFilter($event)">
-                </li>
-
-
-
-                <div>
-                    <div class="col-12 ml-4 pills-tab-wrapper">
-                        <ul class="nav nav-pills rounded" id="pills-tab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link btn-left-radius" id="pills-home-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                                    aria-selected="false" (click)="HeaderComponent_OnViewHL7Diagram()" style="display: flex;">
-                                    <img src="assets/images/tree.svg" class="icon-tree" height="24" width="24" style="margin-left: 4px;"  />
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active btn-right-radius" id="pills-profile-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-profile" type="button" role="tab"
-                                    aria-controls="pills-profile" aria-selected="true">Edit</button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="button-switch mb-0 pr-2">
-                    <input type="checkbox" id="switch-blue" class="switch" (change)="ToggleTheme($event)"
-                        [checked]="bToggleSwitch" />
-                    <label for="switch-blue" class="lbl-off">Dark</label>
-                    <label for="switch-blue" class="lbl-on">Light</label>
-                </div>
-                <span (click)="ChangeModalTitle()" href="#" role="button" class="z-index-999 about ml-4" data-bs-toggle="modal"
-                    data-bs-target="#about" aria-expanded="false">
-                    About
-                </span>
+        <div>
+          <div class="col-12 ml-4 pills-tab-wrapper">
+            <ul class="nav nav-pills rounded" id="pills-tab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link btn-left-radius"
+                  id="pills-home-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#pills-home"
+                  type="button"
+                  role="tab"
+                  aria-controls="pills-home"
+                  aria-selected="false"
+                  (click)="HeaderComponent_OnViewHL7Diagram()"
+                  style="display: flex"
+                >
+                  <img
+                    src="assets/images/tree.svg"
+                    class="icon-tree"
+                    height="24"
+                    width="24"
+                    style="margin-left: 4px"
+                  />
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link active btn-right-radius"
+                  id="pills-profile-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#pills-profile"
+                  type="button"
+                  role="tab"
+                  aria-controls="pills-profile"
+                  aria-selected="true"
+                >
+                  Edit
+                </button>
+              </li>
             </ul>
+          </div>
+        </div>
+        <div class="button-switch mb-0 pr-2">
+          <input
+            type="checkbox"
+            id="switch-blue"
+            class="switch"
+            (change)="ToggleTheme($event)"
+            [checked]="bToggleSwitch"
+          />
+          <label for="switch-blue" class="lbl-off">Dark</label>
+          <label for="switch-blue" class="lbl-on">Light</label>
+        </div>
+        <span
+          (click)="ChangeModalTitle()"
+          href="#"
+          role="button"
+          class="z-index-999 about ml-4"
+          data-bs-toggle="modal"
+          data-bs-target="#about"
+          aria-expanded="false"
+        >
+          About
+        </span>
+      </ul>
 
-            <!-- <div>
+      <!-- <div>
             <span role="text" class="mr-2">Theme</span>
            </div> -->
 
-
-            <!-- <div class="navbar-nav2">
+      <!-- <div class="navbar-nav2">
                 <div class="button-switch mb-0 pr-2">
                     <input type="checkbox" id="switch-blue" class="switch" (change)="ToggleTheme($event)"
                         [checked]="bToggleSwitch" />
@@ -90,88 +178,146 @@
                     About
                 </span>
             </div> -->
-
-
-        </div>
-
     </div>
+  </div>
 </nav>
 
-
 <!-- reset modal -->
-<div class="modal fade {{selectedTheme}}" id="reset" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="staticBackdropLabel">Reset profile</h4>
-                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal" aria-label="Close"><i
-                        class="fa fa-times"></i></button>
-            </div>
-            <div class="modal-body">
-                <div class="bootbox-body">All changes to the current profile will be lost in case you haven't a backup.
-                    Still reset?</div>
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Reset profile</button>
-                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Backup profile</button>
-                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
-            </div>
+<div
+  class="modal fade {{ selectedTheme }}"
+  id="reset"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="staticBackdropLabel">Reset profile</h4>
+        <button
+          type="button"
+          class="bg-transparent border-0"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="bootbox-body">
+          All changes to the current profile will be lost in case you haven't a
+          backup. Still reset?
         </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          Reset profile
+        </button>
+        <button type="button" class="btn btn-default" data-bs-dismiss="modal">
+          Backup profile
+        </button>
+        <button type="button" class="btn btn-default" data-bs-dismiss="modal">
+          Cancel
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- about modal -->
-<div class="modal fade {{selectedTheme}}" id="about" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="bg-transparent border-0 btn-close" data-bs-dismiss="modal" (click)="DismissModal()" aria-label="Close"></button>
-            </div>
+<div
+  class="modal fade {{ selectedTheme }}"
+  id="about"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="bg-transparent border-0 btn-close"
+          data-bs-dismiss="modal"
+          (click)="DismissModal()"
+          aria-label="Close"
+        ></button>
+      </div>
 
-            <div class="modal-body">
-                <h2 class="modal-title about-modal" id="staticBackdropLabel">
-                    <span class="modal-title-text">{{sAboutModalTitle}}</span>
-                </h2>
-                <div class="bootbox-body">HL7 Parser Online Version {{sBuildVersion}}<p></p>
-                    <p>View and edit your HL7 messages easily online with our HL7 Parser Online. A completely free and easy way to inspect HL7 messages from your browser.</p>
-                    <p>© All rights reserved by Saga-IT</p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                    (click)="DismissModal()">Close</button>
-            </div>
+      <div class="modal-body">
+        <h2 class="modal-title about-modal" id="staticBackdropLabel">
+          <span class="modal-title-text">{{ sAboutModalTitle }}</span>
+        </h2>
+        <div class="bootbox-body">
+          HL7 Parser Online Version {{ sBuildVersion }}
+          <p></p>
+          <p>
+            View and edit your HL7 messages easily online with our HL7 Parser
+            Online. A completely free and easy way to inspect HL7 messages from
+            your browser.
+          </p>
+          <p>© All rights reserved by Saga-IT</p>
         </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-dismiss="modal"
+          (click)="DismissModal()"
+        >
+          Close
+        </button>
+      </div>
     </div>
+  </div>
 </div>
-<div *ngIf="sOverlay" class="{{sOverlay}}"></div>
+<div *ngIf="sOverlay" class="{{ sOverlay }}"></div>
 <!-- upload profile modal -->
-<div class="modal fade" id="upload-profile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="staticBackdropLabel">Upload profile</h4>
-                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal" aria-label="Close"><i
-                        class="fa fa-times"></i></button>
-
-            </div>
-            <div class="modal-body">
-                <div class="bootbox-body">
-                    <span class="btn btn-success fileinput-button"><i class="glyphicon glyphicon-plus"></i><span>Add
-                            files...</span><input id="name" name="files[]" type="file"></span>
-                    <p></p>
-                    <div id="uploadFileStatus" class="label label-success"></div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-            </div>
+<div
+  class="modal fade"
+  id="upload-profile"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="staticBackdropLabel">Upload profile</h4>
+        <button
+          type="button"
+          class="bg-transparent border-0"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="bootbox-body">
+          <span class="btn btn-success fileinput-button"
+            ><i class="glyphicon glyphicon-plus"></i><span>Add files...</span
+            ><input id="name" name="files[]" type="file"
+          /></span>
+          <p></p>
+          <div id="uploadFileStatus" class="label label-success"></div>
         </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
     </div>
+  </div>
 </div>
