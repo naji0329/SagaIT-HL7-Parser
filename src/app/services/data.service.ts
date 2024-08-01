@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError, BehaviorSubject} from 'rxjs';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, retry, tap, concatMap} from 'rxjs/operators';
+import { catchError, retry, tap, concatMap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -9,23 +9,23 @@ import { environment } from '../../environments/environment';
 })
 export class DataService {
 
-  oWordToSearch = new BehaviorSubject<any>({header : "", word : ""});
+  oWordToSearch = new BehaviorSubject<any>({ header: "", word: "" });
   sTreeViewData = new BehaviorSubject<string>("");
   oWordToFilter = new BehaviorSubject<any>("");
-  oWordToUpdate = new BehaviorSubject<any>({header : "", word : ""});
-  
+  oWordToUpdate = new BehaviorSubject<any>({ header: "", word: "" });
+
   constructor(private http: HttpClient) { }
 
   convertHL7ToFHIR(sHL7: string) {
-    let fhirResult;
+    let fhirResult: any;
 
-    if(environment.enableCrsfTokenRequest) {
+    if (environment.enableCrsfTokenRequest) {
       fhirResult = this.getAntiForgeryToken()
-      .pipe(
-        tap((res: string) => console.log('crsf token:', res)),
-        concatMap((token: string) => this.callConversionService(sHL7, token)),
+        .pipe(
+          tap((res: string) => console.log('crsf token:', res)),
+          concatMap((token: string) => this.callConversionService(sHL7, token)),
           tap(res => console.log('fhir result:', res))
-      );
+        );
     } else {
       fhirResult = this.callConversionService(sHL7, "");
     }
