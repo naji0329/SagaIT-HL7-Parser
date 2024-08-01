@@ -1,27 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { ThemesService } from 'src/app/services/themes.service';
+import { Component, OnInit } from "@angular/core";
+import { ThemesService } from "src/app/services/themes.service";
 
 @Component({
-  selector: 'app-sidebar-test',
-  templateUrl: './sidebar-test.component.html',
-  styleUrls: ['./sidebar-test.component.scss']
+  selector: "app-sidebar-test",
+  templateUrl: "./sidebar-test.component.html",
+  styleUrls: ["./sidebar-test.component.scss"],
 })
 export class SidebarTestComponent implements OnInit {
   sAddOverlay: string = "";
-  bDisplayToggleBtn : boolean = true;
-  addActiveClassToEditorTab: string ="";
+  bDisplayToggleBtn: boolean = true;
+  addActiveClassToEditorTab: string = "";
   removeActiveClassFromOtherTabs: string = "";
   selectedTheme: any = "";
-  runItPlease : string;
+  runItPlease: string;
 
-  constructor(private oThemeService : ThemesService) { }
+  constructor(private oThemeService: ThemesService) {}
 
   ngOnInit(): void {
     // this.openNav()
-    this.oThemeService.sSelectedThemeValue.subscribe(res =>{
-      this.selectedTheme =res;
-      this.selectedTheme = localStorage.getItem("selectedTheme")
-    })
+    this.oThemeService.sSelectedThemeValue.subscribe((res) => {
+      this.selectedTheme = res;
+      this.selectedTheme = localStorage.getItem("selectedTheme");
+    });
   }
 
   // openNav()
@@ -39,22 +39,19 @@ export class SidebarTestComponent implements OnInit {
   //   this.sAddOverlay = "";
   //   this.bDisplayToggleBtn = true;
   // }
-  EditorTabNavigation()
-  {
-    let element = document.querySelectorAll('.nav-link');
-    console.log("element::",element);
-    this.addActiveClassToEditorTab = "show active"
-    this.removeActiveClassFromOtherTabs = ""
+  EditorTabNavigation() {
+    let element = document.querySelectorAll(".nav-link");
+    console.log("element::", element);
+    this.addActiveClassToEditorTab = "show active";
+    this.removeActiveClassFromOtherTabs = "";
   }
 
-  openItPlease()
-  {
-this.runItPlease = "d-block"
-this.bDisplayToggleBtn = true;
+  openItPlease() {
+    this.runItPlease = "d-block";
+    this.bDisplayToggleBtn = true;
   }
-  closeItPlease()
-  {
-    this.runItPlease = "d-none"
+  closeItPlease() {
+    this.runItPlease = "d-none";
     this.bDisplayToggleBtn = false;
   }
 }
