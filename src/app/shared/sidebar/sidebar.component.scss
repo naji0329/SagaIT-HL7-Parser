@@ -1,5 +1,4 @@
-
-.preview-content{
+.preview-content {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -10,58 +9,69 @@
   max-width: 80vh;
   max-height: 80vh;
   border: 2px solid #202020;
- 
-  }
-  .preview-content img {
-    object-fit: cover;
-    max-height: 79vh;
-    max-width: 79vh;
 
-  }
-  .preview-img{
-    height: 80vh;
-    padding: 20px;
-  }
-  .value-paragraph {
-    max-height: 30vh;
-    line-break: anywhere;
-    line-height: 2rem;
-    overflow: auto;
-    min-height: 50px;
-  }
-  .field-length-paragraph {
-    max-height: 30vh;
-    line-break: anywhere;
-    line-height: 2rem;
-    overflow: auto;
-    min-height: 50px;
-  }
-  .DescriptionParagraph {
-    max-height: 35vh;
-    line-height: 2rem;
-    overflow: auto;
-    text-align: justify;
-  }
-  .DescriptionChapter {
-    font-weight: 600;
-  }
-
-.pdf-content{width: 42vw; padding: 0px;}
-
-.corrupt-image{
-    width: 42vw;
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #ff0000;
 }
+
+.preview-content img {
+  object-fit: cover;
+  max-height: 79vh;
+  max-width: 79vh;
+
+}
+
+.preview-img {
+  height: 80vh;
+  padding: 20px;
+}
+
+.value-paragraph {
+  max-height: 30vh;
+  line-break: anywhere;
+  line-height: 2rem;
+  overflow: auto;
+  min-height: 50px;
+}
+
+.field-length-paragraph {
+  max-height: 30vh;
+  line-break: anywhere;
+  line-height: 2rem;
+  overflow: auto;
+  min-height: 50px;
+}
+
+.DescriptionParagraph {
+  max-height: 35vh;
+  line-height: 2rem;
+  overflow: auto;
+  text-align: justify;
+}
+
+.DescriptionChapter {
+  font-weight: 600;
+}
+
+.pdf-content {
+  width: 42vw;
+  padding: 0px;
+}
+
+.corrupt-image {
+  width: 42vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ff0000;
+}
+
 .value-paragraph .form-control {
   border: 0;
   overflow: hidden;
   padding: 10px 10px;
   line-height: 1.8;
 }
+
 .value-paragraph .form-control:focus {
   color: #212529;
   background-color: #fff;
@@ -69,16 +79,46 @@
   outline: 0;
   box-shadow: none !important;
 }
-.value-paragraph .input-icons {background-color: #e5e8e8; padding: 5px; cursor: pointer;border-radius: 50%; box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);}
-.value-paragraph .input-icons:hover {background-color: #3b5999;
-  color: #ffffff; padding: 5px; cursor: pointer; border-radius: 50%; }
 
-.check-icon{position: absolute; bottom: 0; right: 30px;}
-.cross-icon{position: absolute; bottom: 0; right: 10px;}
-.field-value-height{min-height: 80px;}
-.value-paragraph .form-control:disabled, .form-control[readonly] {  background-color: transparent !important;}
-.overlay-fade{
+.value-paragraph .input-icons {
+  background-color: #e5e8e8;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.value-paragraph .input-icons:hover {
+  background-color: #3b5999;
+  color: #ffffff;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.check-icon {
+  position: absolute;
+  bottom: 0;
+  right: 30px;
+}
+
+.cross-icon {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+}
+
+.field-value-height {
+  min-height: 80px;
+}
+
+.value-paragraph .form-control:disabled,
+.form-control[readonly] {
+  background-color: transparent !important;
+}
+
+.overlay-fade {
   position: fixed;
   top: 0;
   left: 0;
@@ -88,6 +128,7 @@
   opacity: 0.3;
   z-index: 5;
 }
+
 textarea {
   resize: none !important;
 }
@@ -95,6 +136,7 @@ textarea {
 .view-image.tooltip {
   left: -125px !important;
 }
+
 .view-image.tooltip::before {
   left: 140px !important;
 }
@@ -107,5 +149,34 @@ textarea {
 
   h6 {
     font-size: 1.5rem !important;
+  }
+}
+
+@media (max-width: 960px) {
+  .SidebarHeading {
+    h6 {
+      font-size: 0.8rem;
+    }
+
+    padding: 2px !important;
+  }
+
+  .SidebarTitle {
+    h6 {
+      font-size: 1rem !important;
+    }
+  }
+
+  .value-paragraph {
+    font-size: 0.8rem;
+
+    textarea {
+      font-size: 0.8rem;
+    }
+  }
+
+  .DescriptionParagraph {
+    font-size: 0.8rem;
+
   }
 }

@@ -1,40 +1,23 @@
 <rsz-layout class="row rsp-flex-row" [directions]="['none']" [rFlex]="true">
-  <rsz-layout
-    class="cell {{ selectedTheme }} main-sec"
-    [directions]="['none']"
-    [rFlex]="false"
-  >
+  <rsz-layout class="cell {{ selectedTheme }} main-sec" [directions]="['none']" [rFlex]="false">
     <div id="mainArea" class="content marginLeft d-flex h-100 flex-column">
       <div id="main" class="{{ selectedTheme }}">
         <app-header class="app-header"></app-header>
-        <button
-          *ngIf="!bDisplayToggleBtn"
-          class="openbtn shadow border"
-          (click)="openItPlease()"
-        >
+        <button *ngIf="!bDisplayToggleBtn" class="openbtn shadow border" (click)="openItPlease()">
           <span class="fa fa-angle-left font-800"></span>
         </button>
-        <div class="container-fluid rsp-full-width rsp-flex">
-          <div class="row rsp-full-width rsp-mb-4">
-            <div class="col-12 mt-3 px-4">
+        <div class="container-fluid rsp-full-width rsp-flex" [ngStyle]="getMainAreaStyles()">
+          <div class=" row rsp-full-width rsp-mb-4">
+            <div class="col-12 px-4">
               <div class=" pt-2  {{ selectedTheme }}">
                 <div class="tab-content" id="pills-tabContent">
-                  <div
-                    class="tab-pane fade"
-                    id="pills-home"
-                    role="tabpanel"
-                    aria-labelledby="pills-home-tab"
-                  >
+                  <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                     <section>
                       <app-tree-view></app-tree-view>
                     </section>
                   </div>
-                  <div
-                    class="tab-pane fade show active"
-                    id="pills-profile"
-                    role="tabpanel"
-                    aria-labelledby="pills-profile-tab"
-                  >
+                  <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
+                    aria-labelledby="pills-profile-tab">
                     <section>
                       <app-editor></app-editor>
                     </section>
@@ -43,15 +26,9 @@
               </div>
             </div>
           </div>
-          <rsz-layout
-            class="cell {{ runItPlease }} {{ selectedTheme }} asidebar"
-            [directions]="['left']"
-            [rFlex]="true"
-          >
-            <button
-              class="closeBtn shadow border rightbtn"
-              (click)="closeItPlease()"
-            >
+          <rsz-layout class="cell {{ runItPlease }} {{ selectedTheme }} asidebar" [directions]="['left']"
+            [rFlex]="true">
+            <button class="closeBtn shadow border rightbtn" (click)="closeItPlease()">
               <span class="fa fa-angle-right font-800"></span>
             </button>
             <app-sidebar></app-sidebar>

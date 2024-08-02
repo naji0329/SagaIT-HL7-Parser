@@ -21,18 +21,18 @@
                 </div>
             </div>
             <div class="position-relative">
-            <div class="d-flex justify-content-between align-items-center SidebarHeading p-2 mt-3">
-                <div style="padding: 3px 0 5px 0">
-                    <h6 class="m-2">Field Value
-                    </h6>
-                </div>
-                <div class="wrapper">
-                    <div class="icon facebook" (click)='SidebarComponent_EditFieldValue()'>
-                        <div  *ngIf="!bCheck" class="tooltip">Edit</div>
-                        <div *ngIf="bCheck && bTick" class="tooltip">Please select a field value first.</div>
+                <div class="d-flex justify-content-between align-items-center SidebarHeading p-2 mt-3">
+                    <div style="padding: 3px 0 5px 0">
+                        <h6 class="m-2">Field Value
+                        </h6>
+                    </div>
+                    <div class="wrapper">
+                        <div class="icon facebook" (click)='SidebarComponent_EditFieldValue()'>
+                            <div *ngIf="!bCheck" class="tooltip">Edit</div>
+                            <div *ngIf="bCheck && bTick" class="tooltip">Please select a field value first.</div>
 
-                        <span><i class="fa fa-edit"></i></span>
-                   
+                            <span><i class="fa fa-edit"></i></span>
+
                         </div>
                         <div class="icon facebook" (click)="SidebarComponent_DisplaypdfFile()">
                             <div class="tooltip">View PDF</div>
@@ -42,13 +42,13 @@
                             <div class="tooltip view-image">View Image</div>
                             <span><i class="fa fa-image"></i></span>
                         </div>
-                </div>
+                    </div>
                 </div>
 
                 <div id="find-value" class="value-paragraph {{adjustHeight}} border p-2">
                     <p *ngIf="bEnableTextarea">{{sDisplayWord}}</p>
-                    <textarea *ngIf="!bEnableTextarea" autocomplete="off" [(ngModel)]="sDisplayWord" appTextareaAutoresize
-                        type="text" class="form-control" [readonly]="bToggleInputField"
+                    <textarea *ngIf="!bEnableTextarea" autocomplete="off" [(ngModel)]="sDisplayWord"
+                        appTextareaAutoresize type="text" class="form-control" [readonly]="bToggleInputField"
                         [value]="sDisplayWord"> </textarea>
                     <span *ngIf="bDisplayInputIcons" (click)="SidebarComponent_SendUpdatedText()"
                         class="fa fa-check shadow input-icons mr-2 check-icon"></span>
@@ -68,7 +68,8 @@
                 <div>
                     <p *ngIf="!bDatatype"> {{oSelectedSegment?.desc}}</p>
                     <p *ngIf="bDatatype"> {{oSelectedDatatypeSeg?.desc}}</p>
-                    <p *ngIf="this.oSelectedSegment?.chap" class="DescriptionChapter">Chapter: {{oSelectedSegment?.chap}}</p>
+                    <p *ngIf="this.oSelectedSegment?.chap" class="DescriptionChapter">Chapter:
+                        {{oSelectedSegment?.chap}}</p>
                 </div>
             </div>
         </div>

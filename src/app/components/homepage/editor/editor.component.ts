@@ -3,6 +3,7 @@ import { DataService } from 'src/app/services/data.service';
 import { saveAs as EditorMainSectionComponent_DownloadResultAsJSON } from 'save-as';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
@@ -27,6 +28,7 @@ export class EditorComponent implements OnInit {
   sStartStringtoCalculateBars: string;
   textarea: any = null;
   ctrlKeyDown: boolean = false;
+  responsiveView: boolean = false;
   constructor(private oDataService: DataService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
@@ -39,8 +41,11 @@ export class EditorComponent implements OnInit {
         'OBX|1|ED|EGK_DATA52^eGK-Daten^HL7-DEU||^AP^application/xml^Base64\n' +
         'OBX|2|ED|DOC^Document^L||^application^pdf^Base64\n' +
         'OBX|3|ED|502^CHEST XRAY^L||Word^TEXT^^Base64^SnVzdCBhIHNpbXBsZSB0ZXh0';
-      this.getColoredText()
+      this.EditorMainSectionComponent_GetColoredText()
     }
+    this.oDataService.oResponsiveView.subscribe((data) => {
+      this.responsiveView = data
+    })
     this.EditorMainSectionComponent_PassValueToTreeView();
 
     this.EditorMainSectionComponent_UpdateEditedText()
@@ -202,6 +207,7 @@ export class EditorComponent implements OnInit {
       reader.readAsText(file);
     }
   }
+
   EditorMainSectionComponent_FlashView() {
     const viewButton = document.getElementById("pills-home-tab");
     if (viewButton) {
@@ -211,16 +217,22 @@ export class EditorComponent implements OnInit {
       }, 6000);
     }
   }
+
   EditorMainSectionComponent_PassValueToTreeView() {
     this.oDataService.sTreeViewData.next(this.sTextAreaValue);
-    this.getColoredText();
+    this.EditorMainSectionComponent_GetColoredText()
   }
+
+  EditorMainSectionComponent_InputTextArea() {
+    this.EditorMainSectionComponent_GetColoredText()
+  }
+
   EditorMainSectionComponent_GetTreeValue() {
     this.oDataService.sTreeViewData.subscribe(data => {
       this.sTextAreaValue = data;
-      // console.log("Subscribed : ==> ",this.sTextAreaValue )
     })
   }
+
   EditorMainSectionComponent_UpdateEditedText() {
     this.oDataService.oWordToUpdate.subscribe(data => {
       console.log("The Incomming Updtaed Word===>>", data)
@@ -244,16 +256,20 @@ export class EditorComponent implements OnInit {
     });
   }
 
-  getColoredText() {
+  // Color formatted text area
+  EditorMainSectionComponent_GetColoredText() {
     let lines = this.sTextAreaValue.split('\n');
     let result = [];
 
     for (let line of lines) {
       let colored_line = [];
       let words = line.split("|");
+
+      console.log("!!", words)
+
       for (let i = 0; i < words.length; i++) {
         const word = words[i];
-        if (i === 0) colored_line.push(`<span style="color:red;">${word}</span>|`);
+        if (i === 0 && words.length > 2) colored_line.push(`<span style="color:red;">${word}</span>|`);
         else if (word.indexOf("^") > 0) {
           let fields = word.split("^");
           for (let j = 0; j < fields.length; j++) {
@@ -263,9 +279,22 @@ export class EditorComponent implements OnInit {
         }
         else colored_line.push(`<span style="color:cyan;">${word}</span>${i < words.length - 1 ? '<span style="color:purple;">|</span>' : ""}`);
       }
-      result.push(colored_line.join(''));
+      result.push(`${colored_line.join('')}`);
     }
     this.sColoredTextValue = this.sanitizer.bypassSecurityTrustHtml(result.join('<br/>'));
   }
 
+  // Toggle responsive view
+  ToggleResponsiveView() {
+    this.oDataService.oResponsiveView.next(!this.oDataService.oResponsiveView.value)
+  }
+
+  // Responsive View css
+  getMainAreaStyles() {
+    return this.responsiveView ? {
+      "height": "400px"
+    } : {
+
+    };
+  }
 }

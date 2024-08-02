@@ -8,6 +8,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { ImprintComponent } from './components/imprint/imprint.component';
 import { TreeViewComponent } from './components/homepage/tree-view/tree-view.component';
 import { EditorComponent } from './components/homepage/editor/editor.component';
+import { SegmentEditorCompoent } from './components/segment-editor/segment-editor.component';
 import { CompareComponent } from './components/homepage/compare/compare.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -30,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     ImprintComponent,
     TreeViewComponent,
+    SegmentEditorCompoent,
     EditorComponent,
     CompareComponent,
     SidebarComponent,

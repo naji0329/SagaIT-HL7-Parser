@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment';
 export class DataService {
 
   oWordToSearch = new BehaviorSubject<any>({ header: "", word: "" });
+  oResponsiveView = new BehaviorSubject<boolean>(false);
   sTreeViewData = new BehaviorSubject<string>("");
   oWordToFilter = new BehaviorSubject<any>("");
   oWordToUpdate = new BehaviorSubject<any>({ header: "", word: "" });

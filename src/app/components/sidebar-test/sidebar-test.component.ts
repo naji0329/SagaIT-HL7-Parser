@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { DataService } from "src/app/services/data.service";
 import { ThemesService } from "src/app/services/themes.service";
 
 @Component({
@@ -13,8 +14,9 @@ export class SidebarTestComponent implements OnInit {
   removeActiveClassFromOtherTabs: string = "";
   selectedTheme: any = "";
   runItPlease: string;
+  responsiveView: boolean = false;
 
-  constructor(private oThemeService: ThemesService) {}
+  constructor(private oThemeService: ThemesService, private oDataService: DataService) { }
 
   ngOnInit(): void {
     // this.openNav()
@@ -22,6 +24,9 @@ export class SidebarTestComponent implements OnInit {
       this.selectedTheme = res;
       this.selectedTheme = localStorage.getItem("selectedTheme");
     });
+    this.oDataService.oResponsiveView.subscribe(data => {
+      this.responsiveView = data;
+    })
   }
 
   // openNav()
@@ -46,6 +51,8 @@ export class SidebarTestComponent implements OnInit {
     this.removeActiveClassFromOtherTabs = "";
   }
 
+
+
   openItPlease() {
     this.runItPlease = "d-block";
     this.bDisplayToggleBtn = true;
@@ -53,5 +60,14 @@ export class SidebarTestComponent implements OnInit {
   closeItPlease() {
     this.runItPlease = "d-none";
     this.bDisplayToggleBtn = false;
+  }
+
+  // Responsive View css
+  getMainAreaStyles() {
+    return this.responsiveView ? {
+      "flex-direction": "column"
+    } : {
+
+    };
   }
 }

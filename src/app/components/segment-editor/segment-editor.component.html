@@ -1,0 +1,32 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Header 1</th>
+            <th>Header 2</th>
+            <th>Header 3</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let item of data; let i = index">
+            <tr>
+                <td>Test</td>
+                <td>Test</td>
+                <td>Test</td>
+                <td>
+                    <button (click)="toggleRow(i)">Toggle</button>
+                </td>
+            </tr>
+            <ng-container *ngIf="expandedRows.has(i)">
+                <tr *ngFor="let subItem of item.children">
+                    <td colspan="4">
+                        <!-- Content for the sub-row -->
+                        <div>
+                            Sub-row details for {{ subItem.detail }}
+                        </div>
+                    </td>
+                </tr>
+            </ng-container>
+        </ng-container>
+    </tbody>
+</table>

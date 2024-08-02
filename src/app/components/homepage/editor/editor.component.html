@@ -6,7 +6,10 @@
         <!-- <span id="hl7length1" class="label label-info info-badge mr-2 mb-1">Selected Value: Event Type Code</span> -->
     </div>
     <div class="wrapper wrapper-blue">
-
+        <div class="toggle-view icon facebook" data-toggle="tooltip" (click)="ToggleResponsiveView()">
+            <div class="tooltip">Copy to clipboard</div>
+            <span><i class="fa fa-eye"></i></span>
+        </div>
         <div class="icon facebook" data-toggle="tooltip" (click)="EditorMainSectionComponent_CopyToClipBoard()">
             <div class="tooltip">Copy to clipboard</div>
             <span><i class="fa fa-clipboard"></i></span>
@@ -21,6 +24,7 @@
             <div class="tooltip DownloadTooltip">Export message</div>
             <span><i class="fa fa-download"></i></span>
         </div>
+
         <!-- <div class="icon facebook" (click)="EditorMainSectionComponent_ConvertToFHIR()"> -->
         <!--     <div class="tooltip">View as FHIR</div> -->
         <!--     <span><i class="fa fa-fire"></i></span> -->
@@ -37,30 +41,37 @@
     >
     </app-textarea-highlight>
 </div> -->
+<div class="editor-container" [ngStyle]="getMainAreaStyles()">
+    <div class="content">
+        <div class="content">
+            <textarea class="hl7texteditor editor-text" placeholder="Paste or type your message here..." wrap="off"
+                spellcheck="false" autocomplete="off" autocorrect="off" [(ngModel)]="sTextAreaValue"
+                (change)="EditorMainSectionComponent_PassValueToTreeView()" autocapitalize="off" #msgtextarea
+                (keyup)="EditorMainSectionComponent_CalculateHeaders(msgtextarea)"
+                (click)="EditorMainSectionComponent_CalculateHeaders(msgtextarea)"
+                (paste)="EditorMainSectionComponent_FlashView()" (input)="EditorMainSectionComponent_InputTextArea()"
+                wrap="soft"></textarea>
+            <!-- <div class="hl7texteditor colored-editor" [innerHTML]="sColoredTextValue">
 
-<div class="content">
-    <textarea class="hl7texteditor editor-text" placeholder="Paste or type your message here..." wrap="off"
-        spellcheck="false" autocomplete="off" autocorrect="off" [(ngModel)]="sTextAreaValue"
-        (change)="EditorMainSectionComponent_PassValueToTreeView()" autocapitalize="off" #msgtextarea
-        (keyup)="EditorMainSectionComponent_CalculateHeaders(msgtextarea)"
-        (click)="EditorMainSectionComponent_CalculateHeaders(msgtextarea)"
-        (paste)="EditorMainSectionComponent_FlashView()"></textarea>
-    <div class="hl7texteditor colored-editor" [innerHTML]="sColoredTextValue">
+        </div> -->
 
+        </div>
+        <span id="hl7length2" class="label-light label-info info-badge pr-2">
+            {{msgtextarea?msgtextarea.value.length:0}} Characters</span>
     </div>
-    <div class=" tab_container">
-
-    </div>
-</div>
-
-<div *ngIf="bDisplayFHIRPanel" class="fhir-content bg-white shadow p-0">
-    <i class="fa fa-times closeicon" (click)="EditorMainSectionComponent_DismissFHIRPanel()"></i>
-    <div *ngIf="bDisplaySpinner" class="spinner-border" role="status">
-    </div>
-    <pre>
+    <div *ngIf="bDisplayFHIRPanel" class="fhir-content bg-white shadow p-0">
+        <i class="fa fa-times closeicon" (click)="EditorMainSectionComponent_DismissFHIRPanel()"></i>
+        <div *ngIf="bDisplaySpinner" class="spinner-border" role="status">
+        </div>
+        <pre>
         <code class="hl7-fhir">{{sFHIRResult}}</code>
-    </pre>
+        </pre>
+    </div>
 </div>
+<div class="tab_container">
+    <segment-editor></segment-editor>
+</div>
+
 
 <div class="modal fade" id="viewFHIR" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">

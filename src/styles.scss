@@ -314,13 +314,15 @@ html {
 
 // logo
 .saga-logo {
-  background-image: url(./assets/images/logo.svg);
-  display: block;
-  width: auto;
-  height: 41px;
-  width: 136px;
-  transition: 0.3s ease-in-out;
+  img {
+    width: auto;
+    height: 41px;
+    width: 136px;
+    transition: 0.3s ease-in-out;
+  }
 }
+
+
 
 .mr-5 {
   margin-right: 2rem !important;
@@ -795,7 +797,7 @@ ul.dropdown-menu {
 @media (max-width: 480px) {
   .navbar-content {
     gap: 10px;
-    justify-content: center !important;
+    justify-content: space-between !important;
   }
 }
 
@@ -1671,8 +1673,31 @@ textarea::selection {
   margin-right: 20px;
 }
 
-@media (min-width: 960px) and (max-width: 1160px) {
+#hl7length2 {
+  display: none;
+}
+
+
+
+@media (max-width: 960px) {
   .page-title {
     display: none;
+    font-size: 12px;
   }
+
+  #hl7length1 {
+    display: none;
+  }
+
+  #hl7length2 {
+    display: block;
+    font-size: 12px;
+    text-align: right;
+    color: #168af9;
+    background-color: unset;
+    font-weight: bold;
+
+  }
+
+
 }
