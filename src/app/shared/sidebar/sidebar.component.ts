@@ -5,9 +5,7 @@ import { DataService } from 'src/app/services/data.service';
 import { ThemesService } from 'src/app/services/themes.service';
 // import * as HL7Inspector from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.5.1-Profile.json';
 // import * as HL7Inspector26 from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
-import HL7VERSION2_3_1 from '../../../assets/standard_profiles/version_2_3_1.json';
-import HL7VERSION2_5_1 from '../../../assets/standard_profiles/version_2_5_1.json';
-import HL7VERSION2_7_1 from '../../../assets/standard_profiles/version_2_7_1.json';
+import HL7VERSION2_9_1 from '../../../assets/standard_profiles/version_2_9_1/version_2_9_1.json';
 
 
 @Component({
@@ -53,7 +51,6 @@ export class SidebarComponent implements OnInit {
     })
 
     this.oDataService.oWordToSearch.subscribe(data => {
-      console.log("Incomming word : ==> ", data);
       if (data.header !== "") {
         this.SidebarComponent_ExtractHeaderDetails(data);
         this.bDisplayPDFError = false;
@@ -70,11 +67,13 @@ export class SidebarComponent implements OnInit {
     this.bDisplayPdfPanal = true;
     this.sOverlay = "overlay-fade";
   }
+
   SidebarComponent_DismissPreviewPanel() {
     this.bDisplayPreviewPanel = false;
     this.bDisplayPdfPanal = false;
     this.sOverlay = '';
   }
+
   SidebarComponent_ExtractHeaderDetails(oIncommingData: any) {
     this.lFields = [];
     this.lSegments = [];
@@ -88,21 +87,16 @@ export class SidebarComponent implements OnInit {
     this.nCrrotsCount = oIncommingData.carrots;
     this.sDisplayWord = JSON.parse(JSON.stringify(this.sSelectedWord));
     this.bSelectedProfile = localStorage.getItem('ProfileNumber');
-    let hl7Version = HL7VERSION2_7_1;
+    let hl7Version = HL7VERSION2_9_1;
     switch (this.bSelectedProfile) {
-      case '2_3_1': {
-        console.log("case 2.3.1");
-        hl7Version = HL7VERSION2_3_1;
-        break;
-      }
-      case '2_5_1': {
-        console.log("case 2.5.1");
-        hl7Version = HL7VERSION2_5_1;
+      case '2_9_1': {
+        console.log("case 2.9.1");
+        hl7Version = HL7VERSION2_9_1;
         break;
       }
       default: {
-        console.log("case 2.7.1");
-        hl7Version = HL7VERSION2_7_1;
+        console.log("case 2.9.1");
+        hl7Version = HL7VERSION2_9_1;
         break;
       }
     }
@@ -135,18 +129,13 @@ export class SidebarComponent implements OnInit {
     let nField = this.sSelectedHeader + "." + this.nBarCount;
     for (let nIndex = 0; nIndex < this.lFields.length; nIndex++) {
       if (this.lFields[nIndex].seg === nField) {
-        this.oDatatype = this.lFields[nIndex].datatype;
+        this.oDatatype = this.lFields[nIndex].dataTypeName;
+        break;
       }
     }
     console.log("The Data Type is>>>", this.oDatatype);
-    if (this.bSelectedProfile === '2_5_1') {
-      this.lDatatypes = HL7VERSION2_5_1.datatypes;
-    }
-    else if (this.bSelectedProfile === '2_3_1') {
-      this.lDatatypes = HL7VERSION2_3_1.datatypes;
-    }
-    else if (this.bSelectedProfile === '2_7_1') {
-      this.lDatatypes = HL7VERSION2_7_1.datatypes;
+    if (this.bSelectedProfile === '2_9_1') {
+      this.lDatatypes = HL7VERSION2_9_1.data_types;
     }
     this.oSelectedDatatypeSeg = undefined;
     for (let nIndex = 0; nIndex < this.lDatatypes.length; nIndex++) {
@@ -187,7 +176,7 @@ export class SidebarComponent implements OnInit {
     this.bDatatype = false;
     this.oSelectedSegment = undefined;
     for (let nIndex = 0; nIndex < this.lSegments.length; nIndex++) {
-      if (this.lSegments[nIndex].seg === this.sSelectedHeader) {
+      if (this.lSegments[nIndex].seg_code === this.sSelectedHeader) {
         this.oSelectedSegment = this.lSegments[nIndex];
         console.log("Selected Segment ===>>>", this.oSelectedSegment);
         break;

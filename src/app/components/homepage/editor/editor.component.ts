@@ -38,7 +38,7 @@ export class EditorComponent implements OnInit {
         'EVN|A01|20060101||\n' +
         'PID||||4711|Doe^John||19701024|M|||Sesamstreet 11^76137^Karlsruhe^D|||||GS|EV||||\n' +
         'PV1||I|S2^13^3^CHI^^21||||||||||||||||1234|||||||||||||||||||||||||200601010930||||||||\n' +
-        'OBX|1|ED|EGK_DATA52^eGK-Daten^HL7-DEU||^AP^application/xml^Base64\n' +
+        'OBX|1|ED|EGK_DATA52^eGK-Daten^HL7-DEU||AP^application/xml^Base64\n' +
         'OBX|2|ED|DOC^Document^L||^application^pdf^Base64\n' +
         'OBX|3|ED|502^CHEST XRAY^L||Word^TEXT^^Base64^SnVzdCBhIHNpbXBsZSB0ZXh0';
       this.EditorMainSectionComponent_GetColoredText()
@@ -188,7 +188,9 @@ export class EditorComponent implements OnInit {
         this.nBarcount = 2;
         this.nCarrotsCount = 0;
       }
-      this.oDataService.oWordToSearch.next({ header: segHeader, word: this.oOriginalValue, bars: this.nBarcount, carrots: this.nCarrotsCount, focus: false });
+
+
+      this.oDataService.oWordToSearch.next({ header: segHeader, word: this.oOriginalValue, bars: this.nBarcount, carrots: this.nCarrotsCount, focus: false, message: this.sTextAreaValue.split("\n")[this.nLineCount] || "" });
 
 
       this.textarea.setSelectionRange(position.startPosition, position.endPosition);

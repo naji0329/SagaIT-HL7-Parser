@@ -6,10 +6,7 @@ import { Router } from "@angular/router";
 import { ThemesService } from "src/app/services/themes.service";
 declare var $: any;
 import packageInfo from "package.json";
-import HL7VERSION2_3_1 from "../../../assets/standard_profiles/version_2_3_1.json";
-import HL7VERSION2_5_1 from "../../../assets/standard_profiles/version_2_5_1.json";
-import HL7VERSION2_7_1 from "../../../assets/standard_profiles/version_2_7_1.json";
-import HL7VERSION2_9_1 from "../../../assets/standard_profiles/version_2_9_1.json";
+import HL7VERSION2_9_1 from "../../../assets/standard_profiles/version_2_9_1/version_2_9_1.json";
 import { DataService } from "src/app/services/data.service";
 
 @Component({
@@ -51,21 +48,6 @@ export class HeaderComponent implements OnInit {
     this.sBuildVersion = packageInfo.version;
     let bSelectedProfile = localStorage.getItem("ProfileNumber");
     switch (bSelectedProfile) {
-      case "2_3_1": {
-        this.oProfileName = HL7VERSION2_3_1.meta.name;
-        this.oProfileName = this.oProfileName.substring(5);
-        break;
-      }
-      case "2_5_1": {
-        this.oProfileName = HL7VERSION2_5_1.meta.name;
-        this.oProfileName = this.oProfileName.substring(5);
-        break;
-      }
-      case "2_7_1": {
-        this.oProfileName = HL7VERSION2_7_1.meta.name;
-        this.oProfileName = this.oProfileName.substring(5);
-        break;
-      }
       case "2_9_1": {
         this.oProfileName = HL7VERSION2_9_1.meta.name;
         this.oProfileName = this.oProfileName.substring(5);
@@ -166,21 +148,6 @@ export class HeaderComponent implements OnInit {
   //     }
   //   }
   // }
-  HeaderComponent_LoadProfileHL7Version_2_3_1() {
-    localStorage.setItem("ProfileNumber", "2_3_1");
-    this.oProfileName = HL7VERSION2_3_1.meta.name;
-    this.oProfileName = this.oProfileName.substring(5);
-  }
-  HeaderComponent_LoadProfileHL7Version_2_5_1() {
-    localStorage.setItem("ProfileNumber", "2_5_1");
-    this.oProfileName = HL7VERSION2_5_1.meta.name;
-    this.oProfileName = this.oProfileName.substring(5);
-  }
-  HeaderComponent_LoadProfileHL7Version_2_7_1() {
-    localStorage.setItem("ProfileNumber", "2_7_1");
-    this.oProfileName = HL7VERSION2_7_1.meta.name;
-    this.oProfileName = this.oProfileName.substring(5);
-  }
   HeaderComponent_LoadProfileHL7Version_2_9_1() {
     localStorage.setItem("ProfileNumber", "2_9_1");
     this.oProfileName = HL7VERSION2_9_1.meta.name;

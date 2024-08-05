@@ -1,30 +1,45 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>Header 1</th>
-            <th>Header 2</th>
-            <th>Header 3</th>
-            <th>Actions</th>
+            <th>Path</th>
+            <th>Value</th>
+            <th>R</th>
+            <th>O</th>
+            <th>Len</th>
+            <th>Type</th>
+            <th>Description</th>
         </tr>
     </thead>
     <tbody>
         <ng-container *ngFor="let item of data; let i = index">
             <tr>
-                <td>Test</td>
-                <td>Test</td>
-                <td>Test</td>
                 <td>
-                    <button (click)="toggleRow(i)">Toggle</button>
+                    <span *ngIf="item?.children?.length > 0">
+                        <button (click)="toggleRow(i)">
+                            <span *ngIf="expandedRows.has(i)">&#9660; <!-- Expanded icon (down arrow) --></span>
+                            <span *ngIf="!expandedRows.has(i)">&#9654; <!-- Collapsed icon (right arrow) --></span>
+                        </button>
+                    </span>
+                    {{segmentHeader+ "-" + i}}
                 </td>
+                <td>{{item.value}}</td>
+                <td>{{item.r}}</td>
+                <td>{{item.o}}</td>
+                <td>{{item.len}}</td>
+                <td>{{item.description}}</td>
+
             </tr>
+
             <ng-container *ngIf="expandedRows.has(i)">
-                <tr *ngFor="let subItem of item.children">
-                    <td colspan="4">
-                        <!-- Content for the sub-row -->
-                        <div>
-                            Sub-row details for {{ subItem.detail }}
-                        </div>
+                <tr *ngFor="let subItem of item.children" class="sub-table">
+                    <td>
+                        {{i}}
                     </td>
+                    <td>{{subItem.value}}</td>
+                    <td>{{subItem.r}}</td>
+                    <td>{{subItem.o}}</td>
+                    <td>{{subItem.len}}</td>
+                    <td>{{subItem.description}}</td>
                 </tr>
             </ng-container>
         </ng-container>

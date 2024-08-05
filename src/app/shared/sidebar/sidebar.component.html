@@ -66,10 +66,10 @@
 
             <div class="DescriptionParagraph border p-2">
                 <div>
-                    <p *ngIf="!bDatatype"> {{oSelectedSegment?.desc}}</p>
+                    <p *ngIf="!bDatatype"> {{oSelectedSegment?.description || oSelectedSegment?.desc}}</p>
                     <p *ngIf="bDatatype"> {{oSelectedDatatypeSeg?.desc}}</p>
-                    <p *ngIf="this.oSelectedSegment?.chap" class="DescriptionChapter">Chapter:
-                        {{oSelectedSegment?.chap}}</p>
+                    <p *ngIf="this.oSelectedSegment?.anchor" class="DescriptionChapter">Chapter:
+                        {{oSelectedSegment?.anchor}}</p>
                 </div>
             </div>
         </div>
