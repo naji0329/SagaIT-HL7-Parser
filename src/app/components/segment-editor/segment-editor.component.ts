@@ -16,23 +16,26 @@ export class SegmentEditorCompoent implements OnInit {
     data: Segment[];
     segmentHeader: string;
     expandedRows: Set<number> = new Set();
-
+    lineNumber: number | 0;
     constructor(private oDataService: DataService) {
 
     }
     ngOnInit(): void {
-        console.log("Hello");
         this.oDataService.oWordToSearch.subscribe(data => {
-            console.log("Incomming word : ==> ", data);
+
             this.segmentHeader = data.header
             this.HL7 = HL7VERSION2_9_1;
+
+            this.lineNumber = data.lineNumber;
 
             let message = data.message || "";
             let fieldIndex = 1;
             let fields = message.split("|");
 
+            console.log("Incomming word for segment editor: ==> ", fields);
             //get detail for segment editor
             this.data = this.getSegmentDetails(fields, fieldIndex)
+
         })
     }
 
@@ -42,11 +45,10 @@ export class SegmentEditorCompoent implements OnInit {
                 console.log("data type len", data_type?.fields?.length, field.dataTypeName, message)
                 if (data_type.fields == undefined || data_type.fields.length == 1) break;
                 let result = []
-
                 let sub_fields = message.split("^")
                 for (let i = 0; i < data_type.fields.length; i++) {
                     result.push({
-                        value: sub_fields[i],
+                        value: sub_fields[i] || "",
                         r: "",
                         o: "",
                         len: String(sub_fields[i] || "").length,
@@ -91,4 +93,40 @@ export class SegmentEditorCompoent implements OnInit {
             this.expandedRows.add(index);
         }
     }
+    generateMessage(): void {
+        const message = this.data.map(segment => {
+            if (segment.children && segment.children.length > 1) {
+                const childValues = segment.children?.map(child => child.value || "") || [];
+                // Remove trailing empty values
+                while (childValues.length > 0 && !childValues[childValues.length - 1]) {
+                    childValues.pop();
+                }
+                const childString = childValues.join("^");
+                return childString
+            }
+            else return segment.value
+        }).join("|");
+
+        this.oDataService.oUpdatedSegement.next({
+            lineNumber: this.lineNumber,
+            message: message
+        })
+
+    }
+    onItemChange(index: number, newValue: any) {
+        this.data[index].value = newValue;
+        this.generateMessage();
+
+
+
+        // Perform any additional actions here, such as updating other data or making API calls
+    }
+    onSubItemChange(index1: number, index2: number, newValue: any) {
+        this.data[index1].children[index2].value = newValue;
+        this.generateMessage();
+
+        // Perform any additional actions here, such as updating other data or making API calls
+    }
+
+
 }

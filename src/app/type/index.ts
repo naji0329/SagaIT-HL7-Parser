@@ -20,3 +20,8 @@ export type Field = {
     tableId: string | null;
     tableName: string | null;
 }
+
+export type UpdatedSegment = {
+    lineNumber: number | 0;
+    message: string | undefined;
+}

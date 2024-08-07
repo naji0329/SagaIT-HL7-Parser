@@ -3,6 +3,7 @@ import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, retry, tap, concatMap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { UpdatedSegment } from '../type';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class DataService {
   sTreeViewData = new BehaviorSubject<string>("");
   oWordToFilter = new BehaviorSubject<any>("");
   oWordToUpdate = new BehaviorSubject<any>({ header: "", word: "" });
+  oUpdatedSegement = new BehaviorSubject<UpdatedSegment | null>(null)
 
   constructor(private http: HttpClient) { }
 

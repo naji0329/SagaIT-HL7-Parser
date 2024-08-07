@@ -46,6 +46,22 @@ export class EditorComponent implements OnInit {
     this.oDataService.oResponsiveView.subscribe((data) => {
       this.responsiveView = data
     })
+    this.oDataService.oUpdatedSegement.subscribe((data) => {
+      // update the text area value from segment editor
+
+      if (data) {
+        const text: string[] = this.sTextAreaValue.split("\n");
+        text[data.lineNumber] = data.message;
+        let str = text.join("\n");
+        console.log("Value Changed", data, str)
+        this.sTextAreaValue = str
+      }
+      // text[data.lineNumber] = data.message;
+
+      // this.sTextAreaValue = text.join("\n");
+
+
+    })
     this.EditorMainSectionComponent_PassValueToTreeView();
 
     this.EditorMainSectionComponent_UpdateEditedText()
@@ -190,7 +206,7 @@ export class EditorComponent implements OnInit {
       }
 
 
-      this.oDataService.oWordToSearch.next({ header: segHeader, word: this.oOriginalValue, bars: this.nBarcount, carrots: this.nCarrotsCount, focus: false, message: this.sTextAreaValue.split("\n")[this.nLineCount] || "" });
+      this.oDataService.oWordToSearch.next({ header: segHeader, word: this.oOriginalValue, bars: this.nBarcount, carrots: this.nCarrotsCount, focus: false, message: this.sTextAreaValue.split("\n")[this.nLineCount] || "", lineNumber: this.nLineCount });
 
 
       this.textarea.setSelectionRange(position.startPosition, position.endPosition);
