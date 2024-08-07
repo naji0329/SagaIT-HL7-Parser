@@ -1,47 +1,51 @@
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Path</th>
-            <th>Value</th>
-            <th>R</th>
-            <th>O</th>
-            <th>Len</th>
-            <th>Type</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <ng-container *ngFor="let item of data; let i = index">
+<div class="segement-container">
+    <table class="table table-bordered">
+        <thead>
             <tr>
-                <td>
-                    <span *ngIf="item?.children?.length > 0">
-                        <button (click)="toggleRow(i)">
-                            <span *ngIf="expandedRows.has(i)">&#9660; <!-- Expanded icon (down arrow) --></span>
-                            <span *ngIf="!expandedRows.has(i)">&#9654; <!-- Collapsed icon (right arrow) --></span>
-                        </button>
-                    </span>
-                    {{segmentHeader+ "-" + i}}
-                </td>
-                <td>{{item.value}}</td>
-                <td>{{item.r}}</td>
-                <td>{{item.o}}</td>
-                <td>{{item.len}}</td>
-                <td>{{item.description}}</td>
-
+                <th>Path</th>
+                <th>Value</th>
+                <th>R</th>
+                <th>O</th>
+                <th>Len</th>
+                <th>Type</th>
+                <th>Description</th>
             </tr>
-
-            <ng-container *ngIf="expandedRows.has(i)">
-                <tr *ngFor="let subItem of item.children" class="sub-table">
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let item of data; let i = index">
+                <tr>
                     <td>
-                        {{i}}
+                        <span *ngIf="item?.children?.length > 0">
+                            <button (click)="toggleRow(i)">
+                                <span *ngIf="expandedRows.has(i)">&#9660; <!-- Expanded icon (down arrow) --></span>
+                                <span *ngIf="!expandedRows.has(i)">&#9654; <!-- Collapsed icon (right arrow) --></span>
+                            </button>
+                        </span>
+                        {{segmentHeader+ "-" + (i+1)}}
                     </td>
-                    <td>{{subItem.value}}</td>
-                    <td>{{subItem.r}}</td>
-                    <td>{{subItem.o}}</td>
-                    <td>{{subItem.len}}</td>
-                    <td>{{subItem.description}}</td>
+                    <td>{{item.value}}</td>
+                    <td>{{item.r}}</td>
+                    <td>{{item.o}}</td>
+                    <td>{{item.len}}</td>
+                    <td>{{item.type}}</td>
+                    <td>{{item.description}}</td>
+
                 </tr>
+
+                <ng-container *ngIf="expandedRows.has(i)">
+                    <tr *ngFor="let subItem of item.children; let j = index" class="sub-table">
+                        <td>
+                            {{j+1}}
+                        </td>
+                        <td>{{subItem.value}}</td>
+                        <td>{{subItem.r}}</td>
+                        <td>{{subItem.o}}</td>
+                        <td>{{subItem.len}}</td>
+                        <td>{{subItem.type}}</td>
+                        <td>{{subItem.description}}</td>
+                    </tr>
+                </ng-container>
             </ng-container>
-        </ng-container>
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>

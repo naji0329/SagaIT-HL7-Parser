@@ -4,5 +4,19 @@ export type Segment = {
     o: string | undefined;
     len: number | 0;
     description: string | 0;
+    type: string;
     children?: Segment[] | undefined;
+}
+
+export type Field = {
+    id: string;
+    name: string;
+    type: string;
+    seg: string;
+    length: number | 0;
+    datatype: string;
+    desc: string;
+    dataTypeName: string;
+    tableId: string | null;
+    tableName: string | null;
 }

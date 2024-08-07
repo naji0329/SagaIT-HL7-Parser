@@ -1,3 +1,18 @@
 .sub-table :first-child {
     padding-left: 50px;
 }
+
+.segement-container {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.segement-container table thead {
+    position: sticky;
+    top: 0;
+    background: aliceblue;
+}
+
+.segement-container table tr td:first {
+    min-width: "150px";
+}
