@@ -50,7 +50,15 @@
                 (keyup)="EditorMainSectionComponent_CalculateHeaders(msgtextarea)"
                 (click)="EditorMainSectionComponent_CalculateHeaders(msgtextarea)"
                 (paste)="EditorMainSectionComponent_FlashView()" (input)="EditorMainSectionComponent_InputTextArea()"
-                wrap="soft"></textarea>
+                [wrap]="wordWrap?'soft':'off'"></textarea>
+            <div class="wrap-button">
+                <label class="switch-btn">
+                    <input type="checkbox" [checked]="wordWrap" (click)="ToggleWrap()">
+                    <span></span>
+                </label>
+
+            </div>
+
             <!-- <div class="hl7texteditor colored-editor" [innerHTML]="sColoredTextValue">
 
         </div> -->

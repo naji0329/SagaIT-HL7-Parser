@@ -29,6 +29,9 @@ export class EditorComponent implements OnInit {
   textarea: any = null;
   ctrlKeyDown: boolean = false;
   responsiveView: boolean = false;
+  fieldSeparator: string = "|";
+  encodingCharacter: string = "^~\\&";
+  wordWrap = false;
   constructor(private oDataService: DataService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
@@ -43,9 +46,11 @@ export class EditorComponent implements OnInit {
         'OBX|3|ED|502^CHEST XRAY^L||Word^TEXT^^Base64^SnVzdCBhIHNpbXBsZSB0ZXh0';
       this.EditorMainSectionComponent_GetColoredText()
     }
+
     this.oDataService.oResponsiveView.subscribe((data) => {
       this.responsiveView = data
     })
+
     this.oDataService.oUpdatedSegement.subscribe((data) => {
       // update the text area value from segment editor
 
@@ -56,9 +61,7 @@ export class EditorComponent implements OnInit {
         console.log("Value Changed", data, str)
         this.sTextAreaValue = str
       }
-      // text[data.lineNumber] = data.message;
 
-      // this.sTextAreaValue = text.join("\n");
 
 
     })
@@ -102,7 +105,7 @@ export class EditorComponent implements OnInit {
     for (let i = 0; i < line; i++) {
       startPosition += lines[i].length + 1;
     }
-    const pipes = lines[line].split("|");
+    const pipes = lines[line].split(this.fieldSeparator);
     for (let i = 0; i < bar; i++) {
       startPosition += pipes[i].length + 1;
     }
@@ -112,7 +115,7 @@ export class EditorComponent implements OnInit {
         startPosition += segs[i].length + 1;
       }
     }
-    for (endPosition = startPosition; endPosition < value.length && value[endPosition] !== '|' && value[endPosition] !== '\n' && !(value[endPosition] === '^' && carrot >= 0); endPosition++);
+    for (endPosition = startPosition; endPosition < value.length && value[endPosition] !== this.fieldSeparator && value[endPosition] !== '\n' && !(value[endPosition] === '^' && carrot >= 0); endPosition++);
     return {
       startPosition,
       endPosition
@@ -120,6 +123,11 @@ export class EditorComponent implements OnInit {
   }
   EditorMainSectionComponent_CalculateHeaders(sIncommingTextArea: any, isDoubleClick: boolean = false) {
     console.log("position: ", { isDoubleClick }, this.textarea);
+    if (this.sTextAreaValue.substring(0, 3) == "MSH" && this.sTextAreaValue.length >= 5) {
+      this.fieldSeparator = this.sTextAreaValue.substring(3, 4)
+      this.encodingCharacter = this.sTextAreaValue.split(this.fieldSeparator)[1] || "^"
+    }
+
     if (!this.textarea) {
       this.textarea = sIncommingTextArea;
       this.textarea.addEventListener("dblclick", () => {
@@ -133,7 +141,7 @@ export class EditorComponent implements OnInit {
       // pick selected word
       let startSubStr: string = sIncommingTextArea.value.substring(0, nStartPosition)
       let startStr1 = startSubStr.split('\n');
-      let startStr2 = startStr1[startStr1.length - 1].split('|');
+      let startStr2 = startStr1[startStr1.length - 1].split(this.fieldSeparator);
       this.nLineCount = startStr1.length - 1;
       this.nBarcount = startStr2.length - 1;
       // this.nBarcount = startStr2.length;
@@ -149,7 +157,7 @@ export class EditorComponent implements OnInit {
 
       let endSubStr: string = sIncommingTextArea.value.substring(nStartPosition, sIncommingTextArea.value.length)
       let endStr1 = endSubStr.split('\n');
-      let endStr2 = endStr1[0].split('|');
+      let endStr2 = endStr1[0].split(this.fieldSeparator);
       let endStr3 = endStr2[0].split("^");
       //with carrots complete word
       let sCarrotStr = startStr2[startStr2.length - 1] + endStr2[0];
@@ -160,12 +168,12 @@ export class EditorComponent implements OnInit {
       console.log("complete word:", completeWord.trim());
       // pick selected header
       let headerTemp = startSubStr.split("\n");
-      let segHeader = headerTemp[headerTemp.length - 1].split('|')[0];
-      if (!headerTemp[headerTemp.length - 1].includes('|')) {
+      let segHeader = headerTemp[headerTemp.length - 1].split(this.fieldSeparator)[0];
+      if (!headerTemp[headerTemp.length - 1].includes(this.fieldSeparator)) {
         segHeader = segHeader + lastWord;
       }
-      if (startSubStr.lastIndexOf('|') > startSubStr.lastIndexOf('^')) {
-        this.nStartIndex = startSubStr.lastIndexOf('|');
+      if (startSubStr.lastIndexOf(this.fieldSeparator) > startSubStr.lastIndexOf('^')) {
+        this.nStartIndex = startSubStr.lastIndexOf(this.fieldSeparator);
       }
       else {
         this.nStartIndex = startSubStr.lastIndexOf('^');
@@ -281,7 +289,7 @@ export class EditorComponent implements OnInit {
 
     for (let line of lines) {
       let colored_line = [];
-      let words = line.split("|");
+      let words = line.split(this.fieldSeparator);
 
       console.log("!!", words)
 
@@ -291,7 +299,7 @@ export class EditorComponent implements OnInit {
         else if (word.indexOf("^") > 0) {
           let fields = word.split("^");
           for (let j = 0; j < fields.length; j++) {
-            colored_line.push(`<span style="color:orange;">${fields[j]}</span><span style="color:purple;">${j < fields.length - 1 ? '^' : i < words.length - 1 ? "|" : ""}</span>`)
+            colored_line.push(`<span style="color:orange;">${fields[j]}</span><span style="color:purple;">${j < fields.length - 1 ? '^' : i < words.length - 1 ? this.fieldSeparator : ""}</span>`)
           }
 
         }
@@ -300,6 +308,12 @@ export class EditorComponent implements OnInit {
       result.push(`${colored_line.join('')}`);
     }
     this.sColoredTextValue = this.sanitizer.bypassSecurityTrustHtml(result.join('<br/>'));
+  }
+
+  //Toggle Wrap mode
+  ToggleWrap() {
+    this.wordWrap = !this.wordWrap
+
   }
 
   // Toggle responsive view

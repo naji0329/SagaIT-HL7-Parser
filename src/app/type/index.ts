@@ -25,3 +25,17 @@ export type UpdatedSegment = {
     lineNumber: number | 0;
     message: string | undefined;
 }
+export type Table_Value = {
+    table_value: string;
+    display_name: string;
+}
+export type Table = {
+    table_id: string;
+    table_name: string;
+    type: string;
+    anchor: string;
+    section: string;
+    table_values: Table_Value[
+
+    ]
+}

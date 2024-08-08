@@ -18,6 +18,12 @@
 }
 
 
+.segement-container table tr {
+    &:hover {
+        background-color: antiquewhite;
+    }
+}
+
 .collapsed {
     transform: rotate(-90deg);
 }

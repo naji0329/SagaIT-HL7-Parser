@@ -13,7 +13,7 @@
         </thead>
         <tbody>
             <ng-container *ngFor="let item of data; let i = index">
-                <tr>
+                <tr [attr.data-index]="i">
                     <td>
                         <span *ngIf="item?.children?.length > 0">
 
@@ -45,7 +45,8 @@
                 </tr>
 
                 <ng-container *ngIf="expandedRows.has(i)">
-                    <tr *ngFor="let subItem of item.children; let j = index" class="sub-table">
+                    <tr *ngFor="let subItem of item.children; let j = index" class="sub-table"
+                        [attr.data-main-index]="i" [attr.data-sub-index]="j">
                         <td>
                             {{j+1}}
                         </td>

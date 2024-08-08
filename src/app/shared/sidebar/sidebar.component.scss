@@ -141,6 +141,12 @@ textarea {
   left: 140px !important;
 }
 
+.SidebarHeading {
+  h6 {
+    margin: 0px !important;
+  }
+}
+
 .SidebarTitle {
   padding-top: 10px !important;
   padding-bottom: 0px !important;
@@ -179,4 +185,10 @@ textarea {
     font-size: 0.8rem;
 
   }
+}
+
+table thead {
+  position: sticky;
+  top: 0;
+  background: aliceblue;
 }

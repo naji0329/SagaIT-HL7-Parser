@@ -6,6 +6,8 @@ import { ThemesService } from 'src/app/services/themes.service';
 // import * as HL7Inspector from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.5.1-Profile.json';
 // import * as HL7Inspector26 from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
 import HL7VERSION2_9_1 from '../../../assets/standard_profiles/version_2_9_1/version_2_9_1.json';
+import HL7VERSION2_9_1_TABLE from "../../../assets/standard_profiles/version_2_9_1/table_2_9_1.json"
+import { Segment, Table } from 'src/app/type';
 
 
 @Component({
@@ -42,6 +44,7 @@ export class SidebarComponent implements OnInit {
   bCheck: boolean = false;
   bTick: boolean = false;
   bSelectedProfile: string;
+  tableData: Table;
   constructor(private oDataService: DataService, private oDatePipe: DatePipe, private oThemeService: ThemesService) { }
 
   ngOnInit(): void {
@@ -49,7 +52,35 @@ export class SidebarComponent implements OnInit {
       console.log("Theme", res);
       this.selectedTheme = localStorage.getItem('selectedTheme')
     })
+    this.oDataService.oField.subscribe((data: Segment) => {
+      this.tableData = null
+      if (!data) {
+        return
+      }
 
+
+      this.bSelectedProfile = localStorage.getItem('ProfileNumber');
+      let hl7VersionTable = HL7VERSION2_9_1_TABLE;
+      switch (this.bSelectedProfile) {
+        case '2_9_1': {
+          console.log("case 2.9.1");
+          hl7VersionTable = HL7VERSION2_9_1_TABLE;
+          break;
+        }
+        default: {
+          console.log("case 2.9.1");
+          hl7VersionTable = HL7VERSION2_9_1_TABLE;
+          break;
+        }
+      }
+      for (let tdata of hl7VersionTable) {
+        if (tdata.display_name == data.description) {
+          this.tableData = tdata
+          break
+        }
+      }
+
+    })
     this.oDataService.oWordToSearch.subscribe(data => {
       if (data.header !== "") {
         this.SidebarComponent_ExtractHeaderDetails(data);

@@ -12,7 +12,7 @@
             </div>
             <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2">
                 <div style="padding: 3px 0 5px 0">
-                    <h6 class="m-2">Field Length</h6>
+                    <h6>Field Length</h6>
                 </div>
             </div>
             <div class="field-length-paragraph border p-2">
@@ -23,7 +23,7 @@
             <div class="position-relative">
                 <div class="d-flex justify-content-between align-items-center SidebarHeading p-2 mt-3">
                     <div style="padding: 3px 0 5px 0">
-                        <h6 class="m-2">Field Value
+                        <h6>Field Value
                         </h6>
                     </div>
                     <div class="wrapper">
@@ -59,7 +59,7 @@
 
             <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-3">
                 <div style="padding: 3px 0 5px 0">
-                    <h6 class="m-2">Field Description
+                    <h6>Field Description
                     </h6>
                 </div>
             </div>
@@ -70,6 +70,33 @@
                     <p *ngIf="bDatatype"> {{oSelectedDatatypeSeg?.desc}}</p>
                     <p *ngIf="this.oSelectedSegment?.anchor" class="DescriptionChapter">Chapter:
                         {{oSelectedSegment?.anchor}}</p>
+                </div>
+            </div>
+
+            <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-3">
+                <div style="padding: 3px 0 5px 0">
+                    <h6>Table <span *ngIf="tableData">{{tableData.type}} ({{tableData.table_id}})
+                            {{tableData.anchor}}
+                        </span>
+                    </h6>
+                </div>
+            </div>
+            <div class="DescriptionParagraph border">
+                <div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <th>Code</th>
+                            <th>Description</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let value of tableData?.table_values; let i = index">
+                                <td>{{value.table_value}}</td>
+                                <td>{{value.display_name}}</td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

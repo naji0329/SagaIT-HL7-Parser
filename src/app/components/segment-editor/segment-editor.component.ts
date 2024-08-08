@@ -35,7 +35,7 @@ export class SegmentEditorCompoent implements OnInit {
             console.log("Incomming word for segment editor: ==> ", fields);
             //get detail for segment editor
             this.data = this.getSegmentDetails(fields, fieldIndex)
-
+            this.scrollToAndExpandTarget(data.word)
         })
     }
 
@@ -64,22 +64,25 @@ export class SegmentEditorCompoent implements OnInit {
 
     }
 
-
-
     getSegmentDetails(fields: any[], fieldIndex: number): any {
         let temp = []
-
+        let isHeader = this.lineNumber == 0 && this.segmentHeader == "MSH"
+        if (isHeader) {
+            fields.unshift(this.segmentHeader);
+            fields[1] = "|";
+        }
         for (let field of this.HL7.fields) {
             if (fieldIndex > fields.length) break
             if (field.id == this.segmentHeader + "." + fieldIndex) {
+                let index = fieldIndex
                 temp.push({
-                    value: fields[fieldIndex - 1],
+                    value: fields[index],
                     r: "",
                     o: "",
-                    len: String(fields[fieldIndex - 1] || "").length,
+                    len: String(fields[index] || "").length,
                     type: field.dataTypeName,
                     description: field.name,
-                    children: this.getSubDetails(fields[fieldIndex - 1], field)
+                    children: this.getSubDetails(fields[index] || "", field)
                 })
                 fieldIndex++
             }
@@ -127,6 +130,43 @@ export class SegmentEditorCompoent implements OnInit {
         this.generateMessage();
 
         // Perform any additional actions here, such as updating other data or making API calls
+    }
+    scrollToAndExpandTarget(targetValue: string): void {
+        // Check main rows first
+        let targetIndex = this.data.findIndex(item => item.value === targetValue);
+
+        if (targetIndex !== -1) {
+            this.expandedRows.clear()
+            this.expandedRows.add(targetIndex); // Expand the main row
+
+            this.oDataService.oField.next(this.data[targetIndex])
+            // Scroll to the main row
+            setTimeout(() => {
+                const mainRowElement = document.querySelector(`tr[data-index='${targetIndex}']`);
+                if (mainRowElement) {
+                    mainRowElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 0);
+        } else {
+            // Check subtable rows if not found in main rows
+            this.data.forEach((item, mainIndex) => {
+                if (item.children && item.children.length > 0) {
+                    const subIndex = item.children.findIndex(subItem => subItem.value === targetValue);
+                    if (subIndex !== -1) {
+                        this.expandedRows.clear()
+                        this.expandedRows.add(mainIndex); // Ensure the main row is expanded
+                        this.oDataService.oField.next(this.data[mainIndex].children[subIndex])
+                        // Scroll to the subtable row
+                        setTimeout(() => {
+                            const subRowElement = document.querySelector(`tr[data-main-index='${mainIndex}'][data-sub-index='${subIndex}']`);
+                            if (subRowElement) {
+                                subRowElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+                        }, 0);
+                    }
+                }
+            });
+        }
     }
 
 
