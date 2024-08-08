@@ -53,6 +53,7 @@ export class SegmentEditorCompoent implements OnInit {
                         o: "",
                         len: String(sub_fields[i] || "").length,
                         type: data_type.fields[i].dataTypeName,
+                        description: data_type.fields[i].name,
                         children: []
                     })
                 }
@@ -77,7 +78,7 @@ export class SegmentEditorCompoent implements OnInit {
                     o: "",
                     len: String(fields[fieldIndex - 1] || "").length,
                     type: field.dataTypeName,
-                    description: field.desc,
+                    description: field.name,
                     children: this.getSubDetails(fields[fieldIndex - 1], field)
                 })
                 fieldIndex++
