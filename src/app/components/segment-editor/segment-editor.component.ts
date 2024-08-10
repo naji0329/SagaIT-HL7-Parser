@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Field, Segment } from "src/app/type";
 
-import HL7VERSION2_9_1 from '../../../assets/standard_profiles/version_2_9_1/version_2_9_1.json';
+import HL7VERSION2_9 from '../../../assets/standard_profiles/version_2_9/version_2_9.json';
 import { DataService } from "src/app/services/data.service";
 
 
@@ -17,14 +17,17 @@ export class SegmentEditorCompoent implements OnInit {
     segmentHeader: string;
     expandedRows: Set<number> = new Set();
     lineNumber: number | 0;
+    currentRow: number;
+    currentSubRow: number;
     constructor(private oDataService: DataService) {
-
+        this.currentRow = -1;
+        this.currentSubRow = -1;
     }
     ngOnInit(): void {
         this.oDataService.oWordToSearch.subscribe(data => {
 
             this.segmentHeader = data.header
-            this.HL7 = HL7VERSION2_9_1;
+            this.HL7 = HL7VERSION2_9;
 
             this.lineNumber = data.lineNumber;
 
@@ -54,7 +57,8 @@ export class SegmentEditorCompoent implements OnInit {
                         len: String(sub_fields[i] || "").length,
                         type: data_type.fields[i].dataTypeName,
                         description: data_type.fields[i].name,
-                        children: []
+                        children: [],
+                        tableName: data_type.fields[i].tableName
                     })
                 }
                 return result
@@ -82,7 +86,8 @@ export class SegmentEditorCompoent implements OnInit {
                     len: String(fields[index] || "").length,
                     type: field.dataTypeName,
                     description: field.name,
-                    children: this.getSubDetails(fields[index] || "", field)
+                    children: this.getSubDetails(fields[index] || "", field),
+                    tableName: field.tableName
                 })
                 fieldIndex++
             }
@@ -132,12 +137,20 @@ export class SegmentEditorCompoent implements OnInit {
         // Perform any additional actions here, such as updating other data or making API calls
     }
     scrollToAndExpandTarget(targetValue: string): void {
+
+        // set the field null by default 
+        this.oDataService.oField.next(null)
         // Check main rows first
+        this.currentRow = -1;
+        this.currentSubRow = -1;
         let targetIndex = this.data.findIndex(item => item.value === targetValue);
 
         if (targetIndex !== -1) {
             this.expandedRows.clear()
             this.expandedRows.add(targetIndex); // Expand the main row
+
+            // select the row
+            this.currentRow = targetIndex
 
             this.oDataService.oField.next(this.data[targetIndex])
             // Scroll to the main row
@@ -154,6 +167,11 @@ export class SegmentEditorCompoent implements OnInit {
                     const subIndex = item.children.findIndex(subItem => subItem.value === targetValue);
                     if (subIndex !== -1) {
                         this.expandedRows.clear()
+
+                        //select the parent row
+                        this.currentRow = mainIndex;
+                        this.currentSubRow = subIndex;
+
                         this.expandedRows.add(mainIndex); // Ensure the main row is expanded
                         this.oDataService.oField.next(this.data[mainIndex].children[subIndex])
                         // Scroll to the subtable row

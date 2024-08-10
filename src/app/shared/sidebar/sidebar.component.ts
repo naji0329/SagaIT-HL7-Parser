@@ -5,8 +5,8 @@ import { DataService } from 'src/app/services/data.service';
 import { ThemesService } from 'src/app/services/themes.service';
 // import * as HL7Inspector from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.5.1-Profile.json';
 // import * as HL7Inspector26 from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
-import HL7VERSION2_9_1 from '../../../assets/standard_profiles/version_2_9_1/version_2_9_1.json';
-import HL7VERSION2_9_1_TABLE from "../../../assets/standard_profiles/version_2_9_1/table_2_9_1.json"
+import HL7VERSION2_9 from '../../../assets/standard_profiles/version_2_9/version_2_9.json';
+import HL7VERSION2_9_TABLE from "../../../assets/standard_profiles/version_2_9/table_2_9.json"
 import { Segment, Table } from 'src/app/type';
 
 
@@ -45,6 +45,8 @@ export class SidebarComponent implements OnInit {
   bTick: boolean = false;
   bSelectedProfile: string;
   tableData: Table;
+  chapterLink: string;
+  selectedField: Segment;
   constructor(private oDataService: DataService, private oDatePipe: DatePipe, private oThemeService: ThemesService) { }
 
   ngOnInit(): void {
@@ -53,28 +55,31 @@ export class SidebarComponent implements OnInit {
       this.selectedTheme = localStorage.getItem('selectedTheme')
     })
     this.oDataService.oField.subscribe((data: Segment) => {
+      this.selectedField = data
       this.tableData = null
       if (!data) {
         return
       }
 
 
+
       this.bSelectedProfile = localStorage.getItem('ProfileNumber');
-      let hl7VersionTable = HL7VERSION2_9_1_TABLE;
+      let hl7VersionTable = HL7VERSION2_9_TABLE;
       switch (this.bSelectedProfile) {
-        case '2_9_1': {
-          console.log("case 2.9.1");
-          hl7VersionTable = HL7VERSION2_9_1_TABLE;
+        case '2_9': {
+          this.chapterLink = "https://www.hl7.eu/HL7v2x/v29/std29/"
+          hl7VersionTable = HL7VERSION2_9_TABLE;
           break;
         }
         default: {
-          console.log("case 2.9.1");
-          hl7VersionTable = HL7VERSION2_9_1_TABLE;
+          this.chapterLink = "https://www.hl7.eu/HL7v2x/v29/std29/"
+          hl7VersionTable = HL7VERSION2_9_TABLE;
           break;
         }
       }
+
       for (let tdata of hl7VersionTable) {
-        if (tdata.display_name == data.description) {
+        if (tdata.display_name == data.tableName) {
           this.tableData = tdata
           break
         }
@@ -118,16 +123,14 @@ export class SidebarComponent implements OnInit {
     this.nCrrotsCount = oIncommingData.carrots;
     this.sDisplayWord = JSON.parse(JSON.stringify(this.sSelectedWord));
     this.bSelectedProfile = localStorage.getItem('ProfileNumber');
-    let hl7Version = HL7VERSION2_9_1;
+    let hl7Version = HL7VERSION2_9;
     switch (this.bSelectedProfile) {
-      case '2_9_1': {
-        console.log("case 2.9.1");
-        hl7Version = HL7VERSION2_9_1;
+      case '2_9': {
+        hl7Version = HL7VERSION2_9;
         break;
       }
       default: {
-        console.log("case 2.9.1");
-        hl7Version = HL7VERSION2_9_1;
+        hl7Version = HL7VERSION2_9;
         break;
       }
     }
@@ -165,8 +168,8 @@ export class SidebarComponent implements OnInit {
       }
     }
     console.log("The Data Type is>>>", this.oDatatype);
-    if (this.bSelectedProfile === '2_9_1') {
-      this.lDatatypes = HL7VERSION2_9_1.data_types;
+    if (this.bSelectedProfile === '2_9') {
+      this.lDatatypes = HL7VERSION2_9.data_types;
     }
     this.oSelectedDatatypeSeg = undefined;
     for (let nIndex = 0; nIndex < this.lDatatypes.length; nIndex++) {
@@ -273,7 +276,6 @@ export class SidebarComponent implements OnInit {
   Testarea_focusout() {
     this.bEnableTextarea = true
     this.bDisplayInputIcons = false
-
   }
 
 }

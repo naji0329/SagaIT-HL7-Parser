@@ -59,29 +59,31 @@
 
             <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-3">
                 <div style="padding: 3px 0 5px 0">
-                    <h6>Field Description
+                    <h6>Field Description <a *ngIf="this.oSelectedSegment?.anchor" style="color: white;"
+                            [href]="chapterLink + oSelectedSegment?.anchor" target="_blank">View
+                            more</a>
                     </h6>
                 </div>
             </div>
 
             <div class="DescriptionParagraph border p-2">
                 <div>
-                    <p *ngIf="!bDatatype"> {{oSelectedSegment?.description || oSelectedSegment?.desc}}</p>
-                    <p *ngIf="bDatatype"> {{oSelectedDatatypeSeg?.desc}}</p>
-                    <p *ngIf="this.oSelectedSegment?.anchor" class="DescriptionChapter">Chapter:
-                        {{oSelectedSegment?.anchor}}</p>
+                    <p *ngIf="this.selectedField">0{{this.selectedField?.description || ""}}</p>
+                    <p *ngIf="!this.selectedField">{{oSelectedSegment?.description || oSelectedSegment?.name}}</p>
+
                 </div>
             </div>
 
             <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-3">
                 <div style="padding: 3px 0 5px 0">
                     <h6>Table <span *ngIf="tableData">{{tableData.type}} ({{tableData.table_id}})
-                            {{tableData.anchor}}
+                            <a style="color: white;" [href]="chapterLink + tableData.anchor" target="_blank">View
+                                more</a>
                         </span>
                     </h6>
                 </div>
             </div>
-            <div class="DescriptionParagraph border">
+            <div class=" DescriptionParagraph border">
                 <div>
                     <table class="table table-bordered">
                         <thead>
@@ -105,7 +107,8 @@
         <div *ngIf="bDisplayPreviewPanel" class="preview-content bg-white shadow p-0">
             <img *ngIf="!bDisplayImageError" src="data:image/png;base64,{{sSelectedWord}}" alt=""
                 (error)="SidebarComponent_DisplayImageError()" alt="Selected Word">
-            <p class="corrupt-image font-24" *ngIf="bDisplayImageError"> <i class="fa fa-image  mr-2"></i>Invalid Base64
+            <p class="corrupt-image font-24" *ngIf="bDisplayImageError"> <i class="fa fa-image  mr-2"></i>Invalid
+                Base64
                 Image Data</p>
             <i class="fa fa-times closeicon" (click)="SidebarComponent_DismissPreviewPanel()"></i>
             <span *ngIf="!bDisplayImageError" (click)="SidebarComponent_DownloadImageFile()"><i

@@ -6,6 +6,7 @@ export type Segment = {
     description: string | 0;
     type: string;
     children?: Segment[] | undefined;
+    tableName?: string;
 }
 
 export type Field = {

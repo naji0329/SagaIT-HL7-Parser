@@ -17,11 +17,33 @@
     min-width: "150px";
 }
 
+.segement-container table tbody {
+    border-top: unset;
+}
 
-.segement-container table tr {
+td input {
+    border: unset;
+    border-radius: 5px;
+}
+
+.segement-container table tbody tr {
     &:hover {
-        background-color: antiquewhite;
+        cursor: pointer;
+        background-color: #bddfff;
+        color: black;
+
     }
+}
+
+.segement-container table .selected {
+    background-color: #168af9;
+    color: white;
+}
+
+
+.segement-container table .sub-selected {
+    background-color: #168af9;
+    color: white;
 }
 
 .collapsed {

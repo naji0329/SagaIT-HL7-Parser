@@ -13,7 +13,7 @@
         </thead>
         <tbody>
             <ng-container *ngFor="let item of data; let i = index">
-                <tr [attr.data-index]="i">
+                <tr [attr.data-index]="i" [className]="i == currentRow && currentSubRow == -1 ?'selected':''">
                     <td>
                         <span *ngIf="item?.children?.length > 0">
 
@@ -46,7 +46,8 @@
 
                 <ng-container *ngIf="expandedRows.has(i)">
                     <tr *ngFor="let subItem of item.children; let j = index" class="sub-table"
-                        [attr.data-main-index]="i" [attr.data-sub-index]="j">
+                        [attr.data-main-index]="i" [attr.data-sub-index]="j"
+                        [className]="i == currentRow && j == currentSubRow?'sub-selected':''">
                         <td>
                             {{j+1}}
                         </td>

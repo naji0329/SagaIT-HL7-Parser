@@ -6,7 +6,7 @@ import { Router } from "@angular/router";
 import { ThemesService } from "src/app/services/themes.service";
 declare var $: any;
 import packageInfo from "package.json";
-import HL7VERSION2_9_1 from "../../../assets/standard_profiles/version_2_9_1/version_2_9_1.json";
+import HL7VERSION2_9 from "../../../assets/standard_profiles/version_2_9/version_2_9.json";
 import { DataService } from "src/app/services/data.service";
 
 @Component({
@@ -48,13 +48,13 @@ export class HeaderComponent implements OnInit {
     this.sBuildVersion = packageInfo.version;
     let bSelectedProfile = localStorage.getItem("ProfileNumber");
     switch (bSelectedProfile) {
-      case "2_9_1": {
-        this.oProfileName = HL7VERSION2_9_1.meta.name;
+      case "2_9": {
+        this.oProfileName = HL7VERSION2_9.meta.name;
         this.oProfileName = this.oProfileName.substring(5);
         break;
       }
       default: {
-        this.oProfileName = HL7VERSION2_9_1.meta.name;
+        this.oProfileName = HL7VERSION2_9.meta.name;
         this.oProfileName = this.oProfileName.substring(5);
         break;
       }
@@ -148,9 +148,9 @@ export class HeaderComponent implements OnInit {
   //     }
   //   }
   // }
-  HeaderComponent_LoadProfileHL7Version_2_9_1() {
-    localStorage.setItem("ProfileNumber", "2_9_1");
-    this.oProfileName = HL7VERSION2_9_1.meta.name;
+  HeaderComponent_LoadProfileHL7Version_2_9() {
+    localStorage.setItem("ProfileNumber", "2_9");
+    this.oProfileName = HL7VERSION2_9.meta.name;
     this.oProfileName = this.oProfileName.substring(5);
   }
   HeaderComponent_FilterWord(event: any, keycode: number) {
