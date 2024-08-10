@@ -75,15 +75,16 @@
             </div>
 
             <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-3">
-                <div style="padding: 3px 0 5px 0">
-                    <h6>Table <span *ngIf="tableData">{{tableData.type}} ({{tableData.table_id}})
-                            <a style="color: white;" [href]="chapterLink + tableData.anchor" target="_blank">View
-                                more</a>
-                        </span>
+                <div style="padding: 3px 0 5px 0" class="d-flex justify-content-between align-items-center w-100" >
+                    <h6>
+                        Table <span *ngIf="tableData && tableData.table_id!='0'">{{tableData.type}} [#{{tableData.table_id}}]</span>
                     </h6>
+                    <a *ngIf="tableData && tableData.table_id!='0'" style="color: white; font-size: 15px; " [href]="chapterLink + tableData.anchor" target="_blank">
+                        View info
+                    </a>
                 </div>
             </div>
-            <div class=" DescriptionParagraph border">
+            <div class="DescriptionParagraph border">
                 <div>
                     <table class="table table-bordered">
                         <thead>
@@ -94,9 +95,7 @@
                             <tr *ngFor="let value of tableData?.table_values; let i = index">
                                 <td>{{value.table_value}}</td>
                                 <td>{{value.display_name}}</td>
-
                             </tr>
-
                         </tbody>
                     </table>
                 </div>

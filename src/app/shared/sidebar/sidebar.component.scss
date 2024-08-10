@@ -9,14 +9,12 @@
   max-width: 80vh;
   max-height: 80vh;
   border: 2px solid #202020;
-
 }
 
 .preview-content img {
   object-fit: cover;
   max-height: 79vh;
   max-width: 79vh;
-
 }
 
 .preview-img {
@@ -50,8 +48,6 @@
 .DescriptionChapter {
   font-weight: 600;
 }
-
-
 
 .pdf-content {
   width: 42vw;
@@ -185,7 +181,6 @@ textarea {
 
   .DescriptionParagraph {
     font-size: 0.8rem;
-
   }
 }
 
@@ -197,4 +192,9 @@ table thead {
 
 .DescriptionParagraph table thead th {
   font-weight: 500;
+  padding: 0 5px 0 5px;
+}
+
+table tbody td {
+  font-size: 15px;
 }
