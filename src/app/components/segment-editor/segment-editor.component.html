@@ -17,32 +17,34 @@
           [attr.data-index]="i"
           [className]="i == currentRow && currentSubRow == -1 ? 'selected' : ''"
         >
-          <td>
-            <span *ngIf="item?.children?.length > 0">
-              <span (click)="toggleRow(i)" *ngIf="expandedRows.has(i)">
-                <svg
-                  class="more-icon"
-                  role="presentation"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 96 960 960"
-                >
-                  <path d="M480 696 280 497h400L480 696Z"></path>
-                </svg>
-                <!-- Expanded icon (down arrow) -->
-              </span>
+          <td (click)="toggleRow(i)" class="d-flex align-items-center">
+            <div style="width: 20px">
+              <span *ngIf="item?.children?.length > 0">
+                <span *ngIf="expandedRows.has(i)">
+                  <svg
+                    class="more-icon"
+                    role="presentation"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 96 960 960"
+                  >
+                    <path d="M480 696 280 497h400L480 696Z"></path>
+                  </svg>
+                  <!-- Expanded icon (down arrow) -->
+                </span>
 
-              <span (click)="toggleRow(i)" *ngIf="!expandedRows.has(i)">
-                <svg
-                  class="more-icon collapsed"
-                  role="presentation"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 96 960 960"
+                <span *ngIf="!expandedRows.has(i)">
+                  <svg
+                    class="more-icon collapsed"
+                    role="presentation"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 96 960 960"
+                  >
+                    <path d="M480 696 280 497h400L480 696Z"></path>
+                  </svg>
+                  <!-- Collapsed icon (right arrow) --></span
                 >
-                  <path d="M480 696 280 497h400L480 696Z"></path>
-                </svg>
-                <!-- Collapsed icon (right arrow) --></span
-              >
-            </span>
+              </span>
+            </div>
             {{ segmentHeader + "-" + (i + 1) }}
           </td>
           <td class="p-0">
@@ -69,7 +71,7 @@
               i == currentRow && j == currentSubRow ? 'sub-selected' : ''
             "
           >
-            <td style="padding-left: 30px">
+            <td style="padding-left: 50px">
               {{ j + 1 }}
             </td>
             <td class="p-0">
