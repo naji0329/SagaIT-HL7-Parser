@@ -39,17 +39,34 @@ td input {
     cursor: pointer;
     background-color: #bddfff;
     color: black;
+
+    .sub-input {
+      background-color: #bddfff;
+      color: black;
+    }
   }
 }
 
 .segement-container table .selected {
   background-color: #168af9;
   color: white;
+
+  
+  .sub-input {
+    background-color: #168af9;
+    color: white;
+  }
 }
 
 .segement-container table .sub-selected {
   background-color: #168af9;
   color: white;
+
+  
+  .sub-input {
+    background-color: #168af9;
+    color: white;
+  }
 }
 
 .collapsed {
@@ -67,4 +84,17 @@ td input {
   &:hover {
     background-color: rgba(0, 99, 155, 0.08);
   }
+}
+
+.sub-input {
+  height: 100%;
+  width: 100%;
+  border-radius: 0 !important;
+  background-color: white;
+  padding: 0.5rem;
+}
+
+.sub-input:focus {
+  background-color: white !important;
+  color: black !important;
 }
