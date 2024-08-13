@@ -8,6 +8,7 @@ import { ThemesService } from 'src/app/services/themes.service';
 import HL7VERSION2_9 from '../../../assets/standard_profiles/version_2_9/version_2_9.json';
 import HL7VERSION2_9_TABLE from "../../../assets/standard_profiles/version_2_9/table_2_9.json"
 import { Segment, Table } from 'src/app/type';
+import { getAnchor, isValidBase64Image, isValidBase64PDF } from 'src/app/utils';
 
 
 @Component({
@@ -25,8 +26,8 @@ export class SidebarComponent implements OnInit {
   oSelectedSegment: any;
   sSelectedWord: string;
   sDisplayWord: string;
-  bDisplayPDFError: boolean = false;
-  bDisplayImageError: boolean = false;
+  bDisplayPDFError: boolean = true;
+  bDisplayImageError: boolean = true;
   bToggleInputField: boolean = true
   addBorderClass: string;
   adjustHeight: string;
@@ -55,25 +56,29 @@ export class SidebarComponent implements OnInit {
       this.selectedTheme = localStorage.getItem('selectedTheme')
     })
     this.oDataService.oField.subscribe((data: Segment) => {
+      console.log("selected field:", data)
       this.selectedField = data
       this.tableData = null
       if (!data) {
         return
       }
 
-
+      this.oSelectedSegment = data
 
       this.bSelectedProfile = localStorage.getItem('ProfileNumber');
       let hl7VersionTable = HL7VERSION2_9_TABLE;
+      let hl7Data = HL7VERSION2_9;
       switch (this.bSelectedProfile) {
         case '2_9': {
           this.chapterLink = "https://www.hl7.eu/HL7v2x/v29/std29/"
           hl7VersionTable = HL7VERSION2_9_TABLE;
+          hl7Data = HL7VERSION2_9;
           break;
         }
         default: {
           this.chapterLink = "https://www.hl7.eu/HL7v2x/v29/std29/"
           hl7VersionTable = HL7VERSION2_9_TABLE;
+          hl7Data = HL7VERSION2_9;
           break;
         }
       }
@@ -81,6 +86,19 @@ export class SidebarComponent implements OnInit {
       for (let tdata of hl7VersionTable) {
         if (tdata.display_name == data.tableName) {
           this.tableData = tdata
+          let result = []
+          for (let item of tdata.table_values) {
+            const d = getAnchor(hl7Data, item.table_value)
+            result.push({
+              table_value: item.table_value,
+              display_name: item.display_name,
+              anchor: d ? d.anchor : null
+            })
+          }
+
+          this.tableData.table_values = result
+
+
           break
         }
       }
@@ -89,8 +107,6 @@ export class SidebarComponent implements OnInit {
     this.oDataService.oWordToSearch.subscribe(data => {
       if (data.header !== "") {
         this.SidebarComponent_ExtractHeaderDetails(data);
-        this.bDisplayPDFError = false;
-        this.bDisplayImageError = false;
       }
     })
   }
@@ -110,6 +126,13 @@ export class SidebarComponent implements OnInit {
     this.sOverlay = '';
   }
 
+  async SidebarComponent_CheckBase64(base64Data: string) {
+    this.bDisplayImageError = !(await isValidBase64Image(base64Data))
+    this.bDisplayPDFError = !(await isValidBase64PDF(base64Data))
+
+
+  }
+
   SidebarComponent_ExtractHeaderDetails(oIncommingData: any) {
     this.lFields = [];
     this.lSegments = [];
@@ -119,6 +142,11 @@ export class SidebarComponent implements OnInit {
     this.bTick = false;
     this.sSelectedHeader = oIncommingData.header;
     this.sSelectedWord = oIncommingData.word;
+
+    // check base 64 validity
+    this.SidebarComponent_CheckBase64(oIncommingData.word)
+
+
     this.nBarCount = oIncommingData.bars;
     this.nCrrotsCount = oIncommingData.carrots;
     this.sDisplayWord = JSON.parse(JSON.stringify(this.sSelectedWord));
@@ -230,7 +258,7 @@ export class SidebarComponent implements OnInit {
     const source = `data:image/png;base64,${this.sSelectedWord}`;
     const link = document.createElement("a");
     link.href = source;
-    link.download = 'hl7.pdf';
+    link.download = 'image.png';
     link.click();
   }
   SidebarComponent_DownloadPDFFile() {

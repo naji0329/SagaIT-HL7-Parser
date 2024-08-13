@@ -1,9 +1,7 @@
 <div class="middle {{ selectedTheme }}">
   <div class="row rsp-full-width">
     <div class="col-12 p-4 rsp-dark-bg">
-      <div
-        class="d-md-flex justify-content-between align-items-center SidebarHeading SidebarTitle p-2"
-      >
+      <div class="d-md-flex justify-content-between align-items-center SidebarHeading SidebarTitle p-2">
         <div style="padding: 0" *ngIf="this.oSelectedSegment">
           <h6>
             {{ oSelectedSegment?.seg }}{{ bDatatype ? "." : ""
@@ -15,9 +13,7 @@
           <h6>Field Name</h6>
         </div>
       </div>
-      <div
-        class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-1"
-      >
+      <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-1">
         <div style="padding: 3px 0 5px 0">
           <h6>Field Length</h6>
         </div>
@@ -28,17 +24,12 @@
         </div>
       </div>
       <div class="position-relative">
-        <div
-          class="d-flex justify-content-between align-items-center SidebarHeading p-2 mt-3"
-        >
+        <div class="d-flex justify-content-between align-items-center SidebarHeading p-2 mt-3">
           <div style="padding: 3px 0 5px 0">
             <h6>Field Value</h6>
           </div>
           <div class="wrapper">
-            <div
-              class="icon facebook"
-              (click)="SidebarComponent_EditFieldValue()"
-            >
+            <div class="icon facebook" (click)="SidebarComponent_EditFieldValue()">
               <div *ngIf="!bCheck" class="tooltip">Edit</div>
               <div *ngIf="bCheck && bTick" class="tooltip">
                 Please select a field value first.
@@ -46,99 +37,67 @@
 
               <span><i class="fa fa-edit"></i></span>
             </div>
-            <div
-              class="icon facebook"
-              (click)="SidebarComponent_DisplaypdfFile()"
-            >
+            <div *ngIf="!bDisplayPDFError" class="icon facebook" (click)="SidebarComponent_DisplaypdfFile()">
               <div class="tooltip">View PDF</div>
               <span><i class="fa fa-file"></i></span>
             </div>
-            <div
-              class="icon facebook"
-              (click)="SidebarComponent_DisplayPreviewModal()"
-            >
+            <div *ngIf="!bDisplayImageError" class="icon facebook" (click)="SidebarComponent_DisplayPreviewModal()">
               <div class="tooltip view-image">View Image</div>
               <span><i class="fa fa-image"></i></span>
             </div>
           </div>
         </div>
 
-        <div
-          id="find-value"
-          class="value-paragraph {{ adjustHeight }} border p-2"
-        >
+        <div id="find-value" class="value-paragraph {{ adjustHeight }} border p-2">
           <p class="m-0" *ngIf="bEnableTextarea">{{ sDisplayWord }}</p>
-          <textarea
-            *ngIf="!bEnableTextarea"
-            autocomplete="off"
-            [(ngModel)]="sDisplayWord"
-            appTextareaAutoresize
-            type="text"
-            class="form-control"
-            [readonly]="bToggleInputField"
-            [value]="sDisplayWord"
-          >
+          <textarea *ngIf="!bEnableTextarea" autocomplete="off" [(ngModel)]="sDisplayWord" appTextareaAutoresize
+            type="text" class="form-control" [readonly]="bToggleInputField" [value]="sDisplayWord">
           </textarea>
-          <span
-            *ngIf="bDisplayInputIcons"
-            (click)="SidebarComponent_SendUpdatedText()"
-            class="fa fa-check shadow input-icons mr-2 check-icon"
-          ></span>
-          <span
-            *ngIf="bDisplayInputIcons"
-            (click)="SidebarComponent_RevertToReadOnlyCross()"
-            class="fa fa-times shadow input-icons cross-icon"
-          ></span>
+          <span *ngIf="bDisplayInputIcons" (click)="SidebarComponent_SendUpdatedText()"
+            class="fa fa-check shadow input-icons mr-2 check-icon"></span>
+          <span *ngIf="bDisplayInputIcons" (click)="SidebarComponent_RevertToReadOnlyCross()"
+            class="fa fa-times shadow input-icons cross-icon"></span>
         </div>
       </div>
 
-      <div
-        class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-3"
-      >
+      <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-3">
         <div style="padding: 3px 0 5px 0">
           <h6>
             Field Description
-            <a
-              *ngIf="this.oSelectedSegment?.anchor"
-              style="color: white"
-              [href]="chapterLink + oSelectedSegment?.anchor"
-              target="_blank"
-              >View more</a
-            >
           </h6>
         </div>
       </div>
 
       <div class="DescriptionParagraph border p-2">
         <div>
-          <p class="m-0" *ngIf="this.selectedField">
-            {{ this.selectedField?.description || "" }}
-          </p>
-          <p class="m-0" *ngIf="!this.selectedField">
-            {{ oSelectedSegment?.description || oSelectedSegment?.name }}
-          </p>
+          <a *ngIf="this.oSelectedSegment?.anchor" [href]="chapterLink + oSelectedSegment?.anchor" target="_blank">
+            <p class="m-0" *ngIf="this.selectedField">
+              {{ this.selectedField?.description || "" }}
+            </p>
+            <p class="m-0" *ngIf="!this.selectedField">
+              {{ oSelectedSegment?.description || oSelectedSegment?.name }}
+            </p>
+          </a>
+          <div *ngIf="!this.oSelectedSegment?.anchor">
+            <p class="m-0" *ngIf="this.selectedField">
+              {{ this.selectedField?.description || "" }}
+            </p>
+            <p class="m-0" *ngIf="!this.selectedField">
+              {{ oSelectedSegment?.description || oSelectedSegment?.name }}
+            </p>
+          </div>
+
         </div>
       </div>
 
-      <div
-        class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-3"
-      >
-        <div
-          style="padding: 3px 0 5px 0"
-          class="d-flex justify-content-between align-items-center w-100"
-        >
+      <div class="d-md-flex justify-content-between align-items-center SidebarHeading p-2 mt-3">
+        <div style="padding: 3px 0 5px 0" class="d-flex justify-content-between align-items-center w-100">
           <h6>
             Table
-            <span *ngIf="tableData && tableData.table_id != '0'"
-              >{{ tableData.type }} [#{{ tableData.table_id }}]</span
-            >
+            <span *ngIf="tableData && tableData.table_id != '0'">{{ tableData.type }} [#{{ tableData.table_id }}]</span>
           </h6>
-          <a
-            *ngIf="tableData && tableData.table_id != '0'"
-            style="color: white; font-size: 15px"
-            [href]="chapterLink + tableData.anchor"
-            target="_blank"
-          >
+          <a *ngIf="tableData && tableData.table_id != '0'" style="color: white; font-size: 15px"
+            [href]="chapterLink + tableData.anchor" target="_blank">
             View info
           </a>
         </div>
@@ -152,7 +111,14 @@
             </thead>
             <tbody>
               <tr *ngFor="let value of tableData?.table_values; let i = index">
-                <td>{{ value.table_value }}</td>
+                <td>
+                  <span *ngIf="value.anchor == null">
+                    {{ value.table_value }}
+                  </span>
+                  <a *ngIf="value.anchor != null" [href]="chapterLink + value.anchor" target="_blank">
+                    {{ value.table_value }}
+                  </a>
+                </td>
                 <td>{{ value.display_name }}</td>
               </tr>
             </tbody>
@@ -161,56 +127,29 @@
       </div>
     </div>
 
-    <div
-      *ngIf="bDisplayPreviewPanel"
-      class="preview-content bg-white shadow p-0"
-    >
-      <img
-        *ngIf="!bDisplayImageError"
-        src="data:image/png;base64,{{ sSelectedWord }}"
-        alt=""
-        (error)="SidebarComponent_DisplayImageError()"
-        alt="Selected Word"
-      />
+    <div *ngIf="bDisplayPreviewPanel" class="preview-content bg-white shadow p-0">
+      <img *ngIf="!bDisplayImageError" src="data:image/png;base64,{{ sSelectedWord }}" alt=""
+        (error)="SidebarComponent_DisplayImageError()" alt="Selected Word" />
       <p class="corrupt-image font-24" *ngIf="bDisplayImageError">
         <i class="fa fa-image mr-2"></i>Invalid Base64 Image Data
       </p>
-      <i
-        class="fa fa-times closeicon"
-        (click)="SidebarComponent_DismissPreviewPanel()"
-      ></i>
-      <span
-        *ngIf="!bDisplayImageError"
-        (click)="SidebarComponent_DownloadImageFile()"
-        ><i class="fa fa-download pdfDownload"></i
-      ></span>
+      <i class="fa fa-times closeicon" (click)="SidebarComponent_DismissPreviewPanel()"></i>
+      <span *ngIf="!bDisplayImageError" (click)="SidebarComponent_DownloadImageFile()"><i
+          class="fa fa-download pdfDownload"></i></span>
     </div>
 
-    <div
-      *ngIf="bDisplayPdfPanal"
-      class="preview-content pdf-content bg-white shadow"
-    >
+    <div *ngIf="bDisplayPdfPanal" class="preview-content pdf-content bg-white shadow">
       <div>
-        <pdf-viewer
-          *ngIf="!bDisplayPDFError"
-          src="data:application/pdf;base64,{{ sSelectedWord }}"
-          [render-text]="true"
-          [original-size]="false"
-          style="height: 78vh"
-          (error)="SidebarComponent_DisplayPDFError()"
-        ></pdf-viewer>
+        <pdf-viewer *ngIf="!bDisplayPDFError" src="data:application/pdf;base64,{{ sSelectedWord }}" [render-text]="true"
+          [original-size]="false" style="height: 78vh" (error)="SidebarComponent_DisplayPDFError()"></pdf-viewer>
         <p *ngIf="bDisplayPDFError" class="corrupt-image font-24">
           <i class="fa fa-file mr-2"></i> Invalid Base64 PDF Data
         </p>
-        <i
-          class="fa fa-times closeicon"
-          (click)="SidebarComponent_DismissPreviewPanel()"
-        ></i>
-        <span
-          *ngIf="!bDisplayPDFError"
-          (click)="SidebarComponent_DownloadPDFFile()"
-          ><i class="fa fa-download pdfDownload"></i
-        ></span>
+        <i class="fa fa-times closeicon" (click)="SidebarComponent_DismissPreviewPanel()"></i>
+        <span *ngIf="!bDisplayPDFError" (click)="SidebarComponent_DownloadPDFFile()"><i
+            class="fa fa-download pdfDownload"></i></span>
+        <span *ngIf="!bDisplayImageError" (click)="SidebarComponent_DownloadImageFile()"><i
+            class="fa fa-download pdfDownload"></i></span>
       </div>
     </div>
     <div *ngIf="sOverlay" class="{{ sOverlay }}"></div>

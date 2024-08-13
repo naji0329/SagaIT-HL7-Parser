@@ -20,6 +20,7 @@ export type Field = {
     dataTypeName: string;
     tableId: string | null;
     tableName: string | null;
+    anchor: string | null;
 }
 
 export type UpdatedSegment = {
@@ -29,6 +30,7 @@ export type UpdatedSegment = {
 export type Table_Value = {
     table_value: string;
     display_name: string;
+    anchor?: string | null;
 }
 export type Table = {
     table_id: string;

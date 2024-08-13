@@ -3,6 +3,7 @@ import { Field, Segment } from "src/app/type";
 
 import HL7VERSION2_9 from '../../../assets/standard_profiles/version_2_9/version_2_9.json';
 import { DataService } from "src/app/services/data.service";
+import { getAnchor } from "src/app/utils";
 
 
 @Component({
@@ -42,6 +43,7 @@ export class SegmentEditorCompoent implements OnInit {
         })
     }
 
+
     getSubDetails(message: any, field: Field): any {
         for (let data_type of this.HL7.data_types) {
             if (data_type.id == field.dataTypeName) {
@@ -50,6 +52,8 @@ export class SegmentEditorCompoent implements OnInit {
                 let result = []
                 let sub_fields = message.split("^")
                 for (let i = 0; i < data_type.fields.length; i++) {
+                    const d = getAnchor(this.HL7, data_type.fields[i].dataTypeName)
+                    console.log("get data types::::", d)
                     result.push({
                         value: sub_fields[i] || "",
                         r: "",
@@ -58,7 +62,8 @@ export class SegmentEditorCompoent implements OnInit {
                         type: data_type.fields[i].dataTypeName,
                         description: data_type.fields[i].name,
                         children: [],
-                        tableName: data_type.fields[i].tableName
+                        tableName: data_type.fields[i].tableName,
+                        anchor: d ? d.anchor : null
                     })
                 }
                 return result
@@ -79,6 +84,7 @@ export class SegmentEditorCompoent implements OnInit {
             if (fieldIndex > fields.length) break
             if (field.id == this.segmentHeader + "." + fieldIndex) {
                 let index = fieldIndex
+                let d = getAnchor(this.HL7, field.dataTypeName)
                 temp.push({
                     value: fields[index],
                     r: "",
@@ -87,7 +93,9 @@ export class SegmentEditorCompoent implements OnInit {
                     type: field.dataTypeName,
                     description: field.name,
                     children: this.getSubDetails(fields[index] || "", field),
-                    tableName: field.tableName
+                    tableName: field.tableName,
+                    anchor: d ? d.anchor : null
+
                 })
                 fieldIndex++
             }
