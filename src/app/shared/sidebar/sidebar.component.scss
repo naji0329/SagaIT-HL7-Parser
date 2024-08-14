@@ -184,17 +184,28 @@ textarea {
   }
 }
 
-table thead {
+.DescriptionParagraph {
+  border-top: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.DescriptionParagraph table thead th {
+  font-weight: 400;
+  padding: 1px 5px 1px 5px;
+  border: 1px solid #dee2e6;
+}
+
+.DescriptionParagraph table thead  {
   position: sticky;
   top: 0;
   background: aliceblue;
 }
 
-.DescriptionParagraph table thead th {
-  font-weight: 500;
-  padding: 0 5px 0 5px;
-}
-
 table tbody td {
   font-size: 15px;
+  line-height: 20px;
+}
+
+table>:not(:first-child) {
+  border-top: 1px solid #dee2e6;
 }
