@@ -1,10 +1,8 @@
 <div class="middle {{ selectedTheme }}">
   <div class="row rsp-full-width">
     <div class="col-12 p-4 rsp-dark-bg">
-      <div
-        class="d-md-flex justify-content-between align-items-center SidebarHeading SidebarTitle p-2"
-      >
-        <div style="padding: 0" *ngIf="this.oSelectedSegment">
+      <div class="d-md-flex justify-content-between align-items-center SidebarHeading SidebarTitle p-2">
+        <div style="padding: 0" *ngIf="oSelectedSegment">
           <h6>
             {{ oSelectedSegment?.seg }}{{ bDatatype ? "." : ""
             }}{{ bDatatype ? nCrrotsCount : "" }} -
@@ -33,27 +31,13 @@
             <td>
               <div id="find-value" class="{{ adjustHeight }} ">
                 <p class="m-0" *ngIf="bEnableTextarea">{{ sDisplayWord }}</p>
-                <textarea
-                  *ngIf="!bEnableTextarea"
-                  autocomplete="off"
-                  [(ngModel)]="sDisplayWord"
-                  appTextareaAutoresize
-                  type="text"
-                  class="form-control"
-                  [readonly]="bToggleInputField"
-                  [value]="sDisplayWord"
-                >
+                <textarea *ngIf="!bEnableTextarea" autocomplete="off" [(ngModel)]="sDisplayWord" appTextareaAutoresize
+                  type="text" class="form-control" [readonly]="bToggleInputField" [value]="sDisplayWord">
                 </textarea>
-                <span
-                  *ngIf="bDisplayInputIcons"
-                  (click)="SidebarComponent_SendUpdatedText()"
-                  class="fa fa-check shadow input-icons mr-2 check-icon"
-                ></span>
-                <span
-                  *ngIf="bDisplayInputIcons"
-                  (click)="SidebarComponent_RevertToReadOnlyCross()"
-                  class="fa fa-times shadow input-icons cross-icon"
-                ></span>
+                <span *ngIf="bDisplayInputIcons" (click)="SidebarComponent_SendUpdatedText()"
+                  class="fa fa-check shadow input-icons mr-2 check-icon"></span>
+                <span *ngIf="bDisplayInputIcons" (click)="SidebarComponent_RevertToReadOnlyCross()"
+                  class="fa fa-times shadow input-icons cross-icon"></span>
               </div>
             </td>
           </tr>
@@ -61,17 +45,14 @@
             <td style="text-wrap: nowrap">Description:</td>
             <td>
               <div>
-                <a
-                  *ngIf="this.oSelectedSegment?.anchor"
-                  [href]="chapterLink + oSelectedSegment?.anchor"
-                  target="_blank"
-                >
+                <a *ngIf="this.oSelectedSegment?.anchor" [href]="chapterLink + oSelectedSegment?.anchor"
+                  target="_blank">
                   <p class="m-0" *ngIf="this.selectedField">
                     {{ this.selectedField?.description || "" }}
                   </p>
                   <p class="m-0" *ngIf="!this.selectedField">
                     {{
-                      oSelectedSegment?.description || oSelectedSegment?.name
+                    oSelectedSegment?.description || oSelectedSegment?.name
                     }}
                   </p>
                 </a>
@@ -81,7 +62,7 @@
                   </p>
                   <p class="m-0" *ngIf="!this.selectedField">
                     {{
-                      oSelectedSegment?.description || oSelectedSegment?.name
+                    oSelectedSegment?.description || oSelectedSegment?.name
                     }}
                   </p>
                 </div>
@@ -99,12 +80,8 @@
               {{ tableData.type }} [#{{ tableData.table_id }}]
             </span>
           </h6>
-          <a
-            *ngIf="tableData && tableData.table_id != '0'"
-            style="color: white; font-size: 15px"
-            [href]="chapterLink + tableData.anchor"
-            target="_blank"
-          >
+          <a *ngIf="tableData && tableData.table_id != '0'" style="color: white; font-size: 15px"
+            [href]="chapterLink + tableData.anchor" target="_blank">
             View info
           </a>
         </div>
@@ -116,18 +93,12 @@
                 <th>Description</th>
               </thead>
               <tbody>
-                <tr
-                  *ngFor="let value of tableData?.table_values; let i = index"
-                >
+                <tr *ngFor="let value of tableData?.table_values; let i = index">
                   <td>
                     <span *ngIf="value.anchor == null">
                       {{ value.table_value }}
                     </span>
-                    <a
-                      *ngIf="value.anchor != null"
-                      [href]="chapterLink + value.anchor"
-                      target="_blank"
-                    >
+                    <a *ngIf="value.anchor != null" [href]="chapterLink + value.anchor" target="_blank">
                       {{ value.table_value }}
                     </a>
                   </td>
@@ -140,61 +111,29 @@
       </div>
     </div>
 
-    <div
-      *ngIf="bDisplayPreviewPanel"
-      class="preview-content bg-white shadow p-0"
-    >
-      <img
-        *ngIf="!bDisplayImageError"
-        src="data:image/png;base64,{{ sSelectedWord }}"
-        alt=""
-        (error)="SidebarComponent_DisplayImageError()"
-        alt="Selected Word"
-      />
+    <div *ngIf="bDisplayPreviewPanel" class="preview-content bg-white shadow p-0">
+      <img *ngIf="!bDisplayImageError" src="data:image/png;base64,{{ sSelectedWord }}" alt=""
+        (error)="SidebarComponent_DisplayImageError()" alt="Selected Word" />
       <p class="corrupt-image font-24" *ngIf="bDisplayImageError">
         <i class="fa fa-image mr-2"></i>Invalid Base64 Image Data
       </p>
-      <i
-        class="fa fa-times closeicon"
-        (click)="SidebarComponent_DismissPreviewPanel()"
-      ></i>
-      <span
-        *ngIf="!bDisplayImageError"
-        (click)="SidebarComponent_DownloadImageFile()"
-        ><i class="fa fa-download pdfDownload"></i
-      ></span>
+      <i class="fa fa-times closeicon" (click)="SidebarComponent_DismissPreviewPanel()"></i>
+      <span *ngIf="!bDisplayImageError" (click)="SidebarComponent_DownloadImageFile()"><i
+          class="fa fa-download pdfDownload"></i></span>
     </div>
 
-    <div
-      *ngIf="bDisplayPdfPanal"
-      class="preview-content pdf-content bg-white shadow"
-    >
+    <div *ngIf="bDisplayPdfPanal" class="preview-content pdf-content bg-white shadow">
       <div>
-        <pdf-viewer
-          *ngIf="!bDisplayPDFError"
-          src="data:application/pdf;base64,{{ sSelectedWord }}"
-          [render-text]="true"
-          [original-size]="false"
-          style="height: 78vh"
-          (error)="SidebarComponent_DisplayPDFError()"
-        ></pdf-viewer>
+        <pdf-viewer *ngIf="!bDisplayPDFError" src="data:application/pdf;base64,{{ sSelectedWord }}" [render-text]="true"
+          [original-size]="false" style="height: 78vh" (error)="SidebarComponent_DisplayPDFError()"></pdf-viewer>
         <p *ngIf="bDisplayPDFError" class="corrupt-image font-24">
           <i class="fa fa-file mr-2"></i> Invalid Base64 PDF Data
         </p>
-        <i
-          class="fa fa-times closeicon"
-          (click)="SidebarComponent_DismissPreviewPanel()"
-        ></i>
-        <span
-          *ngIf="!bDisplayPDFError"
-          (click)="SidebarComponent_DownloadPDFFile()"
-          ><i class="fa fa-download pdfDownload"></i
-        ></span>
-        <span
-          *ngIf="!bDisplayImageError"
-          (click)="SidebarComponent_DownloadImageFile()"
-          ><i class="fa fa-download pdfDownload"></i
-        ></span>
+        <i class="fa fa-times closeicon" (click)="SidebarComponent_DismissPreviewPanel()"></i>
+        <span *ngIf="!bDisplayPDFError" (click)="SidebarComponent_DownloadPDFFile()"><i
+            class="fa fa-download pdfDownload"></i></span>
+        <span *ngIf="!bDisplayImageError" (click)="SidebarComponent_DownloadImageFile()"><i
+            class="fa fa-download pdfDownload"></i></span>
       </div>
     </div>
     <div *ngIf="sOverlay" class="{{ sOverlay }}"></div>

@@ -63,8 +63,6 @@ export class SidebarComponent implements OnInit {
         return
       }
 
-      this.oSelectedSegment = data
-
       this.bSelectedProfile = localStorage.getItem('ProfileNumber');
       let hl7VersionTable = HL7VERSION2_9_TABLE;
       let hl7Data = HL7VERSION2_9;
@@ -112,12 +110,16 @@ export class SidebarComponent implements OnInit {
   }
 
   SidebarComponent_DisplayPreviewModal() {
-    this.bDisplayPreviewPanel = true;
-    this.sOverlay = "overlay-fade";
+    if (this.bDisplayImageError == false) {
+      this.bDisplayPreviewPanel = true;
+      this.sOverlay = "overlay-fade";
+    }
   }
   SidebarComponent_DisplaypdfFile() {
-    this.bDisplayPdfPanal = true;
-    this.sOverlay = "overlay-fade";
+    if (this.bDisplayPDFError == false) {
+      this.bDisplayPdfPanal = true;
+      this.sOverlay = "overlay-fade";
+    }
   }
 
   SidebarComponent_DismissPreviewPanel() {
