@@ -61,7 +61,7 @@ export class SegmentEditorCompoent implements OnInit {
                         len: String(sub_fields[i] || "").length,
                         type: data_type.fields[i].dataTypeName,
                         description: data_type.fields[i].name,
-                        children: [],
+                        children: data_type.fields[i]?.length == 0 ? [] : this.getSegmentDetails(sub_fields[i], data_type.fields[i]),
                         tableName: data_type.fields[i].tableName,
                         anchor: d ? d.anchor : null
                     })

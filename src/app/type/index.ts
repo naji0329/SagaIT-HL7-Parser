@@ -7,6 +7,10 @@ export type Segment = {
     type: string;
     children?: Segment[] | undefined;
     tableName?: string;
+    anchor?: string | null;
+    expanded: boolean
+    dataTypeName?: string | null
+    contents?: string | null
 }
 
 export type Field = {

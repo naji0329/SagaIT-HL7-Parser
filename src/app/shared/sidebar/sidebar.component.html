@@ -24,12 +24,41 @@
           </tr>
           <tr>
             <td style="text-wrap: nowrap">Data Type:</td>
-            <td></td>
+            <td><a *ngIf="this.selectedField?.anchor" [href]="chapterLink + selectedField?.anchor"
+                target="_blank">{{selectedField?.type}}</a>
+            </td>
           </tr>
           <tr>
             <td style="text-wrap: nowrap">Value:</td>
             <td>
-              <div id="find-value" class="{{ adjustHeight }} ">
+              <div (click)="SidebarComponent_DisplayPreviewModal()" style="cursor:pointer;">
+                <img *ngIf="!bDisplayImageError" src="data:image/png;base64,{{ sSelectedWord }}" alt=""
+                  (error)="SidebarComponent_DisplayImageError()" alt="Selected Word" width="100px" height="100px" />
+              </div>
+              <div (click)="SidebarComponent_DisplaypdfFile()" style="cursor:pointer;">
+                <pdf-viewer *ngIf="!bDisplayPDFError" src="data:application/pdf;base64,{{ sSelectedWord }}"
+                  [render-text]="true" [original-size]="false" style="height: 400px; width: 200px;"
+                  (error)="SidebarComponent_DisplayPDFError()"></pdf-viewer>
+              </div>
+              <!-- <div class="wrapper">
+                <div class="icon facebook" (click)="SidebarComponent_EditFieldValue()">
+                  <div *ngIf="!bCheck" class="tooltip">Edit</div>
+                  <div *ngIf="bCheck && bTick" class="tooltip">
+                    Please select a field value first.
+                  </div>
+
+                  <span><i class="fa fa-edit"></i></span>
+                </div>
+                <div *ngIf="!bDisplayPDFError" class="icon facebook" (click)="SidebarComponent_DisplaypdfFile()">
+                  <div class="tooltip">View PDF</div>
+                  <span><i class="fa fa-file"></i></span>
+                </div>
+                <div *ngIf="!bDisplayImageError" class="icon facebook" (click)="SidebarComponent_DisplayPreviewModal()">
+                  <div class="tooltip view-image">View Image</div>
+                  <span><i class="fa fa-image"></i></span>
+                </div>
+              </div> -->
+              <div *ngIf="bDisplayImageError && bDisplayPDFError" id="find-value" class="{{ adjustHeight }} ">
                 <p class="m-0" *ngIf="bEnableTextarea">{{ sDisplayWord }}</p>
                 <textarea *ngIf="!bEnableTextarea" autocomplete="off" [(ngModel)]="sDisplayWord" appTextareaAutoresize
                   type="text" class="form-control" [readonly]="bToggleInputField" [value]="sDisplayWord">
@@ -43,29 +72,16 @@
           </tr>
           <tr>
             <td style="text-wrap: nowrap">Description:</td>
-            <td>
-              <div>
-                <a *ngIf="this.oSelectedSegment?.anchor" [href]="chapterLink + oSelectedSegment?.anchor"
-                  target="_blank">
-                  <p class="m-0" *ngIf="this.selectedField">
-                    {{ this.selectedField?.description || "" }}
-                  </p>
-                  <p class="m-0" *ngIf="!this.selectedField">
-                    {{
-                    oSelectedSegment?.description || oSelectedSegment?.name
-                    }}
-                  </p>
-                </a>
-                <div *ngIf="!this.oSelectedSegment?.anchor">
-                  <p class="m-0" *ngIf="this.selectedField">
-                    {{ this.selectedField?.description || "" }}
-                  </p>
-                  <p class="m-0" *ngIf="!this.selectedField">
-                    {{
-                    oSelectedSegment?.description || oSelectedSegment?.name
-                    }}
-                  </p>
-                </div>
+            <td style="overflow-y:auto">
+              <div class="m-0" style="width: 100%; max-height: 200px; overflow-y: auto; padding-right: 10px;"
+                *ngIf="this.selectedField">
+                {{ this.selectedField?.contents || "" }}
+              </div>
+              <div class="m-0" style="width: 100%; max-height: 200px; overflow-y: auto; padding-right: 10px;"
+                *ngIf="!this.selectedField">
+                {{
+                oSelectedSegment?.description || oSelectedSegment?.name
+                }}
               </div>
             </td>
           </tr>
@@ -80,7 +96,7 @@
               {{ tableData.type }} [#{{ tableData.table_id }}]
             </span>
           </h6>
-          <a *ngIf="tableData && tableData.table_id != '0'" style="color: white; font-size: 15px"
+          <a *ngIf="tableData && tableData.table_id != '0'" style="color: black; font-size: 15px"
             [href]="chapterLink + tableData.anchor" target="_blank">
             View info
           </a>

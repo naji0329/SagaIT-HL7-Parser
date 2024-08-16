@@ -7,6 +7,8 @@ import { ThemesService } from 'src/app/services/themes.service';
 // import * as HL7Inspector26 from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
 import HL7VERSION2_9 from '../../../assets/standard_profiles/version_2_9/version_2_9.json';
 import HL7VERSION2_9_TABLE from "../../../assets/standard_profiles/version_2_9/table_2_9.json"
+import HL7VERSION2_9_SECTION from "../../../assets/standard_profiles/version_2_9/sections_2.9.json"
+
 import { Segment, Table } from 'src/app/type';
 import { getAnchor, isValidBase64Image, isValidBase64PDF } from 'src/app/utils';
 
@@ -56,31 +58,65 @@ export class SidebarComponent implements OnInit {
       this.selectedTheme = localStorage.getItem('selectedTheme')
     })
     this.oDataService.oField.subscribe((data: Segment) => {
-      console.log("selected field:", data)
+
       this.selectedField = data
       this.tableData = null
       if (!data) {
         return
       }
 
+
+
       this.bSelectedProfile = localStorage.getItem('ProfileNumber');
       let hl7VersionTable = HL7VERSION2_9_TABLE;
       let hl7Data = HL7VERSION2_9;
+      let hl7Section = HL7VERSION2_9_SECTION
       switch (this.bSelectedProfile) {
         case '2_9': {
           this.chapterLink = "https://www.hl7.eu/HL7v2x/v29/std29/"
           hl7VersionTable = HL7VERSION2_9_TABLE;
           hl7Data = HL7VERSION2_9;
+          hl7Section = HL7VERSION2_9_SECTION;
           break;
         }
         default: {
           this.chapterLink = "https://www.hl7.eu/HL7v2x/v29/std29/"
           hl7VersionTable = HL7VERSION2_9_TABLE;
           hl7Data = HL7VERSION2_9;
+          hl7Section = HL7VERSION2_9_SECTION;
           break;
         }
       }
+      // if(data.description == "Trigger Event"){
+      //   for(let event of hl7Data.events) {
+      //     if(event.event_code == data.value)
+      //     {
+      //       this.se
+      //     }
+      //   }
+      // }
+      let section_number = null;
+      for (let data_structure of hl7Data.data_structs) {
 
+
+
+        if (data_structure.data_structure == data.type) {
+          section_number = data_structure.section
+
+          const contents = []
+          for (let section_item of hl7Section.sections) {
+            if (section_item.section == section_number) {
+              contents.push(section_item)
+            }
+          }
+
+          const sorted = contents.sort((a, b) => a.paragraph - b.paragraph)
+          let str_contents = sorted.map((a) => a.contents).join(" ")
+          this.selectedField.contents = str_contents
+          break;
+        }
+      }
+      console.log("selected field:-----------------", this.selectedField)
       for (let tdata of hl7VersionTable) {
         if (tdata.display_name == data.tableName) {
           this.tableData = tdata
@@ -180,7 +216,7 @@ export class SidebarComponent implements OnInit {
       for (let nIndex = 0; nIndex < this.lFields.length; nIndex++) {
         if (this.lFields[nIndex].seg === nField) {
           this.oSelectedSegment = this.lFields[nIndex];
-          console.log("Selected Field ===>>>", this.oSelectedSegment);
+          console.log("Selected Field", this.oSelectedSegment);
           break;
         }
       }
