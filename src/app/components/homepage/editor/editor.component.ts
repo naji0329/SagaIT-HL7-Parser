@@ -39,7 +39,7 @@ export class EditorComponent implements OnInit {
       this.sTextAreaValue =
         'MSH|^~\\&|ADT-HIS||HL7INSPECTOR||20060101100000||ADT^A01|1|P|2.5.1\n' +
         'EVN|A01|20060101||\n' +
-        'NK1||||||||||\n' +
+        'NK1|1|SEIBERT^FAUSTO^SPENCER^^^CPNP|FA\n' +
         'PID||||4711|Doe^John||19701024|M|||Sesamstreet 11^76137^Karlsruhe^D|||||GS|EV||||\n' +
         'PV1||I|S2^13^3^CHI^^21||||||||||||||||1234|||||||||||||||||||||||||200601010930||||||||\n' +
         'OBX|1|ED|EGK_DATA52^eGK-Daten^HL7-DEU||AP^application/xml^Base64\n' +

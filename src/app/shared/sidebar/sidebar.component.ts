@@ -6,10 +6,10 @@ import { ThemesService } from 'src/app/services/themes.service';
 // import * as HL7Inspector from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.5.1-Profile.json';
 // import * as HL7Inspector26 from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
 import HL7VERSION2_9 from '../../../assets/standard_profiles/version_2_9/version_2_9.json';
-import HL7VERSION2_9_TABLE from "../../../assets/standard_profiles/version_2_9/table_2_9.json"
+import HL7VERSION2_9_TABLE from "../../../assets/standard_profiles/version_2_9/tables_2.9.json"
 import HL7VERSION2_9_SECTION from "../../../assets/standard_profiles/version_2_9/sections_2.9.json"
 
-import { Segment, Table } from 'src/app/type';
+import { HL7_Event, Segment, Table } from 'src/app/type';
 import { getAnchor, isValidBase64Image, isValidBase64PDF } from 'src/app/utils';
 
 
@@ -50,6 +50,8 @@ export class SidebarComponent implements OnInit {
   tableData: Table;
   chapterLink: string;
   selectedField: Segment;
+  eventData: HL7_Event;
+  openEventModal: boolean = false;
   constructor(private oDataService: DataService, private oDatePipe: DatePipe, private oThemeService: ThemesService) { }
 
   ngOnInit(): void {
@@ -70,7 +72,7 @@ export class SidebarComponent implements OnInit {
       this.bSelectedProfile = localStorage.getItem('ProfileNumber');
       let hl7VersionTable = HL7VERSION2_9_TABLE;
       let hl7Data = HL7VERSION2_9;
-      let hl7Section = HL7VERSION2_9_SECTION
+      let hl7Section: any = HL7VERSION2_9_SECTION
       switch (this.bSelectedProfile) {
         case '2_9': {
           this.chapterLink = "https://www.hl7.eu/HL7v2x/v29/std29/"
@@ -117,6 +119,18 @@ export class SidebarComponent implements OnInit {
         }
       }
       console.log("selected field:-----------------", this.selectedField)
+      if (this.selectedField?.description == "Trigger Event") {
+        for (let i = 0; i < hl7Data.event_message_types.length; i++) {
+          const event_message = hl7Data.event_message_types[i]
+          const event_message_detail = hl7Data.events[i]
+          if (event_message.event_code == this.selectedField.value) {
+            this.eventData = {
+              ...event_message,
+              ...event_message_detail
+            }
+          }
+        }
+      }
       for (let tdata of hl7VersionTable) {
         if (tdata.display_name == data.tableName) {
           this.tableData = tdata
@@ -145,6 +159,9 @@ export class SidebarComponent implements OnInit {
     })
   }
 
+  SidebarComponent_ToggleEventModal() {
+    this.openEventModal = !this.openEventModal
+  }
   SidebarComponent_DisplayPreviewModal() {
     if (this.bDisplayImageError == false) {
       this.bDisplayPreviewPanel = true;

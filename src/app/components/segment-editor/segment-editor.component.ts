@@ -44,16 +44,21 @@ export class SegmentEditorCompoent implements OnInit {
     }
 
 
-    getSubDetails(message: any, field: Field): any {
+    getSubDetails(message: any, field: Field, depth: number[]): any {
         for (let data_type of this.HL7.data_types) {
             if (data_type.id == field.dataTypeName) {
-                console.log("data type len", data_type?.fields?.length, field.dataTypeName, message)
-                if (data_type.fields == undefined || data_type.fields.length == 1) break;
+                if (data_type.fields == undefined || data_type.fields.length <= 1) {
+                    console.log("Segment details: break;", data_type.fields)
+                    break;
+                }
+
+
                 let result = []
                 let sub_fields = message.split("^")
                 for (let i = 0; i < data_type.fields.length; i++) {
                     const d = getAnchor(this.HL7, data_type.fields[i].dataTypeName)
-                    console.log("get data types::::", d)
+                    console.log("Segment details:return;", message, i, sub_fields[i] || "", data_type.fields[i].dataTypeName)
+                    const new_depth = [...depth, i]
                     result.push({
                         value: sub_fields[i] || "",
                         r: "",
@@ -61,9 +66,12 @@ export class SegmentEditorCompoent implements OnInit {
                         len: String(sub_fields[i] || "").length,
                         type: data_type.fields[i].dataTypeName,
                         description: data_type.fields[i].name,
-                        children: data_type.fields[i]?.length == 0 ? [] : this.getSegmentDetails(sub_fields[i], data_type.fields[i]),
+                        children: data_type.id == data_type.fields[i].dataTypeName ? [] : this.getSubDetails(sub_fields[i] || "", data_type.fields[i], new_depth),
+                        // children: [],
+                        header: field.dataTypeName,
                         tableName: data_type.fields[i].tableName,
-                        anchor: d ? d.anchor : null
+                        anchor: d ? d.anchor : null,
+                        depth: new_depth
                     })
                 }
                 return result
@@ -92,14 +100,17 @@ export class SegmentEditorCompoent implements OnInit {
                     len: String(fields[index] || "").length,
                     type: field.dataTypeName,
                     description: field.name,
-                    children: this.getSubDetails(fields[index] || "", field),
+                    children: this.getSubDetails(fields[index] || "", field, [fieldIndex]),
                     tableName: field.tableName,
-                    anchor: d ? d.anchor : null
+                    anchor: d ? d.anchor : null,
+                    header: this.segmentHeader,
+                    depth: [fieldIndex]
 
                 })
                 fieldIndex++
             }
         }
+        console.log("Segment details", temp)
         return temp;
 
     }

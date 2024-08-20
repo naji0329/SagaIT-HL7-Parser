@@ -1,68 +1,12 @@
 <div class="segement-container">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Path</th>
-        <th>Value</th>
-        <th>R</th>
-        <th>O</th>
-        <th>Len</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <ng-container *ngFor="let item of data; let i = index">
-        <tr [attr.data-index]="i" [className]="i == currentRow && currentSubRow == -1 ? 'selected' : ''">
-          <td (click)="toggleRow(i)" class="d-flex align-items-center">
-            <div style="width: 20px">
-              <span *ngIf="item?.children?.length > 0">
-                <span *ngIf="expandedRows.has(i)">
-                  <svg class="more-icon" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 96 960 960">
-                    <path d="M480 696 280 497h400L480 696Z"></path>
-                  </svg>
-                  <!-- Expanded icon (down arrow) -->
-                </span>
-
-                <span *ngIf="!expandedRows.has(i)">
-                  <svg class="more-icon collapsed" role="presentation" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 96 960 960">
-                    <path d="M480 696 280 497h400L480 696Z"></path>
-                  </svg>
-                  <!-- Collapsed icon (right arrow) --></span>
-              </span>
-            </div>
-            {{ segmentHeader + "-" + (i + 1) }}
-          </td>
-          <td class="p-0">
-            <input class="sub-input" ngModel="{{ item.value }}" (ngModelChange)="onItemChange(i, $event)" />
-          </td>
-          <td>{{ item.r }}</td>
-          <td>{{ item.o }}</td>
-          <td>{{ item.len }}</td>
-          <td>{{ item.type }}</td>
-          <td>{{ item.description }}</td>
-        </tr>
-
-        <ng-container *ngIf="expandedRows.has(i)">
-          <tr *ngFor="let subItem of item.children; let j = index" class="sub-table" [attr.data-main-index]="i"
-            [attr.data-sub-index]="j" [className]="
-              i == currentRow && j == currentSubRow ? 'sub-selected' : ''
-            ">
-            <td style="padding-left: 50px">
-              {{ j + 1 }}
-            </td>
-            <td class="p-0">
-              <input class="sub-input" ngModel="{{ subItem.value }}" (ngModelChange)="onSubItemChange(i, j, $event)" />
-            </td>
-            <td>{{ subItem.r }}</td>
-            <td>{{ subItem.o }}</td>
-            <td>{{ subItem.len }}</td>
-            <td>{{ subItem.type }}</td>
-            <td>{{ subItem.description }}</td>
-          </tr>
-        </ng-container>
-      </ng-container>
-    </tbody>
-  </table>
+  <div style="display: flex; flex-direction: row;">
+    <div style="flex:1; text-align: center;">Header</div>
+    <div style="flex:1; text-align: center;">Value</div>
+    <div style="flex:1; text-align: center;">R</div>
+    <div style="flex:1; text-align: center;">O</div>
+    <div style="flex:1; text-align: center;">Len</div>
+    <div style="flex:1; text-align: center;">Type</div>
+    <div style="flex:1; text-align: center;">Description</div>
+  </div>
+  <app-tree [treeData]="data"></app-tree>
 </div>

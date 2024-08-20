@@ -10,7 +10,9 @@ export type Segment = {
     anchor?: string | null;
     expanded: boolean
     dataTypeName?: string | null
-    contents?: string | null
+    contents?: string | null,
+    header?: string | null,
+    depth?: number[] | []
 }
 
 export type Field = {
@@ -45,4 +47,16 @@ export type Table = {
     table_values: Table_Value[
 
     ]
+}
+
+export type HL7_Event = {
+    event_code: string,
+    seq_no: number | string,
+    message_typ_snd: string,
+    message_typ_return: string,
+    message_structure_snd: string,
+    message_structure_return: string,
+    section: string,
+    description: string,
+    anchor: string,
 }

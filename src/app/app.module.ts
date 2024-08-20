@@ -23,7 +23,7 @@ import { TreeviewModule } from 'ngx-treeview';
 import { SidebarTestComponent } from './components/sidebar-test/sidebar-test.component';
 import { TextareaAutoresizeDirective } from './shared/sidebar/textarea-autoresize.directive';
 import { HttpClientModule } from '@angular/common/http';
-
+import { TreeComponent } from './components/nested-table/nested-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     SidebarTestComponent,
     TextareaAutoresizeDirective,
+    TreeComponent
   ],
   imports: [
     BrowserModule,

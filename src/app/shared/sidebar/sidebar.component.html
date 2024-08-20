@@ -59,10 +59,19 @@
                 </div>
               </div> -->
               <div *ngIf="bDisplayImageError && bDisplayPDFError" id="find-value" class="{{ adjustHeight }} ">
-                <p class="m-0" *ngIf="bEnableTextarea">{{ sDisplayWord }}</p>
-                <textarea *ngIf="!bEnableTextarea" autocomplete="off" [(ngModel)]="sDisplayWord" appTextareaAutoresize
+                <a *ngIf="selectedField?.description == 'Trigger Event'" [href]="chapterLink + eventData?.anchor"
+                  target="_blank">
+                  <p class="m-0" *ngIf="bEnableTextarea">{{ sDisplayWord }}</p>
+                </a>
+
+                <span *ngIf="selectedField?.description != 'Trigger Event'">
+                  <p class="m-0" *ngIf="bEnableTextarea">{{
+                    sDisplayWord }}</p>
+                </span>
+
+                <!-- <textarea *ngIf="!bEnableTextarea" autocomplete="off" [(ngModel)]="sDisplayWord" appTextareaAutoresize
                   type="text" class="form-control" [readonly]="bToggleInputField" [value]="sDisplayWord">
-                </textarea>
+                </textarea> -->
                 <span *ngIf="bDisplayInputIcons" (click)="SidebarComponent_SendUpdatedText()"
                   class="fa fa-check shadow input-icons mr-2 check-icon"></span>
                 <span *ngIf="bDisplayInputIcons" (click)="SidebarComponent_RevertToReadOnlyCross()"

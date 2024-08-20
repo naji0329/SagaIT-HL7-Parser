@@ -1,0 +1,35 @@
+<ng-container *ngFor="let item of treeData; let i = index">
+    <div [attr.data-index]="i"
+        [className]="i === currentRow && currentSubRow === -1 ? 'selected nested-row' : 'nested-row'">
+        <div style="flex:1" (click)="toggleRow(i)" class="d-flex align-items-center">
+            <div style="width: 20px">
+                <span *ngIf="item?.children?.length > 0">
+                    <span *ngIf="expandedRows.has(i)">
+                        <svg class="more-icon" role="presentation" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 96 960 960">
+                            <path d="M480 696 280 497h400L480 696Z"></path>
+                        </svg>
+                    </span>
+                    <span *ngIf="!expandedRows.has(i)">
+                        <svg class="more-icon collapsed" role="presentation" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 96 960 960">
+                            <path d="M480 696 280 497h400L480 696Z"></path>
+                        </svg>
+                    </span>
+                </span>
+            </div>
+            {{ item.header + '-' + (i + 1) }}
+        </div>
+        <div style="flex:1" class="p-0">
+            <input class="sub-input" ngModel="{{ item.value }}" (ngModelChange)="onItemChange(i, $event)" />
+        </div>
+        <div style="flex:1">{{ item.r }}</div>
+        <div style="flex:1">{{ item.o }}</div>
+        <div style="flex:1">{{ item.len }}</div>
+        <div style="flex:1">{{ item.type }}</div>
+        <div style="flex:1">{{ item.description }}</div>
+    </div>
+
+    <app-tree *ngIf="expandedRows.has(i) && item.children" [treeData]="item.children"></app-tree>
+
+</ng-container>
