@@ -1,28 +1,27 @@
-import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { DataService } from 'src/app/services/data.service';
-import { ThemesService } from 'src/app/services/themes.service';
+import { DatePipe } from "@angular/common";
+import { Component, OnInit } from "@angular/core";
+import { DomSanitizer } from "@angular/platform-browser";
+import { DataService } from "src/app/services/data.service";
+import { ThemesService } from "src/app/services/themes.service";
 // import * as HL7Inspector from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.5.1-Profile.json';
 // import * as HL7Inspector26 from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
-import HL7VERSION2_9 from '../../../assets/standard_profiles/version_2_9/version_2_9.json';
-import HL7VERSION2_9_TABLE from "../../../assets/standard_profiles/version_2_9/tables_2.9.json"
-import HL7VERSION2_9_SECTION from "../../../assets/standard_profiles/version_2_9/sections_2.9.json"
+import HL7VERSION2_9 from "../../../assets/standard_profiles/version_2_9/version_2_9.json";
+import HL7VERSION2_9_TABLE from "../../../assets/standard_profiles/version_2_9/tables_2_9.json";
+import HL7VERSION2_9_SECTION from "../../../assets/standard_profiles/version_2_9/sections_2_9.json";
 
-import { HL7_Event, Segment, Table } from 'src/app/type';
-import { getAnchor, isValidBase64Image, isValidBase64PDF } from 'src/app/utils';
-
+import { HL7_Event, Segment, Table } from "src/app/type";
+import { getAnchor, isValidBase64Image, isValidBase64PDF } from "src/app/utils";
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  selector: "app-sidebar",
+  templateUrl: "./sidebar.component.html",
+  styleUrls: ["./sidebar.component.scss"],
 })
 export class SidebarComponent implements OnInit {
   selectedTheme: any = "";
-  bDisplayPreviewPanel = false
-  sOverlay: string = ""
-  bDisplayPdfPanal = false
+  bDisplayPreviewPanel = false;
+  sOverlay: string = "";
+  bDisplayPdfPanal = false;
   pdfSrc = ""; //"https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   lSegments: any;
   oSelectedSegment: any;
@@ -30,7 +29,7 @@ export class SidebarComponent implements OnInit {
   sDisplayWord: string;
   bDisplayPDFError: boolean = true;
   bDisplayImageError: boolean = true;
-  bToggleInputField: boolean = true
+  bToggleInputField: boolean = true;
   addBorderClass: string;
   adjustHeight: string;
   bDisplayInputIcons: boolean = false;
@@ -52,37 +51,38 @@ export class SidebarComponent implements OnInit {
   selectedField: Segment;
   eventData: HL7_Event;
   openEventModal: boolean = false;
-  constructor(private oDataService: DataService, private oDatePipe: DatePipe, private oThemeService: ThemesService) { }
+  constructor(
+    private oDataService: DataService,
+    private oDatePipe: DatePipe,
+    private oThemeService: ThemesService
+  ) {}
 
   ngOnInit(): void {
-    this.oThemeService.sSelectedThemeValue.subscribe(res => {
+    this.oThemeService.sSelectedThemeValue.subscribe((res) => {
       console.log("Theme", res);
-      this.selectedTheme = localStorage.getItem('selectedTheme')
-    })
+      this.selectedTheme = localStorage.getItem("selectedTheme");
+    });
     this.oDataService.oField.subscribe((data: Segment) => {
-
-      this.selectedField = data
-      this.tableData = null
+      this.selectedField = data;
+      this.tableData = null;
       if (!data) {
-        return
+        return;
       }
 
-
-
-      this.bSelectedProfile = localStorage.getItem('ProfileNumber');
+      this.bSelectedProfile = localStorage.getItem("ProfileNumber");
       let hl7VersionTable = HL7VERSION2_9_TABLE;
       let hl7Data = HL7VERSION2_9;
-      let hl7Section: any = HL7VERSION2_9_SECTION
+      let hl7Section: any = HL7VERSION2_9_SECTION;
       switch (this.bSelectedProfile) {
-        case '2_9': {
-          this.chapterLink = "https://www.hl7.eu/HL7v2x/v29/std29/"
+        case "2_9": {
+          this.chapterLink = "https://www.hl7.eu/HL7v2x/v29/std29/";
           hl7VersionTable = HL7VERSION2_9_TABLE;
           hl7Data = HL7VERSION2_9;
           hl7Section = HL7VERSION2_9_SECTION;
           break;
         }
         default: {
-          this.chapterLink = "https://www.hl7.eu/HL7v2x/v29/std29/"
+          this.chapterLink = "https://www.hl7.eu/HL7v2x/v29/std29/";
           hl7VersionTable = HL7VERSION2_9_TABLE;
           hl7Data = HL7VERSION2_9;
           hl7Section = HL7VERSION2_9_SECTION;
@@ -99,68 +99,63 @@ export class SidebarComponent implements OnInit {
       // }
       let section_number = null;
       for (let data_structure of hl7Data.data_structs) {
-
-
-
         if (data_structure.data_structure == data.type) {
-          section_number = data_structure.section
+          section_number = data_structure.section;
 
-          const contents = []
+          const contents = [];
           for (let section_item of hl7Section.sections) {
             if (section_item.section == section_number) {
-              contents.push(section_item)
+              contents.push(section_item);
             }
           }
 
-          const sorted = contents.sort((a, b) => a.paragraph - b.paragraph)
-          let str_contents = sorted.map((a) => a.contents).join(" ")
-          this.selectedField.contents = str_contents
+          const sorted = contents.sort((a, b) => a.paragraph - b.paragraph);
+          let str_contents = sorted.map((a) => a.contents).join(" ");
+          this.selectedField.contents = str_contents;
           break;
         }
       }
-      console.log("selected field:-----------------", this.selectedField)
+      console.log("selected field:-----------------", this.selectedField);
       if (this.selectedField?.description == "Trigger Event") {
         for (let i = 0; i < hl7Data.event_message_types.length; i++) {
-          const event_message = hl7Data.event_message_types[i]
-          const event_message_detail = hl7Data.events[i]
+          const event_message = hl7Data.event_message_types[i];
+          const event_message_detail = hl7Data.events[i];
           if (event_message.event_code == this.selectedField.value) {
             this.eventData = {
               ...event_message,
-              ...event_message_detail
-            }
+              ...event_message_detail,
+            };
           }
         }
       }
       for (let tdata of hl7VersionTable) {
         if (tdata.display_name == data.tableName) {
-          this.tableData = tdata
-          let result = []
+          this.tableData = tdata;
+          let result = [];
           for (let item of tdata.table_values) {
-            const d = getAnchor(hl7Data, item.table_value)
+            const d = getAnchor(hl7Data, item.table_value);
             result.push({
               table_value: item.table_value,
               display_name: item.display_name,
-              anchor: d ? d.anchor : null
-            })
+              anchor: d ? d.anchor : null,
+            });
           }
 
-          this.tableData.table_values = result
+          this.tableData.table_values = result;
 
-
-          break
+          break;
         }
       }
-
-    })
-    this.oDataService.oWordToSearch.subscribe(data => {
+    });
+    this.oDataService.oWordToSearch.subscribe((data) => {
       if (data.header !== "") {
         this.SidebarComponent_ExtractHeaderDetails(data);
       }
-    })
+    });
   }
 
   SidebarComponent_ToggleEventModal() {
-    this.openEventModal = !this.openEventModal
+    this.openEventModal = !this.openEventModal;
   }
   SidebarComponent_DisplayPreviewModal() {
     if (this.bDisplayImageError == false) {
@@ -178,14 +173,12 @@ export class SidebarComponent implements OnInit {
   SidebarComponent_DismissPreviewPanel() {
     this.bDisplayPreviewPanel = false;
     this.bDisplayPdfPanal = false;
-    this.sOverlay = '';
+    this.sOverlay = "";
   }
 
   async SidebarComponent_CheckBase64(base64Data: string) {
-    this.bDisplayImageError = !(await isValidBase64Image(base64Data))
-    this.bDisplayPDFError = !(await isValidBase64PDF(base64Data))
-
-
+    this.bDisplayImageError = !(await isValidBase64Image(base64Data));
+    this.bDisplayPDFError = !(await isValidBase64PDF(base64Data));
   }
 
   SidebarComponent_ExtractHeaderDetails(oIncommingData: any) {
@@ -199,16 +192,15 @@ export class SidebarComponent implements OnInit {
     this.sSelectedWord = oIncommingData.word;
 
     // check base 64 validity
-    this.SidebarComponent_CheckBase64(oIncommingData.word)
-
+    this.SidebarComponent_CheckBase64(oIncommingData.word);
 
     this.nBarCount = oIncommingData.bars;
     this.nCrrotsCount = oIncommingData.carrots;
     this.sDisplayWord = JSON.parse(JSON.stringify(this.sSelectedWord));
-    this.bSelectedProfile = localStorage.getItem('ProfileNumber');
+    this.bSelectedProfile = localStorage.getItem("ProfileNumber");
     let hl7Version = HL7VERSION2_9;
     switch (this.bSelectedProfile) {
-      case '2_9': {
+      case "2_9": {
         hl7Version = HL7VERSION2_9;
         break;
       }
@@ -221,12 +213,10 @@ export class SidebarComponent implements OnInit {
     if (this.nBarCount == 0 && this.nCrrotsCount == 0) {
       this.lSegments = hl7Version.segments;
       this.SidebarComponent_MatchSegments();
-    }
-    else if (this.nBarCount > 0 && this.nCrrotsCount == 0) {
+    } else if (this.nBarCount > 0 && this.nCrrotsCount == 0) {
       this.lFields = hl7Version.fields;
       this.SidebarComponent_MatchFields();
-    }
-    else if (this.nBarCount > 0 && this.nCrrotsCount > 0) {
+    } else if (this.nBarCount > 0 && this.nCrrotsCount > 0) {
       this.lFields = hl7Version.fields;
       this.oSelectedSegment = undefined;
       let nField = this.sSelectedHeader + "." + this.nBarCount;
@@ -251,7 +241,7 @@ export class SidebarComponent implements OnInit {
       }
     }
     console.log("The Data Type is>>>", this.oDatatype);
-    if (this.bSelectedProfile === '2_9') {
+    if (this.bSelectedProfile === "2_9") {
       this.lDatatypes = HL7VERSION2_9.data_types;
     }
     this.oSelectedDatatypeSeg = undefined;
@@ -270,7 +260,10 @@ export class SidebarComponent implements OnInit {
     let lfieldsinDataTypes = this.oSelectedDatatypeSeg.fields;
     // console.log("The fields of selected datatype>>>", lfieldsinDataTypes);
     for (let nIndex = 0; nIndex < lfieldsinDataTypes.length; nIndex++) {
-      if (lfieldsinDataTypes[nIndex].id === this.oDatatype + "." + this.nCrrotsCount) {
+      if (
+        lfieldsinDataTypes[nIndex].id ===
+        this.oDatatype + "." + this.nCrrotsCount
+      ) {
         this.oSelectedDatatypeSeg = lfieldsinDataTypes[nIndex];
         break;
       }
@@ -301,7 +294,10 @@ export class SidebarComponent implements OnInit {
     }
   }
   SidebarComponent_ConvertIntoDateTime() {
-    this.sDisplayWord = this.oDatePipe.transform(this.sSelectedWord, 'EEE, d MMM y hh:mm:ss');
+    this.sDisplayWord = this.oDatePipe.transform(
+      this.sSelectedWord,
+      "EEE, d MMM y hh:mm:ss"
+    );
   }
   SidebarComponent_DisplayImageError() {
     this.bDisplayImageError = true;
@@ -313,30 +309,32 @@ export class SidebarComponent implements OnInit {
     const source = `data:image/png;base64,${this.sSelectedWord}`;
     const link = document.createElement("a");
     link.href = source;
-    link.download = 'image.png';
+    link.download = "image.png";
     link.click();
   }
   SidebarComponent_DownloadPDFFile() {
     const source = `data:application/pdf;base64,${this.sSelectedWord}`;
     const link = document.createElement("a");
     link.href = source;
-    link.download = 'hl7.pdf';
+    link.download = "hl7.pdf";
     link.click();
   }
   SidebarComponent_EditFieldValue() {
-
     if (this.sDisplayWord && this.bCheck == false) {
       this.bEnableTextarea = false;
       this.bToggleInputField = false;
-      this.addBorderClass = 'border';
+      this.addBorderClass = "border";
       this.adjustHeight = "field-value-height";
-      this.bDisplayInputIcons = true
+      this.bDisplayInputIcons = true;
       this.bCheck = true;
     }
   }
   SidebarComponent_SendUpdatedText() {
     let obj = this.sDisplayWord;
-    this.oDataService.oWordToUpdate.next({ header: this.sSelectedHeader, word: obj });
+    this.oDataService.oWordToUpdate.next({
+      header: this.sSelectedHeader,
+      word: obj,
+    });
     this.bToggleInputField = true;
     this.addBorderClass = "";
     this.adjustHeight = "";
@@ -354,13 +352,9 @@ export class SidebarComponent implements OnInit {
     this.bEnableTextarea = true;
     this.bTick = true;
     this.Testarea_focusout();
-
   }
   Testarea_focusout() {
-    this.bEnableTextarea = true
-    this.bDisplayInputIcons = false
+    this.bEnableTextarea = true;
+    this.bDisplayInputIcons = false;
   }
-
 }
-
-
