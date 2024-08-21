@@ -2,7 +2,7 @@ export type Segment = {
     value: string | undefined;
     r: string | undefined;
     o: string | undefined;
-    len: number | 0;
+    len: string | undefined;
     description: string | 0;
     type: string;
     children?: Segment[] | undefined;
@@ -12,7 +12,9 @@ export type Segment = {
     dataTypeName?: string | null
     contents?: string | null,
     header?: string | null,
-    depth?: number[] | []
+    depth?: number[] | [],
+
+
 }
 
 export type Field = {
@@ -33,6 +35,12 @@ export type UpdatedSegment = {
     lineNumber: number | 0;
     message: string | undefined;
 }
+
+export type UpdateValue = {
+    newValue: string | undefined;
+    depth: number[] | []
+}
+
 export type Table_Value = {
     table_value: string;
     display_name: string;

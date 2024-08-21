@@ -1,12 +1,12 @@
+<div class="segment-header" style="display: flex; flex-direction: row; position: sticky; top:0px;z-index: 100;">
+  <div style="flex:2; text-align: center;">Header</div>
+  <div style="flex:3; text-align: center;">Value</div>
+  <div style="flex:1; text-align: center;">R</div>
+  <div style="flex:1; text-align: center;">O</div>
+  <div style="flex:1; text-align: center;">Len</div>
+  <div style="flex:1; text-align: center;">Type</div>
+  <div style="flex:3; text-align: center;border-right: unset;">Description</div>
+</div>
 <div class="segement-container">
-  <div style="display: flex; flex-direction: row;">
-    <div style="flex:1; text-align: center;">Header</div>
-    <div style="flex:1; text-align: center;">Value</div>
-    <div style="flex:1; text-align: center;">R</div>
-    <div style="flex:1; text-align: center;">O</div>
-    <div style="flex:1; text-align: center;">Len</div>
-    <div style="flex:1; text-align: center;">Type</div>
-    <div style="flex:1; text-align: center;">Description</div>
-  </div>
-  <app-tree [treeData]="data"></app-tree>
+  <app-tree [treeData]="data" [onItemChange]="onItemChange"></app-tree>
 </div>

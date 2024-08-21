@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 import { Segment } from 'src/app/type';
 
 @Component({
@@ -6,23 +7,76 @@ import { Segment } from 'src/app/type';
     templateUrl: './nested-table.component.html',
     styleUrls: ['./nested-table.component.scss']
 })
-export class TreeComponent {
+export class TreeComponent implements OnInit {
     @Input() treeData: Segment[] = [];
+    @Input() onItemChange: (depth: number[], event: any) => void;
     expandedRows = new Set<number>();
-    currentRow: number | null = null;
-    currentSubRow: number = -1;
+    selectedDepth: number[] = [];
+    lineNumber: number | 0;
+    constructor(private oDataService: DataService) {
 
-    toggleRow(index: number): void {
+    }
+
+    ngOnInit(): void {
+        this.oDataService.oWordToSearch.subscribe(data => {
+            try {
+                this.expandedRows.clear()
+                let depth = []
+                if (data.word) {
+                    console.log("!!!", data)
+                    this.lineNumber = data.lineNumber
+                    if (data.carrots == 0) {
+                        depth = [data.bars]
+                        this.oDataService.oField.next(this.treeData[data.bars])
+                    }
+                    else {
+                        depth = [data.bars, data.carrots - 1]
+                        this.oDataService.oField.next(this.treeData[data.carrots - 1])
+                    }
+
+
+
+                    setTimeout(() => {
+                        const element = document.querySelector(`div[data-index='${depth.join(',')}']`);
+                        if (element) {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                        this.selectRow(depth)
+                    }, 0);
+                }
+            } catch (err) {
+
+            }
+
+        })
+    }
+    toggleRow(event: Event, index: number): void {
+        event.stopPropagation()
         if (this.expandedRows.has(index)) {
             this.expandedRows.delete(index);
         } else {
             this.expandedRows.add(index);
         }
-        this.currentRow = index;
     }
 
-    onItemChange(index: number, event: any): void {
-        // Implement logic to handle changes to the input field
-        console.log(`Item at index ${index} changed to: ${event} ${this.treeData[index].header}`);
+    isEven(depth: number[]): boolean {
+        return depth.reduce((prev, current) => prev + current + 1, 0) % 2 == 0
     }
+
+    isSelected(depth: number[]): boolean {
+        return (depth.join(',') == this.selectedDepth.join(','))
+    }
+
+
+    //selectRow
+    selectRow(depth: number[]): void {
+        this.selectedDepth = depth
+        for (let i = 0; i < this.treeData.length; i++) {
+            if (depth.join(',').includes(this.treeData[i].depth.join(',')))
+                this.expandedRows.add(i)
+        }
+    }
+
+
+
 }

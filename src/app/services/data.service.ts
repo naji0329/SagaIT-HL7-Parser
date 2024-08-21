@@ -3,7 +3,7 @@ import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, retry, tap, concatMap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { Segment, UpdatedSegment } from '../type';
+import { Segment, UpdatedSegment, UpdateValue } from '../type';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,7 @@ export class DataService {
   oWordToUpdate = new BehaviorSubject<any>({ header: "", word: "" });
   oUpdatedSegement = new BehaviorSubject<UpdatedSegment | null>(null)
   oField = new BehaviorSubject<Segment | null>(null)
+
   constructor(private http: HttpClient) { }
 
   convertHL7ToFHIR(sHL7: string) {

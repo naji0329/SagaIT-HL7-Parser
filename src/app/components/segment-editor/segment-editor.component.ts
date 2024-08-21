@@ -39,8 +39,10 @@ export class SegmentEditorCompoent implements OnInit {
             console.log("Incomming word for segment editor: ==> ", fields);
             //get detail for segment editor
             this.data = this.getSegmentDetails(fields, fieldIndex)
-            this.scrollToAndExpandTarget(data.word)
+            // this.scrollToAndExpandTarget(data.word)
+
         })
+
     }
 
 
@@ -63,7 +65,7 @@ export class SegmentEditorCompoent implements OnInit {
                         value: sub_fields[i] || "",
                         r: "",
                         o: "",
-                        len: String(sub_fields[i] || "").length,
+                        // len: String(sub_fields[i] || "").length,
                         type: data_type.fields[i].dataTypeName,
                         description: data_type.fields[i].name,
                         children: data_type.id == data_type.fields[i].dataTypeName ? [] : this.getSubDetails(sub_fields[i] || "", data_type.fields[i], new_depth),
@@ -71,7 +73,8 @@ export class SegmentEditorCompoent implements OnInit {
                         header: field.dataTypeName,
                         tableName: data_type.fields[i].tableName,
                         anchor: d ? d.anchor : null,
-                        depth: new_depth
+                        depth: new_depth,
+
                     })
                 }
                 return result
@@ -95,17 +98,18 @@ export class SegmentEditorCompoent implements OnInit {
                 let d = getAnchor(this.HL7, field.dataTypeName)
                 temp.push({
                     value: fields[index],
-                    r: "",
-                    o: "",
-                    len: String(fields[index] || "").length,
+                    r: field.req_opt == "R" ? "R" : null,
+                    o: field.req_opt == "O" ? "O" : null,
                     type: field.dataTypeName,
                     description: field.name,
                     children: this.getSubDetails(fields[index] || "", field, [fieldIndex]),
                     tableName: field.tableName,
                     anchor: d ? d.anchor : null,
                     header: this.segmentHeader,
-                    depth: [fieldIndex]
+                    depth: [fieldIndex],
+                    len: (field.min_length && field.max_length) ? `${field.min_length}...${field.max_length}` : null,
 
+                    req_opt: field.req_opt,
                 })
                 fieldIndex++
             }
@@ -114,16 +118,14 @@ export class SegmentEditorCompoent implements OnInit {
         return temp;
 
     }
-    toggleRow(index: number) {
-        if (this.expandedRows.has(index)) {
-            this.expandedRows.delete(index);
-        } else {
-            this.expandedRows.add(index);
-        }
-    }
+
     generateMessage(): void {
-        const message = this.data.map(segment => {
-            if (segment.children && segment.children.length > 1) {
+        const t = [...this.data]
+        if (this.segmentHeader == "MSH")
+            t.shift()
+
+        const message = t.map(segment => {
+            if (segment.children && segment.children.length >= 1) {
                 const childValues = segment.children?.map(child => child.value || "") || [];
                 // Remove trailing empty values
                 while (childValues.length > 0 && !childValues[childValues.length - 1]) {
@@ -135,76 +137,27 @@ export class SegmentEditorCompoent implements OnInit {
             else return segment.value
         }).join("|");
 
+
         this.oDataService.oUpdatedSegement.next({
             lineNumber: this.lineNumber,
-            message: message
+            message: this.segmentHeader + "|" + message
         })
 
     }
-    onItemChange(index: number, newValue: any) {
-        this.data[index].value = newValue;
-        this.generateMessage();
+    onItemChange = (depth: number[], event: any): void => {
 
+        if (depth.length > 0) {
+            depth[0] = depth[0] - 1
+            console.log("!!!", depth, event.target.value, this.data)
+            let t_data = this.data
+            let i = 0;
+            for (i = 0; i < depth.length - 1; i++) {
+                t_data = t_data[depth[i]].children
 
+            }
+            t_data[depth[i]].value = event.target.value
 
-        // Perform any additional actions here, such as updating other data or making API calls
-    }
-    onSubItemChange(index1: number, index2: number, newValue: any) {
-        this.data[index1].children[index2].value = newValue;
-        this.generateMessage();
-
-        // Perform any additional actions here, such as updating other data or making API calls
-    }
-    scrollToAndExpandTarget(targetValue: string): void {
-
-        // set the field null by default 
-        this.oDataService.oField.next(null)
-        // Check main rows first
-        this.currentRow = -1;
-        this.currentSubRow = -1;
-        let targetIndex = this.data.findIndex(item => item.value === targetValue);
-
-        if (targetIndex !== -1) {
-            this.expandedRows.clear()
-            this.expandedRows.add(targetIndex); // Expand the main row
-
-            // select the row
-            this.currentRow = targetIndex
-
-            this.oDataService.oField.next(this.data[targetIndex])
-            // Scroll to the main row
-            setTimeout(() => {
-                const mainRowElement = document.querySelector(`tr[data-index='${targetIndex}']`);
-                if (mainRowElement) {
-                    mainRowElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            }, 0);
-        } else {
-            // Check subtable rows if not found in main rows
-            this.data.forEach((item, mainIndex) => {
-                if (item.children && item.children.length > 0) {
-                    const subIndex = item.children.findIndex(subItem => subItem.value === targetValue);
-                    if (subIndex !== -1) {
-                        this.expandedRows.clear()
-
-                        //select the parent row
-                        this.currentRow = mainIndex;
-                        this.currentSubRow = subIndex;
-
-                        this.expandedRows.add(mainIndex); // Ensure the main row is expanded
-                        this.oDataService.oField.next(this.data[mainIndex].children[subIndex])
-                        // Scroll to the subtable row
-                        setTimeout(() => {
-                            const subRowElement = document.querySelector(`tr[data-main-index='${mainIndex}'][data-sub-index='${subIndex}']`);
-                            if (subRowElement) {
-                                subRowElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            }
-                        }, 0);
-                    }
-                }
-            });
+            this.generateMessage()
         }
     }
-
-
 }
