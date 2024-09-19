@@ -1,0 +1,11 @@
+<div class="d-flex align-items-center gap-3">
+  <span><i class="fa fa-upload text-primary"></i></span>
+  <div>Import message</div>
+  <input
+    id="fileUpload"
+    accept="text/plain, .hl7"
+    type="file"
+    (change)="EditorMainSectionComponent_ImportFile($event)"
+    class="hidden"
+  />
+</div>

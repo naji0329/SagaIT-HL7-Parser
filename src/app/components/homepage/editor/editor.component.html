@@ -1,110 +1,168 @@
-<div class="d-flex flex-wrap justify-content-between align-items-center">
-    <div style="padding: 3px 0 5px 0">
-        <!-- <span id="messageName1" class="label label-info info-badge mr-2 mb-1">Name: Copy of sample MDM^T02 with JPG</span> -->
-        <span id="hl7length1" class="label-light label-info info-badge pr-2">Message Length:
-            {{msgtextarea?msgtextarea.value.length:0}} Characters</span>
-        <!-- <span id="hl7length1" class="label label-info info-badge mr-2 mb-1">Selected Value: Event Type Code</span> -->
-    </div>
+<div>
+  <!-- <div class="d-flex flex-wrap justify-content-between align-items-center">
     <div class="wrapper wrapper-blue">
-        <div class="toggle-view icon facebook" data-toggle="tooltip" (click)="ToggleResponsiveView()">
-            <div class="tooltip">Toggle View Mode</div>
-            <span><i class="fa fa-eye"></i></span>
-        </div>
-        <div class="icon facebook" data-toggle="tooltip" (click)="EditorMainSectionComponent_CopyToClipBoard()">
-            <div class="tooltip">Copy to clipboard</div>
-            <span><i class="fa fa-clipboard"></i></span>
-        </div>
-        <label for="fileUpload" class="icon facebook">
-            <div class="tooltip">Import message</div>
-            <span><i class="fa fa-upload"></i></span>
-            <input id="fileUpload" accept="text/plain, .hl7" type="file"
-                (change)="EditorMainSectionComponent_ImportFile($event)" class="hidden">
-        </label>
-        <div (click)="EditorMainSectionComponent_ExportFile()" class="icon facebook" data-bs-toggle="modal">
-            <div class="tooltip DownloadTooltip">Export message</div>
-            <span><i class="fa fa-download"></i></span>
-        </div>
+      <div
+        class="toggle-view icon facebook"
+        data-toggle="tooltip"
+        (click)="ToggleResponsiveView()"
+      >
+        <div class="tooltip">Toggle View Mode</div>
+        <span><i class="fa fa-eye"></i></span>
+      </div>
+      <div
+        class="icon facebook"
+        data-toggle="tooltip"
+        (click)="EditorMainSectionComponent_CopyToClipBoard()"
+      >
+        <div class="tooltip">Copy to clipboard</div>
+        <span><i class="fa fa-clipboard"></i></span>
+      </div>
+      <label for="fileUpload" class="icon facebook">
+        <div class="tooltip">Import message</div>
+        <span><i class="fa fa-upload"></i></span>
+        <input
+          id="fileUpload"
+          accept="text/plain, .hl7"
+          type="file"
+          (change)="EditorMainSectionComponent_ImportFile($event)"
+          class="hidden"
+        />
+      </label>
+      <div
+        (click)="EditorMainSectionComponent_ExportFile()"
+        class="icon facebook"
+        data-bs-toggle="modal"
+      >
+        <div class="tooltip DownloadTooltip">Export message</div>
+        <span><i class="fa fa-download"></i></span>
+      </div>
 
-        <!-- <div class="icon facebook" (click)="EditorMainSectionComponent_ConvertToFHIR()"> -->
-        <!--     <div class="tooltip">View as FHIR</div> -->
-        <!--     <span><i class="fa fa-fire"></i></span> -->
-        <!-- </div> -->
-
+      <div
+        class="icon facebook"
+        (click)="EditorMainSectionComponent_ConvertToFHIR()"
+      >
+        <div class="tooltip">View as FHIR</div>
+        <span><i class="fa fa-fire"></i></span>
+      </div>
     </div>
-</div>
-<!-- text editor -->
+  </div> -->
+  <!-- text editor -->
 
-<!-- <div class="content">
+  <!-- <div class="content">
     <app-textarea-highlight
         [(ngModel)]="sTextAreaValue"
         [highlightTexts]="highlightTexts"
     >
     </app-textarea-highlight>
 </div> -->
-<div class="editor-container" [ngStyle]="getMainAreaStyles()">
+  <div class="editor-container" [ngStyle]="getMainAreaStyles()">
     <div class="content">
-        <div class="content">
-            <textarea class="hl7texteditor editor-text" placeholder="Paste or type your message here..." wrap="off"
-                spellcheck="false" autocomplete="off" autocorrect="off" [(ngModel)]="sTextAreaValue"
-                (change)="EditorMainSectionComponent_PassValueToTreeView()" autocapitalize="off" #msgtextarea
-                (keyup)="EditorMainSectionComponent_CalculateHeaders(msgtextarea)"
-                (click)="EditorMainSectionComponent_CalculateHeaders(msgtextarea)"
-                (paste)="EditorMainSectionComponent_FlashView()" (input)="EditorMainSectionComponent_InputTextArea()"
-                [wrap]="wordWrap?'soft':'off'"></textarea>
-            <div class="wrap-button">
-                <label class="switch-btn">
-                    <input type="checkbox" [checked]="wordWrap" (click)="ToggleWrap()">
-                    <span></span>
-                </label>
+      <div class="content">
+        <textarea
+          class="hl7texteditor editor-text"
+          placeholder="Paste or type your message here..."
+          wrap="off"
+          spellcheck="false"
+          autocomplete="off"
+          autocorrect="off"
+          [(ngModel)]="sTextAreaValue"
+          (change)="EditorMainSectionComponent_PassValueToTreeView()"
+          autocapitalize="off"
+          #msgtextarea
+          (keyup)="EditorMainSectionComponent_CalculateHeaders(msgtextarea)"
+          (click)="EditorMainSectionComponent_CalculateHeaders(msgtextarea)"
+          (paste)="EditorMainSectionComponent_FlashView()"
+          (input)="EditorMainSectionComponent_InputTextArea()"
+          [wrap]="wordWrap ? 'soft' : 'off'"
+        ></textarea>
+        <div class="wrap-button">
+          <label class="switch-btn">
+            <input
+              type="checkbox"
+              [checked]="wordWrap"
+              (click)="ToggleWrap()"
+            />
+            <span></span>
+          </label>
+        </div>
 
-            </div>
-
-            <!-- <div class="hl7texteditor colored-editor" [innerHTML]="sColoredTextValue">
+        <!-- <div class="hl7texteditor colored-editor" [innerHTML]="sColoredTextValue">
 
         </div> -->
-
-        </div>
-        <span id="hl7length2" class="label-light label-info info-badge pr-2">
-            {{msgtextarea?msgtextarea.value.length:0}} Characters</span>
+      </div>
+      <span id="hl7length2" class="label-light label-info info-badge pr-2">
+        {{ msgtextarea ? msgtextarea.value.length : 0 }} Characters
+      </span>
     </div>
     <div *ngIf="bDisplayFHIRPanel" class="fhir-content bg-white shadow p-0">
-        <i class="fa fa-times closeicon" (click)="EditorMainSectionComponent_DismissFHIRPanel()"></i>
-        <div *ngIf="bDisplaySpinner" class="spinner-border" role="status">
-        </div>
-        <pre>
+      <i
+        class="fa fa-times closeicon"
+        (click)="EditorMainSectionComponent_DismissFHIRPanel()"
+      ></i>
+      <div *ngIf="bDisplaySpinner" class="spinner-border" role="status"></div>
+      <pre>
         <code class="hl7-fhir">{{sFHIRResult}}</code>
-        </pre>
+    </pre>
     </div>
+  </div>
+
+  <segment-editor></segment-editor>
+
+  <!-- Short Information -->
+  <div class="p-1 text-right">
+    <span id="hl7length1">
+      {{ msgtextarea ? msgtextarea.value.length : 0 }} Characters
+    </span>
+  </div>
 </div>
-<div class="tab_container">
-    <segment-editor></segment-editor>
-</div>
 
-
-<div class="modal fade" id="viewFHIR" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="staticBackdropLabel">HL7v2 to FHIR Result</h4>
-                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal"><i
-                        class="fa fa-times"></i></button>
-
-            </div>
-            <div class="modal-body">
-                <div class="bootbox-body">
-                    <form class="bootbox-form">
-                        <input class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text">
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                <!-- <button type="button" class="btn btn-default btn-sm" data-bs-dismiss="modal">Cancel</button>-->
-                <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Ok</button>
-            </div>
+<div
+  class="modal fade"
+  id="viewFHIR"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="staticBackdropLabel">
+          HL7v2 to FHIR Result
+        </h4>
+        <button
+          type="button"
+          class="bg-transparent border-0"
+          data-bs-dismiss="modal"
+        >
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="bootbox-body">
+          <form class="bootbox-form">
+            <input
+              class="bootbox-input bootbox-input-text form-control"
+              autocomplete="off"
+              type="text"
+            />
+          </form>
         </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+        <!-- <button type="button" class="btn btn-default btn-sm" data-bs-dismiss="modal">Cancel</button>-->
+        <button
+          type="button"
+          class="btn btn-primary btn-sm"
+          data-bs-dismiss="modal"
+        >
+          Ok
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- new message  modal -->
@@ -161,6 +219,10 @@
 </div>-->
 
 <!-- success alert -->
-<div *ngIf="bDisplayAlert" class="alert alert-success position-fixed" role="alert">
-    {{sText}}
+<div
+  *ngIf="bDisplayAlert"
+  class="alert alert-success position-fixed"
+  role="alert"
+>
+  {{ sText }}
 </div>

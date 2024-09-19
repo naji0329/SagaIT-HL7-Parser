@@ -1,31 +1,50 @@
-@import url('https://fonts.cdnfonts.com/css/nasa');
+@import url("https://fonts.cdnfonts.com/css/nasa");
 
 .logo .name {
-    font-family: 'Nasa', sans-serif;
-    font-size: 32px;
-    font-weight: 800;
+  font-family: "Nasa", sans-serif;
+  font-size: 32px;
+  font-weight: 800;
 }
 .logo:hover {
-color: #00defc;
+  color: #00defc;
 }
 .logo .subtitle {
-    font-size: 13px;
+  font-size: 13px;
 }
 .logo {
-    line-height: 0.8;
-    cursor: pointer;
-
+  line-height: 0.8;
+  cursor: pointer;
 }
-.z-index-999{
-    z-index: 999 !important;
+.z-index-999 {
+  z-index: 999 !important;
 }
 .nav-link {
-    padding: 5px 10px 5px 10px;
+  padding: 5px 10px 5px 10px;
 }
 
 button.active .icon-tree {
-    filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
 }
 /*------------------------------------------------------------------ [Common Styles: See "Inputs - Switcher" for code below] */
 
 /*------------------------------------------------------------------ [Inputs - Switcher] */
+
+.mode-left-btn {
+  height: 33px;
+  border-top-left-radius: 1.25rem;
+  border-bottom-left-radius: 1.25rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.mode-right-btn {
+  height: 33px;
+  border-top-right-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1em;
+}

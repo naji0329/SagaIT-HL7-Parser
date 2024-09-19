@@ -1,8 +1,8 @@
-@import 'src/assets/scss/_theme-cosmo.scss';
-@import 'src/assets/scss/_theme-cerulean.scss';
-@import 'src/assets/scss/_theme-yeti.scss';
-@import 'src/assets/scss/_theme-cyborg.scss';
-@import 'src/assets/scss/_theme-slate.scss';
+@import "src/assets/scss/_theme-cosmo.scss";
+@import "src/assets/scss/_theme-cerulean.scss";
+@import "src/assets/scss/_theme-yeti.scss";
+@import "src/assets/scss/_theme-cyborg.scss";
+@import "src/assets/scss/_theme-slate.scss";
 
 /**
  * @license
@@ -40,10 +40,12 @@
 
 */
 @font-face {
-  font-family: 'GeneralSans-Variable';
-  src: url('./assets/fonts/GeneralSans/GeneralSans-Variable.woff2') format('woff2'),
-    url('./assets/fonts/GeneralSans/GeneralSans-Variable.woff') format('woff'),
-    url('./assets/fonts/GeneralSans/GeneralSans-Variable.ttf') format('truetype');
+  font-family: "GeneralSans-Variable";
+  src: url("./assets/fonts/GeneralSans/GeneralSans-Variable.woff2")
+      format("woff2"),
+    url("./assets/fonts/GeneralSans/GeneralSans-Variable.woff") format("woff"),
+    url("./assets/fonts/GeneralSans/GeneralSans-Variable.ttf")
+      format("truetype");
   font-weight: 200 700;
   font-display: swap;
   font-style: normal;
@@ -60,130 +62,154 @@
 
 */
 @font-face {
-  font-family: 'GeneralSans-VariableItalic';
-  src: url('./assets/fonts/GeneralSans/GeneralSans-VariableItalic.woff2') format('woff2'),
-    url('./assets/fonts/GeneralSans/GeneralSans-VariableItalic.woff') format('woff'),
-    url('./assets/fonts/GeneralSans/GeneralSans-VariableItalic.ttf') format('truetype');
+  font-family: "GeneralSans-VariableItalic";
+  src: url("./assets/fonts/GeneralSans/GeneralSans-VariableItalic.woff2")
+      format("woff2"),
+    url("./assets/fonts/GeneralSans/GeneralSans-VariableItalic.woff")
+      format("woff"),
+    url("./assets/fonts/GeneralSans/GeneralSans-VariableItalic.ttf")
+      format("truetype");
   font-weight: 200 700;
   font-display: swap;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'GeneralSans-Extralight';
-  src: url('./assets/fonts/GeneralSans/GeneralSans-Extralight.woff2') format('woff2'),
-    url('./assets/fonts/GeneralSans/GeneralSans-Extralight.woff') format('woff'),
-    url('./assets/fonts/GeneralSans/GeneralSans-Extralight.ttf') format('truetype');
+  font-family: "GeneralSans-Extralight";
+  src: url("./assets/fonts/GeneralSans/GeneralSans-Extralight.woff2")
+      format("woff2"),
+    url("./assets/fonts/GeneralSans/GeneralSans-Extralight.woff") format("woff"),
+    url("./assets/fonts/GeneralSans/GeneralSans-Extralight.ttf")
+      format("truetype");
   font-weight: 200;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'GeneralSans';
-  src: url('./assets/fonts/GeneralSans/GeneralSans-ExtralightItalic.woff2') format('woff2'),
-    url('./assets/fonts/GeneralSans/GeneralSans-ExtralightItalic.woff') format('woff'),
-    url('./assets/fonts/GeneralSans/GeneralSans-ExtralightItalic.ttf') format('truetype');
+  font-family: "GeneralSans";
+  src: url("./assets/fonts/GeneralSans/GeneralSans-ExtralightItalic.woff2")
+      format("woff2"),
+    url("./assets/fonts/GeneralSans/GeneralSans-ExtralightItalic.woff")
+      format("woff"),
+    url("./assets/fonts/GeneralSans/GeneralSans-ExtralightItalic.ttf")
+      format("truetype");
   font-weight: 200;
   font-display: swap;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'GeneralSans';
-  src: url('./assets/fonts/GeneralSans/GeneralSans-Light.woff2') format('woff2'),
-    url('./assets/fonts/GeneralSans/GeneralSans-Light.woff') format('woff'),
-    url('./assets/fonts/GeneralSans/GeneralSans-Light.ttf') format('truetype');
+  font-family: "GeneralSans";
+  src: url("./assets/fonts/GeneralSans/GeneralSans-Light.woff2") format("woff2"),
+    url("./assets/fonts/GeneralSans/GeneralSans-Light.woff") format("woff"),
+    url("./assets/fonts/GeneralSans/GeneralSans-Light.ttf") format("truetype");
   font-weight: 300;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'GeneralSans';
-  src: url('./assets/fonts/GeneralSans/GeneralSans-LightItalic.woff2') format('woff2'),
-    url('./assets/fonts/GeneralSans/GeneralSans-LightItalic.woff') format('woff'),
-    url('./assets/fonts/GeneralSans/GeneralSans-LightItalic.ttf') format('truetype');
+  font-family: "GeneralSans";
+  src: url("./assets/fonts/GeneralSans/GeneralSans-LightItalic.woff2")
+      format("woff2"),
+    url("./assets/fonts/GeneralSans/GeneralSans-LightItalic.woff")
+      format("woff"),
+    url("./assets/fonts/GeneralSans/GeneralSans-LightItalic.ttf")
+      format("truetype");
   font-weight: 300;
   font-display: swap;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'GeneralSans';
-  src: url('./assets/fonts/GeneralSans/GeneralSans-Regular.woff2') format('woff2'),
-    url('./assets/fonts/GeneralSans/GeneralSans-Regular.woff') format('woff'),
-    url('./assets/fonts/GeneralSans/GeneralSans-Regular.ttf') format('truetype');
+  font-family: "GeneralSans";
+  src: url("./assets/fonts/GeneralSans/GeneralSans-Regular.woff2")
+      format("woff2"),
+    url("./assets/fonts/GeneralSans/GeneralSans-Regular.woff") format("woff"),
+    url("./assets/fonts/GeneralSans/GeneralSans-Regular.ttf") format("truetype");
   font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'GeneralSans';
-  src: url('./assets/fonts/GeneralSans/GeneralSans-Italic.woff2') format('woff2'),
-    url('./assets/fonts/GeneralSans/GeneralSans-Italic.woff') format('woff'),
-    url('./assets/fonts/GeneralSans/GeneralSans-Italic.ttf') format('truetype');
+  font-family: "GeneralSans";
+  src: url("./assets/fonts/GeneralSans/GeneralSans-Italic.woff2")
+      format("woff2"),
+    url("./assets/fonts/GeneralSans/GeneralSans-Italic.woff") format("woff"),
+    url("./assets/fonts/GeneralSans/GeneralSans-Italic.ttf") format("truetype");
   font-weight: 400;
   font-display: swap;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'GeneralSans';
-  src: url('./assets/fonts/GeneralSans/GeneralSans-Medium.woff2') format('woff2'),
-    url('./assets/fonts/GeneralSans/GeneralSans-Medium.woff') format('woff'),
-    url('./assets/fonts/GeneralSans/GeneralSans-Medium.ttf') format('truetype');
+  font-family: "GeneralSans";
+  src: url("./assets/fonts/GeneralSans/GeneralSans-Medium.woff2")
+      format("woff2"),
+    url("./assets/fonts/GeneralSans/GeneralSans-Medium.woff") format("woff"),
+    url("./assets/fonts/GeneralSans/GeneralSans-Medium.ttf") format("truetype");
   font-weight: 500;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'GeneralSans';
-  src: url('./assets/fonts/GeneralSans/GeneralSans-MediumItalic.woff2') format('woff2'),
-    url('./assets/fonts/GeneralSans/GeneralSans-MediumItalic.woff') format('woff'),
-    url('./assets/fonts/GeneralSans/GeneralSans-MediumItalic.ttf') format('truetype');
+  font-family: "GeneralSans";
+  src: url("./assets/fonts/GeneralSans/GeneralSans-MediumItalic.woff2")
+      format("woff2"),
+    url("./assets/fonts/GeneralSans/GeneralSans-MediumItalic.woff")
+      format("woff"),
+    url("./assets/fonts/GeneralSans/GeneralSans-MediumItalic.ttf")
+      format("truetype");
   font-weight: 500;
   font-display: swap;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'GeneralSans';
-  src: url('./assets/fonts/GeneralSans/GeneralSans-Semibold.woff2') format('woff2'),
-    url('./assets/fonts/GeneralSans/GeneralSans-Semibold.woff') format('woff'),
-    url('./assets/fonts/GeneralSans/GeneralSans-Semibold.ttf') format('truetype');
+  font-family: "GeneralSans";
+  src: url("./assets/fonts/GeneralSans/GeneralSans-Semibold.woff2")
+      format("woff2"),
+    url("./assets/fonts/GeneralSans/GeneralSans-Semibold.woff") format("woff"),
+    url("./assets/fonts/GeneralSans/GeneralSans-Semibold.ttf")
+      format("truetype");
   font-weight: 600;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'GeneralSans';
-  src: url('./assets/fonts/GeneralSans/GeneralSans-SemiboldItalic.woff2') format('woff2'),
-    url('./assets/fonts/GeneralSans/GeneralSans-SemiboldItalic.woff') format('woff'),
-    url('./assets/fonts/GeneralSans/GeneralSans-SemiboldItalic.ttf') format('truetype');
+  font-family: "GeneralSans";
+  src: url("./assets/fonts/GeneralSans/GeneralSans-SemiboldItalic.woff2")
+      format("woff2"),
+    url("./assets/fonts/GeneralSans/GeneralSans-SemiboldItalic.woff")
+      format("woff"),
+    url("./assets/fonts/GeneralSans/GeneralSans-SemiboldItalic.ttf")
+      format("truetype");
   font-weight: 600;
   font-display: swap;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'GeneralSans';
-  src: url('./assets/fonts/GeneralSans/GeneralSans-Bold.woff2') format('woff2'),
-    url('./assets/fonts/GeneralSans/GeneralSans-Bold.woff') format('woff'),
-    url('./assets/fonts/GeneralSans/GeneralSans-Bold.ttf') format('truetype');
+  font-family: "GeneralSans";
+  src: url("./assets/fonts/GeneralSans/GeneralSans-Bold.woff2") format("woff2"),
+    url("./assets/fonts/GeneralSans/GeneralSans-Bold.woff") format("woff"),
+    url("./assets/fonts/GeneralSans/GeneralSans-Bold.ttf") format("truetype");
   font-weight: 700;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'GeneralSans';
-  src: url('./assets/fonts/GeneralSans/GeneralSans-BoldItalic.woff2') format('woff2'),
-    url('./assets/fonts/GeneralSans/GeneralSans-BoldItalic.woff') format('woff'),
-    url('./assets/fonts/GeneralSans/GeneralSans-BoldItalic.ttf') format('truetype');
+  font-family: "GeneralSans";
+  src: url("./assets/fonts/GeneralSans/GeneralSans-BoldItalic.woff2")
+      format("woff2"),
+    url("./assets/fonts/GeneralSans/GeneralSans-BoldItalic.woff") format("woff"),
+    url("./assets/fonts/GeneralSans/GeneralSans-BoldItalic.ttf")
+      format("truetype");
   font-weight: 700;
   font-display: swap;
   font-style: italic;
@@ -191,7 +217,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: 'GeneralSans';
+  font-family: "GeneralSans";
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -271,13 +297,13 @@ html {
   font-weight: 800 !important;
 }
 
-// spacing 
+// spacing
 .ml-1 {
-  margin-left: .25rem !important;
+  margin-left: 0.25rem !important;
 }
 
 .ml-2 {
-  margin-left: .5rem !important;
+  margin-left: 0.5rem !important;
 }
 
 .ml-3 {
@@ -293,11 +319,11 @@ html {
 }
 
 .mr-1 {
-  margin-right: .25rem !important;
+  margin-right: 0.25rem !important;
 }
 
 .mr-2 {
-  margin-right: .5rem !important;
+  margin-right: 0.5rem !important;
 }
 
 .mr-3 {
@@ -321,8 +347,6 @@ html {
     transition: 0.3s ease-in-out;
   }
 }
-
-
 
 .mr-5 {
   margin-right: 2rem !important;
@@ -410,7 +434,7 @@ ul.dropdown-menu {
 }
 
 .list-group-item {
-  border-bottom: 1px solid rgba(0, 0, 0, .125) !important
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
 }
 
 //  homepage
@@ -422,14 +446,13 @@ ul.dropdown-menu {
   }
 }
 
-
 .panel-info {
   background-color: #d9edf7;
   border-radius: 0.25rem 0.25rem 0 0;
 }
 
 .card-body {
-  border-radius: 0 0 .25rem .25rem;
+  border-radius: 0 0 0.25rem 0.25rem;
 }
 
 .panel .panel-info a {
@@ -441,7 +464,7 @@ ul.dropdown-menu {
 }
 
 // buttons css
-.btn-check:focus+.btn,
+.btn-check:focus + .btn,
 .btn:focus {
   box-shadow: none !important;
 }
@@ -537,7 +560,7 @@ ul.dropdown-menu {
 }
 
 #main {
-  transition: margin-left .5s;
+  transition: margin-left 0.5s;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
@@ -621,7 +644,6 @@ ul.dropdown-menu {
   right: 10px;
 }
 
-
 .resizable .resizers .resizer.bottom-right {
   right: 0;
   bottom: 0;
@@ -685,13 +707,12 @@ ul.dropdown-menu {
 }
 
 .wrapper .DownloadTooltip {
-  right: 0 !important
+  right: 0 !important;
 }
 
 .wrapper .DownloadTooltip::before {
-  left: 92% !important
+  left: 92% !important;
 }
-
 
 .wrapper .tooltip::before {
   position: absolute;
@@ -893,95 +914,159 @@ ul.dropdown-menu {
   left: 1px;
 }
 
-.tabs input[name="tab-control"]:nth-of-type(1):checked~ul>li:nth-child(1)>label {
+.tabs
+  input[name="tab-control"]:nth-of-type(1):checked
+  ~ ul
+  > li:nth-child(1)
+  > label {
   cursor: default;
   color: #428bff;
 }
 
-.tabs input[name="tab-control"]:nth-of-type(1):checked~ul>li:nth-child(1)>label svg {
+.tabs
+  input[name="tab-control"]:nth-of-type(1):checked
+  ~ ul
+  > li:nth-child(1)
+  > label
+  svg {
   fill: #428bff;
 }
 
 @media (max-width: 600px) {
-  .tabs input[name="tab-control"]:nth-of-type(1):checked~ul>li:nth-child(1)>label {
+  .tabs
+    input[name="tab-control"]:nth-of-type(1):checked
+    ~ ul
+    > li:nth-child(1)
+    > label {
     background: rgba(0, 0, 0, 0.08);
   }
 }
 
-.tabs input[name="tab-control"]:nth-of-type(1):checked~.slider {
+.tabs input[name="tab-control"]:nth-of-type(1):checked ~ .slider {
   transform: translateX(0%);
 }
 
-.tabs input[name="tab-control"]:nth-of-type(1):checked~.content>section:nth-child(1) {
+.tabs
+  input[name="tab-control"]:nth-of-type(1):checked
+  ~ .content
+  > section:nth-child(1) {
   display: block;
 }
 
-.tabs input[name="tab-control"]:nth-of-type(2):checked~ul>li:nth-child(2)>label {
+.tabs
+  input[name="tab-control"]:nth-of-type(2):checked
+  ~ ul
+  > li:nth-child(2)
+  > label {
   cursor: default;
   color: #428bff;
 }
 
-.tabs input[name="tab-control"]:nth-of-type(2):checked~ul>li:nth-child(2)>label svg {
+.tabs
+  input[name="tab-control"]:nth-of-type(2):checked
+  ~ ul
+  > li:nth-child(2)
+  > label
+  svg {
   fill: #428bff;
 }
 
 @media (max-width: 600px) {
-  .tabs input[name="tab-control"]:nth-of-type(2):checked~ul>li:nth-child(2)>label {
+  .tabs
+    input[name="tab-control"]:nth-of-type(2):checked
+    ~ ul
+    > li:nth-child(2)
+    > label {
     background: rgba(0, 0, 0, 0.08);
   }
 }
 
-.tabs input[name="tab-control"]:nth-of-type(2):checked~.slider {
+.tabs input[name="tab-control"]:nth-of-type(2):checked ~ .slider {
   transform: translateX(100%);
 }
 
-.tabs input[name="tab-control"]:nth-of-type(2):checked~.content>section:nth-child(2) {
+.tabs
+  input[name="tab-control"]:nth-of-type(2):checked
+  ~ .content
+  > section:nth-child(2) {
   display: block;
 }
 
-.tabs input[name="tab-control"]:nth-of-type(3):checked~ul>li:nth-child(3)>label {
+.tabs
+  input[name="tab-control"]:nth-of-type(3):checked
+  ~ ul
+  > li:nth-child(3)
+  > label {
   cursor: default;
   color: #428bff;
 }
 
-.tabs input[name="tab-control"]:nth-of-type(3):checked~ul>li:nth-child(3)>label svg {
+.tabs
+  input[name="tab-control"]:nth-of-type(3):checked
+  ~ ul
+  > li:nth-child(3)
+  > label
+  svg {
   fill: #428bff;
 }
 
 @media (max-width: 600px) {
-  .tabs input[name="tab-control"]:nth-of-type(3):checked~ul>li:nth-child(3)>label {
+  .tabs
+    input[name="tab-control"]:nth-of-type(3):checked
+    ~ ul
+    > li:nth-child(3)
+    > label {
     background: rgba(0, 0, 0, 0.08);
   }
 }
 
-.tabs input[name="tab-control"]:nth-of-type(3):checked~.slider {
+.tabs input[name="tab-control"]:nth-of-type(3):checked ~ .slider {
   transform: translateX(200%);
 }
 
-.tabs input[name="tab-control"]:nth-of-type(3):checked~.content>section:nth-child(3) {
+.tabs
+  input[name="tab-control"]:nth-of-type(3):checked
+  ~ .content
+  > section:nth-child(3) {
   display: block;
 }
 
-.tabs input[name="tab-control"]:nth-of-type(4):checked~ul>li:nth-child(4)>label {
+.tabs
+  input[name="tab-control"]:nth-of-type(4):checked
+  ~ ul
+  > li:nth-child(4)
+  > label {
   cursor: default;
   color: #428bff;
 }
 
-.tabs input[name="tab-control"]:nth-of-type(4):checked~ul>li:nth-child(4)>label svg {
+.tabs
+  input[name="tab-control"]:nth-of-type(4):checked
+  ~ ul
+  > li:nth-child(4)
+  > label
+  svg {
   fill: #428bff;
 }
 
 @media (max-width: 600px) {
-  .tabs input[name="tab-control"]:nth-of-type(4):checked~ul>li:nth-child(4)>label {
+  .tabs
+    input[name="tab-control"]:nth-of-type(4):checked
+    ~ ul
+    > li:nth-child(4)
+    > label {
     background: rgba(0, 0, 0, 0.08);
   }
 }
 
-.tabs input[name="tab-control"]:nth-of-type(4):checked~.slider {
+.tabs input[name="tab-control"]:nth-of-type(4):checked ~ .slider {
   transform: translateX(300%);
 }
 
-.tabs input[name="tab-control"]:nth-of-type(4):checked~.content>section:nth-child(4) {
+.tabs
+  input[name="tab-control"]:nth-of-type(4):checked
+  ~ .content
+  > section:nth-child(4) {
   display: block;
 }
 
@@ -1198,9 +1283,7 @@ ul.dropdown-menu {
   box-shadow: 0 10px 10px rgb(0 0 0 / 10%);
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
 }
-
 
 .pdfDownload:hover {
   background-color: #3b5999;
@@ -1214,26 +1297,23 @@ ul.dropdown-menu {
   text-align: center;
 }
 
-
 // .closeicon:before, .closeicon:before, .closeicon:before:hover {
 //   content: "\f00d";
 //   color: #fff(255, 255, 255);
 // }
-
 
 .nav-pills .nav-link {
   border-radius: 0;
   border: 1px solid #168af9 !important;
 }
 
-
 .button-switch {
   font-size: 1.5em;
-  height: 1.875em;
+  height: 33px;
   margin-bottom: 0.625em;
   position: relative;
-  width: 4.5em;
-  top: 6px;
+  width: 4.2em;
+  top: 0px;
   right: -48px;
 }
 
@@ -1279,7 +1359,7 @@ ul.dropdown-menu {
 
 .button-switch .switch:before,
 .button-switch .switch:after {
-  content: '';
+  content: "";
   font-size: 1em;
   position: absolute;
 }
@@ -1317,11 +1397,11 @@ ul.dropdown-menu {
   top: 7px;
 }
 
-.button-switch .switch:checked~.lbl-off {
+.button-switch .switch:checked ~ .lbl-off {
   opacity: 0;
 }
 
-.button-switch .switch:checked~.lbl-on {
+.button-switch .switch:checked ~ .lbl-on {
   opacity: 1;
 }
 
@@ -1334,7 +1414,7 @@ ul.dropdown-menu {
 }
 
 .nav-pills .nav-link.active,
-.nav-pills .show>.nav-link {
+.nav-pills .show > .nav-link {
   color: #fff !important;
   background-color: #168af9 !important;
   border: 1px solid #168af9 !important;
@@ -1357,11 +1437,11 @@ ul.dropdown-menu {
   color: white;
 }
 
-.form-check-input:checked[type=checkbox] {
+.form-check-input:checked[type="checkbox"] {
   display: none !important;
 }
 
-.form-check-input[type=checkbox]:indeterminate {
+.form-check-input[type="checkbox"]:indeterminate {
   display: none !important;
 }
 
@@ -1396,6 +1476,18 @@ ul.dropdown-menu {
   font-weight: 500;
 }
 
+.btn-left-full-radius {
+  border-radius: 0 !important;
+  border-top-left-radius: 50% !important;
+  border-bottom-left-radius: 50% !important;
+}
+
+.btn-right-full-radius {
+  border-radius: 0 !important;
+  border-top-right-radius: 50% !important;
+  border-bottom-right-radius: 50% !important;
+}
+
 .btn-left-radius {
   border-radius: 0 !important;
   border-top-left-radius: 12px !important;
@@ -1418,8 +1510,6 @@ input.form-control {
   color: transparent;
   background-color: #168af9;
 }
-
-
 
 :focus-visible {
   outline: none;
@@ -1624,8 +1714,8 @@ textarea::selection {
 }
 
 .app-header nav {
-  box-shadow: 0 2px 4px rgba(22, 138, 249, .15);
-  border-bottom: 1px solid rgba(22, 138, 249, .2);
+  box-shadow: 0 2px 4px rgba(22, 138, 249, 0.15);
+  border-bottom: 1px solid rgba(22, 138, 249, 0.2);
   border-radius: 0 0 40px 40px;
 }
 
@@ -1677,8 +1767,6 @@ textarea::selection {
   display: none;
 }
 
-
-
 @media (max-width: 960px) {
   .page-title {
     display: none;
@@ -1696,8 +1784,9 @@ textarea::selection {
     color: #168af9;
     background-color: unset;
     font-weight: bold;
-
   }
+}
 
-
+.cursor-pointer {
+  cursor: pointer;
 }

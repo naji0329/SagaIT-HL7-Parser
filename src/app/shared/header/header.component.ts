@@ -8,6 +8,7 @@ declare var $: any;
 import packageInfo from "package.json";
 import HL7VERSION2_9 from "../../../assets/standard_profiles/version_2_9/version_2_9.json";
 import { DataService } from "src/app/services/data.service";
+import { HL7_VERSIONS } from "src/app/constants";
 
 @Component({
   selector: "app-header",
@@ -24,6 +25,7 @@ export class HeaderComponent implements OnInit {
   sBuildVersion: string;
   bToggleSwitch: boolean;
   sOverlay: string;
+  HL7_VERSIONS = HL7_VERSIONS;
 
   constructor(
     private oRouter: Router,
@@ -89,24 +91,6 @@ export class HeaderComponent implements OnInit {
       this.sOverlay = "overlay-fade";
     }
   }
-  ToggleTheme(event) {
-    console.log("Event", event.target.checked);
-    if (event.target.checked) {
-      localStorage.setItem("selectedTheme", "cyborg");
-      this.selectedTheme = localStorage.getItem("selectedTheme");
-      this.oThemeService.sSelectedThemeValue.next(this.selectedTheme);
-      if (this.selectedTheme === "cyborg") $("body").addClass("cyborg-body");
-
-      const body = document.getElementsByTagName("body")[0];
-      body.classList.add("cyborg-body");
-    } else {
-      localStorage.setItem("selectedTheme", "default");
-      this.selectedTheme = "default";
-      this.oThemeService.sSelectedThemeValue.next(this.selectedTheme);
-      const body = document.getElementsByTagName("body")[0];
-      body.classList.remove("cyborg-body");
-    }
-  }
   HeaderComponent_OnViewHL7Diagram() {
     const viewBtn = document.getElementById("pills-home-tab");
     viewBtn.classList.remove("flash");
@@ -148,6 +132,12 @@ export class HeaderComponent implements OnInit {
   //     }
   //   }
   // }
+  switchVersion(version_id) {
+    localStorage.setItem("ProfileNumber", version_id);
+    const version = HL7_VERSIONS.find((v) => v.id === version_id);
+
+    this.oProfileName = version.meta.name;
+  }
   HeaderComponent_LoadProfileHL7Version_2_9() {
     localStorage.setItem("ProfileNumber", "2_9");
     this.oProfileName = HL7VERSION2_9.meta.name;
@@ -169,5 +159,19 @@ export class HeaderComponent implements OnInit {
     if (oValue == "") {
       this.oDataService.oWordToFilter.next(oValue);
     }
+  }
+
+  onSearchIconClick() {
+    // Create a new KeyboardEvent with 'keydown' type
+    const event = new KeyboardEvent("keydown", {
+      bubbles: true,
+      cancelable: false,
+      key: "f",
+      code: "KeyF",
+      ctrlKey: true,
+    });
+
+    // Dispatch the event to the document
+    document.dispatchEvent(event);
   }
 }

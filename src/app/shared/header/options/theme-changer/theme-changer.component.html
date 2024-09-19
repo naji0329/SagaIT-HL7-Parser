@@ -1,0 +1,14 @@
+<div class="d-flex align-items-center gap-3">
+  Appearance
+  <div class="button-switch m-0 p-0">
+    <input
+      type="checkbox"
+      id="switch-blue"
+      class="switch m-0 p-0"
+      (change)="ToggleTheme($event)"
+      [checked]="bToggleSwitch"
+    />
+    <label for="switch-blue" class="lbl-off">Dark</label>
+    <label for="switch-blue" class="lbl-on">Light</label>
+  </div>
+</div>
