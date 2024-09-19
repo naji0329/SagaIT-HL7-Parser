@@ -1,4 +1,5 @@
-<div>
+<!-- Set Width with sectionWidth of div. sectionWidth is string. Need to set style  -->
+<div [style.maxWidth]="sectionWidth">
   <!-- <div class="d-flex flex-wrap justify-content-between align-items-center">
     <div class="wrapper wrapper-blue">
       <div
@@ -58,6 +59,7 @@
   <div class="editor-container" [ngStyle]="getMainAreaStyles()">
     <div class="content">
       <div class="content">
+        <!-- overflow-y scroll, overflow-x none  -->
         <textarea
           class="hl7texteditor editor-text"
           placeholder="Paste or type your message here..."
@@ -73,7 +75,9 @@
           (click)="EditorMainSectionComponent_CalculateHeaders(msgtextarea)"
           (paste)="EditorMainSectionComponent_FlashView()"
           (input)="EditorMainSectionComponent_InputTextArea()"
-          [wrap]="wordWrap ? 'soft' : 'off'"
+          [wrap]="wordWrap ? 'wrap' : 'off'"
+          (scroll)="onScroll($event)"
+          [style.overflow-x]="wordWrap && 'hidden'"
         ></textarea>
         <div class="wrap-button">
           <label class="switch-btn">
@@ -86,9 +90,14 @@
           </label>
         </div>
 
-        <!-- <div class="hl7texteditor colored-editor" [innerHTML]="sColoredTextValue">
-
-        </div> -->
+        <div
+          class="hl7texteditor colored-editor"
+          #coloredEditor
+          [class.text_nowrap]="!wordWrap"
+          [style.word-wrap]="wordWrap ? 'break-word' : 'normal'"
+          [innerHTML]="sColoredTextValue"
+          [style.overflow-x]="wordWrap && 'hidden'"
+        ></div>
       </div>
       <span id="hl7length2" class="label-light label-info info-badge pr-2">
         {{ msgtextarea ? msgtextarea.value.length : 0 }} Characters

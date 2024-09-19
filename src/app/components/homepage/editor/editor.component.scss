@@ -20,7 +20,9 @@ textarea {
 
 .colored-editor {
   padding: 2px;
-  height: 100%;
+  height: 90%;
+  width: 100%;
+  overflow: auto;
 }
 
 .hl7texteditor {
@@ -33,6 +35,7 @@ textarea {
   letter-spacing: 2px;
   font-weight: 500;
   line-height: 30px;
+  padding: 5px 10px 5px 10px;
 }
 
 .panel-info {
@@ -153,4 +156,12 @@ textarea {
   .toggle-view {
     display: none !important;
   }
+}
+
+.text_nowrap {
+  white-space: nowrap;
+}
+
+.text_nowrap span {
+  text-wrap: nowrap !important;
 }

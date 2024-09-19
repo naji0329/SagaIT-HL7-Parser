@@ -44,7 +44,7 @@ export class SegmentEditorCompoent implements OnInit {
     for (let data_type of this.HL7.data_types) {
       if (data_type.id == field.dataTypeName) {
         if (data_type.fields == undefined || data_type.fields.length <= 1) {
-          console.log("Segment details: break;", data_type.fields);
+          // console.log("Segment details: break;", data_type.fields);
           break;
         }
 
@@ -52,13 +52,13 @@ export class SegmentEditorCompoent implements OnInit {
         let sub_fields = message.split("^");
         for (let i = 0; i < data_type.fields.length; i++) {
           const d = getAnchor(this.HL7, data_type.fields[i].dataTypeName);
-          console.log(
-            "Segment details:return;",
-            message,
-            i,
-            sub_fields[i] || "",
-            data_type.fields[i].dataTypeName
-          );
+          // console.log(
+          //   "Segment details:return;",
+          //   message,
+          //   i,
+          //   sub_fields[i] || "",
+          //   data_type.fields[i].dataTypeName
+          // );
           const new_depth = [...depth, i];
           result.push({
             value: sub_fields[i] || "",

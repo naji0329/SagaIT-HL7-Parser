@@ -38,50 +38,11 @@
     </h2>
     <div class="collapse navbar-collapse ml-3" id="navbarSupportedContent">
       <ul class="navbar-nav mb-0 mb-lg-0 items-center">
-        <span role="button" class="dropdown-label"> HL7&#160;Version: </span>
-
-        <li
-          *ngIf="bDisplayProfileOptions"
-          class="nav-item dropdown versionnumber"
-        >
-          <div
-            class="nav-link dropdown-toggle"
-            id="navbarDropdown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            {{ oProfileName }}
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <!-- HL7_VERSIONS -->
-            <!-- <li>
-              <div
-                class="dropdown-item"
-                href="javascript:void(0)"
-                (click)="HeaderComponent_LoadProfileHL7Version_2_9()"
-                role="button"
-              >
-                2.9
-              </div>
-            </li> -->
-            <!-- For each of HL7_VERSIONS variable -->
-            <li
-              *ngFor="let version of HL7_VERSIONS"
-              class="dropdown-item"
-              role="button"
-              (click)="switchVersion(version.id)"
-            >
-              {{ version.meta.name }}
-            </li>
-          </ul>
-        </li>
-
         <!-- Option Dropdown -->
 
-        <li class="nav-item dropdown px-3">
+        <li class="nav-item dropdown pe-4">
           <div
-            class="nav-link dropdown-toggle"
+            class="nav-link dropdown-toggle text-dark"
             id="navbarDropdown"
             role="button"
             data-bs-toggle="dropdown"
@@ -173,6 +134,45 @@
           </ul>
         </li>
 
+        <span role="button"> HL7&#160;Version: </span>
+
+        <li
+          *ngIf="bDisplayProfileOptions"
+          class="nav-item dropdown versionnumber"
+        >
+          <div
+            class="nav-link dropdown-toggle"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ oProfileName }}
+          </div>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <!-- HL7_VERSIONS -->
+            <!-- <li>
+              <div
+                class="dropdown-item"
+                href="javascript:void(0)"
+                (click)="HeaderComponent_LoadProfileHL7Version_2_9()"
+                role="button"
+              >
+                2.9
+              </div>
+            </li> -->
+            <!-- For each of HL7_VERSIONS variable -->
+            <li
+              *ngFor="let version of HL7_VERSIONS"
+              class="dropdown-item"
+              role="button"
+              (click)="switchVersion(version.id)"
+            >
+              {{ version.meta.name }}
+            </li>
+          </ul>
+        </li>
+
         <!-- <li *ngIf="bDisplayProfileOptions" class="nav-item ml-2">
           <input
             class="form-control me-2"
@@ -184,8 +184,12 @@
           />
         </li> -->
         <!-- Show Search Icon -->
-        <li class="nav-item">
-          <span class="nav-link" role="button" (click)="onSearchIconClick()">
+        <li class="nav-item ps-3">
+          <span
+            class="nav-link text-dark"
+            role="button"
+            (click)="onSearchIconClick()"
+          >
             <i class="fa fa-search"></i>
           </span>
         </li>

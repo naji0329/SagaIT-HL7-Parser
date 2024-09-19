@@ -1,8 +1,12 @@
-
-
-.resizable {height: auto;position: relative;}
+.resizable {
+  height: auto;
+  position: relative;
+}
 .asidebar {
-  min-width: 300px;
+  min-width: 400px;
   flex-shrink: revert !important;
 }
-.main-sec {min-width: 930px; padding-right: 0;}
+.main-sec {
+  min-width: 930px;
+  padding-right: 0;
+}

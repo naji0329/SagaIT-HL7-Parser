@@ -1,10 +1,16 @@
 import { DatePipe } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  AfterViewInit,
+  OnDestroy,
+} from "@angular/core";
+
 import { DomSanitizer } from "@angular/platform-browser";
 import { DataService } from "src/app/services/data.service";
 import { ThemesService } from "src/app/services/themes.service";
-// import * as HL7Inspector from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.5.1-Profile.json';
-// import * as HL7Inspector26 from '../../../assets/standard_profiles/HL7InspectorNEO-HL7_V2.6-Profile.json';
+
 import HL7VERSION2_9 from "../../../assets/standard_profiles/version_2_9/version_2_9.json";
 import HL7VERSION2_9_TABLE from "../../../assets/standard_profiles/version_2_9/tables_2_9.json";
 import HL7VERSION2_9_SECTION from "../../../assets/standard_profiles/version_2_9/sections_2_9.json";
@@ -18,6 +24,8 @@ import { getAnchor, isValidBase64Image, isValidBase64PDF } from "src/app/utils";
   styleUrls: ["./sidebar.component.scss"],
 })
 export class SidebarComponent implements OnInit {
+  private resizeObserver: ResizeObserver;
+
   selectedTheme: any = "";
   bDisplayPreviewPanel = false;
   sOverlay: string = "";
@@ -51,7 +59,9 @@ export class SidebarComponent implements OnInit {
   selectedField: Segment;
   eventData: HL7_Event;
   openEventModal: boolean = false;
+
   constructor(
+    private elementRef: ElementRef,
     private oDataService: DataService,
     private oDatePipe: DatePipe,
     private oThemeService: ThemesService
@@ -152,6 +162,24 @@ export class SidebarComponent implements OnInit {
         this.SidebarComponent_ExtractHeaderDetails(data);
       }
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.resizeObserver = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        this.oThemeService.sidebarWidth.next(entry.contentRect.width);
+      }
+    });
+
+    this.resizeObserver.observe(
+      this.elementRef.nativeElement.querySelector("#sidebar")
+    );
+  }
+
+  ngOnDestroy(): void {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    }
   }
 
   SidebarComponent_ToggleEventModal() {

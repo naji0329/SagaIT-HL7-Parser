@@ -1,81 +1,227 @@
-.slate-body {background-color: #272b30 !important;}
-.slate.navbar.navbar-expand-lg.navbar-light.bg-light { background-color: #3b4045 !important; color: #fff;}
-.slate .navbar-brand{color: #fff !important;}
-.slate.navbar-light .navbar-nav .nav-link { color:#fff !important; }
-.slate.navbar-light .navbar-nav .nav-link:hover { background-color:#0d0e0f !important; }
-.slate .dropdown-menu.show {background:#3b4045 !important; color: #fff !important;}
-.slate .dropdown-item {color: #fff !important;}
-.slate .dropdown-item:hover {background-color: #272b30 !important;}
-.slate.footer{background-color: #3b4045 !important;}
-.slate .footer-text {color: #fff !important;}
-.slate .footer-text a { color: #fff !important;}
-.slate .control-label {color: #888888 !important;}
-.slate .nav-link { color: #fff !important; }
-.slate .table>:not(caption)>*>* { color: #fff !important;}
-.slate .nav-tabs .nav-link { color: #fff !important;}
-.slate .nav-tabs .nav-link.active { background-color: #3e444c !important; color: #fff !important; border-color: #3e444c !important;}
-.slate .nav-tabs .nav-link:hover { border-color: #3e444c !important; background-color: #3e444c !important;}
-.slate .nav-tabs { border-bottom: 1px solid #1c1e22 ;}
-.slate table {background-color: #2e3338 !important;}
-.slate .panel-info {background-color: #168af9 !important; border-color: transparent !important;}
-.slate .panel-info a {color: #fff !important;}
-.slate .card {border-radius: 0 0 .25rem .25rem !important; border-color: #1c1e22 !important; background-color: #2e3338 !important; }
-.slate p , .slate label {color: #c8c8c8 !important;}
-.slate .label-info {background-color: #168af9 !important;}
-.slate small {color: #c8c8c8;}
-.slate .modal-header ,.slate .modal-body,.slate .modal-footer{background-color: #2e3338 !important; color: #fff !important; border: none !important;}
-.slate .modal-header , .slate .modal-body{border-bottom: 1px solid #25282d !important;}
-.slate .fa-times {color: #fff !important;}
-.slate .btn-primary{background-color: #7d858a !important; border-color: #7d858a !important;}
-.slate .btn.btn-default {background-color: #3c4147 !important; color: #fff !important; border-color: #3c4147 !important;}
-.slate .btn.btn-default:hover{background-color: #111213 !important; border-color: #111213 !important;}
-.slate .page-item.active .page-link { color: #fff; background-color: #40454b !important; border-color: #40454b !important; }
-.slate h1 , .slate h2 , .slate h3, .slate h4, .slate h5, .slate h6 {color: #c8c8c8 !important;}
-.slate .openbtn { background-color: #232628; color: #fff; border:1px solid #111213 !important; box-shadow: 0 .5rem 1rem rgba(0,0,0,.50) !important; }
-.slate.sidebar {background-color: #272b30 !important;}
-.slate .menus a{background-color: #40454b !important; color: #fff;}
-.slate .list-group-item:hover {cursor: pointer; background-color: #111213 !important; border-color: #111213 !important;}
-.slate .list-group-item.active {cursor: pointer; background-color: #111213 !important; border-color: #111213 !important;}
-.slate .resizable .resizers .resizer{ border: 3px solid #fff;}
-.slate .resize-panels .resize-panel .re-panel{ border: 3px solid #fff !important; }
-.slate .resizable {  background: #272b30;}
-.slate .resize-panels {background: #272b30; }
-.slate .resize-panels .resize-panel{ border: 3px solid #fff;}
-.slate .resizable .resizers{ border: 3px solid #fff;}
+.slate-body {
+  background-color: #272b30 !important;
+}
+.slate.navbar.navbar-expand-lg.navbar-light.bg-light {
+  background-color: #3b4045 !important;
+  color: #fff;
+}
+.slate .navbar-brand {
+  color: #fff !important;
+}
+.slate.navbar-light .navbar-nav .nav-link {
+  color: #fff !important;
+}
+.slate.navbar-light .navbar-nav .nav-link:hover {
+  background-color: #0d0e0f !important;
+}
+.slate .dropdown-menu.show {
+  background: #3b4045 !important;
+  color: #fff !important;
+}
+.slate .dropdown-item {
+  color: #fff !important;
+}
+.slate .dropdown-item:hover {
+  background-color: #272b30 !important;
+}
+.slate.footer {
+  background-color: #3b4045 !important;
+}
+.slate .footer-text {
+  color: #fff !important;
+}
+.slate .footer-text a {
+  color: #fff !important;
+}
+.slate .control-label {
+  color: #888888 !important;
+}
+.slate .nav-link {
+  color: #fff !important;
+}
+.slate .table > :not(caption) > * > * {
+  color: #fff !important;
+}
+.slate .nav-tabs .nav-link {
+  color: #fff !important;
+}
+.slate .nav-tabs .nav-link.active {
+  background-color: #3e444c !important;
+  color: #fff !important;
+  border-color: #3e444c !important;
+}
+.slate .nav-tabs .nav-link:hover {
+  border-color: #3e444c !important;
+  background-color: #3e444c !important;
+}
+.slate .nav-tabs {
+  border-bottom: 1px solid #1c1e22;
+}
+.slate table {
+  background-color: #2e3338 !important;
+}
+.slate .panel-info {
+  background-color: #168af9 !important;
+  border-color: transparent !important;
+}
+.slate .panel-info a {
+  color: #fff !important;
+}
+.slate .card {
+  border-radius: 0 0 0.25rem 0.25rem !important;
+  border-color: #1c1e22 !important;
+  background-color: #2e3338 !important;
+}
+.slate p,
+.slate label {
+  color: #c8c8c8 !important;
+}
+.slate .label-info {
+  background-color: #168af9 !important;
+}
+.slate small {
+  color: #c8c8c8;
+}
+.slate .modal-header,
+.slate .modal-body,
+.slate .modal-footer {
+  background-color: #2e3338 !important;
+  color: #fff !important;
+  border: none !important;
+}
+.slate .modal-header,
+.slate .modal-body {
+  border-bottom: 1px solid #25282d !important;
+}
+.slate .fa-times {
+  color: #fff !important;
+}
+.slate .btn-primary {
+  background-color: #7d858a !important;
+  border-color: #7d858a !important;
+}
+.slate .btn.btn-default {
+  background-color: #3c4147 !important;
+  color: #fff !important;
+  border-color: #3c4147 !important;
+}
+.slate .btn.btn-default:hover {
+  background-color: #111213 !important;
+  border-color: #111213 !important;
+}
+.slate .page-item.active .page-link {
+  color: #fff;
+  background-color: #40454b !important;
+  border-color: #40454b !important;
+}
+.slate h1,
+.slate h2,
+.slate h3,
+.slate h4,
+.slate h5,
+.slate h6 {
+  color: #c8c8c8 !important;
+}
+.slate .openbtn {
+  background-color: #232628;
+  color: #fff;
+  border: 1px solid #111213 !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5) !important;
+}
+.slate.sidebar {
+  background-color: #272b30 !important;
+}
+.slate .menus a {
+  background-color: #40454b !important;
+  color: #fff;
+}
+.slate .list-group-item:hover {
+  cursor: pointer;
+  background-color: #111213 !important;
+  border-color: #111213 !important;
+}
+.slate .list-group-item.active {
+  cursor: pointer;
+  background-color: #111213 !important;
+  border-color: #111213 !important;
+}
+.slate .resizable .resizers .resizer {
+  border: 3px solid #fff;
+}
+.slate .resize-panels .resize-panel .re-panel {
+  border: 3px solid #fff !important;
+}
+.slate .resizable {
+  background: #272b30;
+}
+.slate .resize-panels {
+  background: #272b30;
+}
+.slate .resize-panels .resize-panel {
+  border: 3px solid #fff;
+}
+.slate .resizable .resizers {
+  border: 3px solid #fff;
+}
 
-
-.slate .tabs {  background: #202020;  }
-.slate .tabs input[name=tab-control]:nth-of-type(1):checked ~ ul > li:nth-child(1) > label { color: #fff !important;}
-.slate .tabs input[name=tab-control]:nth-of-type(2):checked ~ ul > li:nth-child(2) > label { color: #fff !important;}
-.slate .tabs input[name=tab-control]:nth-of-type(3):checked ~ ul > li:nth-child(3) > label { color: #fff !important;}
-.slate .tabs .slider .indicator { background: #fff;}
-.slate .label-info.info-badge{font-size: 15px !important;}
+.slate .tabs {
+  background: #202020;
+}
+.slate
+  .tabs
+  input[name="tab-control"]:nth-of-type(1):checked
+  ~ ul
+  > li:nth-child(1)
+  > label {
+  color: #fff !important;
+}
+.slate
+  .tabs
+  input[name="tab-control"]:nth-of-type(2):checked
+  ~ ul
+  > li:nth-child(2)
+  > label {
+  color: #fff !important;
+}
+.slate
+  .tabs
+  input[name="tab-control"]:nth-of-type(3):checked
+  ~ ul
+  > li:nth-child(3)
+  > label {
+  color: #fff !important;
+}
+.slate .tabs .slider .indicator {
+  background: #fff;
+}
+.slate .label-info.info-badge {
+  font-size: 15px !important;
+}
 
 .slate .wrapper .icon {
-	background-color: #168af9;
-	color: #fff;
-  }
-  .slate .wrapper .facebook:hover,
-  .slate .wrapper .facebook:hover .tooltip,
-  .slate .wrapper .facebook:hover .tooltip::before {
+  background-color: #168af9;
+  color: #fff;
+}
+.slate .wrapper .facebook:hover,
+.slate .wrapper .facebook:hover .tooltip,
+.slate .wrapper .facebook:hover .tooltip::before {
   background-color: #3b4045;
   color: #ffffff;
 }
 
-.slate.fa-cog
-{
-    color: #3b4045 !important;
-    background-color: #fff !important;
+.slate.fa-cog {
+  color: #3b4045 !important;
+  background-color: #fff !important;
 }
 .slate.sidebar-setting {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    background-color: #272b30;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 20px;
-  }
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #272b30;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 20px;
+}

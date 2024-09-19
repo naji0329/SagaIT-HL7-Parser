@@ -1,132 +1,393 @@
-
-<div class="d-flex flex-wrap justify-content-between align-items-center">
-    <div style="padding: 3px 0 5px 0">
-        <!-- <span id="messageName1" class="label label-info info-badge mr-2 mb-1">Name: Copy of sample MDM^T02 with JPG</span> -->
-        <span id="hl7length1" class="label-light label-info info-badge pr-2">Message Length: {{sIncommingText?.length}} Characters</span>
-        <!-- <span id="selectedField" class="label label-info info-badge mr-2 mb-1">Selected Field: Event Type Code</span> -->
+<!-- <div class="d-flex flex-wrap justify-content-between align-items-center">
+  <div class="wrapper wrapper-blue">
+    <div
+      class="icon facebook"
+      data-toggle="tooltip"
+      (click)="TreeViewSectionComponent_CopyToClipBoard()"
+    >
+      <div class="tooltip">Copy to clipboard</div>
+      <span><i class="fa fa-clipboard"></i></span>
     </div>
-    <div class="wrapper wrapper-blue">
-
-        <div class="icon facebook" data-toggle="tooltip" (click)="TreeViewSectionComponent_CopyToClipBoard()">
-            <div class="tooltip">Copy to clipboard</div>
-            <span><i class="fa fa-clipboard"></i></span>
-        </div>
-        <label for="fileUpload" class="icon facebook">
-            <div class="tooltip">Import message</div>
-            <span><i class="fa fa-upload"></i></span>
-            <input id="fileUpload"  accept="text/plain, .hl7" type="file" (change)="TreeViewSectionComponent_ImportFile($event)" class="hidden">
-        </label>
-        <div class="icon facebook" (click)="TreeViewSectionComponent_ExportFile()" >
-            <div class="tooltip DownloadTooltip">Export message</div>
-            <span ><i class="fa fa-download"></i></span>
-        </div>
-    
+    <label for="fileUpload" class="icon facebook">
+      <div class="tooltip">Import message</div>
+      <span><i class="fa fa-upload"></i></span>
+      <input
+        id="fileUpload"
+        accept="text/plain, .hl7"
+        type="file"
+        (change)="TreeViewSectionComponent_ImportFile($event)"
+        class="hidden"
+      />
+    </label>
+    <div class="icon facebook" (click)="TreeViewSectionComponent_ExportFile()">
+      <div class="tooltip DownloadTooltip">Export message</div>
+      <span><i class="fa fa-download"></i></span>
     </div>
-</div>
+  </div>
+</div> -->
 <!-- Tree view main section -->
 <div class="">
-    <div class="tree well">
-        <ul>
-            <li *ngFor="let parent of lSecondLevelNesting; index as parentIndex" >
-                <i class="custom-nodes" (click)="ToggleDisplay('parent'+parentIndex);ToggleParentCollapsed(parentIndex)" [ngClass]="parent.parentNode.isCollapsed?'fa fa-plus':'fa fa-minus'" aria-hidden="true"></i>
-                    <em *ngIf="parent.parentNode.isCollapsed==true" (click)="TreeViewSectionComponent_CalculateHeaders(parent.parentNode.expanded,parent.parentNode.expanded,0,0,parentIndex+1,true);sSelectedTextId ='parent'+parentIndex;"> <em [ngClass]="sSelectedTextId=='parent'+parentIndex?'highlight':''">{{parent.parentNode.collapsed | slice : 0 : 129}}</em> </em> 
-                    <em *ngIf="parent.parentNode.isCollapsed==false" (click)="TreeViewSectionComponent_CalculateHeaders(parent.parentNode.expanded,parent.parentNode.expanded,0,0,parentIndex+1,false);sSelectedTextId ='parent'+parentIndex+'expanded';"> <em [ngClass]="sSelectedTextId=='parent'+parentIndex+'expanded'?'highlight':''">{{parent.parentNode.expanded}}</em></em> 
-                <ul class="d-none" [id]="'parent'+parentIndex">
-                    <li *ngFor="let child of parent.childNodes; index as childIndex" [ngClass]="child.length==0||child.collapsed?.length==0?'d-none':''">
-                        <i *ngIf="child.grandChild?.length>0" class="custom-nodes" (click)="ToggleDisplay('child'+childIndex+'parent'+parentIndex);ToggleChildCollapsed(parentIndex,childIndex)" [ngClass]="child.grandChild?.length>0 && child.isCollapsed?'fa fa-plus':'fa fa-minus'" aria-hidden="true"></i>
-                        <i *ngIf="child.grandChild?.length==0" class="leaf-nodes" (click)="ToggleDisplay('child'+childIndex+'parent'+parentIndex);ToggleChildCollapsed(parentIndex,childIndex)"></i>
-                            <em *ngIf="child.isCollapsed==true" (click)="TreeViewSectionComponent_CalculateHeaders(parent.parentNode.expanded,child.expanded,childIndex+1,0,parentIndex+1,child.grandChild.length>0?true:false);sSelectedTextId ='child'+childIndex+'parent'+parentIndex"> <em class="node-label">{{parent.parentNode.expanded}}.{{childIndex+1}}: </em> <em [ngClass]="sSelectedTextId=='child'+childIndex+'parent'+parentIndex?'highlight':''">{{child.collapsed | slice : 0 : 129}}</em></em>
-                            <em *ngIf="child.isCollapsed==false" (click)="TreeViewSectionComponent_CalculateHeaders(parent.parentNode.expanded,child.expanded,childIndex+1,0,parentIndex+1,false);sSelectedTextId ='child'+childIndex+'parent'+parentIndex+'expanded';"><em class="node-label">{{parent.parentNode.expanded}}.{{childIndex+1}}</em></em>
-                            <!-- <em *ngIf="child.isCollapsed==false" (click)="TreeViewSectionComponent_CalculateHeaders(parent.parentNode.expanded,child.expanded,childIndex+1,0,parentIndex+1,false);sSelectedTextId ='child'+childIndex+'parent'+parentIndex+'expanded';"><em class="node-label">{{parent.parentNode.expanded}}.{{childIndex+1}}: </em> <em [ngClass]="sSelectedTextId=='child'+childIndex+'parent'+parentIndex+'expanded'?'highlight':''">{{child.expanded}}</em></em> -->
-                        <ul  class="d-none" [id]="'child'+childIndex+'parent'+parentIndex">
-                            <li *ngFor="let grandChild of child.grandChild; index as grandChildIndex" [ngClass]="grandChild==''?'d-none':''">
-                                    <i  class="leaf-nodes"></i>
-                                    <em (click)="TreeViewSectionComponent_CalculateHeaders(parent.parentNode.expanded,grandChild,childIndex+1,grandChildIndex+1,parentIndex+1,false);sSelectedTextId ='grandChild'+grandChildIndex+'child'+childIndex+'parent'+parentIndex"><em class="node-label">{{parent.parentNode.expanded}}.{{childIndex+1}}.{{grandChildIndex+1}}: </em><em [ngClass]="sSelectedTextId=='grandChild'+grandChildIndex+'child'+childIndex+'parent'+parentIndex?'highlight':''">{{grandChild | slice : 0 : 129}}</em></em>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
+  <div class="tree well">
+    <ul>
+      <li *ngFor="let parent of lSecondLevelNesting; index as parentIndex">
+        <i
+          class="custom-nodes"
+          (click)="
+            ToggleDisplay('parent' + parentIndex);
+            ToggleParentCollapsed(parentIndex)
+          "
+          [ngClass]="
+            parent.parentNode.isCollapsed ? 'fa fa-plus' : 'fa fa-minus'
+          "
+          aria-hidden="true"
+        ></i>
+        <em
+          *ngIf="parent.parentNode.isCollapsed == true"
+          (click)="
+            TreeViewSectionComponent_CalculateHeaders(
+              parent.parentNode.expanded,
+              parent.parentNode.expanded,
+              0,
+              0,
+              parentIndex + 1,
+              true
+            );
+            sSelectedTextId = 'parent' + parentIndex
+          "
+        >
+          <em
+            [ngClass]="
+              sSelectedTextId == 'parent' + parentIndex ? 'highlight' : ''
+            "
+            >{{ parent.parentNode.collapsed | slice : 0 : 129 }}</em
+          >
+        </em>
+        <em
+          *ngIf="parent.parentNode.isCollapsed == false"
+          (click)="
+            TreeViewSectionComponent_CalculateHeaders(
+              parent.parentNode.expanded,
+              parent.parentNode.expanded,
+              0,
+              0,
+              parentIndex + 1,
+              false
+            );
+            sSelectedTextId = 'parent' + parentIndex + 'expanded'
+          "
+        >
+          <em
+            [ngClass]="
+              sSelectedTextId == 'parent' + parentIndex + 'expanded'
+                ? 'highlight'
+                : ''
+            "
+            >{{ parent.parentNode.expanded }}</em
+          ></em
+        >
+        <ul class="d-none" [id]="'parent' + parentIndex">
+          <li
+            *ngFor="let child of parent.childNodes; index as childIndex"
+            [ngClass]="
+              child.length == 0 || child.collapsed?.length == 0 ? 'd-none' : ''
+            "
+          >
+            <i
+              *ngIf="child.grandChild?.length > 0"
+              class="custom-nodes"
+              (click)="
+                ToggleDisplay('child' + childIndex + 'parent' + parentIndex);
+                ToggleChildCollapsed(parentIndex, childIndex)
+              "
+              [ngClass]="
+                child.grandChild?.length > 0 && child.isCollapsed
+                  ? 'fa fa-plus'
+                  : 'fa fa-minus'
+              "
+              aria-hidden="true"
+            ></i>
+            <i
+              *ngIf="child.grandChild?.length == 0"
+              class="leaf-nodes"
+              (click)="
+                ToggleDisplay('child' + childIndex + 'parent' + parentIndex);
+                ToggleChildCollapsed(parentIndex, childIndex)
+              "
+            ></i>
+            <em
+              *ngIf="child.isCollapsed == true"
+              (click)="
+                TreeViewSectionComponent_CalculateHeaders(
+                  parent.parentNode.expanded,
+                  child.expanded,
+                  childIndex + 1,
+                  0,
+                  parentIndex + 1,
+                  child.grandChild.length > 0 ? true : false
+                );
+                sSelectedTextId = 'child' + childIndex + 'parent' + parentIndex
+              "
+            >
+              <em class="node-label"
+                >{{ parent.parentNode.expanded }}.{{ childIndex + 1 }}:
+              </em>
+              <em
+                [ngClass]="
+                  sSelectedTextId ==
+                  'child' + childIndex + 'parent' + parentIndex
+                    ? 'highlight'
+                    : ''
+                "
+                >{{ child.collapsed | slice : 0 : 129 }}</em
+              ></em
+            >
+            <em
+              *ngIf="child.isCollapsed == false"
+              (click)="
+                TreeViewSectionComponent_CalculateHeaders(
+                  parent.parentNode.expanded,
+                  child.expanded,
+                  childIndex + 1,
+                  0,
+                  parentIndex + 1,
+                  false
+                );
+                sSelectedTextId =
+                  'child' + childIndex + 'parent' + parentIndex + 'expanded'
+              "
+              ><em class="node-label"
+                >{{ parent.parentNode.expanded }}.{{ childIndex + 1 }}</em
+              ></em
+            >
+            <!-- <em *ngIf="child.isCollapsed==false" (click)="TreeViewSectionComponent_CalculateHeaders(parent.parentNode.expanded,child.expanded,childIndex+1,0,parentIndex+1,false);sSelectedTextId ='child'+childIndex+'parent'+parentIndex+'expanded';"><em class="node-label">{{parent.parentNode.expanded}}.{{childIndex+1}}: </em> <em [ngClass]="sSelectedTextId=='child'+childIndex+'parent'+parentIndex+'expanded'?'highlight':''">{{child.expanded}}</em></em> -->
+            <ul
+              class="d-none"
+              [id]="'child' + childIndex + 'parent' + parentIndex"
+            >
+              <li
+                *ngFor="
+                  let grandChild of child.grandChild;
+                  index as grandChildIndex
+                "
+                [ngClass]="grandChild == '' ? 'd-none' : ''"
+              >
+                <i class="leaf-nodes"></i>
+                <em
+                  (click)="
+                    TreeViewSectionComponent_CalculateHeaders(
+                      parent.parentNode.expanded,
+                      grandChild,
+                      childIndex + 1,
+                      grandChildIndex + 1,
+                      parentIndex + 1,
+                      false
+                    );
+                    sSelectedTextId =
+                      'grandChild' +
+                      grandChildIndex +
+                      'child' +
+                      childIndex +
+                      'parent' +
+                      parentIndex
+                  "
+                  ><em class="node-label"
+                    >{{ parent.parentNode.expanded }}.{{ childIndex + 1 }}.{{
+                      grandChildIndex + 1
+                    }}: </em
+                  ><em
+                    [ngClass]="
+                      sSelectedTextId ==
+                      'grandChild' +
+                        grandChildIndex +
+                        'child' +
+                        childIndex +
+                        'parent' +
+                        parentIndex
+                        ? 'highlight'
+                        : ''
+                    "
+                    >{{ grandChild | slice : 0 : 129 }}</em
+                  ></em
+                >
+              </li>
+            </ul>
+          </li>
         </ul>
-    </div> 
+      </li>
+    </ul>
+  </div>
+
+  <segment-editor></segment-editor>
+
+  <!-- Short Information -->
+  <div class="p-1 text-right">
+    <span id="hl7length1">
+      {{ sIncommingText ? sIncommingText.length : 0 }} Characters
+    </span>
+  </div>
 </div>
 
 <!-- new message  modal -->
-<div class="modal fade" id="new-message" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="staticBackdropLabel">Enter the name of the message.</h4>
-                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal" aria-label="Close"> <i class="fa fa-times"></i></button>
-
-            </div>
-            <div class="modal-body">
-                <div class="bootbox-body"><form class="bootbox-form">
-                    <input class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text">
-                </form>
-            </div>
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                <button type="button" class="btn btn-default btn-sm" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Ok</button>
-            </div>
+<div
+  class="modal fade"
+  id="new-message"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="staticBackdropLabel">
+          Enter the name of the message.
+        </h4>
+        <button
+          type="button"
+          class="bg-transparent border-0"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="bootbox-body">
+          <form class="bootbox-form">
+            <input
+              class="bootbox-input bootbox-input-text form-control"
+              autocomplete="off"
+              type="text"
+            />
+          </form>
         </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+        <button
+          type="button"
+          class="btn btn-default btn-sm"
+          data-bs-dismiss="modal"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary btn-sm"
+          data-bs-dismiss="modal"
+        >
+          Ok
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 <!-- edit message  modal -->
-<div class="modal fade" id="edit-message" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="staticBackdropLabel">Enter the new name of the message.</h4>
-                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal" aria-label="Close"> <i class="fa fa-times"></i></button>
-            </div>
-            <div class="modal-body">
-                <div class="bootbox-body"><form class="bootbox-form">
-                    <input class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text">
-                </form>
-            </div>
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                <button type="button" class="btn btn-default btn-sm" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Ok</button>
-            </div>
+<div
+  class="modal fade"
+  id="edit-message"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="staticBackdropLabel">
+          Enter the new name of the message.
+        </h4>
+        <button
+          type="button"
+          class="bg-transparent border-0"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="bootbox-body">
+          <form class="bootbox-form">
+            <input
+              class="bootbox-input bootbox-input-text form-control"
+              autocomplete="off"
+              type="text"
+            />
+          </form>
         </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+        <button
+          type="button"
+          class="btn btn-default btn-sm"
+          data-bs-dismiss="modal"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary btn-sm"
+          data-bs-dismiss="modal"
+        >
+          Ok
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- success alert -->
-<div *ngIf="bDisplayAlert" class="alert alert-success position-fixed" role="alert">
-    {{sText}}
-  </div>
+<div
+  *ngIf="bDisplayAlert"
+  class="alert alert-success position-fixed"
+  role="alert"
+>
+  {{ sText }}
+</div>
 
 <!-- upload file modal -->
-<div class="modal fade" id="upload-file" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="staticBackdropLabel">Upload file</h4>
-                <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
-
-            </div>
-            <div class="modal-body">
-                <div class="bootbox-body">
-                    <span class="btn btn-success fileinput-button"><i
-                            class="glyphicon glyphicon-plus"></i><span>Add file...</span><input id="name"
-                            name="files[]" type="file"></span>
-                    <p></p>
-                    <div id="uploadFileStatus" class="label label-success"></div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-            </div>
+<div
+  class="modal fade"
+  id="upload-file"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="staticBackdropLabel">Upload file</h4>
+        <button
+          type="button"
+          class="bg-transparent border-0"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="bootbox-body">
+          <span class="btn btn-success fileinput-button"
+            ><i class="glyphicon glyphicon-plus"></i><span>Add file...</span
+            ><input id="name" name="files[]" type="file"
+          /></span>
+          <p></p>
+          <div id="uploadFileStatus" class="label label-success"></div>
         </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
     </div>
+  </div>
 </div>

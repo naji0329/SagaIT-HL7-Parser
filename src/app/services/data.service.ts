@@ -1,35 +1,33 @@
-import { Injectable } from '@angular/core';
-import { Observable, throwError, BehaviorSubject } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, retry, tap, concatMap } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
-import { Segment, UpdatedSegment, UpdateValue } from '../type';
+import { Injectable } from "@angular/core";
+import { Observable, throwError, BehaviorSubject } from "rxjs";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { catchError, retry, tap, concatMap } from "rxjs/operators";
+import { environment } from "../../environments/environment";
+import { Segment, UpdatedSegment, UpdateValue } from "../type";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class DataService {
-
   oWordToSearch = new BehaviorSubject<any>({ header: "", word: "" });
   oResponsiveView = new BehaviorSubject<boolean>(false);
   sTreeViewData = new BehaviorSubject<string>("");
   oWordToFilter = new BehaviorSubject<any>("");
   oWordToUpdate = new BehaviorSubject<any>({ header: "", word: "" });
-  oUpdatedSegement = new BehaviorSubject<UpdatedSegment | null>(null)
-  oField = new BehaviorSubject<Segment | null>(null)
+  oUpdatedSegement = new BehaviorSubject<UpdatedSegment | null>(null);
+  oField = new BehaviorSubject<Segment | null>(null);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   convertHL7ToFHIR(sHL7: string) {
     let fhirResult: any;
 
     if (environment.enableCrsfTokenRequest) {
-      fhirResult = this.getAntiForgeryToken()
-        .pipe(
-          tap((res: string) => console.log('crsf token:', res)),
-          concatMap((token: string) => this.callConversionService(sHL7, token)),
-          tap(res => console.log('fhir result:', res))
-        );
+      fhirResult = this.getAntiForgeryToken().pipe(
+        tap((res: string) => console.log("crsf token:", res)),
+        concatMap((token: string) => this.callConversionService(sHL7, token)),
+        tap((res) => console.log("fhir result:", res))
+      );
     } else {
       fhirResult = this.callConversionService(sHL7, "");
     }
@@ -38,26 +36,30 @@ export class DataService {
   }
 
   private getAntiForgeryToken() {
-    return this.http.get("/api/anti-forgery-token",
-      {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-        }),
-        observe: 'body',
-        withCredentials: true
-      });
+    return this.http.get("/api/anti-forgery-token", {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+      }),
+      observe: "body",
+      withCredentials: true,
+    });
   }
 
-  private callConversionService(sHL7: string, token: string): Observable<Object> {
-    return this.http.post(environment.hl7CsharpConvertUrl,
-      { 'hl7': sHL7 },
+  private callConversionService(
+    sHL7: string,
+    token: string
+  ): Observable<Object> {
+    return this.http.post(
+      environment.hl7CsharpConvertUrl,
+      { hl7: sHL7 },
       {
         headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'x-csrf-token': token
+          "Content-Type": "application/json",
+          "x-csrf-token": token,
         }),
-        observe: 'body',
-        withCredentials: true
-      });
+        observe: "body",
+        withCredentials: true,
+      }
+    );
   }
 }

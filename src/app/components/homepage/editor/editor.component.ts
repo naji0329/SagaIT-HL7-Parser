@@ -1,5 +1,13 @@
-import { Component, Input, OnInit } from "@angular/core";
+import {
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+} from "@angular/core";
 import { DataService } from "src/app/services/data.service";
+import { ThemesService } from "src/app/services/themes.service";
 import { saveAs as EditorMainSectionComponent_DownloadResultAsJSON } from "save-as";
 import { environment } from "src/environments/environment";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
@@ -11,6 +19,9 @@ import { TEST_MESSAGE } from "src/app/constants";
   styleUrls: ["./editor.component.scss"],
 })
 export class EditorComponent implements OnInit {
+  @ViewChild("msgtextarea") msgtextarea: ElementRef;
+  @ViewChild("coloredEditor") coloredEditor: ElementRef;
+
   bDisplaySpinner: boolean = false;
   bDisplayFHIRPanel: boolean = false;
   sFHIRResult: string = "";
@@ -34,9 +45,12 @@ export class EditorComponent implements OnInit {
   encodingCharacter: string = "^~\\&";
   wordWrap = false;
 
+  sectionWidth = "calc(100vw - 400px - 30px)";
+
   constructor(
     private oDataService: DataService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private oThemesService: ThemesService
   ) {}
 
   ngOnInit(): void {
@@ -62,9 +76,19 @@ export class EditorComponent implements OnInit {
       }
     });
 
+    this.oThemesService.sidebarWidth.subscribe((data) => {
+      console.log("sidebar width", data);
+      this.sectionWidth = "calc(100vw - " + data + "px  - 30px)";
+    });
+
     this.EditorMainSectionComponent_PassValueToTreeView();
     this.EditorMainSectionComponent_UpdateEditedText();
     this.EditorMainSectionComponent_GetTreeValue();
+  }
+
+  ngAfterViewInit() {
+    // Initial synchronization if needed
+    this.syncScroll();
   }
 
   EditorMainSectionComponent_ConvertToFHIR() {
@@ -417,5 +441,19 @@ export class EditorComponent implements OnInit {
           height: "400px",
         }
       : {};
+  }
+
+  onScroll(event: Event) {
+    console.log("scrolling");
+    this.syncScroll();
+  }
+
+  syncScroll() {
+    const textarea = this.msgtextarea.nativeElement;
+    const coloredEditor = this.coloredEditor.nativeElement;
+
+    // Synchronize scroll positions
+    coloredEditor.scrollTop = textarea.scrollTop;
+    coloredEditor.scrollLeft = textarea.scrollLeft;
   }
 }
